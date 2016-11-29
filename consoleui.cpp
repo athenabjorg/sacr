@@ -24,9 +24,14 @@ void ConsoleUI::run()
 
 
         cin >> command;
+        for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
+        {
+            command[i] = tolower(command[i]);
+        }
+
         cout << endl;
 
-        if(command == "add" || command == "Add" || command == "ADD") // Could possibly be improved upon
+        if(command == "add") // Could possibly be improved upon
         {
            userMenuAdd();
         }
@@ -56,24 +61,62 @@ void ConsoleUI::userMenuAdd()
 
 
     cout << "Enter the programmer's/computer scientist's name: ";
-    cin >> name; // TODO - take in as ( GETLINE )
+    cin.ignore();
+    getline(cin, name);
 
-    cout << "Enter the programmer's/computer scientist's gender (m/f): ";
-    cin >> gender;
+    bool check = true;
+    do
+    {
+        cout << "Enter the programmer's/computer scientist's gender (m/f): ";
+        cin >> gender;
+        if((gender != 'm') && (gender != 'f'))
+        {
+            cout << "Invalid input" << endl;
+        }
+        else
+        {
+            cout << endl;
+            check = false;
+        }
+    }while(check == true);
 
-    cout << "Enter the programmer's/computer scientist's year of birth: ";
-    cin >> birthYear;
+    bool check2 = true;
+    do
+    {
+        cout << "Enter the programmer's/computer scientist's year of birth: ";
+        cin >> birthYear;
+        if(birthYear < 2016) // Just in case we find a programmer of the univers
+        {
+            cout << endl;
+            check2 = false;
+        }
+        else
+        {
+            cout << "Invalid input" << endl;
+        }
+    }while(check2 == true);
 
-    cout << "Enter the programmer's/computer scientist's year of death (leave empty if not applicable): ";
-    cin >> deathYear;
+    bool check3 = true;
+    do
+    {
+        cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
+        cin >> deathYear;
+        if(deathYear >= birthYear)
+        {
+            cout << endl;
+            check3 = false;
+        }
+        else
+        {
+            cout << "Invalid input" << endl;
+        }
+    }while(check3 == true);
 
-
-    //_service.addScientist(name, gender, birthYear, deathYear);
     _service.addScientist(name, gender, birthYear, deathYear);
 }
 void ConsoleUI::userMenuList()
 {
-    vector<Scientist> scientist = _service.getScientist();
+    vector<Scientist> scientist = _service.getScientists();
 
     cout << "Scientist name:" << endl;
     cout << "===============" << endl;
@@ -93,7 +136,7 @@ void ConsoleUI::userMenuSearch()
 
     if(command == "name" || command == "Name" || command == "NAME")
     {
-        vector<Scientist> scientist = _service.getScientist();
+        vector<Scientist> scientist = _service.getScientists();
         string nameInputSearch;
         cout << "Enter a name to search: ";
         cin >> nameInputSearch;
