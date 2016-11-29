@@ -7,7 +7,6 @@ int main()
     ui.run();
 
     return 0;
-    //Test. jonh
 }
 
 
