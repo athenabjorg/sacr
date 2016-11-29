@@ -12,7 +12,7 @@ DataAccess::DataAccess()
 void DataAccess::saveScientists(vector<Scientist>& scientists)
 {
     ofstream file;
-    file.open("scientists.txt");
+    file.open("scientists.csv"); // spurning hvort þetta eigi að vera .txt eða .csv
 
     for(size_t i = 0; i <= scientists.size(); i++)
     {
