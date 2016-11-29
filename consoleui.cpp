@@ -13,28 +13,29 @@ ConsoleUI::ConsoleUI()
 // Should not contain logic for individual commands, that should be in separate functions!
 void ConsoleUI::run()
 {
-    cout << "Select one of the following options: " << endl;
-    cout << "Add - add a programmer/computer scientist" << endl;
-
     string command;
-    cin >> command;
-
-    if(command == "add" || command == "Add" || command == "ADD") // Could possibly be improved upon
+    do
     {
-       userMenuAdd();
-    }
+        cout << "Select one of the following options: " << endl;
+        cout << "Add - add a programmer/computer scientist" << endl;
+        cout << "List - add a programmer/computer scientist" << endl;
+        cout << "Quit - end program" << endl;
 
-}
-void ConsoleUI::displayListOfPerformers()
-{
-    vector<Scientist> scientist = _service.getScientist();
 
-    cout << "Performer name:" << endl;
-    cout << "===============" << endl;
-    for (size_t i = 0; i< scientist.size(); ++i)
-    {
-        cout << scientist[i].getName() << endl;
-    }
+        cin >> command;
+
+        if(command == "add" || command == "Add" || command == "ADD") // Could possibly be improved upon
+        {
+           userMenuAdd();
+        }
+        if(command == "list" || command == "List" || command == "LIST") // Could possibly be improved upon
+        {
+           userMenuList();
+        }
+    }while(command != "quit");
+
+
+
 }
 void ConsoleUI::userMenuAdd()
 {
@@ -57,5 +58,16 @@ void ConsoleUI::userMenuAdd()
     cin >> deathYear;
 
     Scientist newScientist(name, age);
+}
+void ConsoleUI::userMenuList()
+{
+    vector<Scientist> scientist = _service.getScientist();
+
+    cout << "Performer name:" << endl;
+    cout << "===============" << endl;
+    for (size_t i = 0; i< scientist.size(); ++i)
+    {
+        cout << scientist[i].getName() << endl;
+    }
 }
 

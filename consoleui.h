@@ -15,7 +15,7 @@ public:
 
 private:
 
-    void displayListOfPerformers();
+    void userMenuList();
 
 private:
     ScientistService _service;
