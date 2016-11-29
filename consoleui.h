@@ -1,7 +1,7 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 
-#include "performerservice.h"
+#include "scientistservice.h"
 
 class ConsoleUI
 {
@@ -10,13 +10,14 @@ public:
 
     // Displays the main menu of the program.
     void run();
+    void userMenu();
 
 private:
 
     void displayListOfPerformers();
 
 private:
-    PerformerService _service;
+    ScientistService _service;
 };
 
 #endif // CONSOLEUI_H
