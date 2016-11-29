@@ -1,24 +1,24 @@
-#include "performerservice.h"
+#include "scientistservice.h"
 #include <algorithm>
 
 using namespace std;
 
-struct PerformerComparison {
-  bool operator() (Performer i,Performer j) { return (i.getName()<j.getName());}
+struct ScientistComparison {
+  bool operator() (Scientist i,Scientist j) { return (i.getName()<j.getName());}
 };
 
-PerformerService::PerformerService()
+ScientistService::ScientistService()
 {
 
 }
 
-vector<Performer> PerformerService::getPerformers(/* TODO: parameters */)
+vector<Scientist> ScientistService::getScientist(/* TODO: parameters */)
 {
-    vector<Performer> performers;
+    vector<Scientist> performers;
 
-    Performer p("Duran Duran", 56);
-    Performer p2("Madonna", 55);
-    Performer p3("David Bowie", 55);
+    Scientist p("Duran Duran", 56);
+    Scientist p2("Madonna", 55);
+    Scientist p3("David Bowie", 55);
 
     performers.push_back(p);
     performers.push_back(p2);
@@ -27,7 +27,7 @@ vector<Performer> PerformerService::getPerformers(/* TODO: parameters */)
     // TODO: business logic!
 
     // Sort by name:
-    PerformerComparison cmp;
+    ScientistComparison cmp;
     std::sort(performers.begin(), performers.end(), cmp);
 
     return performers;

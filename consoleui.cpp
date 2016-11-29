@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "consoleui.h"
-#include "performer.h"
+#include "scientist.h"
 
 using namespace std;
 

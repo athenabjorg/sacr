@@ -5,11 +5,11 @@
 
 using namespace std;
 
-class Performer
+class Scientist
 {
 public:
-    Performer();
-    Performer(string name, int age);
+    Scientist();
+    Scientist(string name, int age);
 
     string getName() const
     {
@@ -27,4 +27,4 @@ private:
     int    _age;
 };
 
-#endif // PERFORMER_H
+#endif // SCIENTIST_H

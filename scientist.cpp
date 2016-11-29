@@ -1,11 +1,11 @@
-#include "performer.h"
+#include "scientist.h"
 
-Performer::Performer()
+Scientist::Scientist()
 {
 
 }
 
- Performer::Performer(string name, int age)
+ Scientist::Scientist(string name, int age)
 {
     _name = name;
     _age = age;

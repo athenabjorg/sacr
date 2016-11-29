@@ -1,18 +1,18 @@
-#ifndef PERFORMERSERVICE_H
-#define PERFORMERSERVICE_H
+#ifndef SCIENTISTSERVICE_H
+#define SCIENTISTSERVICE_H
 
 #include <vector>
-#include "performer.h"
+#include "scientist.h"
 
 using namespace std;
 
-class PerformerService
+class ScientistService
 {
 public:
-    PerformerService();
+    ScientistService();
 
     //
-    vector<Performer> getPerformers(/* TODO: parameters */);
+    vector<Scientist> getScientist(/* TODO: parameters */);
 };
 
-#endif // PERFORMERSERVICE_H
+#endif // SCIENTISTSERVICE_H
