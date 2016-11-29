@@ -1,5 +1,5 @@
-#ifndef PERFORMER_H
-#define PERFORMER_H
+#ifndef SCIENTIST_H
+#define SCIENTIST_H
 
 #include <string>
 
