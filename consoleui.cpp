@@ -35,11 +35,11 @@ void ConsoleUI::run()
         {
            userMenuAdd();
         }
-        else if(command == "list" || command == "List" || command == "LIST") // Could possibly be improved upon
+        else if(command == "list") // Could possibly be improved upon
         {
            userMenuList();
         }
-        else if(command == "search" || command == "Search" || command == "SEARCH") // Could possibly be improved upon
+        else if(command == "search") // Could possibly be improved upon
         {
            userMenuSearch();
         }
@@ -69,6 +69,11 @@ void ConsoleUI::userMenuAdd()
     {
         cout << "Enter the programmer's/computer scientist's gender (m/f): ";
         cin >> gender;
+        for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
+        {
+            gender[i] = tolower(gender[i]);
+        }
+
         if((gender != 'm') && (gender != 'f'))
         {
             cout << "Invalid input" << endl;
