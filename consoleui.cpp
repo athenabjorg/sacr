@@ -24,18 +24,23 @@ void ConsoleUI::run()
 
 
         cin >> command;
+        cout << endl;
 
         if(command == "add" || command == "Add" || command == "ADD") // Could possibly be improved upon
         {
            userMenuAdd();
         }
-        if(command == "list" || command == "List" || command == "LIST") // Could possibly be improved upon
+        else if(command == "list" || command == "List" || command == "LIST") // Could possibly be improved upon
         {
            userMenuList();
         }
-        if(command == "search" || command == "Search" || command == "SEARCH") // Could possibly be improved upon
+        else if(command == "search" || command == "Search" || command == "SEARCH") // Could possibly be improved upon
         {
            userMenuSearch();
+        }
+        else
+        {
+            cout << "Invalid input" << endl;
         }
     }while(command != "quit");
 
@@ -62,7 +67,9 @@ void ConsoleUI::userMenuAdd()
     cout << "Enter the programmer's/computer scientist's year of death (leave empty if not applicable): ";
     cin >> deathYear;
 
-    Scientist newScientist(name, gender, birthYear, deathYear);
+
+    //_service.addScientist(name, gender, birthYear, deathYear);
+    _service.addScientist(name, gender, birthYear, deathYear);
 }
 void ConsoleUI::userMenuList()
 {
