@@ -63,7 +63,7 @@ void ConsoleUI::userMenuList()
 {
     vector<Scientist> scientist = _service.getScientist();
 
-    cout << "Performer name:" << endl;
+    cout << "Scientist name:" << endl;
     cout << "===============" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
