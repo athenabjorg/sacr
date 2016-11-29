@@ -24,8 +24,9 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 {   //sækir listann af scientists svo consoleui geti prentað það
     //er betra að sækja listann úr skrá eða senda bara vectorinn sem við erum með?
     vector<Scientist> scientist;
+    DataAccess data;
 
-    scientist = loadScientists();
+    scientist = data.loadScientists();
 
     return scientist;
 }
@@ -33,12 +34,13 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 void ScientistService::addScientist(string name, char gender, int age, int death)
 {   //bætir scientist við listann
     Scientist scientist(name, gender, age, death);
-
+    DataAccess data;
     // TODO er scientist til fyrir? þá sleppa push og senda villuboð
     // eða spurja hvort notandinn vilja örugglega bæta þeim við aftur?
+
     _scientists.push_back(scientist);
 
-    //TODO senda _scientists til dataaccess til að savea í skránna
+    data.saveScientists(_scientists);
 }
 
 //   TODO delete a scientist from the list, uppfæra textaskrá. Nota leitina?

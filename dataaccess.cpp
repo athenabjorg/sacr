@@ -24,3 +24,13 @@ void DataAccess::saveScientists(vector<Scientist>& scientists)
 
     file.close( );
 }
+
+vector<Scientist> DataAccess::loadScientists()
+{
+    vector<Scientist> scientists;
+    Scientist scientist;
+
+    // TODO read file, scientists.push_back(scientist)
+
+    return scientists;
+}

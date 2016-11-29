@@ -10,6 +10,8 @@ class DataAccess
 public:
     DataAccess();
     void saveScientists(vector<Scientist>& scientists);
+    vector<Scientist> loadScientists();
+
 
 private:
 
