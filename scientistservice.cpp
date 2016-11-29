@@ -21,59 +21,108 @@ ScientistService::ScientistService()
 }
 
 vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
-{
-    return _scientists;
+{   //sækir listann af scientists svo consoleui geti prentað það
+    //er betra að sækja listann úr skrá eða senda bara vectorinn sem við erum með?
     vector<Scientist> scientist;
-/*
-    // scientist = sækja scientists frá dataaccess
 
-
-
+    scientist = loadScientists();
 
     return scientist;
-    */
 }
 
 void ScientistService::addScientist(string name, char gender, int age, int death)
 {   //bætir scientist við listann
     Scientist scientist(name, gender, age, death);
 
-    // er scientist til fyrir? þá sleppa push og senda villuboð
+    // TODO er scientist til fyrir? þá sleppa push og senda villuboð
+    // eða spurja hvort notandinn vilja örugglega bæta þeim við aftur?
     _scientists.push_back(scientist);
 
-    //senda _scientists til dataaccess til að savea í skránna
+    //TODO senda _scientists til dataaccess til að savea í skránna
 }
 
-// delete a scientist from the list, uppfæra textaskrá
+//   TODO delete a scientist from the list, uppfæra textaskrá. Nota leitina?
 
 void ScientistService::scientistSort(int sortType)
-{    //sort by parameter, 1 = name, 2 = gender, 3 = age, 4 = death
+{    // sort by parameter, 1 = name, 2 = gender, 3 = age, 4 = death
+     // always sorts by name. (should we keep this?)
+     // change to switch case?
 
-    std::sort(_scientists.begin(), _scientists.end(), sortByName);
+    sort(_scientists.begin(), _scientists.end(), sortByName);
 
     if (sortType == 2)
     {
-        std::sort(_scientists.begin(), _scientists.end(), sortByGender);
+        sort(_scientists.begin(), _scientists.end(), sortByGender);
     }
     else if (sortType == 3)
     {
-        std::sort(_scientists.begin(), _scientists.end(), sortByAge);
+        sort(_scientists.begin(), _scientists.end(), sortByAge);
     }
     else if (sortType == 4)
     {
-        std::sort(_scientists.begin(), _scientists.end(), sortByDeath);
+        sort(_scientists.begin(), _scientists.end(), sortByDeath);
     }
 }
-
-// raða listanum, eftir nafni -> aldri, kyni, dánarári
 
 
 // leita í listanum
 
+vector<Scientist> ScientistService::findScientistByName(string name)
+{   //leita að upplýsingum um scientist eftir nafni
+    vector<Scientist> scientist;
 
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getName() == name)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
 
+    return scientist;
+}
 
+vector<Scientist> ScientistService::findScientistByGender(char gender)
+{   //leita að upplýsingum um scientist eftir kyni
+    vector<Scientist> scientist;
 
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getGender() == gender)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
 
+    return scientist;
+}
 
+vector<Scientist> ScientistService::findScientistByAge(int age)
+{   //leita að upplýsingum um scientist eftir fæðingarári
+    vector<Scientist> scientist;
 
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getAge() == age)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
+
+    return scientist;
+}
+
+vector<Scientist> ScientistService::findScientistByDeath(int death)
+{   //leita að upplýsingum um scientist eftir dánarári
+    vector<Scientist> scientist;
+
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getDeath() == death)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
+
+    return scientist;
+}
