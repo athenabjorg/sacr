@@ -13,54 +13,51 @@ ConsoleUI::ConsoleUI()
 // Should not contain logic for individual commands, that should be in separate functions!
 void ConsoleUI::run()
 {
-    cout << "Please enter one of the following commands:" << endl;
-    cout << "list - This will list all performers in the system" << endl;
-    cout << "add - This will add a new performer" << endl;
-    cout << "delete - This removes an entry" << endl;
-    cout << "update - Updates an entry" << endl;
-    cout << "search - Searches for a given performer" << endl;
 
-    // Test
+}
+void ConsoleUI::userMenu()
+{
+    cout << "Select one of the following options: " << endl;
+    cout << "Add - add a programmer/computer scientist" << endl;
 
     string command;
     cin >> command;
 
-    if (command == "list")
-    {
-        displayListOfPerformers();
-    }
-    else if (command == "add")
+    if(command == "add" || command == "Add" || command == "ADD") // Could possibly be improved upon
     {
         string name;
-        int age;
+        char gender;
+        int birthYear;
+        int deathYear = 0;
+        int age = 22; // TEMP
+
+        cout << "Enter the programmer's/computer scientist's name: ";
         cin >> name;
-        cin >> age;
 
-        Performer newPerformer(name, age);
+        cout << "Enter the programmer's/computer scientist's gender (m/f): ";
+        cin >> gender;
 
-        // TODO:
-        //_service.addPerformer(newPerformer);
-    }
-    else if (command == "search")
-    {
-        // TODO
-    }
-    else
-    {
+        cout << "Enter the programmer's/computer scientist's year of birth: ";
+        cin >> birthYear;
+
+        cout << "Enter the programmer's/computer scientist's year of death (leave empty if not applicable): ";
+        cin >> deathYear;
+
+        Scientist newScientist(name, age);
+
 
     }
 
 }
-
 void ConsoleUI::displayListOfPerformers()
 {
-    vector<Performer> performers = _service.getPerformers();
+    vector<Scientist> scientist = _service.getScientist();
 
     cout << "Performer name:" << endl;
     cout << "===============" << endl;
-    for (size_t i = 0; i< performers.size(); ++i)
+    for (size_t i = 0; i< scientist.size(); ++i)
     {
-        cout << performers[i].getName() << endl;
+        cout << scientist[i].getName() << endl;
     }
 }
 
