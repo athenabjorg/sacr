@@ -12,8 +12,10 @@ public:
     ScientistService();
 
     //
-    vector<Scientist> getScientist(/* TODO: parameters */);
+    vector<Scientist> getScientists(/* TODO: parameters */);
     void addScientist(string name, char gender, int age, int death = 0); // add scientist in to vector
+    void scientistSort(int sortType);
+
 
 private:
 

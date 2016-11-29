@@ -20,7 +20,7 @@ ScientistService::ScientistService()
 
 }
 
-vector<Scientist> ScientistService::getScientist(/* TODO: parameters */)
+vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 {
     return _scientists;
     vector<Scientist> scientist;
@@ -28,8 +28,6 @@ vector<Scientist> ScientistService::getScientist(/* TODO: parameters */)
     // scientist = sækja scientists frá dataaccess
 
 
-
-    // TODO: business logic!
 
 
     return scientist;
@@ -48,7 +46,24 @@ void ScientistService::addScientist(string name, char gender, int age, int death
 
 // delete a scientist from the list, uppfæra textaskrá
 
+void ScientistService::scientistSort(int sortType)
+{    //sort by parameter, 1 = name, 2 = gender, 3 = age, 4 = death
 
+    std::sort(_scientists.begin(), _scientists.end(), sortByName);
+
+    if (sortType == 2)
+    {
+        std::sort(_scientists.begin(), _scientists.end(), sortByGender);
+    }
+    else if (sortType == 3)
+    {
+        std::sort(_scientists.begin(), _scientists.end(), sortByAge);
+    }
+    else if (sortType == 4)
+    {
+        std::sort(_scientists.begin(), _scientists.end(), sortByDeath);
+    }
+}
 
 // raða listanum, eftir nafni -> aldri, kyni, dánarári
 
