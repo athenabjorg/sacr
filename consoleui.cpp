@@ -69,10 +69,6 @@ void ConsoleUI::userMenuAdd()
     {
         cout << "Enter the programmer's/computer scientist's gender (m/f): ";
         cin >> gender;
-        for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
-        {
-            gender[i] = tolower(gender[i]);
-        }
 
         if((gender != 'm') && (gender != 'f'))
         {
@@ -129,6 +125,7 @@ void ConsoleUI::userMenuList()
     {
         cout << scientist[i].getName() << endl;
     }
+    cout << endl;
 }
 void ConsoleUI::userMenuSearch()
 {
