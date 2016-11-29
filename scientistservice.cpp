@@ -15,8 +15,9 @@ ScientistService::ScientistService()
 
 vector<Scientist> ScientistService::getScientist(/* TODO: parameters */)
 {
+    return _scientists;
     vector<Scientist> scientist;
-
+/*
     // scientist = sækja scientists frá dataaccess
 
 
@@ -28,6 +29,7 @@ vector<Scientist> ScientistService::getScientist(/* TODO: parameters */)
     std::sort(scientist.begin(), scientist.end(), cmp);
 
     return scientist;
+    */
 }
 
 void ScientistService::addScientist(string name, char gender, int age, int death)

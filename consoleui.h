@@ -10,7 +10,6 @@ public:
 
     // Displays the main menu of the program.
     void run();
-    void userMenu();
     void userMenuAdd();
 
 private:
