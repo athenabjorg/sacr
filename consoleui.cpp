@@ -16,7 +16,7 @@ void ConsoleUI::run()
     cout << "Please enter one of the following commands:" << endl;
     cout << "list - This will list all performers in the system" << endl;
     cout << "add - This will add a new performer" << endl;
-    cout << "delete - Removes an entry" << endl;
+    cout << "delete - This removes an entry" << endl;
     cout << "update - Updates an entry" << endl;
     cout << "search - Searches for a given performer" << endl;
 
