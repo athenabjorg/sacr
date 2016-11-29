@@ -40,13 +40,6 @@ void ScientistService::addScientist(string name, char gender, int age, int death
     //senda _scientists til dataaccess til að savea í skránna
 }
 
-void ScientistService::addScientist(string name, char gender, int age)
-{   //sama og fyrir ofan, án death date.
-    Scientist scientist(name, gender, age);
-    _scientists.push_back(scientist);
-
-    //senda _scientists til dataaccess til að savea í skránna
-}
 
 
 
