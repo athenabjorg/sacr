@@ -20,6 +20,8 @@ void ConsoleUI::run()
     cout << "update - Updates an entry" << endl;
     cout << "search - Searches for a given performer" << endl;
 
+    // Test
+
     string command;
     cin >> command;
 
