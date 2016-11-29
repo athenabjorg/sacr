@@ -42,7 +42,7 @@ void ConsoleUI::userMenuAdd()
     char gender;
     int birthYear;
     int deathYear = 0;
-    int age = 22; // TEMP
+    //int age = 22; // TEMP
 
     cout << "Enter the programmer's/computer scientist's name: ";
     cin >> name; // TODO - take in as ( GETLINE )
@@ -56,6 +56,6 @@ void ConsoleUI::userMenuAdd()
     cout << "Enter the programmer's/computer scientist's year of death (leave empty if not applicable): ";
     cin >> deathYear;
 
-    Scientist newScientist(name, age);
+    Scientist newScientist(name, gender, birthYear, deathYear);
 }
 

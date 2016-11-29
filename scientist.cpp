@@ -5,8 +5,10 @@ Scientist::Scientist()
 
 }
 
- Scientist::Scientist(string name, int age)
+ Scientist::Scientist(string name, char gender, int birthYear, int deathYear)
 {
     _name = name;
-    _age = age;
+    _gender = gender;
+    _birthYear = birthYear;
+    _deathYear = deathYear;
 }

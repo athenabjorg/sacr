@@ -9,22 +9,34 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string name, int age);
+    Scientist(string name, char gender, int birthYear, int deathYear);
 
     string getName() const
     {
         return _name;
     }
 
-    int getAge() const
+    char getGender() const
     {
-        return _age;
+        return _gender;
+    }
+
+    int getBirthYear() const
+    {
+        return _birthYear;
+    }
+
+    int getDeathYear() const
+    {
+        return _deathYear;
     }
 
 private:
 
     string _name;
-    int    _age;
+    char _gender;
+    int    _birthYear;
+    int _deathYear;
 };
 
 #endif // SCIENTIST_H

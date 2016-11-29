@@ -16,14 +16,14 @@ vector<Scientist> ScientistService::getScientist(/* TODO: parameters */)
 {
     vector<Scientist> scientist;
 
-    Scientist p("Duran Duran", 56);
+    /*Scientist p("Duran Duran", 56);
     Scientist p2("Madonna", 55);
     Scientist p3("David Bowie", 55);
 
     scientist.push_back(p);
     scientist.push_back(p2);
     scientist.push_back(p3);
-
+*/
     // TODO: business logic!
 
     // Sort by name:
