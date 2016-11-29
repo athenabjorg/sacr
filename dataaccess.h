@@ -9,9 +9,10 @@ class DataAccess
 {
 public:
     DataAccess();
+    void saveScientists(vector<Scientist>& scientists);
 
 private:
-    void saveScientists(vector<Scientist>& scientists);
+
 };
 
 #endif // DATAACCESS_H
