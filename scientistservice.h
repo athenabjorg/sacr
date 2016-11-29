@@ -15,6 +15,7 @@ public:
     //
     vector<Scientist> getScientists(/* TODO: parameters */);
     void addScientist(string name, char gender, int age, int death = 0); // add scientist in to vector
+    void removeScientist(string name);
     void scientistSort(int sortType);
     vector<Scientist> findScientistByName(string name);
     vector<Scientist> findScientistByGender(char gender);
