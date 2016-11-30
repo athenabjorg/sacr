@@ -16,6 +16,11 @@ public:
     int getAge() const;
     int getDeath() const;
 
+    void setName(string name);
+    void setGender(char gender);
+    void setAge(int age);
+    void setDeath(int death);
+
 private:
 
     string _name;
