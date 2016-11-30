@@ -76,7 +76,6 @@ void ConsoleUI::userMenuAdd()
         }
         else
         {
-            cout << endl;
             check = false;
         }
     }while(check == true);
@@ -88,7 +87,6 @@ void ConsoleUI::userMenuAdd()
         cin >> birthYear;
         if(birthYear < 2016) // Just in case we find a programmer of the univers
         {
-            cout << endl;
             check2 = false;
         }
         else
@@ -104,12 +102,10 @@ void ConsoleUI::userMenuAdd()
         cin >> deathYear;
         if (deathYear == 0)
         {
-            cout << endl;
             check3 = false;
         }
         else if(deathYear >= birthYear)
         {
-            cout << endl;
             check3 = false;
         }
         else
