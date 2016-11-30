@@ -122,10 +122,10 @@ void ConsoleUI::userMenuAdd()
 
 
         // Check if input is correct
-        cout << "Name: " << name << " Gender: " << gender << " Born: " << birthYear;
+        cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
 
         if(deathYear != 0)
-            cout << " Died: " << deathYear << endl;
+            cout << "Died: " << deathYear << endl;
         else
             cout << endl;
 
@@ -208,7 +208,7 @@ void ConsoleUI::userMenuSearch()
 void ConsoleUI::userMenuSort()
 {
     int userInput;
-    cout << "Sort list by name(1), gender(2), age(3) or year of death(4)" << endl;
+    cout << "Sort list by Name(1), Gender(2), Year of Birth(3), Year of Death(4) or Age (5)" << endl;
     cin >> userInput;
      _service.scientistSort(userInput);
      userMenuList();
@@ -233,7 +233,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
              {
                  cout << scientist[i].getDeath() << "\t";
              }
-             cout << scientist[i].getAge() << "\t";
+             cout << scientist[i].getAge() << endl;
 
 
     }
