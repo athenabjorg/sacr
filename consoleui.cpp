@@ -68,103 +68,70 @@ void ConsoleUI::userMenuAdd()
     int birthYear;
     int deathYear = 0;
 
-    bool check4 = true;
-    do
+    while(true)
     {
         cout << "Enter the programmer's/computer scientist's name: ";
         cin.ignore();
         getline(cin, name);
 
-        bool check = true;
-        do
+        // Check for gender
+        while(true)
         {
             cout << "Enter the programmer's/computer scientist's gender (m/f): ";
             cin >> gender;
 
             if((gender != 'm') && (gender != 'f'))
-            {
                 cout << "Invalid input" << endl;
-            }
-            else
-            {
-                check = false;
-            }
-        }while(check == true);
 
-        bool check2 = true;
-        do
+            else
+                break;
+        }
+
+        // Check year of birth
+        while(true)
         {
             cout << "Enter the programmer's/computer scientist's year of birth: ";
             cin >> birthYear;
             if(birthYear < 2016) // Just in case we find a programmer of the univers
-            {
-                check2 = false;
-            }
-            else
-            {
-                cout << "Invalid input" << endl;
-            }
-        }while(check2 == true);
+                break;
 
-        bool check3 = true;
-        do
+            else
+                cout << "Invalid input" << endl;
+        }
+
+        // Check when year of death (if dead)
+        while(true)
         {
             cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
             cin >> deathYear;
             if (deathYear == 0)
-            {
-                check3 = false;
-            }
+                break;
+
             else if(deathYear >= birthYear)
-            {
-                check3 = false;
-            }
+                break;
+
             else
-            {
                 cout << "Invalid input" << endl;
-            }
-        }while(check3 == true);
+        }
 
+        // Check if input is correct
+        cout << "Name: " << name << " Gender: " << gender << " Born: " << birthYear;
 
-        bool check5 = true;
-        do{
-            // Checks if all data is correct
+        if(deathYear != 0)
+            cout << " Died: " << deathYear << endl;
+        else
+            cout << endl;
 
-            cout << "Name: " << name << " Gender: " << gender << " Born: " << birthYear;
+       int a = userCheckInput();
+        if (a == 0)
+        {
+            _service.addScientist(name, gender, birthYear, deathYear);
+            break;
+        }
+        else if (a == 2)
+            break;
 
-            if(deathYear != 0)
-            {
-                cout << " Died: " << deathYear << endl;
-            }
-            else
-                cout << endl;
-
-            char answear;
-
-            cout << "Is this data correct? (input y/n) or press q to quit" << endl;
-            cin >> answear;
-
-            if(answear == 'y')
-            {
-                _service.addScientist(name, gender, birthYear, deathYear);
-                check4 = false;
-                check5 = false;
-            }
-            else if (answear == 'n')
-            {
-                check4 = true;
-                check5 = false;
-            }
-            else if (answear == 'q')
-            {
-                check4 = false;
-                check5 = false;
-            }
-            else
-                cout << "Invalid input!" << endl;
-        }while (check5 == true);
-
-    }while (check4 == true);
+    }
 
 }
 void ConsoleUI::userMenuList()
@@ -249,4 +216,30 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
              << scientist[i].getDeath() << endl;
     }
     cout << endl;
+}
+
+int ConsoleUI::userCheckInput()
+{
+    // Check if all data is correct
+    while(true)
+    {
+        char answear;
+        cout << "Is this data correct? (input y/n) or press q to quit" << endl;
+        cin >> answear;
+
+        if(answear == 'y')
+        {
+            return 0;
+        }
+        else if (answear == 'n')
+            return 1;
+
+        else if (answear == 'q')
+            return 2;
+
+        else
+            cout << "Invalid input!";
+
+        cout << endl;
+    }
 }
