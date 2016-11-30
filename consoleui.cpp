@@ -156,10 +156,6 @@ void ConsoleUI::userMenuAdd()
         }while (check5 == true);
 
     }while (check4 == true);
-            cout << "Invalid input" << endl;
-        }
-    }while(check3 == true);
-    cout << endl;
 
 }
 void ConsoleUI::userMenuList()
