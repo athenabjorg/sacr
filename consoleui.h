@@ -18,7 +18,7 @@ private:
     void userMenuSearch();
     void userMenuSort();
     void userMenuPrint(vector<Scientist>scientist);
-    int userCheckInput();
+    int  userCheckInput();
     void userMenuRemove();
 
 

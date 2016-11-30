@@ -5,12 +5,12 @@ using namespace std;
 
 
 //operator overloading for scientistSort.
-bool sortByNameAsc(const Scientist &a, const Scientist &b) { return a.getName() < b.getName(); }
-bool sortByNameDesc(const Scientist &a, const Scientist &b) { return a.getName() > b.getName(); }
-bool sortByGender(const Scientist &a, const Scientist &b) { return a.getGender() < b.getGender(); }
-bool sortByBirth(const Scientist &a, const Scientist &b) { return a.getBirth() < b.getBirth(); }
-bool sortByDeath(const Scientist &a, const Scientist &b) { return a.getDeath() < b.getDeath(); }
-bool sortByAge(const Scientist &a, const Scientist &b){ return a.getAge() < b.getAge(); }
+bool sortByNameAsc (const Scientist &a, const Scientist &b) { return a.getName()   <  b.getName();   }
+bool sortByNameDesc(const Scientist &a, const Scientist &b) { return a.getName()   >  b.getName();   }
+bool sortByGender  (const Scientist &a, const Scientist &b) { return a.getGender() <  b.getGender(); }
+bool sortByBirth   (const Scientist &a, const Scientist &b) { return a.getBirth()  <  b.getBirth();  }
+bool sortByDeath   (const Scientist &a, const Scientist &b) { return a.getDeath()  <  b.getDeath();  }
+bool sortByAge     (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
 
 ScientistService::ScientistService()
 {
@@ -30,7 +30,7 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
     return _scientists;
 }
 
-void ScientistService::addScientist(string name, char gender, int birth, int death, int age)
+void ScientistService::addScientist    (string name, char gender, int birth, int death, int age)
 {   // Adds a scientist to the list and updates the file.
     Scientist scientist(name, gender, birth, death, age);
     DataAccess data;
@@ -41,14 +41,14 @@ void ScientistService::addScientist(string name, char gender, int birth, int dea
 
     data.saveScientists(_scientists);
 }
-void ScientistService::removeScientist(string name)
+void ScientistService::removeScientist (string name)
 {   // removes a scientist with that name from the vector
     Scientist toRemove = findScientistByName(name).at(0);
     _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
 
     //  TODO update the text file
 }
-void ScientistService::scientistSort(int sortType)
+void ScientistService::scientistSort   (int sortType)
 {    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age
      // change to switch case?
 
@@ -80,7 +80,7 @@ void ScientistService::scientistSort(int sortType)
 }
 
 
-vector<Scientist> ScientistService::findScientistByName(string name)
+vector<Scientist> ScientistService::findScientistByName   (string name)
 {   // Returns all scientists with the full name specified.
     // TODO leita eftir part úr nafni?
     vector<Scientist> scientist;
@@ -95,8 +95,7 @@ vector<Scientist> ScientistService::findScientistByName(string name)
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByGender(char gender)
+vector<Scientist> ScientistService::findScientistByGender (char gender)
 {   // Returns all scientists of that gender.
     vector<Scientist> scientist;
 
@@ -110,7 +109,7 @@ vector<Scientist> ScientistService::findScientistByGender(char gender)
 
     return scientist;
 }
-vector<Scientist> ScientistService::findScientistByBirth(int birth)
+vector<Scientist> ScientistService::findScientistByBirth  (int birth)
 {   // Returns all scientists born that year.
     vector<Scientist> scientist;
 
@@ -124,7 +123,7 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)
 
     return scientist;
 }
-vector<Scientist> ScientistService::findScientistByDeath(int death)
+vector<Scientist> ScientistService::findScientistByDeath  (int death)
 {   // Returns all scientists that died that year, or death = 0 for still alive..
     vector<Scientist> scientist;
 
@@ -138,7 +137,7 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)
 
     return scientist;
 }
-vector<Scientist> ScientistService::findScientistByAge(int age)
+vector<Scientist> ScientistService::findScientistByAge    (int age)
 {   // Returns all scientists with same age as parameter ( int age )
     vector<Scientist> scientist;
 
