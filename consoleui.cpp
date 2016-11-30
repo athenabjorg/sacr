@@ -102,7 +102,12 @@ void ConsoleUI::userMenuAdd()
     {
         cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
         cin >> deathYear;
-        if(deathYear >= birthYear)
+        if (deathYear == 0)
+        {
+            cout << endl;
+            check3 = false;
+        }
+        else if(deathYear >= birthYear)
         {
             cout << endl;
             check3 = false;
