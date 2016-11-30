@@ -17,6 +17,7 @@ void ConsoleUI::run()
     while(true)
     {
         cout << "Select one of the following options: " << endl;
+        cout << "=====================================" << endl;
         cout << "Add - add a programmer/computer scientist" << endl;
         cout << "Remove - remove a programmer/computer scientist" << endl;
         cout << "List - show a list of all programmer's/computer scientist's" << endl;
@@ -31,7 +32,6 @@ void ConsoleUI::run()
             command[i] = tolower(command[i]);
         }
 
-        cout << endl;
 
         if(command == "add")
         {
@@ -72,6 +72,7 @@ void ConsoleUI::userMenuAdd()
     char gender;
     int birthYear;
     int deathYear = 0;
+    int age = 0;
 
     while(true)
     {
@@ -119,6 +120,7 @@ void ConsoleUI::userMenuAdd()
                 cout << "Invalid input" << endl;
         }
 
+
         // Check if input is correct
         cout << "Name: " << name << " Gender: " << gender << " Born: " << birthYear;
 
@@ -130,13 +132,14 @@ void ConsoleUI::userMenuAdd()
        int a = userCheckInput();
         if (a == 0)
         {
-            _service.addScientist(name, gender, birthYear, deathYear);
+            _service.addScientist(name, gender, birthYear, deathYear, age);
             break;
         }
         else if (a == 2)
             break;
 
     }
+    cout << endl;
 
 }
 void ConsoleUI::userMenuList()
@@ -153,6 +156,7 @@ void ConsoleUI::userMenuSearch()
     cout << "Age - Search by age" << endl;
     cout << "Death - search by year of death" << endl;
     cin >> command;
+    cout << endl;
 
     for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
     {
@@ -198,7 +202,7 @@ void ConsoleUI::userMenuSearch()
         vector<Scientist> scientist = _service.findScientistByDeath(userInputDeath);
         userMenuPrint(scientist);
     }
-
+    cout << endl;
 
 }
 void ConsoleUI::userMenuSort()
@@ -211,14 +215,27 @@ void ConsoleUI::userMenuSort()
 }
 void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
 {
-    cout << "Scientist name: \t" << "gender: \t" << "age: \t" << "died:" << endl;
-    cout << "================================================================" << endl;
+    cout << endl;
+    cout << "Scientist name:    gender:     born:   died:   age: " << endl;
+    cout << "====================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
-        cout << scientist[i].getName() << "\t\t"
-             << scientist[i].getGender() << "\t\t"
-             << scientist[i].getAge() << "\t"
-             << scientist[i].getDeath() << endl;
+        cout << scientist[i].getName() << "\t"
+             << scientist[i].getGender() << "\t"
+             << scientist[i].getBirth() << "\t";
+
+
+             if(scientist[i].getDeath() == 0)
+             {
+                 cout << "-" << "\t";
+             }
+             else
+             {
+                 cout << scientist[i].getDeath() << "\t";
+             }
+             cout << scientist[i].getAge() << "\t";
+
+
     }
     cout << endl;
 }
@@ -239,18 +256,15 @@ int ConsoleUI::userCheckInput()
         {
             return 1;
         }
-
         else if (answear == 'q')
         {
             return 2;
         }
-
         else
         {
             cout << "Invalid input!";
         }
 
-        cout << endl;
     }
 }
 void ConsoleUI::userMenuRemove()
