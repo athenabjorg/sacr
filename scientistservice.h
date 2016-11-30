@@ -16,13 +16,14 @@ public:
 
     //
     vector<Scientist> getScientists(/* TODO: parameters */);
-    void addScientist(string name, char gender, int age, int death = 0); // add scientist in to vector
+    void addScientist(string name, char gender, int birth, int death, int age); // add scientist in to vector
     void removeScientist(string name);
     void scientistSort(int sortType);
     vector<Scientist> findScientistByName(string name);
     vector<Scientist> findScientistByGender(char gender);
-    vector<Scientist> findScientistByAge(int age);
+    vector<Scientist> findScientistByBirth(int birth);
     vector<Scientist> findScientistByDeath(int death);
+    vector<Scientist> findScientistByAge(int age);
 
 private:
 

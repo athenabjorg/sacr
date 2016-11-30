@@ -7,9 +7,9 @@ using namespace std;
 //operator overloading for scientistSort.
 bool sortByName(const Scientist &a, const Scientist &b) { return a.getName() < b.getName(); }
 bool sortByGender(const Scientist &a, const Scientist &b) { return a.getGender() < b.getGender(); }
-bool sortByAge(const Scientist &a, const Scientist &b) { return a.getAge() < b.getAge(); }
+bool sortByBirth(const Scientist &a, const Scientist &b) { return a.getBirth() < b.getBirth(); }
 bool sortByDeath(const Scientist &a, const Scientist &b) { return a.getDeath() < b.getDeath(); }
-
+bool sortByAge(const Scientist &a, const Scientist &b){ return a.getAge() < b.getAge(); }
 
 ScientistService::ScientistService()
 {
@@ -29,9 +29,9 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
     return scientist;
 }
 
-void ScientistService::addScientist(string name, char gender, int age, int death)
+void ScientistService::addScientist(string name, char gender, int birth, int death, int age)
 {   // Adds a scientist to the list and updates the file.
-    Scientist scientist(name, gender, age, death);
+    Scientist scientist(name, gender, birth, death, age);
     DataAccess data;
     // TODO er scientist til fyrir? þá sleppa push og senda villuboð
     // eða spurja hvort notandinn vilja örugglega bæta þeim við aftur?
@@ -40,7 +40,6 @@ void ScientistService::addScientist(string name, char gender, int age, int death
 
     data.saveScientists(_scientists);
 }
-
 void ScientistService::removeScientist(string name)
 {   // removes a scientist with that name from the vector
     Scientist toRemove = findScientistByName(name).at(0);
@@ -48,9 +47,8 @@ void ScientistService::removeScientist(string name)
 
     //  TODO update the text file
 }
-
 void ScientistService::scientistSort(int sortType)
-{    // Sort by parameter, 1 = name, 2 = gender, 3 = age, 4 = death
+{    // Sort by parameter, 1 = name, 2 = gender, 3 = birth, 4 = death, 5 = age
      // change to switch case?
 
     if (sortType == 1)
@@ -63,11 +61,16 @@ void ScientistService::scientistSort(int sortType)
     }
     else if (sortType == 3)
     {
-        sort(_scientists.begin(), _scientists.end(), sortByAge);
+        sort(_scientists.begin(), _scientists.end(), sortByBirth);
     }
     else if (sortType == 4)
     {
         sort(_scientists.begin(), _scientists.end(), sortByDeath);
+    }
+    else if (sortType == 5)
+    {
+        sort(_scientists.begin(), _scientists.end(), sortByAge);
+
     }
 }
 
@@ -87,7 +90,6 @@ vector<Scientist> ScientistService::findScientistByName(string name)
 
     return scientist;
 }
-
 vector<Scientist> ScientistService::findScientistByGender(char gender)
 {   // Returns all scientists of that gender.
     vector<Scientist> scientist;
@@ -102,14 +104,13 @@ vector<Scientist> ScientistService::findScientistByGender(char gender)
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByAge(int age)
+vector<Scientist> ScientistService::findScientistByBirth(int birth)
 {   // Returns all scientists born that year.
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getAge() == age)
+        if (_scientists[i].getBirth() == birth)
         {
             scientist.push_back(_scientists[i]);
         }
@@ -117,7 +118,6 @@ vector<Scientist> ScientistService::findScientistByAge(int age)
 
     return scientist;
 }
-
 vector<Scientist> ScientistService::findScientistByDeath(int death)
 {   // Returns all scientists that died that year, or death = 0 for still alive..
     vector<Scientist> scientist;
@@ -125,6 +125,20 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)
     for (size_t i = 0; i < _scientists.size(); i++)
     {
         if (_scientists[i].getDeath() == death)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
+
+    return scientist;
+}
+vector<Scientist> ScientistService::findScientistByAge(int age)
+{   // Returns all scientists with same age as parameter ( int age )
+    vector<Scientist> scientist;
+
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getAge() == age)
         {
             scientist.push_back(_scientists[i]);
         }

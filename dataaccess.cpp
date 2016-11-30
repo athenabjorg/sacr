@@ -18,7 +18,7 @@ void DataAccess::saveScientists(vector<Scientist>& scientists)
     {
         file << scientists[i].getName() << ", ";
         file << scientists[i].getGender() << ", ";
-        file << scientists[i].getAge() << ", ";
+        file << scientists[i].getBirth() << ", ";
         file << scientists[i].getDeath() << endl; // Spurning hvort það þurfi að vera endl á
                                                   //öllum atriðum til að geta notað getline hér fyrir neðan.
     }

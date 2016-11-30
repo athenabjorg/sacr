@@ -4,16 +4,18 @@ Scientist::Scientist()
 {
     _name = " ";
     _gender = ' ';
-    _age = 0;
+    _birth = 0;
     _death = 0;
+    _age = 0;
 }
 
-Scientist::Scientist(string name, char gender, int age, int death)
+Scientist::Scientist(string name, char gender, int birth, int death, int age)
 {
     _name = name;
     _gender = gender;
-    _age = age;
+    _birth = birth;
     _death = death;
+    _age = age;
 }
 
 string Scientist::getName() const
@@ -26,14 +28,26 @@ char Scientist::getGender() const
     return _gender;
 }
 
-int Scientist::getAge() const
+int Scientist::getBirth() const
 {
-    return _age;
+    return _birth;
 }
 
 int Scientist::getDeath() const
 {
     return _death;
+}
+
+int Scientist::getAge() const
+{
+    if(_death == 0)
+    {
+        return (2016  - _birth);
+    }
+    else
+    {
+        return (_death - _birth);
+    }
 }
 
 void Scientist::setName(string name)
@@ -46,14 +60,19 @@ void Scientist::setGender(char gender)
     _gender = gender;
 }
 
-void Scientist::setAge(int age)
+void Scientist::setBirth(int birth)
 {
-    _age = age;
+    _birth = birth;
 }
 
 void Scientist::setDeath(int death)
 {
     _death = death;
+}
+
+void Scientist::setAge(int age)
+{
+    _age = age;
 }
 
 
