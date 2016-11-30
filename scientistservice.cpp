@@ -47,18 +47,18 @@ void ScientistService::addScientist(string name, char gender, int age, int death
 
 void ScientistService::removeScientist(string name)
 {   //virkar ekki?
-   // _scientists.erase(remove(_scientists.begin(), _scientists.end(), name), _scientists.end());
+    // _scientists.erase(remove(_scientists.begin(), _scientists.end(), name), _scientists.end());
 }
 
 void ScientistService::scientistSort(int sortType)
 {    // sort by parameter, 1 = name, 2 = gender, 3 = age, 4 = death
-     // always sorts by name. (should we keep this?)
      // change to switch case?
-     // make it return _scientists, so console can print it out right away?
 
+    if (sortType == 1)
+    {
     sort(_scientists.begin(), _scientists.end(), sortByName);
-
-    if (sortType == 2)
+    }
+    else if (sortType == 2)
     {
         sort(_scientists.begin(), _scientists.end(), sortByGender);
     }
