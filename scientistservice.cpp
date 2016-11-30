@@ -20,13 +20,13 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 {   // Uploads the list of scientists from file.
     //er betra að sækja listann úr skrá eða senda bara vectorinn sem við erum með?
 
-    return _scientists;
-    vector<Scientist> scientist;
+    //return _scientists;
+    //vector<Scientist> scientist;
     DataAccess data;
 
-    scientist = data.loadScientists();
+    _scientists = data.loadScientists();
 
-    return scientist;
+    return _scientists;
 }
 
 void ScientistService::addScientist(string name, char gender, int birth, int death, int age)
