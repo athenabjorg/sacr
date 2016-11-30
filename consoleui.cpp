@@ -18,6 +18,7 @@ void ConsoleUI::run()
     {
         cout << "Select one of the following options: " << endl;
         cout << "Add - add a programmer/computer scientist" << endl;
+        cout << "Remove - remove a programmer/computer scientist" << endl;
         cout << "List - show a list of all programmer's/computer scientist's" << endl;
         cout << "Search - search the list of programmer's/computer scientist's" << endl;
         cout << "Sort - sort list by name, gender, age or year of death" << endl;
@@ -35,6 +36,10 @@ void ConsoleUI::run()
         if(command == "add")
         {
            userMenuAdd();
+        }
+        else if(command == "remove")
+        {
+           userMenuRemove();
         }
         else if(command == "list")
         {
@@ -217,7 +222,6 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
     }
     cout << endl;
 }
-
 int ConsoleUI::userCheckInput()
 {
     // Check if all data is correct
@@ -232,14 +236,29 @@ int ConsoleUI::userCheckInput()
             return 0;
         }
         else if (answear == 'n')
+        {
             return 1;
+        }
 
         else if (answear == 'q')
+        {
             return 2;
+        }
 
         else
+        {
             cout << "Invalid input!";
+        }
 
         cout << endl;
     }
+}
+void ConsoleUI::userMenuRemove()
+{
+    string userInputName;
+    cout << "Remove a programmer/computer scientist: ";
+    cin.ignore();
+    getline(cin, userInputName);
+
+    _service.removeScientist(userInputName);
 }
