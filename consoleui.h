@@ -16,6 +16,7 @@ private:
 
     void userMenuList();
     void userMenuSearch();
+    void userMenuSort();
 
 private:
     ScientistService _service;
