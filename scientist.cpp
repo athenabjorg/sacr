@@ -55,3 +55,9 @@ void Scientist::setDeath(int death)
 {
     _death = death;
 }
+
+
+bool operator == (const Scientist& a, const Scientist& b)
+{
+    return a._name == b._name;
+}

@@ -1,6 +1,5 @@
 #include "scientistservice.h"
-#include <algorithm>
-#include <string>
+
 
 using namespace std;
 
@@ -47,7 +46,8 @@ void ScientistService::addScientist(string name, char gender, int age, int death
 
 void ScientistService::removeScientist(string name)
 {   //virkar ekki?
-    // _scientists.erase(remove(_scientists.begin(), _scientists.end(), name), _scientists.end());
+    Scientist toRemove = findScientistByName(name).at(0);
+    _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
 }
 
 void ScientistService::scientistSort(int sortType)
