@@ -23,6 +23,8 @@ ScientistService::ScientistService()
 vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 {   //sækir listann af scientists svo consoleui geti prentað það
     //er betra að sækja listann úr skrá eða senda bara vectorinn sem við erum með?
+
+    return _scientists;
     vector<Scientist> scientist;
     DataAccess data;
 
