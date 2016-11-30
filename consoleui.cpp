@@ -20,6 +20,7 @@ void ConsoleUI::run()
         cout << "Add - add a programmer/computer scientist" << endl;
         cout << "List - show a list of all programmer's/computer scientist's" << endl;
         cout << "Search - search the list of programmer's/computer scientist's" << endl;
+        cout << "Sort - sort list by name, gender, age or year of death" << endl;
         cout << "Quit - end program" << endl;
 
 
@@ -31,19 +32,23 @@ void ConsoleUI::run()
 
         cout << endl;
 
-        if(command == "add") // Could possibly be improved upon
+        if(command == "add")
         {
            userMenuAdd();
         }
-        else if(command == "list") // Could possibly be improved upon
+        else if(command == "list")
         {
            userMenuList();
         }
-        else if(command == "search") // Could possibly be improved upon
+        else if(command == "search")
         {
            userMenuSearch();
         }
-        else
+        else if(command == "sort")
+        {
+            userMenuSort();
+        }
+        else if(command != "quit")
         {
             cout << "Invalid input" << endl;
         }
@@ -157,9 +162,7 @@ void ConsoleUI::userMenuAdd()
 
     }while (check4 == true);
             cout << "Invalid input" << endl;
-        }
-    }while(check3 == true);
-    cout << endl;
+
 
 }
 void ConsoleUI::userMenuList()
@@ -170,7 +173,7 @@ void ConsoleUI::userMenuList()
     cout << "================================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
-        cout << scientist[i].getName() << "\t"
+        cout << scientist[i].getName() << "\t\t"
              << scientist[i].getGender() << "\t\t"
              << scientist[i].getAge() << "\t"
              << scientist[i].getDeath() << endl;
@@ -211,4 +214,11 @@ void ConsoleUI::userMenuSearch()
     }
 
 
+}
+void ConsoleUI::userMenuSort()
+{
+    int userInput;
+    cout << "Sort list by name(1), gender(2), age(3) or year of death(4)" << endl;
+    cin >> userInput;
+     _service.scientistSort(userInput);
 }
