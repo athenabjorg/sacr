@@ -174,6 +174,7 @@ void ConsoleUI::userMenuSearch()
     cout << "Name - Search by name" << endl;
     cout << "Gender - Search by gender" << endl;
     cout << "Age - Search by age" << endl;
+    cout << "Birth - search by year of birth" << endl;
     cout << "Death - search by year of death" << endl;
     cin >> command;
     cout << endl;
@@ -213,10 +214,19 @@ void ConsoleUI::userMenuSearch()
         vector<Scientist> scientist = _service.findScientistByAge(userInputAge);
         userMenuPrint(scientist);
     }
+    else if(command == "birth")
+    {
+        int userInputBirth;
+        cout << "Search by year of birth: ";
+        cin >> userInputBirth;
+
+        vector<Scientist> scientist = _service.findScientistByBirth(userInputBirth);
+        userMenuPrint(scientist);
+    }
     else if(command == "death")
     {
         int userInputDeath;
-        cout << "Search by age: ";
+        cout << "Search by year of death (0 for still alive): ";
         cin >> userInputDeath;
 
         vector<Scientist> scientist = _service.findScientistByDeath(userInputDeath);
