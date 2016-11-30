@@ -59,62 +59,104 @@ void ConsoleUI::userMenuAdd()
     int birthYear;
     int deathYear = 0;
 
-
-    cout << "Enter the programmer's/computer scientist's name: ";
-    cin.ignore();
-    getline(cin, name);
-
-    bool check = true;
+    bool check4 = true;
     do
     {
-        cout << "Enter the programmer's/computer scientist's gender (m/f): ";
-        cin >> gender;
+        cout << "Enter the programmer's/computer scientist's name: ";
+        cin.ignore();
+        getline(cin, name);
 
-        if((gender != 'm') && (gender != 'f'))
+        bool check = true;
+        do
         {
-            cout << "Invalid input" << endl;
-        }
-        else
-        {
-            check = false;
-        }
-    }while(check == true);
+            cout << "Enter the programmer's/computer scientist's gender (m/f): ";
+            cin >> gender;
 
-    bool check2 = true;
-    do
-    {
-        cout << "Enter the programmer's/computer scientist's year of birth: ";
-        cin >> birthYear;
-        if(birthYear < 2016) // Just in case we find a programmer of the univers
-        {
-            check2 = false;
-        }
-        else
-        {
-            cout << "Invalid input" << endl;
-        }
-    }while(check2 == true);
+            if((gender != 'm') && (gender != 'f'))
+            {
+                cout << "Invalid input" << endl;
+            }
+            else
+            {
+                check = false;
+            }
+        }while(check == true);
 
-    bool check3 = true;
-    do
-    {
-        cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
-        cin >> deathYear;
-        if (deathYear == 0)
+        bool check2 = true;
+        do
         {
-            check3 = false;
-        }
-        else if(deathYear >= birthYear)
-        {
-            check3 = false;
-        }
-        else
-        {
-            cout << "Invalid input" << endl;
-        }
-    }while(check3 == true);
+            cout << "Enter the programmer's/computer scientist's year of birth: ";
+            cin >> birthYear;
+            if(birthYear < 2016) // Just in case we find a programmer of the univers
+            {
+                check2 = false;
+            }
+            else
+            {
+                cout << "Invalid input" << endl;
+            }
+        }while(check2 == true);
 
-    _service.addScientist(name, gender, birthYear, deathYear);
+        bool check3 = true;
+        do
+        {
+            cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
+            cin >> deathYear;
+            if (deathYear == 0)
+            {
+                check3 = false;
+            }
+            else if(deathYear >= birthYear)
+            {
+                check3 = false;
+            }
+            else
+            {
+                cout << "Invalid input" << endl;
+            }
+        }while(check3 == true);
+
+
+        bool check5 = true;
+        do{
+            // Checks if all data is correct
+
+            cout << "Name: " << name << " Gender: " << gender << " Born: " << birthYear;
+
+            if(deathYear != 0)
+            {
+                cout << " Died: " << deathYear << endl;
+            }
+            else
+                cout << endl;
+
+            char answear;
+
+            cout << "Is this data correct? (input y/n) or press q to quit" << endl;
+            cin >> answear;
+
+            if(answear == 'y')
+            {
+                _service.addScientist(name, gender, birthYear, deathYear);
+                check4 = false;
+                check5 = false;
+            }
+            else if (answear == 'n')
+            {
+                check4 = true;
+                check5 = false;
+            }
+            else if (answear == 'q')
+            {
+                check4 = false;
+                check5 = false;
+            }
+            else
+                cout << "Invalid input!" << endl;
+        }while (check5 == true);
+
+    }while (check4 == true);
+
 }
 void ConsoleUI::userMenuList()
 {
