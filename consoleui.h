@@ -18,6 +18,8 @@ private:
     void userMenuSearch();
     void userMenuSort();
     void userMenuPrint(vector<Scientist>scientist);
+    int userCheckInput();
+
 
 private:
     ScientistService _service;

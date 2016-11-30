@@ -36,10 +36,11 @@ vector<Scientist> DataAccess::loadScientists()
 
     while(file)
     {
-        getline(file, scientist.getName(), ',' );
+        /*getline(file, scientist.getName(), ',' );
         getline(file, scientist.getGender(), ',' );
         getline(file, scientist.getAge(), ',' );
         getline(file, scientist.getDeath());
+*/
     }
 
     file.close( );
