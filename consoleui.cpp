@@ -138,7 +138,7 @@ void ConsoleUI::userMenuAdd()
 
         if(deathYear != 0)
         {
-            cout << " Died: " << deathYear << endl;
+            cout << "Died: " << deathYear << endl;
         }
         else
         {
