@@ -12,7 +12,6 @@ public:
     void saveScientists(vector<Scientist>& scientists);
     vector<Scientist> loadScientists();
 
-
 private:
 
 };

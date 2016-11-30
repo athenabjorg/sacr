@@ -2,6 +2,8 @@
 #include <fstream>
 #include "scientist.h"
 #include <vector>
+#include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -34,17 +36,33 @@ vector<Scientist> DataAccess::loadScientists()
     ifstream file;
     file.open("scientists.csv");
 
-    while(file)
+    string line;
+    if(file.is_open())
     {
-        /*
-        getline(file, scientist.getName(), ',' );
-        getline(file, scientist.getGender(), ',' );
-        getline(file, scientist.getAge(), ',' );
-        getline(file, scientist.getDeath());
-        */
+    while(getline(file, line)) //ná í
+    {
+        stringstream linestream(line);
+        string data;
+        string theName = " ";
+        char theGender = ' ';
+        int theBirthYear = 0;
+        int theDeathYear = 0;
+
+        getline(linestream, line, '\t');  // read up-to the tab
+
+        // Read the values using the operator >>
+        linestream >> theName >> theGender >> theBirthYear >> theDeathYear;
+        scientist.setName(theName);
+        scientist.setGender(theGender);
+        scientist.setAge(theBirthYear);
+        scientist.setDeath(theDeathYear);
+
+        scientists.push_back(scientist);
     }
 
     file.close( );
+    }
 
     return scientists;
 }
+
