@@ -1,17 +1,13 @@
 #include "scientistservice.h"
-#include <algorithm>
-#include <string>
+
 
 using namespace std;
 
 
-//operator overloading fyrir sort fallið
+//operator overloading for scientistSort.
 bool sortByName(const Scientist &a, const Scientist &b) { return a.getName() < b.getName(); }
-
 bool sortByGender(const Scientist &a, const Scientist &b) { return a.getGender() < b.getGender(); }
-
 bool sortByAge(const Scientist &a, const Scientist &b) { return a.getAge() < b.getAge(); }
-
 bool sortByDeath(const Scientist &a, const Scientist &b) { return a.getDeath() < b.getDeath(); }
 
 
@@ -21,7 +17,7 @@ ScientistService::ScientistService()
 }
 
 vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
-{   //sækir listann af scientists svo consoleui geti prentað það
+{   // Uploads the list of scientists from file.
     //er betra að sækja listann úr skrá eða senda bara vectorinn sem við erum með?
 
     return _scientists;
@@ -34,7 +30,7 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 }
 
 void ScientistService::addScientist(string name, char gender, int age, int death)
-{   //bætir scientist við listann
+{   // Adds a scientist to the list and updates the file.
     Scientist scientist(name, gender, age, death);
     DataAccess data;
     // TODO er scientist til fyrir? þá sleppa push og senda villuboð
@@ -46,12 +42,15 @@ void ScientistService::addScientist(string name, char gender, int age, int death
 }
 
 void ScientistService::removeScientist(string name)
-{   //virkar ekki?
-    // _scientists.erase(remove(_scientists.begin(), _scientists.end(), name), _scientists.end());
+{   // removes a scientist with that name from the vector
+    Scientist toRemove = findScientistByName(name).at(0);
+    _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
+
+    //  TODO update the text file
 }
 
 void ScientistService::scientistSort(int sortType)
-{    // sort by parameter, 1 = name, 2 = gender, 3 = age, 4 = death
+{    // Sort by parameter, 1 = name, 2 = gender, 3 = age, 4 = death
      // change to switch case?
 
     if (sortType == 1)
@@ -74,7 +73,8 @@ void ScientistService::scientistSort(int sortType)
 
 
 vector<Scientist> ScientistService::findScientistByName(string name)
-{   //leita að upplýsingum um scientist eftir nafni
+{   // Returns all scientists with the full name specified.
+    // TODO leita eftir part úr nafni?
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
@@ -89,7 +89,7 @@ vector<Scientist> ScientistService::findScientistByName(string name)
 }
 
 vector<Scientist> ScientistService::findScientistByGender(char gender)
-{   //leita að upplýsingum um scientist eftir kyni
+{   // Returns all scientists of that gender.
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
@@ -104,7 +104,7 @@ vector<Scientist> ScientistService::findScientistByGender(char gender)
 }
 
 vector<Scientist> ScientistService::findScientistByAge(int age)
-{   //leita að upplýsingum um scientist eftir fæðingarári
+{   // Returns all scientists born that year.
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
@@ -119,7 +119,7 @@ vector<Scientist> ScientistService::findScientistByAge(int age)
 }
 
 vector<Scientist> ScientistService::findScientistByDeath(int death)
-{   //leita að upplýsingum um scientist eftir dánarári
+{   // Returns all scientists that died that year, or death = 0 for still alive..
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)

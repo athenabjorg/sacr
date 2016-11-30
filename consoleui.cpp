@@ -14,7 +14,7 @@ ConsoleUI::ConsoleUI()
 void ConsoleUI::run()
 {
     string command;
-    do
+    while(true)
     {
         cout << "Select one of the following options: " << endl;
         cout << "Add - add a programmer/computer scientist" << endl;
@@ -48,11 +48,15 @@ void ConsoleUI::run()
         {
             userMenuSort();
         }
-        else if(command != "quit")
+        else if(command == "quit")
+        {
+            break;
+        }
+        else
         {
             cout << "Invalid input" << endl;
         }
-    }while(command != "quit");
+    }
 
 
 
@@ -145,13 +149,16 @@ void ConsoleUI::userMenuSearch()
     cout << "Death - search by year of death" << endl;
     cin >> command;
 
+    for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
+    {
+        command[i] = tolower(command[i]);
+    }
 
 
-
-    if(command == "name") // findScientistByName
+    if(command == "name")
     {
         string userInputName;
-        cout << "Enter the programmer's/computer scientist's name: ";
+        cout << "Search by name: ";
         cin.ignore();
         getline(cin, userInputName);
 
@@ -159,13 +166,32 @@ void ConsoleUI::userMenuSearch()
         userMenuPrint(scientist);
 
     }
-    else if(command == "birth")
+    else if(command == "gender") // findScientistByGender
     {
+        char userInputGender;
+        cout << "Search by gender: ";
+        cin >> userInputGender;
 
+        vector<Scientist> scientist = _service.findScientistByGender(userInputGender);
+        userMenuPrint(scientist);
+    }
+    else if(command == "age") // findScientistByGender
+    {
+        int userInputAge;
+        cout << "Search by age: ";
+        cin >> userInputAge;
+
+        vector<Scientist> scientist = _service.findScientistByAge(userInputAge);
+        userMenuPrint(scientist);
     }
     else if(command == "death")
     {
+        int userInputDeath;
+        cout << "Search by age: ";
+        cin >> userInputDeath;
 
+        vector<Scientist> scientist = _service.findScientistByDeath(userInputDeath);
+        userMenuPrint(scientist);
     }
 
 
@@ -176,6 +202,7 @@ void ConsoleUI::userMenuSort()
     cout << "Sort list by name(1), gender(2), age(3) or year of death(4)" << endl;
     cin >> userInput;
      _service.scientistSort(userInput);
+     userMenuList();
 }
 void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
 {

@@ -21,6 +21,8 @@ public:
     void setAge(int age);
     void setDeath(int death);
 
+    friend bool operator == (const Scientist& a, const Scientist& b);
+
 private:
 
     string _name;

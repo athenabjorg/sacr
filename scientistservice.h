@@ -2,6 +2,8 @@
 #define SCIENTISTSERVICE_H
 
 #include <vector>
+#include <algorithm>
+#include <string>
 #include "scientist.h"
 #include "dataaccess.h"
 
