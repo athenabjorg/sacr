@@ -17,6 +17,7 @@ private:
     void userMenuList();
     void userMenuSearch();
     void userMenuSort();
+    void userMenuPrint(vector<Scientist>scientist);
 
 private:
     ScientistService _service;

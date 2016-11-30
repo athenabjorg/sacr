@@ -168,47 +168,37 @@ void ConsoleUI::userMenuAdd()
 void ConsoleUI::userMenuList()
 {
     vector<Scientist> scientist = _service.getScientists();
-
-    cout << "Scientist name: \t" << "gender: \t" << "age: \t" << "died:" << endl;
-    cout << "================================================================" << endl;
-    for (size_t i = 0; i< scientist.size(); ++i)
-    {
-        cout << scientist[i].getName() << "\t\t"
-             << scientist[i].getGender() << "\t\t"
-             << scientist[i].getAge() << "\t"
-             << scientist[i].getDeath() << endl;
-    }
-    cout << endl;
+    userMenuPrint(scientist);
 }
 void ConsoleUI::userMenuSearch()
 {
     string command;
     cout << "Select a search option: " << endl;
     cout << "Name - Search by name" << endl;
-    cout << "Birth - Search by year of birth" << endl;
+    cout << "Gender - Search by gender" << endl;
+    cout << "Age - Search by age" << endl;
     cout << "Death - search by year of death" << endl;
     cin >> command;
 
-    if(command == "name" || command == "Name" || command == "NAME")
-    {
-        vector<Scientist> scientist = _service.getScientists();
-        string nameInputSearch;
-        cout << "Enter a name to search: ";
-        cin >> nameInputSearch;
 
-        for(unsigned int i = 0; i < scientist.size(); ++i)
-        {
-            if(scientist[i].getName() == nameInputSearch)
-            {
-                cout << scientist[i].getName() << endl;
-            }
-        }
-    }
-    else if(command == "birth" || command == "Birth" || command == "BIRTH")
+
+
+    if(command == "name") // findScientistByName
     {
+        string userInputName;
+        cout << "Enter the programmer's/computer scientist's name: ";
+        cin.ignore();
+        getline(cin, userInputName);
+
+        vector<Scientist> scientist = _service.findScientistByName(userInputName);
+        userMenuPrint(scientist);
 
     }
-    else if(command == "death" || command == "Death" || command == "DEATH")
+    else if(command == "birth")
+    {
+
+    }
+    else if(command == "death")
     {
 
     }
@@ -221,4 +211,17 @@ void ConsoleUI::userMenuSort()
     cout << "Sort list by name(1), gender(2), age(3) or year of death(4)" << endl;
     cin >> userInput;
      _service.scientistSort(userInput);
+}
+void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
+{
+    cout << "Scientist name: \t" << "gender: \t" << "age: \t" << "died:" << endl;
+    cout << "================================================================" << endl;
+    for (size_t i = 0; i< scientist.size(); ++i)
+    {
+        cout << scientist[i].getName() << "\t\t"
+             << scientist[i].getGender() << "\t\t"
+             << scientist[i].getAge() << "\t"
+             << scientist[i].getDeath() << endl;
+    }
+    cout << endl;
 }
