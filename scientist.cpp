@@ -35,3 +35,23 @@ int Scientist::getDeath() const
 {
     return _death;
 }
+
+void Scientist::setName(string name)
+{
+    _name = name;
+}
+
+void Scientist::setGender(char gender)
+{
+    _gender = gender;
+}
+
+void Scientist::setAge(int age)
+{
+    _age = age;
+}
+
+void Scientist::setDeath(int death)
+{
+    _death = death;
+}
