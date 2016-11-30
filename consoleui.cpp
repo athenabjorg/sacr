@@ -73,6 +73,7 @@ void ConsoleUI::userMenuAdd()
     int birthYear;
     int deathYear = 0;
     int age = 0;
+    int a;
 
     while(true)
     {
@@ -87,10 +88,14 @@ void ConsoleUI::userMenuAdd()
             cin >> gender;
 
             if((gender != 'm') && (gender != 'f'))
+            {
                 cout << "Invalid input" << endl;
-
+            }
             else
+            {
                 break;
+            }
+
         }
 
         // Check year of birth
@@ -99,10 +104,13 @@ void ConsoleUI::userMenuAdd()
             cout << "Enter the programmer's/computer scientist's year of birth: ";
             cin >> birthYear;
             if(birthYear < 2016) // Just in case we find a programmer of the univers
+            {
                 break;
-
+            }
             else
+            {
                 cout << "Invalid input" << endl;
+            }
         }
 
         // Check when year of death (if dead)
@@ -111,13 +119,17 @@ void ConsoleUI::userMenuAdd()
             cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
             cin >> deathYear;
             if (deathYear == 0)
+            {
                 break;
-
+            }
             else if(deathYear >= birthYear)
+            {
                 break;
-
+            }
             else
+            {
                 cout << "Invalid input" << endl;
+            }
         }
 
 
@@ -125,18 +137,24 @@ void ConsoleUI::userMenuAdd()
         cout << "Name: " << name << " Gender: " << gender << " Born: " << birthYear;
 
         if(deathYear != 0)
+        {
             cout << " Died: " << deathYear << endl;
+        }
         else
+        {
             cout << endl;
+        }
 
-       int a = userCheckInput();
+        a = userCheckInput();
         if (a == 0)
         {
             _service.addScientist(name, gender, birthYear, deathYear, age);
             break;
         }
         else if (a == 2)
+        {
             break;
+        }
 
     }
     cout << endl;
@@ -239,7 +257,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
     }
     cout << endl;
 }
-int ConsoleUI::userCheckInput()
+int  ConsoleUI::userCheckInput()
 {
     // Check if all data is correct
     while(true)
