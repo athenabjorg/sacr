@@ -21,13 +21,13 @@ void DataAccess::saveScientists(vector<Scientist>& scientists)
         file << scientists[i].getName() << ", ";
         file << scientists[i].getGender() << ", ";
         file << scientists[i].getBirth() << ", ";
-        file << scientists[i].getDeath() << endl; // Spurning hvort það þurfi að vera endl á
+        file << scientists[i].getDeath() << ", ";
+        file << scientists[i].getAge() << endl; // Spurning hvort það þurfi að vera endl á
                                                   //öllum atriðum til að geta notað getline hér fyrir neðan.
     }
 
     file.close( );
 }
-
 vector<Scientist> DataAccess::loadScientists()
 {
     vector<Scientist> scientists;
@@ -48,7 +48,7 @@ vector<Scientist> DataAccess::loadScientists()
         int theBirthYear = 0;
         int theDeathYear = 0;
 
-        getline(linestream, line, '\t');  // read up-to the tab
+        getline(linestream, data, '\t');  // read up-to the tab
 
         // Read the values using the operator >>
         linestream >> theName >> theGender >> theBirthYear >> theDeathYear;

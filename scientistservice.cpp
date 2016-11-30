@@ -5,7 +5,8 @@ using namespace std;
 
 
 //operator overloading for scientistSort.
-bool sortByName(const Scientist &a, const Scientist &b) { return a.getName() < b.getName(); }
+bool sortByNameAsc(const Scientist &a, const Scientist &b) { return a.getName() < b.getName(); }
+bool sortByNameDesc(const Scientist &a, const Scientist &b) { return a.getName() > b.getName(); }
 bool sortByGender(const Scientist &a, const Scientist &b) { return a.getGender() < b.getGender(); }
 bool sortByBirth(const Scientist &a, const Scientist &b) { return a.getBirth() < b.getBirth(); }
 bool sortByDeath(const Scientist &a, const Scientist &b) { return a.getDeath() < b.getDeath(); }
@@ -20,7 +21,7 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 {   // Uploads the list of scientists from file.
     //er betra að sækja listann úr skrá eða senda bara vectorinn sem við erum með?
 
-    //return _scientists;
+    return _scientists;
     //vector<Scientist> scientist;
     DataAccess data;
 
@@ -48,26 +49,30 @@ void ScientistService::removeScientist(string name)
     //  TODO update the text file
 }
 void ScientistService::scientistSort(int sortType)
-{    // Sort by parameter, 1 = name, 2 = gender, 3 = birth, 4 = death, 5 = age
+{    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age
      // change to switch case?
 
     if (sortType == 1)
     {
-    sort(_scientists.begin(), _scientists.end(), sortByName);
+        sort(_scientists.begin(), _scientists.end(), sortByNameAsc);
     }
     else if (sortType == 2)
     {
-        sort(_scientists.begin(), _scientists.end(), sortByGender);
+        sort(_scientists.begin(), _scientists.end(), sortByNameDesc);
     }
     else if (sortType == 3)
     {
-        sort(_scientists.begin(), _scientists.end(), sortByBirth);
+        sort(_scientists.begin(), _scientists.end(), sortByGender);
     }
     else if (sortType == 4)
     {
-        sort(_scientists.begin(), _scientists.end(), sortByDeath);
+        sort(_scientists.begin(), _scientists.end(), sortByBirth);
     }
     else if (sortType == 5)
+    {
+        sort(_scientists.begin(), _scientists.end(), sortByDeath);
+    }
+    else if (sortType == 6)
     {
         sort(_scientists.begin(), _scientists.end(), sortByAge);
 
@@ -90,6 +95,7 @@ vector<Scientist> ScientistService::findScientistByName(string name)
 
     return scientist;
 }
+
 vector<Scientist> ScientistService::findScientistByGender(char gender)
 {   // Returns all scientists of that gender.
     vector<Scientist> scientist;

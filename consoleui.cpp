@@ -226,7 +226,7 @@ void ConsoleUI::userMenuSearch()
 void ConsoleUI::userMenuSort()
 {
     int userInput;
-    cout << "Sort list by Name(1), Gender(2), Year of Birth(3), Year of Death(4) or Age (5)" << endl;
+    cout << "Sort list by Name A-Z(1), Name Z-A(2), Gender(3), Year of Birth(4), Year of Death(5) or Age (6)" << endl;
     cin >> userInput;
      _service.scientistSort(userInput);
      userMenuList();
