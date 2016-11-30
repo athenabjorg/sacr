@@ -124,7 +124,10 @@ void ConsoleUI::userMenuList()
     cout << "===============" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
-        cout << scientist[i].getName() << endl;
+        cout << scientist[i].getName() << "\t"
+             << scientist[i].getGender() << "\t"
+             << scientist[i].getAge() << "\t"
+             << scientist[i].getDeath() << endl;
     }
     cout << endl;
 }
