@@ -7,12 +7,14 @@ using namespace std;
 
 ConsoleUI::ConsoleUI()
 {
-
+    _service.getScientists();  // gets information from file so it's used from the beginning.
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
 void ConsoleUI::run()
 {
+
+
     string command;
     while(true)
     {

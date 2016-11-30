@@ -1,9 +1,5 @@
 #include "dataaccess.h"
-#include <fstream>
 #include "scientist.h"
-#include <vector>
-#include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -18,10 +14,10 @@ void DataAccess::saveScientists(vector<Scientist>& scientists)
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
-        file << scientists[i].getName() << ", ";
-        file << scientists[i].getGender() << ", ";
-        file << scientists[i].getBirth() << ", ";
-        file << scientists[i].getDeath() << ", ";
+        file << scientists[i].getName() << " ";
+        file << scientists[i].getGender() << " ";
+        file << scientists[i].getBirth() << " ";
+        file << scientists[i].getDeath() << " ";
         file << scientists[i].getAge() << endl; // Spurning hvort það þurfi að vera endl á
                                                   //öllum atriðum til að geta notað getline hér fyrir neðan.
     }
@@ -33,32 +29,35 @@ vector<Scientist> DataAccess::loadScientists()
     vector<Scientist> scientists;
     Scientist scientist;
 
-    ifstream file;
-    file.open("scientists.csv");
-
     string line;
+    stringstream lineStream;
+    string name, gender, birthYear, deathYear, age;
+    char charGender;
+    int intBirthYear, intDeathYear, intAge;
+
+    ifstream file;
+    file.open("scientists.txt");
+
     if(file.is_open())
     {
-    while(getline(file, line)) //ná í
-    {
-        stringstream linestream(line);
-        string data;
-        string theName = " ";
-        char theGender = ' ';
-        int theBirthYear = 0;
-        int theDeathYear = 0;
+        while(getline(file, line))
+        {
+            stringstream lineStream(line);
+            lineStream >> name >> gender >> birthYear >> deathYear >> age;
 
-        getline(linestream, data, '\t');  // read up-to the tab
+            charGender = gender[0];
+            intBirthYear = atoi(birthYear.c_str());
+            intDeathYear = atoi(deathYear.c_str());
+            intAge = atoi(age.c_str());
 
-        // Read the values using the operator >>
-        linestream >> theName >> theGender >> theBirthYear >> theDeathYear;
-        scientist.setName(theName);
-        scientist.setGender(theGender);
-        scientist.setAge(theBirthYear);
-        scientist.setDeath(theDeathYear);
+            scientist.setName(name);
+            scientist.setGender(charGender);
+            scientist.setBirth(intBirthYear);
+            scientist.setDeath(intDeathYear);
+            scientist.setAge(intAge);
 
-        scientists.push_back(scientist);
-    }
+            scientists.push_back(scientist);
+        }
 
     file.close( );
     }
