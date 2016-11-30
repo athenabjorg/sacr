@@ -113,6 +113,7 @@ void ConsoleUI::userMenuAdd()
             cout << "Invalid input" << endl;
         }
     }while(check3 == true);
+    cout << endl;
 
     _service.addScientist(name, gender, birthYear, deathYear);
 }
@@ -120,12 +121,12 @@ void ConsoleUI::userMenuList()
 {
     vector<Scientist> scientist = _service.getScientists();
 
-    cout << "Scientist name:" << endl;
-    cout << "===============" << endl;
+    cout << "Scientist name: \t" << "gender: \t" << "age: \t" << "died:" << endl;
+    cout << "================================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
         cout << scientist[i].getName() << "\t"
-             << scientist[i].getGender() << "\t"
+             << scientist[i].getGender() << "\t\t"
              << scientist[i].getAge() << "\t"
              << scientist[i].getDeath() << endl;
     }
