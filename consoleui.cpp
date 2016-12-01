@@ -15,15 +15,11 @@ ConsoleUI::ConsoleUI()
 // Should not contain logic for individual commands, that should be in separate functions!
 void ConsoleUI::run()
 {
-
-
     string command;
     cout << string( 100, '\n' ); // Clears screen
 
     while(true)
     {
-
-
         cout << "Select one of the following options: " << endl;
         cout << "======================================================================" << endl;
         cout << "Add     -   add a programmer/computer scientist" << endl;
@@ -102,20 +98,18 @@ void ConsoleUI::userMenuAdd()
                 cin.clear();
                 cin.ignore(INT_MAX, '\n');
                 break;
-
             }
             else
             {
                 cout << string( 100, '\n' ); // Clears screen
                 cout << "Invalid input" << endl;
-
             }
-
         }
 
         cout << string( 100, '\n' ); // Clears screen
         // Check year of birth
         while(true)
+
         {
             bool inputCheck;
             do
@@ -130,29 +124,28 @@ void ConsoleUI::userMenuAdd()
                 }
                 cin.clear();
                 cin.ignore(INT_MAX, '\n');
+            }
+            while(inputCheck);
 
-            }while(inputCheck);
-
-            if(birthYear < 2016) // Just in case we find a programmer of the univers
+            if(birthYear < 2016) // Just in case we discover a programmer of the universe
             {
                 break;
             }
             else
             {
                 cout << string( 100, '\n' ); // Clears screen
-                cout << "Invalid input" << endl;
+                cout << "Invalid input - You can't be born in the future!" << endl;
             }
         }
 
         cout << string( 100, '\n' ); // Clears screen
+
         // Check when year of death (if dead)
         while(true)
         {    
             bool inputCheck;
             do
             {
-
-
                 cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
                 cin >> deathYear;
                 inputCheck = cin.fail();
@@ -162,10 +155,9 @@ void ConsoleUI::userMenuAdd()
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
-                cin.ignore(INT_MAX, '\n');
-
-            }while(inputCheck);
-
+                cin.ignore(INT_MAX, '\n');   
+            }
+            while(inputCheck);
 
             if (deathYear == 0)
             {
@@ -182,7 +174,6 @@ void ConsoleUI::userMenuAdd()
             }
         }
 
-
         // Check if input is correct
         cout << string( 100, '\n' ); // Clears screen
 
@@ -196,8 +187,6 @@ void ConsoleUI::userMenuAdd()
         {
             cout << endl;
         }
-
-
 
         a = userCheckInput();
 
@@ -222,17 +211,14 @@ void ConsoleUI::userMenuAdd()
                     _service.addScientist(name, gender, birthYear, deathYear, age);
                     break;
                 }
-
             }
         }
         else if (a == 2)
         {
             break;
         }
-
     }
     cout << endl;
-
 }
 void ConsoleUI::userMenuList()
 {
@@ -257,9 +243,7 @@ void ConsoleUI::userMenuSearch()
     cin.ignore(INT_MAX, '\n');
     cout << endl;
 
-
     forceLowerCase(command);
-
 
     if(command == "name")
     {
@@ -362,7 +346,6 @@ void ConsoleUI::userMenuSearch()
             cout << string( 100, '\n' ); // Clears screen
             cout << "Wrong Input" << endl;
         }
-
     }
     else if(command == "death")
     {
@@ -401,10 +384,8 @@ void ConsoleUI::userMenuSearch()
             cout << string( 100, '\n' ); // Clears screen
             cout << "Wrong Input" << endl;
         }
-
     }
     cout << endl;
-
 }
 void ConsoleUI::userMenuSort()
 { 
@@ -433,8 +414,8 @@ void ConsoleUI::userMenuSort()
         }
         cin.clear();
         cin.ignore(INT_MAX, '\n');
-    }while(inputCheck);
-
+     }
+     while(inputCheck);
 
      _service.scientistSort(userInput);
      userMenuList();
@@ -454,7 +435,6 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
              << setw(10) << right << scientist[i].getGender()
              << setw(10) << scientist[i].getBirth();
 
-
              if(scientist[i].getDeath() == 0)
              {
                  cout << setw(10) << "-";
@@ -464,17 +444,17 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
                  cout << setw(10) << scientist[i].getDeath();
              }
              cout << setw(10) << scientist[i].getAge() << endl;
-
-
     }
     cout << "======================================================================" << endl;
-    cout << "To return to menu input the letter m" << string( 2, '\n' );
+    cout << "To return to menu press m" << endl;
+    cout << "Select: ";
 
    string userInput = " ";
    while (userInput != "m")
    {
        cin >> userInput;
    }
+   cout << string( 2, '\n' );
 }
 int  ConsoleUI::userCheckInput()
 {
