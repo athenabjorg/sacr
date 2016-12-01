@@ -18,10 +18,11 @@ void ConsoleUI::run()
 
 
     string command;
+    cout << string( 100, '\n' ); // Clears screen
 
     while(true)
     {
-        cout << string( 100, '\n' ); // Clears screen
+
 
         cout << "Select one of the following options: " << endl;
         cout << "======================================================================" << endl;
@@ -58,12 +59,13 @@ void ConsoleUI::run()
         else if(command == "quit")
         {
             cout << string( 100, '\n' ); // Clears screen
-
             break;
         }
         else
         {
+            cout << string( 100, '\n' ); // Clears screen
             cout << "Invalid input" << endl;
+            cout << endl;
         }
     }
 }
@@ -311,6 +313,7 @@ void ConsoleUI::userMenuSearch()
         }
         else
         {
+            cout << string( 100, '\n' ); // Clears screen
             cout << "Wrong Input" << endl;
         }
 
@@ -321,25 +324,81 @@ void ConsoleUI::userMenuSearch()
     }
     else if(command == "birth")
     {
-        int userInputBirth;
-        cout << string( 100, '\n' ); // Clears screen
+        int inputCheck;
 
-        cout << "Search by year of birth: ";
-        cin >> userInputBirth;
+        cout << "To search by year of birth(1), to search by range of year of birth(2)" << endl;
+        cin >> inputCheck;
 
-        vector<Scientist> scientist = _service.findScientistByBirth(userInputBirth);
-        userMenuPrint(scientist);
+        if(inputCheck == 1)
+        {
+            int userInputBirth;
+
+            cout << "Search by year of birth: ";
+            cin >> userInputBirth;
+
+            vector<Scientist> scientist = _service.findScientistByBirth(userInputBirth);
+            userMenuPrint(scientist);
+        }
+        else if(inputCheck == 2)
+        {
+            int userInputBirthFirst;
+            int userInputBirthLast;
+
+            cout << "Search from year of birth: ";
+            cin >> userInputBirthFirst;
+            cout << endl;
+            cout << "to year of birth: ";
+            cin >> userInputBirthLast;
+            cout << endl;
+
+            vector<Scientist> scientist = _service.findScientistByBirthRange(userInputBirthFirst, userInputBirthLast);
+            userMenuPrint(scientist);
+        }
+        else
+        {
+            cout << string( 100, '\n' ); // Clears screen
+            cout << "Wrong Input" << endl;
+        }
+
     }
     else if(command == "death")
     {
-        int userInputDeath;
-        cout << string( 100, '\n' ); // Clears screen
+        int inputCheck;
 
-        cout << "Search by year of death (0 for still alive): ";
-        cin >> userInputDeath;
+        cout << "To search by year of death(1), to search by range of year of death(2)" << endl;
+        cin >> inputCheck;
 
-        vector<Scientist> scientist = _service.findScientistByDeath(userInputDeath);
-        userMenuPrint(scientist);
+        if(inputCheck == 1)
+        {
+            int userInputDeath;
+
+            cout << "Search by year of death (0 for still alive): ";
+            cin >> userInputDeath;
+
+            vector<Scientist> scientist = _service.findScientistByDeath(userInputDeath);
+            userMenuPrint(scientist);
+        }
+        else if(inputCheck == 2)
+        {
+            int userInputDeathFirst;
+            int userInputDeathLast;
+
+            cout << "Search from year of death (0 for still alive): ";
+            cin >> userInputDeathFirst;
+            cout << endl;
+            cout << "to year of death (0 for still alive): ";
+            cin >> userInputDeathLast;
+            cout << endl;
+
+            vector<Scientist> scientist = _service.findScientistByDeathRange(userInputDeathFirst, userInputDeathLast);
+            userMenuPrint(scientist);
+        }
+        else
+        {
+            cout << string( 100, '\n' ); // Clears screen
+            cout << "Wrong Input" << endl;
+        }
+
     }
     cout << endl;
 
