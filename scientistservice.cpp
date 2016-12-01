@@ -61,7 +61,6 @@ bool ScientistService::removeScientist(string name)
         return true;
     }
 
-
     return false;
 }
 

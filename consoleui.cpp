@@ -259,7 +259,6 @@ void ConsoleUI::userMenuSearch()
         cout << string( 100, '\n' ); // Clears screen
 
         cout << "Search by name: ";
-        cin.ignore();
         getline(cin, userInputName);
 
         vector<Scientist> scientist = _service.findScientistByName(userInputName);
