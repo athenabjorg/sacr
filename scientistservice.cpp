@@ -5,8 +5,20 @@ using namespace std;
 
 
 //operator overloading for scientistSort.
-bool sortByNameAsc (const Scientist &a, const Scientist &b) { return a.getName()   <  b.getName();   }
-bool sortByNameDesc(const Scientist &a, const Scientist &b) { return a.getName()   >  b.getName();   }
+bool sortByNameAsc (const Scientist &a, const Scientist &b)
+{   // also makes the sort case insensitive
+    string aName = a.getName(), bName = b.getName();
+    transform(aName.begin(), aName.end(), aName.begin(), ::tolower);
+    transform(bName.begin(), bName.end(), bName.begin(), ::tolower);
+    return aName < bName;
+}
+bool sortByNameDesc(const Scientist &a, const Scientist &b)
+{   // also makes the sort case insensitive
+    string aName = a.getName(), bName = b.getName();
+    transform(aName.begin(), aName.end(), aName.begin(), ::tolower);
+    transform(bName.begin(), bName.end(), bName.begin(), ::tolower);
+    return aName > bName;
+}
 bool sortByGender  (const Scientist &a, const Scientist &b) { return a.getGender() <  b.getGender(); }
 bool sortByBirth   (const Scientist &a, const Scientist &b) { return a.getBirth()  <  b.getBirth();  }
 bool sortByDeath   (const Scientist &a, const Scientist &b) { return a.getDeath()  <  b.getDeath();  }
