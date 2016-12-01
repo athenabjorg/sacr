@@ -70,6 +70,7 @@ void ConsoleUI::run()
 void ConsoleUI::userMenuAdd()
 {
     string name;
+    string genderInput;
     char gender;
     int birthYear;
     int deathYear = 0;
@@ -86,15 +87,20 @@ void ConsoleUI::userMenuAdd()
         while(true)
         {
             cout << "Enter the programmer's/computer scientist's gender (m/f): ";
-            cin >> gender;
+            cin >> genderInput;
 
-            if((gender != 'm') && (gender != 'f'))
+            if((genderInput == "m") || (genderInput == "f"))
             {
-                cout << "Invalid input" << endl;
+                gender = genderInput[0];
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                break;
+
             }
             else
             {
-                break;
+                cout << "Invalid input" << endl;
+
             }
 
         }
