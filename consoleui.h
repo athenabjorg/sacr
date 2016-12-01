@@ -20,6 +20,7 @@ private:
     void userMenuPrint(vector<Scientist>scientist);
     int  userCheckInput();
     void userMenuRemove();
+    void forceLowerCase(string &command);
 
 
 private:
