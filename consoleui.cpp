@@ -85,11 +85,10 @@ void ConsoleUI::userMenuAdd()
         cin.ignore();
         getline(cin, name);
 
+        cout << string( 100, '\n' ); // Clears screen
         // Check for gender
         while(true)
         {
-            cout << string( 100, '\n' ); // Clears screen
-
             cout << "Enter the programmer's/computer scientist's gender (m/f): ";
             cin >> genderInput;
             forceLowerCase(genderInput);
@@ -104,25 +103,26 @@ void ConsoleUI::userMenuAdd()
             }
             else
             {
+                cout << string( 100, '\n' ); // Clears screen
                 cout << "Invalid input" << endl;
 
             }
 
         }
 
+        cout << string( 100, '\n' ); // Clears screen
         // Check year of birth
         while(true)
         {
             bool inputCheck;
             do
             {
-                cout << string( 100, '\n' ); // Clears screen
-
                 cout << "Enter the programmer's/computer scientist's year of birth: ";
                 cin >> birthYear;
                 inputCheck = cin.fail();
                 if(inputCheck)
                 {
+                    cout << string( 100, '\n' ); // Clears screen
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
@@ -136,23 +136,26 @@ void ConsoleUI::userMenuAdd()
             }
             else
             {
+                cout << string( 100, '\n' ); // Clears screen
                 cout << "Invalid input" << endl;
             }
         }
 
+        cout << string( 100, '\n' ); // Clears screen
         // Check when year of death (if dead)
         while(true)
         {    
             bool inputCheck;
             do
             {
-                cout << string( 100, '\n' ); // Clears screen
+
 
                 cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
                 cin >> deathYear;
                 inputCheck = cin.fail();
                 if(inputCheck)
                 {
+                    cout << string( 100, '\n' ); // Clears screen
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
@@ -171,6 +174,7 @@ void ConsoleUI::userMenuAdd()
             }
             else
             {
+                cout << string( 100, '\n' ); // Clears screen
                 cout << "Invalid input" << endl;
             }
         }
