@@ -146,11 +146,21 @@ void ConsoleUI::userMenuAdd()
             cout << endl;
         }
 
+
+
         a = userCheckInput();
         if (a == 0)
         {
-            _service.addScientist(name, gender, birthYear, deathYear, age);
-            break;
+            // false sama nafn
+            if(_service.addScientist(name, gender, birthYear, deathYear, age))
+            {
+                break;
+            }
+            else
+            {
+                cout << "This name is allready taken" << endl;
+            }
+            //break;
         }
         else if (a == 2)
         {
@@ -245,24 +255,28 @@ void ConsoleUI::userMenuSort()
 void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
 {
     cout << string( 100, '\n' );
-    cout << "Scientist name:        gender:     born:   died:    age: " << endl;
+    cout << left << setw(30) << "Scientist name:"
+         << setw(10) << right << "gender:"
+         << setw(10) << "born:"
+         << setw(10) << "died:"
+         << setw(10) << "age:" << endl;
     cout << "========================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
-        cout << left << setw(25) << scientist[i].getName()
-             << setw(5) << right << scientist[i].getGender()
+        cout << left << setw(30) << scientist[i].getName()
+             << setw(10) << right << scientist[i].getGender()
              << setw(10) << scientist[i].getBirth();
 
 
              if(scientist[i].getDeath() == 0)
              {
-                 cout << setw(8) << "-";
+                 cout << setw(10) << "-";
              }
              else
              {
-                 cout << setw(8) << scientist[i].getDeath();
+                 cout << setw(10) << scientist[i].getDeath();
              }
-             cout << setw(8) << scientist[i].getAge() << endl;
+             cout << setw(10) << scientist[i].getAge() << endl;
 
 
     }
