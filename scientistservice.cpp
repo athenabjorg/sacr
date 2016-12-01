@@ -103,10 +103,15 @@ vector<Scientist> ScientistService::findScientistByName(string name)
 {   // Returns all scientists with the full name specified.
     // TODO leita eftir part úr nafni?
     vector<Scientist> scientist;
+    string databaseName;
 
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getName() == name)
+        databaseName = _scientists[i].getName();
+        transform(databaseName.begin(), databaseName.end(), databaseName.begin(), ::tolower);
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+        if (databaseName == name)
         {
             scientist.push_back(_scientists[i]);
         }
@@ -237,3 +242,4 @@ vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
 
     return scientist;
 }
+
