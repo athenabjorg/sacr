@@ -102,8 +102,21 @@ void ConsoleUI::userMenuAdd()
         // Check year of birth
         while(true)
         {
-            cout << "Enter the programmer's/computer scientist's year of birth: ";
-            cin >> birthYear;
+            bool inputCheck;
+            do
+            {
+                cout << "Enter the programmer's/computer scientist's year of birth: ";
+                cin >> birthYear;
+                inputCheck = cin.fail();
+                if(inputCheck)
+                {
+                    cout << "Invalid input" << endl;
+                }
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+
+            }while(inputCheck);
+
             if(birthYear < 2016) // Just in case we find a programmer of the univers
             {
                 break;
@@ -116,9 +129,23 @@ void ConsoleUI::userMenuAdd()
 
         // Check when year of death (if dead)
         while(true)
-        {
-            cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
-            cin >> deathYear;
+        {    
+            bool inputCheck;
+            do
+            {
+                cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
+                cin >> deathYear;
+                inputCheck = cin.fail();
+                if(inputCheck)
+                {
+                    cout << "Invalid input" << endl;
+                }
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+
+            }while(inputCheck);
+
+
             if (deathYear == 0)
             {
                 break;
@@ -269,7 +296,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
          << setw(10) << "born:"
          << setw(10) << "died:"
          << setw(10) << "age:" << endl;
-    cout << "========================================================" << endl;
+    cout << "=====================================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
         cout << left << setw(30) << scientist[i].getName()
