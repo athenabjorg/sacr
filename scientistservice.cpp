@@ -111,7 +111,7 @@ void ScientistService::scientistSort(int sortType)
 }
 
 vector<Scientist> ScientistService::findScientistByName(string name)
-{   // Returns all scientists with the full name specified.
+{   // Returns all scientists whos name includes the string entered. Case insensitive.
 
     vector<Scientist> scientist;
     string databaseName;
@@ -165,7 +165,7 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)
 }
 
 vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)
-{   // Returns all scientists with same age as parameter ( int age )
+{   // Returns all scientists born in that range.
     vector<Scientist> scientist;
     int temp;
     if(birth1 > birth2)
@@ -201,7 +201,7 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)
 }
 
 vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)
-{   // Returns all scientists with same age as parameter ( int age )
+{   // Returns all scientists who died in that range.
     vector<Scientist> scientist;
     int temp;
     if(death1 > death2)
@@ -237,7 +237,7 @@ vector<Scientist> ScientistService::findScientistByAge(int age)
 }
 
 vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
-{   // Returns all scientists with same age as parameter ( int age )
+{   // Returns all scientists in that age range.
     vector<Scientist> scientist;
     int temp;
     if(age1 > age2)
