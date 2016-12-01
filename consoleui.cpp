@@ -21,21 +21,16 @@ void ConsoleUI::run()
     while(true)
     {
         cout << "Select one of the following options: " << endl;
-        cout << "=====================================" << endl;
-        cout << "Add - add a programmer/computer scientist" << endl;
-        cout << "Remove - remove a programmer/computer scientist" << endl;
-        cout << "List - show a list of all programmer's/computer scientist's" << endl;
-        cout << "Search - search the list of programmer's/computer scientist's" << endl;
-        cout << "Sort - sort list by name, gender, age or year of death" << endl;
-        cout << "Quit - end program" << endl;
-
+        cout << "======================================================================" << endl;
+        cout << "Add     -   add a programmer/computer scientist" << endl;
+        cout << "Remove  -   remove a programmer/computer scientist" << endl;
+        cout << "List    -   show a list of all programmer's/computer scientist's" << endl;
+        cout << "Search  -   search the list of programmer's/computer scientist's" << endl;
+        cout << "Sort    -   sort list by name, gender, age or year of death" << endl;
+        cout << "Quit    -   end program" << endl;
 
         cin >> command;
-        for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
-        {
-            command[i] = tolower(command[i]);
-        }
-
+        forceLowerCase(command);
 
         if(command == "add")
         {
@@ -88,6 +83,7 @@ void ConsoleUI::userMenuAdd()
         {
             cout << "Enter the programmer's/computer scientist's gender (m/f): ";
             cin >> genderInput;
+            forceLowerCase(genderInput);
 
             if((genderInput == "m") || (genderInput == "f"))
             {
@@ -222,18 +218,16 @@ void ConsoleUI::userMenuSearch()
 {
     string command;
     cout << "Select a search option: " << endl;
-    cout << "Name - Search by name" << endl;
-    cout << "Gender - Search by gender" << endl;
-    cout << "Age - Search by age" << endl;
-    cout << "Birth - search by year of birth" << endl;
-    cout << "Death - search by year of death" << endl;
+    cout << "======================================================================" << endl;
+    cout << "Name    -   Search by name" << endl;
+    cout << "Gender  -   Search by gender" << endl;
+    cout << "Age     -   Search by age" << endl;
+    cout << "Birth   -   search by year of birth" << endl;
+    cout << "Death   -   search by year of death" << endl;
     cin >> command;
     cout << endl;
 
-    for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
-    {
-        command[i] = tolower(command[i]);
-    }
+    forceLowerCase(command);
 
 
     if(command == "name")
@@ -302,7 +296,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
          << setw(10) << "born:"
          << setw(10) << "died:"
          << setw(10) << "age:" << endl;
-    cout << "=====================================================================" << endl;
+    cout << "======================================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
         cout << left << setw(30) << scientist[i].getName()
@@ -360,4 +354,11 @@ void ConsoleUI::userMenuRemove()
     getline(cin, userInputName);
 
     _service.removeScientist(userInputName);
+}
+void ConsoleUI::forceLowerCase(string &command)
+{
+    for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
+    {
+        command[i] = tolower(command[i]);
+    }
 }
