@@ -79,7 +79,6 @@ bool ScientistService::removeScientist(string name)
 
 void ScientistService::scientistSort(int sortType)
 {    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age
-     // change to switch case?
 
     DataAccess data;
 
@@ -113,9 +112,10 @@ void ScientistService::scientistSort(int sortType)
 
 vector<Scientist> ScientistService::findScientistByName(string name)
 {   // Returns all scientists with the full name specified.
-    // TODO leita eftir part úr nafni?
+
     vector<Scientist> scientist;
     string databaseName;
+    int pos = -1;
 
     for (size_t i = 0; i < _scientists.size(); i++)
     {
@@ -123,7 +123,9 @@ vector<Scientist> ScientistService::findScientistByName(string name)
         transform(databaseName.begin(), databaseName.end(), databaseName.begin(), ::tolower);
         transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-        if (databaseName == name)
+        pos = databaseName.find(name);
+
+        if (pos > -1)
         {
             scientist.push_back(_scientists[i]);
         }
