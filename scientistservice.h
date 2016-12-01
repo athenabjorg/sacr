@@ -15,9 +15,9 @@ public:
     ScientistService();
 
     //
-    vector<Scientist> getScientists(/* TODO: parameters */);
-    void addScientist(string name, char gender, int birth, int death, int age); // add scientist in to vector
-    void removeScientist(string name);
+    vector<Scientist> getScientists();
+    bool addScientist(string name, char gender, int birth, int death, int age); // add scientist in to vector
+    bool removeScientist(string name);
     void scientistSort(int sortType);
     vector<Scientist> findScientistByName(string name);
     vector<Scientist> findScientistByGender(char gender);
