@@ -244,7 +244,10 @@ void ConsoleUI::userMenuSearch()
     cout << "Birth   -   search by year of birth" << endl;
     cout << "Death   -   search by year of death" << endl;
     cin >> command;
+    cin.clear();
+    cin.ignore(INT_MAX, '\n');
     cout << endl;
+
 
     forceLowerCase(command);
 
@@ -310,12 +313,34 @@ void ConsoleUI::userMenuSearch()
 
 }
 void ConsoleUI::userMenuSort()
-{
+{ 
+    bool inputCheck = true;
     int userInput;
-    cout << string( 100, '\n' ); // Clears screen
 
-    cout << "Sort list by Name A-Z(1), Name Z-A(2), Gender(3), Year of Birth(4), Year of Death(5) or Age (6)" << endl;
-    cin >> userInput;
+    do
+    {
+        cout << string( 100, '\n' ); // Clears screen
+
+        cout << "Sort list by Name A-Z(1), Name Z-A(2), Gender(3), Year of Birth(4), Year of Death(5) or Age (6)" << endl;
+        cin >> userInput;
+
+        if(userInput > 0 && userInput < 7) // check if input is int and if it ranges from 1 to 6
+        {
+            inputCheck = false;
+        }
+        else if(cin.fail())
+        {
+            cout << "Invalid input" << endl;
+        }
+        else
+        {
+            cout << "Invalid input" << endl;
+        }
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+    }while(inputCheck);
+
+
      _service.scientistSort(userInput);
      userMenuList();
 }
