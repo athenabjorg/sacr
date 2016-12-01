@@ -16,14 +16,17 @@ public:
 
     //
     vector<Scientist> getScientists();
-    bool addScientist(string name, char gender, int birth, int death, int age); // add scientist in to vector
+    bool addScientist(string name, char gender, int birth, int death, int age);
     bool removeScientist(string name);
     void scientistSort(int sortType);
     vector<Scientist> findScientistByName(string name);
     vector<Scientist> findScientistByGender(char gender);
     vector<Scientist> findScientistByBirth(int birth);
+    vector<Scientist> findScientistByBirthRange(int birth1, int birth2);
     vector<Scientist> findScientistByDeath(int death);
+    vector<Scientist> findScientistByDeathRange(int death1, int death2);
     vector<Scientist> findScientistByAge(int age);
+    vector<Scientist> findScientistByAgeRange(int age1, int age2);
 
 private:
 

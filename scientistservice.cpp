@@ -26,7 +26,7 @@ vector<Scientist> ScientistService::getScientists()
     return _scientists;
 }
 
-bool ScientistService::addScientist (string name, char gender, int birth, int death, int age)
+bool ScientistService::addScientist(string name, char gender, int birth, int death, int age)
 {   // Adds a scientist to the list and updates the file.
     // returns true if adding succeded, false otherwise.
     Scientist scientist(name, gender, birth, death, age);
@@ -45,7 +45,7 @@ bool ScientistService::addScientist (string name, char gender, int birth, int de
     }
 }
 
-bool ScientistService::removeScientist (string name)
+bool ScientistService::removeScientist(string name)
 {   // removes a scientist with that name from the vector.
     // returns true if removeing succeded, false otherwise.
     DataAccess data;
@@ -65,9 +65,11 @@ bool ScientistService::removeScientist (string name)
     return false;
 }
 
-void ScientistService::scientistSort   (int sortType)
+void ScientistService::scientistSort(int sortType)
 {    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age
      // change to switch case?
+
+    DataAccess data;
 
     if (sortType == 1)
     {
@@ -92,11 +94,12 @@ void ScientistService::scientistSort   (int sortType)
     else if (sortType == 6)
     {
         sort(_scientists.begin(), _scientists.end(), sortByAge);
-
     }
+
+    data.saveScientists(_scientists);
 }
 
-vector<Scientist> ScientistService::findScientistByName   (string name)
+vector<Scientist> ScientistService::findScientistByName(string name)
 {   // Returns all scientists with the full name specified.
     // TODO leita eftir part úr nafni?
     vector<Scientist> scientist;
@@ -112,7 +115,7 @@ vector<Scientist> ScientistService::findScientistByName   (string name)
     return scientist;
 }
 
-vector<Scientist> ScientistService::findScientistByGender (char gender)
+vector<Scientist> ScientistService::findScientistByGender(char gender)
 {   // Returns all scientists of that gender.
     vector<Scientist> scientist;
 
@@ -127,7 +130,7 @@ vector<Scientist> ScientistService::findScientistByGender (char gender)
     return scientist;
 }
 
-vector<Scientist> ScientistService::findScientistByBirth  (int birth)
+vector<Scientist> ScientistService::findScientistByBirth(int birth)
 {   // Returns all scientists born that year.
     vector<Scientist> scientist;
 
@@ -142,7 +145,28 @@ vector<Scientist> ScientistService::findScientistByBirth  (int birth)
     return scientist;
 }
 
-vector<Scientist> ScientistService::findScientistByDeath  (int death)
+vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)
+{   // Returns all scientists with same age as parameter ( int age )
+    vector<Scientist> scientist;
+    int temp;
+    if(birth1 > birth2)
+    {
+        temp = birth1;
+        birth1 = birth2;
+        birth2 = temp;
+    }
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getBirth() > birth1 && _scientists[i].getBirth() < birth2)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
+
+    return scientist;
+}
+
+vector<Scientist> ScientistService::findScientistByDeath(int death)
 {   // Returns all scientists that died that year, or death = 0 for still alive..
     vector<Scientist> scientist;
 
@@ -157,13 +181,55 @@ vector<Scientist> ScientistService::findScientistByDeath  (int death)
     return scientist;
 }
 
-vector<Scientist> ScientistService::findScientistByAge    (int age)
+vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)
+{   // Returns all scientists with same age as parameter ( int age )
+    vector<Scientist> scientist;
+    int temp;
+    if(death1 > death2)
+    {
+        temp = death1;
+        death1 = death2;
+        death2 = temp;
+    }
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getDeath() > death1 && _scientists[i].getDeath() < death2)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
+
+    return scientist;
+}
+
+vector<Scientist> ScientistService::findScientistByAge(int age)
 {   // Returns all scientists with same age as parameter ( int age )
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
     {
         if (_scientists[i].getAge() == age)
+        {
+            scientist.push_back(_scientists[i]);
+        }
+    }
+
+    return scientist;
+}
+
+vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
+{   // Returns all scientists with same age as parameter ( int age )
+    vector<Scientist> scientist;
+    int temp;
+    if(age1 > age2)
+    {
+        temp = age1;
+        age1 = age2;
+        age2 = temp;
+    }
+    for (size_t i = 0; i < _scientists.size(); i++)
+    {
+        if (_scientists[i].getAge() > age1 && _scientists[i].getAge() < age2)
         {
             scientist.push_back(_scientists[i]);
         }
