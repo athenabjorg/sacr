@@ -146,11 +146,21 @@ void ConsoleUI::userMenuAdd()
             cout << endl;
         }
 
+
+
         a = userCheckInput();
         if (a == 0)
         {
-            _service.addScientist(name, gender, birthYear, deathYear, age);
-            break;
+            // false sama nafn
+            if(_service.addScientist(name, gender, birthYear, deathYear, age))
+            {
+                break;
+            }
+            else
+            {
+                cout << "This name is allready taken" << endl;
+            }
+            //break;
         }
         else if (a == 2)
         {
