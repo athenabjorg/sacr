@@ -149,6 +149,7 @@ void ConsoleUI::userMenuAdd()
 
 
         a = userCheckInput();
+
         if (a == 0)
         {
             // false sama nafn
@@ -158,9 +159,17 @@ void ConsoleUI::userMenuAdd()
             }
             else
             {
-                cout << "This name is allready taken" << endl;
+                int userInput;
+                cout << "This name is allready taken, replace existing name(1), start over(2)" << endl;
+                cin >> userInput;
+                if(userInput == 1)
+                {
+                    _service.removeScientist(name);
+                    _service.addScientist(name, gender, birthYear, deathYear, age);
+                    break;
+                }
+
             }
-            //break;
         }
         else if (a == 2)
         {

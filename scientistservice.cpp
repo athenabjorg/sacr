@@ -37,11 +37,12 @@ bool ScientistService::addScientist (string name, char gender, int birth, int de
         return false;
     }
 
-    _scientists.push_back(scientist);
-
-    data.saveScientists(_scientists);
-
-    return true;
+    else
+    {
+        _scientists.push_back(scientist);
+        data.saveScientists(_scientists);
+        return true;
+    }
 }
 
 bool ScientistService::removeScientist (string name)
