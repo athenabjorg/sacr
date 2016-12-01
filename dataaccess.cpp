@@ -14,10 +14,10 @@ void DataAccess::saveScientists(vector<Scientist>& scientists)
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
-        file << scientists[i].getName() << " ";
-        file << scientists[i].getGender() << " ";
-        file << scientists[i].getBirth() << " ";
-        file << scientists[i].getDeath() << " ";
+        file << scientists[i].getName() << ",";
+        file << scientists[i].getGender() << ",";
+        file << scientists[i].getBirth() << ",";
+        file << scientists[i].getDeath() << ",";
         file << scientists[i].getAge() << endl; // Spurning hvort það þurfi að vera endl á
                                                   //öllum atriðum til að geta notað getline hér fyrir neðan.
     }
@@ -29,11 +29,10 @@ vector<Scientist> DataAccess::loadScientists()
     vector<Scientist> scientists;
     Scientist scientist;
 
-    string line;
-    stringstream lineStream;
-    string name, gender, birthYear, deathYear, age;
+    string line, name, gender, birthYear, deathYear, age;
+    const string delimiter = ",";
     char charGender;
-    int intBirthYear, intDeathYear, intAge;
+    int intBirthYear, intDeathYear, intAge, delimiterPos;
 
     ifstream file;
     file.open("scientists.txt");
@@ -42,8 +41,20 @@ vector<Scientist> DataAccess::loadScientists()
     {
         while(getline(file, line))
         {
-            stringstream lineStream(line);
-            lineStream >> name >> gender >> birthYear >> deathYear >> age;
+            delimiterPos = line.find(delimiter);
+            name = line.substr(0, delimiterPos);
+            line.erase(0, delimiterPos + 1);
+            delimiterPos = line.find(delimiter);
+            gender = line.substr(0, delimiterPos);
+            line.erase(0, delimiterPos + 1);
+            delimiterPos = line.find(delimiter);
+            birthYear = line.substr(0, delimiterPos);
+            line.erase(0, delimiterPos + 1);
+            delimiterPos = line.find(delimiter);
+            deathYear = line.substr(0, delimiterPos);
+            line.erase(0, delimiterPos + 1);
+            delimiterPos = line.find(delimiter);
+            age = line.substr(0, delimiterPos);
 
             charGender = gender[0];
             intBirthYear = atoi(birthYear.c_str());
