@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//operator overloading for scientistSort.
+//operator overloading functions for scientistSort.
 bool sortByNameAsc (const Scientist &a, const Scientist &b)
 {   // also makes the sort case insensitive
     string aName = a.getName(), bName = b.getName();
@@ -23,6 +23,7 @@ bool sortByGender  (const Scientist &a, const Scientist &b) { return a.getGender
 bool sortByBirth   (const Scientist &a, const Scientist &b) { return a.getBirth()  <  b.getBirth();  }
 bool sortByDeath   (const Scientist &a, const Scientist &b) { return a.getDeath()  <  b.getDeath();  }
 bool sortByAge     (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
+
 
 ScientistService::ScientistService()
 {
@@ -78,7 +79,6 @@ bool ScientistService::removeScientist(string name)
 
 void ScientistService::scientistSort(int sortType)
 {    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age
-     // change to switch case?
 
     DataAccess data;
 
@@ -111,10 +111,11 @@ void ScientistService::scientistSort(int sortType)
 }
 
 vector<Scientist> ScientistService::findScientistByName(string name)
-{   // Returns all scientists with the full name specified.
-    // TODO leita eftir part úr nafni?
+{   // Returns all scientists whos name includes the string entered. Case insensitive.
+
     vector<Scientist> scientist;
     string databaseName;
+    int pos = -1;
 
     for (size_t i = 0; i < _scientists.size(); i++)
     {
@@ -122,7 +123,9 @@ vector<Scientist> ScientistService::findScientistByName(string name)
         transform(databaseName.begin(), databaseName.end(), databaseName.begin(), ::tolower);
         transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-        if (databaseName == name)
+        pos = databaseName.find(name);
+
+        if (pos > -1)
         {
             scientist.push_back(_scientists[i]);
         }
@@ -162,7 +165,7 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)
 }
 
 vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)
-{   // Returns all scientists with same age as parameter ( int age )
+{   // Returns all scientists born in that range.
     vector<Scientist> scientist;
     int temp;
     if(birth1 > birth2)
@@ -173,7 +176,7 @@ vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int bi
     }
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getBirth() > birth1 && _scientists[i].getBirth() < birth2)
+        if (_scientists[i].getBirth() >= birth1 && _scientists[i].getBirth() <= birth2)
         {
             scientist.push_back(_scientists[i]);
         }
@@ -198,7 +201,7 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)
 }
 
 vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)
-{   // Returns all scientists with same age as parameter ( int age )
+{   // Returns all scientists who died in that range.
     vector<Scientist> scientist;
     int temp;
     if(death1 > death2)
@@ -209,7 +212,7 @@ vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int de
     }
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getDeath() > death1 && _scientists[i].getDeath() < death2)
+        if (_scientists[i].getDeath() >= death1 && _scientists[i].getDeath() <= death2)
         {
             scientist.push_back(_scientists[i]);
         }
@@ -234,7 +237,7 @@ vector<Scientist> ScientistService::findScientistByAge(int age)
 }
 
 vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
-{   // Returns all scientists with same age as parameter ( int age )
+{   // Returns all scientists in that age range.
     vector<Scientist> scientist;
     int temp;
     if(age1 > age2)
@@ -245,7 +248,7 @@ vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
     }
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getAge() > age1 && _scientists[i].getAge() < age2)
+        if (_scientists[i].getAge() >= age1 && _scientists[i].getAge() <= age2)
         {
             scientist.push_back(_scientists[i]);
         }
