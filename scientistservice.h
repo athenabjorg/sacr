@@ -19,6 +19,7 @@ public:
     bool addScientist(string name, char gender, int birth, int death, int age);
     bool removeScientist(string name);
     void scientistSort(int sortType);
+    void scientistSortForFind(int sortType, vector<Scientist>& scientists);
     vector<Scientist> findScientistByName(string name);
     vector<Scientist> findScientistByGender(char gender);
     vector<Scientist> findScientistByBirth(int birth);
