@@ -217,6 +217,7 @@ void ConsoleUI::userMenuList()
 void ConsoleUI::userMenuSearch()
 {
     string command;
+    cout << string( 100, '\n' );
     cout << "Select a search option: " << endl;
     cout << "======================================================================" << endl;
     cout << "Name    -   Search by name" << endl;
@@ -255,12 +256,39 @@ void ConsoleUI::userMenuSearch()
     }
     else if(command == "age") // findScientistByGender
     {
-        int userInputAge;
-        cout << "Search by age: ";
-        cin >> userInputAge;
+        int inputCheck;
 
-        vector<Scientist> scientist = _service.findScientistByAge(userInputAge);
-        userMenuPrint(scientist);
+        cout << "To search by age(1), to search by range of age(2)" << endl;
+        cin >> inputCheck;
+        if(inputCheck == 1)
+        {
+            int userInputAge;
+            cout << "Search by age: ";
+            cin >> userInputAge;
+
+            vector<Scientist> scientist = _service.findScientistByAge(userInputAge);
+            userMenuPrint(scientist);
+        }
+        else if(inputCheck == 2)
+        {
+            int userInputAgeFirst;
+            int userInputAgeLast;
+            cout << "Search from age: ";
+            cin >> userInputAgeFirst;
+            cout << endl;
+            cout << "to age: ";
+            cin >> userInputAgeLast;
+            cout << endl;
+
+            vector<Scientist> scientist = _service.findScientistByAgeRange(userInputAgeFirst, userInputAgeLast);
+            userMenuPrint(scientist);
+        }
+        else
+        {
+            cout << "Wrong Input" << endl;
+        }
+
+
     }
     else if(command == "birth")
     {
