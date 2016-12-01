@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//operator overloading for scientistSort.
+//operator overloading functions for scientistSort.
 bool sortByNameAsc (const Scientist &a, const Scientist &b)
 {   // also makes the sort case insensitive
     string aName = a.getName(), bName = b.getName();
@@ -23,6 +23,7 @@ bool sortByGender  (const Scientist &a, const Scientist &b) { return a.getGender
 bool sortByBirth   (const Scientist &a, const Scientist &b) { return a.getBirth()  <  b.getBirth();  }
 bool sortByDeath   (const Scientist &a, const Scientist &b) { return a.getDeath()  <  b.getDeath();  }
 bool sortByAge     (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
+
 
 ScientistService::ScientistService()
 {
@@ -173,7 +174,7 @@ vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int bi
     }
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getBirth() > birth1 && _scientists[i].getBirth() < birth2)
+        if (_scientists[i].getBirth() >= birth1 && _scientists[i].getBirth() <= birth2)
         {
             scientist.push_back(_scientists[i]);
         }
@@ -209,7 +210,7 @@ vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int de
     }
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getDeath() > death1 && _scientists[i].getDeath() < death2)
+        if (_scientists[i].getDeath() >= death1 && _scientists[i].getDeath() <= death2)
         {
             scientist.push_back(_scientists[i]);
         }
@@ -245,7 +246,7 @@ vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
     }
     for (size_t i = 0; i < _scientists.size(); i++)
     {
-        if (_scientists[i].getAge() > age1 && _scientists[i].getAge() < age2)
+        if (_scientists[i].getAge() >= age1 && _scientists[i].getAge() <= age2)
         {
             scientist.push_back(_scientists[i]);
         }
