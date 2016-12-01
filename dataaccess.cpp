@@ -10,14 +10,14 @@ DataAccess::DataAccess()
 void DataAccess::saveScientists(vector<Scientist>& scientists)
 {
     ofstream file;
-    file.open("scientists.csv");
+    file.open("scientists.txt");
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
-        file << scientists[i].getName() << " ";
-        file << scientists[i].getGender() << " ";
-        file << scientists[i].getBirth() << " ";
-        file << scientists[i].getDeath() << " ";
+        file << scientists[i].getName() << ",";
+        file << scientists[i].getGender() << ",";
+        file << scientists[i].getBirth() << ",";
+        file << scientists[i].getDeath() << ",";
         file << scientists[i].getAge() << endl; // Spurning hvort það þurfi að vera endl á
                                                   //öllum atriðum til að geta notað getline hér fyrir neðan.
     }
