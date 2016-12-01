@@ -20,10 +20,11 @@ void ConsoleUI::run()                                       // The main function
      */
 
     string command;
-    cout << string( 100, '\n' );
 
     while(true)
     {
+        cout << string( 100, '\n' ); // Clears every run.
+
         cout << "Select one of the following options: " << endl;
         cout << "======================================================================" << endl;
         cout << "Add     -   add a programmer/computer scientist" << endl;
