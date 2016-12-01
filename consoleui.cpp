@@ -494,6 +494,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
     cout << "Select: ";
     cin >> command;
     cin.clear();
+
     cin.ignore(INT_MAX, '\n');
     cout << endl;
 
@@ -505,7 +506,6 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         cout << "Remove a programmer/computer scientist: ";
         cin.ignore();
         getline(cin, userInputName);
-
         _service.removeScientist(userInputName);
         cout << string( 100, '\n' );
         userMenuList();

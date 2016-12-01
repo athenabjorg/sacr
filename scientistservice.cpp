@@ -61,16 +61,20 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
 }
 
 bool ScientistService::removeScientist(string name)
-{   // Removes a scientist with that name from the vector.
+{   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
 
     DataAccess data;
+    vector<Scientist> scientistsToRemove = findScientistByName(name);
 
-    if (findScientistByName(name).size() > 0)
+    if (scientistsToRemove.size() > 0)
     {
-        Scientist toRemove = findScientistByName(name).at(0);
+        for (size_t i = 0; i < scientistsToRemove.size(); i++)
+        {
+            Scientist toRemove = scientistsToRemove.at(i);
 
-        _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
+            _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
+        }
 
         data.saveScientists(_scientists);
 
@@ -160,6 +164,8 @@ vector<Scientist> ScientistService::findScientistByName(string name)
     vector<Scientist> scientist;
     string databaseName;
     int pos = -1;
+
+    cout << name << "   <-------- name in find function" << endl;
 
     for (size_t i = 0; i < _scientists.size(); i++)
     {
