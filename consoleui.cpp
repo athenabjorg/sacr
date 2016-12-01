@@ -2,6 +2,7 @@
 #include <string>
 #include "consoleui.h"
 #include "scientist.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -246,24 +247,24 @@ void ConsoleUI::userMenuSort()
 void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
 {
     cout << endl;
-    cout << "Scientist name:    gender:     born:   died:   age: " << endl;
-    cout << "====================================================" << endl;
+    cout << "Scientist name:        gender:     born:   died:    age: " << endl;
+    cout << "========================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
-        cout << scientist[i].getName() << "\t"
-             << scientist[i].getGender() << "\t"
-             << scientist[i].getBirth() << "\t";
+        cout << left << setw(25) << scientist[i].getName()
+             << setw(5) << right << scientist[i].getGender()
+             << setw(10) << scientist[i].getBirth();
 
 
              if(scientist[i].getDeath() == 0)
              {
-                 cout << "-" << "\t";
+                 cout << setw(8) << "-";
              }
              else
              {
-                 cout << scientist[i].getDeath() << "\t";
+                 cout << setw(8) << scientist[i].getDeath();
              }
-             cout << scientist[i].getAge() << endl;
+             cout << setw(8) << scientist[i].getAge() << endl;
 
 
     }

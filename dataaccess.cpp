@@ -10,7 +10,7 @@ DataAccess::DataAccess()
 void DataAccess::saveScientists(vector<Scientist>& scientists)
 {
     ofstream file;
-    file.open("scientists.csv");
+    file.open("scientists.txt");
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
