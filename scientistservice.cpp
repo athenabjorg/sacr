@@ -17,7 +17,7 @@ ScientistService::ScientistService()
 
 }
 
-vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
+vector<Scientist> ScientistService::getScientists()
 {   // Uploads the list of scientists from file.
     DataAccess data;
 
@@ -26,35 +26,43 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
     return _scientists;
 }
 
-bool ScientistService::addScientist    (string name, char gender, int birth, int death, int age)
+bool ScientistService::addScientist (string name, char gender, int birth, int death, int age)
 {   // Adds a scientist to the list and updates the file.
     Scientist scientist(name, gender, birth, death, age);
     DataAccess data;
 
-    if (findScientistByName(name)[0].getName() == name)
+    if (findScientistByName(name).size() > 0)
     {
         return false;
     }
+
     else
     {
         _scientists.push_back(scientist);
+        data.saveScientists(_scientists);
+        return true;
+    }
+}
+
+bool ScientistService::removeScientist (string name)
+{   // removes a scientist with that name from the vector
+    DataAccess data;
+
+    if (findScientistByName(name).size() > 0)
+    {
+        Scientist toRemove = findScientistByName(name).at(0);
+
+        _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
 
         data.saveScientists(_scientists);
 
         return true;
     }
+
+
+    return false;
 }
-bool ScientistService::removeScientist (string name)
-{   // removes a scientist with that name from the vector
-    DataAccess data;
-    Scientist toRemove = findScientistByName(name).at(0);
 
-    _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
-
-    data.saveScientists(_scientists);
-
-    return true;
-}
 void ScientistService::scientistSort   (int sortType)
 {    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age
      // change to switch case?
@@ -86,7 +94,6 @@ void ScientistService::scientistSort   (int sortType)
     }
 }
 
-
 vector<Scientist> ScientistService::findScientistByName   (string name)
 {   // Returns all scientists with the full name specified.
     // TODO leita eftir part úr nafni?
@@ -102,6 +109,7 @@ vector<Scientist> ScientistService::findScientistByName   (string name)
 
     return scientist;
 }
+
 vector<Scientist> ScientistService::findScientistByGender (char gender)
 {   // Returns all scientists of that gender.
     vector<Scientist> scientist;
@@ -116,6 +124,7 @@ vector<Scientist> ScientistService::findScientistByGender (char gender)
 
     return scientist;
 }
+
 vector<Scientist> ScientistService::findScientistByBirth  (int birth)
 {   // Returns all scientists born that year.
     vector<Scientist> scientist;
@@ -130,6 +139,7 @@ vector<Scientist> ScientistService::findScientistByBirth  (int birth)
 
     return scientist;
 }
+
 vector<Scientist> ScientistService::findScientistByDeath  (int death)
 {   // Returns all scientists that died that year, or death = 0 for still alive..
     vector<Scientist> scientist;
@@ -144,6 +154,7 @@ vector<Scientist> ScientistService::findScientistByDeath  (int death)
 
     return scientist;
 }
+
 vector<Scientist> ScientistService::findScientistByAge    (int age)
 {   // Returns all scientists with same age as parameter ( int age )
     vector<Scientist> scientist;
