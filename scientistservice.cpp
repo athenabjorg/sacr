@@ -61,6 +61,7 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
 bool ScientistService::removeScientist(string name)
 {   // removes a scientist with that name from the vector.
     // returns true if removing succeded, false otherwise.
+
     DataAccess data;
 
     if (findScientistByName(name).size() > 0)
@@ -75,6 +76,15 @@ bool ScientistService::removeScientist(string name)
     }
 
     return false;
+}
+
+void ScientistService::removeAllScientists()
+{   // Removes ALL scientists from the list. Be careful with this.
+
+    DataAccess data;
+    _scientists.clear();
+
+    data.saveScientists(_scientists);
 }
 
 void ScientistService::scientistSort(int sortType)

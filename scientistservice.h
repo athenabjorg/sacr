@@ -18,8 +18,9 @@ public:
     vector<Scientist> getScientists();
     bool addScientist(string name, char gender, int birth, int death, int age);
     bool removeScientist(string name);
+    void removeAllScientists();
     void scientistSort(int sortType);
-    void scientistSortForFind(int sortType, vector<Scientist>& scientists);
+
     vector<Scientist> findScientistByName(string name);
     vector<Scientist> findScientistByGender(char gender);
     vector<Scientist> findScientistByBirth(int birth);
@@ -32,6 +33,8 @@ public:
 private:
 
     vector<Scientist> _scientists;
+
+    void scientistSortForFind(int sortType, vector<Scientist>& scientists);
 };
 
 #endif // SCIENTISTSERVICE_H
