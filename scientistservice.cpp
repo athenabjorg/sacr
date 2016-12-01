@@ -28,6 +28,7 @@ vector<Scientist> ScientistService::getScientists()
 
 bool ScientistService::addScientist (string name, char gender, int birth, int death, int age)
 {   // Adds a scientist to the list and updates the file.
+    // returns true if adding succeded, false otherwise.
     Scientist scientist(name, gender, birth, death, age);
     DataAccess data;
 
@@ -44,7 +45,8 @@ bool ScientistService::addScientist (string name, char gender, int birth, int de
 }
 
 bool ScientistService::removeScientist (string name)
-{   // removes a scientist with that name from the vector
+{   // removes a scientist with that name from the vector.
+    // returns true if removeing succeded, false otherwise.
     DataAccess data;
 
     if (findScientistByName(name).size() > 0)
