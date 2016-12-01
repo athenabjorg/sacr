@@ -33,6 +33,7 @@ void ConsoleUI::run()
         cout << "Sort    -   sort list by name, gender, age or year of death" << endl;
         cout << "Quit    -   end program" << endl;
 
+        cout << "Select: ";
         cin >> command;
         forceLowerCase(command);
 
@@ -213,6 +214,7 @@ void ConsoleUI::userMenuAdd()
                 cout << string( 100, '\n' ); // Clears screen
 
                 cout << "This name is allready taken, replace existing name(1), start over(2)" << endl;
+                cout << "Select: ";
                 cin >> userInput;
                 if(userInput == 1)
                 {
@@ -292,6 +294,7 @@ void ConsoleUI::userMenuSearch()
         {
             int userInputAge;
             cout << "Search by age: ";
+            cout << "Select: ";
             cin >> userInputAge;
 
             vector<Scientist> scientist = _service.findScientistByAge(userInputAge);
@@ -413,6 +416,7 @@ void ConsoleUI::userMenuSort()
         cout << string( 100, '\n' ); // Clears screen
 
         cout << "Sort list by Name A-Z(1), Name Z-A(2), Gender(3), Year of Birth(4), Year of Death(5) or Age (6)" << endl;
+        cout << "Select: ";
         cin >> userInput;
 
         if(userInput > 0 && userInput < 7) // check if input is int and if it ranges from 1 to 6
@@ -464,7 +468,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
 
     }
     cout << "======================================================================" << endl;
-    cout << "To return to menu press m" << endl;
+    cout << "To return to menu input the letter m" << endl;
 
    string userInput = " ";
    while (userInput != "m")
@@ -479,6 +483,7 @@ int  ConsoleUI::userCheckInput()
     {
         char answear;
         cout << "Is this data correct? (input y/n) or press q to quit" << endl;
+        cout << "Select: ";
         cin >> answear;
 
         if(answear == 'y')
