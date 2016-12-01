@@ -65,9 +65,6 @@ void ConsoleUI::run()
             cout << "Invalid input" << endl;
         }
     }
-
-
-
 }
 void ConsoleUI::userMenuAdd()
 {
