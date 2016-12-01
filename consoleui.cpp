@@ -11,12 +11,16 @@ ConsoleUI::ConsoleUI()
 {
     _service.getScientists();  // gets information from file so it's used from the beginning.
 }
-
-// Should not contain logic for individual commands, that should be in separate functions!
-void ConsoleUI::run()
+void ConsoleUI::run()                                       // The main function
 {
+    /*
+     * This is the main function body, that is run at the start of the program every time
+     * and gives the user the option to run a few functions like, userMenuAdd(), userMenuList()
+     * userMenuSearch(), userMenuSort(), userMenuPrint(). User can also end the program from here.
+     */
+
     string command;
-    cout << string( 100, '\n' ); // Clears screen
+    cout << string( 100, '\n' );
 
     while(true)
     {
@@ -55,18 +59,18 @@ void ConsoleUI::run()
         }
         else if(command == "quit")
         {
-            cout << string( 100, '\n' ); // Clears screen
+            cout << string( 100, '\n' );
             break;
         }
         else
         {
-            cout << string( 100, '\n' ); // Clears screen
+            cout << string( 100, '\n' );
             cout << "Invalid input" << endl;
             cout << endl;
         }
     }
 }
-void ConsoleUI::userMenuAdd()
+void ConsoleUI::userMenuAdd()                               // Adds a new programmer
 {
     string name;
     string genderInput;
@@ -78,13 +82,13 @@ void ConsoleUI::userMenuAdd()
 
     while(true)
     {
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
 
         cout << "Enter the programmer's/computer scientist's name: ";
         cin.ignore();
         getline(cin, name);
 
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
         // Check for gender
         while(true)
         {
@@ -101,12 +105,12 @@ void ConsoleUI::userMenuAdd()
             }
             else
             {
-                cout << string( 100, '\n' ); // Clears screen
+                cout << string( 100, '\n' );
                 cout << "Invalid input" << endl;
             }
         }
 
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
         // Check year of birth
         while(true)
 
@@ -119,7 +123,7 @@ void ConsoleUI::userMenuAdd()
                 inputCheck = cin.fail();
                 if(inputCheck)
                 {
-                    cout << string( 100, '\n' ); // Clears screen
+                    cout << string( 100, '\n' );
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
@@ -151,7 +155,7 @@ void ConsoleUI::userMenuAdd()
                 inputCheck = cin.fail();
                 if(inputCheck)
                 {
-                    cout << string( 100, '\n' ); // Clears screen
+                    cout << string( 100, '\n' );
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
@@ -169,13 +173,13 @@ void ConsoleUI::userMenuAdd()
             }
             else
             {
-                cout << string( 100, '\n' ); // Clears screen
+                cout << string( 100, '\n' );
                 cout << "Invalid input" << endl;
             }
         }
 
         // Check if input is correct
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
 
         cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
 
@@ -200,7 +204,7 @@ void ConsoleUI::userMenuAdd()
             else
             {
                 int userInput;
-                cout << string( 100, '\n' ); // Clears screen
+                cout << string( 100, '\n' );
 
                 cout << "This name is allready taken, replace existing name(1), start over(2)" << endl;
                 cout << "Select: ";
@@ -220,18 +224,18 @@ void ConsoleUI::userMenuAdd()
     }
     cout << endl;
 }
-void ConsoleUI::userMenuList()
+void ConsoleUI::userMenuList()                              // List of commands
 {
     vector<Scientist> scientist = _service.getScientists();
     userMenuPrint(scientist);
 }
-void ConsoleUI::userMenuSearch()
+void ConsoleUI::userMenuSearch()                            // Search list
 {
     string command;
 
-    cout << string( 100, '\n' ); // Clears screen
+    cout << string( 100, '\n' );
     cout << "Select a search option: " << endl;
-    cout << "======================================================================" << endl;
+    cout << "===================================" << endl;
     cout << "Name    -   Search by name" << endl;
     cout << "Gender  -   Search by gender" << endl;
     cout << "Age     -   Search by age" << endl;
@@ -245,10 +249,11 @@ void ConsoleUI::userMenuSearch()
 
     forceLowerCase(command);
 
-    if(command == "name")
+
+    if(command == "name") // Find scientist by name
     {
         string userInputName;
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
 
         cout << "Search by name: ";
         getline(cin, userInputName);
@@ -257,10 +262,10 @@ void ConsoleUI::userMenuSearch()
         userMenuPrint(scientist);
 
     }
-    else if(command == "gender") // findScientistByGender
+    else if(command == "gender") // Find scientist by gender
     {
         char userInputGender;
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
 
         cout << "Search by gender: ";
         cin >> userInputGender;
@@ -268,7 +273,7 @@ void ConsoleUI::userMenuSearch()
         vector<Scientist> scientist = _service.findScientistByGender(userInputGender);
         userMenuPrint(scientist);
     }
-    else if(command == "age") // findScientistByGender
+    else if(command == "age") // Find scientist by age
     {
         int inputCheck;
 
@@ -300,14 +305,9 @@ void ConsoleUI::userMenuSearch()
         }
         else
         {
-            cout << string( 100, '\n' ); // Clears screen
+            cout << string( 100, '\n' );
             cout << "Wrong Input" << endl;
         }
-
-
-      //  cout << string( 100, '\n' ); // Clears screen
-
-
     }
     else if(command == "birth")
     {
@@ -343,7 +343,7 @@ void ConsoleUI::userMenuSearch()
         }
         else
         {
-            cout << string( 100, '\n' ); // Clears screen
+            cout << string( 100, '\n' );
             cout << "Wrong Input" << endl;
         }
     }
@@ -381,20 +381,20 @@ void ConsoleUI::userMenuSearch()
         }
         else
         {
-            cout << string( 100, '\n' ); // Clears screen
+            cout << string( 100, '\n' );
             cout << "Wrong Input" << endl;
         }
     }
     cout << endl;
 }
-void ConsoleUI::userMenuSort()
+void ConsoleUI::userMenuSort()                              // Sort list
 { 
     bool inputCheck = true;
     int userInput;
 
     do
     {
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
 
         cout << "Sort list by Name A-Z(1), Name Z-A(2), Gender(3), Year of Birth(4), Year of Death(5) or Age (6)" << endl;
         cout << "Select: ";
@@ -420,7 +420,7 @@ void ConsoleUI::userMenuSort()
      _service.scientistSort(userInput);
      userMenuList();
 }
-void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
+void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
 {
     cout << string( 100, '\n' );
     cout << left << setw(30) << "Scientist name:"
@@ -456,7 +456,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
    }
    cout << string( 2, '\n' );
 }
-int  ConsoleUI::userCheckInput()
+int  ConsoleUI::userCheckInput()                            // Check input from userMenuAdd
 {
     // Check if all data is correct
     while(true)
@@ -485,20 +485,60 @@ int  ConsoleUI::userCheckInput()
 
     }
 }
-void ConsoleUI::userMenuRemove()
+void ConsoleUI::userMenuRemove()                            // Removes a programmer
 {
-    string userInputName;
-    cout << string( 100, '\n' ); // Clears screen
+    int command;
 
-    cout << "Remove a programmer/computer scientist: ";
-    cin.ignore();
-    getline(cin, userInputName);
+    cout << "To remove a single programmer / computer scientist (1), to remove *ALL* programmers / computer scientists (2)" << endl;
+    cout << "Select: ";
+    cin >> command;
+    cin.clear();
+    cin.ignore(INT_MAX, '\n');
+    cout << endl;
 
-    _service.removeScientist(userInputName);
-    cout << string( 100, '\n' ); // Clears screen
-    userMenuList();
+    if(command == 1) // Remove 1 programmer
+    {
+        string userInputName;
+        cout << string( 100, '\n' );
+
+        cout << "Remove a programmer/computer scientist: ";
+        cin.ignore();
+        getline(cin, userInputName);
+
+        _service.removeScientist(userInputName);
+        cout << string( 100, '\n' );
+        userMenuList();
+    }
+    else if(command == 2) // Remove all programmers
+    {
+        string userInputName;
+        cout << string( 100, '\n' );
+
+        cout << "Confirm remove *ALL* programmers / computer scientists (y), any other letter to cancel" << endl;
+        cin.ignore();
+        getline(cin, userInputName);
+        forceLowerCase(userInputName);
+
+        if(userInputName == "y")
+        {
+            _service.removeAllScientists();
+            cout << string( 100, '\n' );
+            userMenuList();
+        }
+        else
+        {
+            cout << string( 100, '\n' );
+            cout << "Wrong Input" << endl;
+        }
+
+    }
+    else
+    {
+        cout << string( 100, '\n' );
+        cout << "Wrong Input" << endl;
+    }
 }
-void ConsoleUI::forceLowerCase(string &command)
+void ConsoleUI::forceLowerCase(string &command)             // Force input to lower case
 {
     for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
     {
