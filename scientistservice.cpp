@@ -19,7 +19,6 @@ ScientistService::ScientistService()
 
 vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
 {   // Uploads the list of scientists from file.
-    //er betra að sækja listann úr skrá eða senda bara vectorinn sem við erum með?
     DataAccess data;
 
     _scientists = data.loadScientists();
@@ -27,23 +26,34 @@ vector<Scientist> ScientistService::getScientists(/* TODO: parameters */)
     return _scientists;
 }
 
-void ScientistService::addScientist    (string name, char gender, int birth, int death, int age)
+bool ScientistService::addScientist    (string name, char gender, int birth, int death, int age)
 {   // Adds a scientist to the list and updates the file.
     Scientist scientist(name, gender, birth, death, age);
     DataAccess data;
-    // TODO er scientist til fyrir? þá sleppa push og senda villuboð
-    // eða spurja hvort notandinn vilja örugglega bæta þeim við aftur?
 
+    if (findScientistByName(name)[0].getName() == name)
+    {
+        return false;
+    }
+    else
+    {
     _scientists.push_back(scientist);
 
     data.saveScientists(_scientists);
+
+    return true;
+    }
 }
-void ScientistService::removeScientist (string name)
+bool ScientistService::removeScientist (string name)
 {   // removes a scientist with that name from the vector
+    DataAccess data;
     Scientist toRemove = findScientistByName(name).at(0);
+
     _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
 
-    //  TODO update the text file
+    data.saveScientists(_scientists);
+
+    return true;
 }
 void ScientistService::scientistSort   (int sortType)
 {    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age
