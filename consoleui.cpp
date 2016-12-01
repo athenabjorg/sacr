@@ -464,7 +464,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)
 
     }
     cout << "======================================================================" << endl;
-    cout << "To return to menu press m" << endl;
+    cout << "To return to menu press m" << string( 2, '\n' );
 
    string userInput = " ";
    while (userInput != "m")
@@ -510,6 +510,8 @@ void ConsoleUI::userMenuRemove()
     getline(cin, userInputName);
 
     _service.removeScientist(userInputName);
+    cout << string( 100, '\n' ); // Clears screen
+    userMenuList();
 }
 void ConsoleUI::forceLowerCase(string &command)
 {
