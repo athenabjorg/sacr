@@ -267,7 +267,10 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
         char userInputGender;
         clearScreen();
 
-        cout << "Search by gender: ";
+        cout << "Search by gender" << endl;
+        cout << endl << "M - Male" << endl;
+        cout << "F - Female" << endl;
+        cout << endl << "Gender: ";
         cin >> userInputGender;
 
         vector<Scientist> scientist = _service.findScientistByGender(userInputGender);
