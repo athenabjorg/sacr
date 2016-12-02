@@ -371,7 +371,7 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
 
         clearScreen();
         cout << "Search by:" << endl;
-        cout << "(1) - Year scientist died" << endl;
+        cout << endl << "(1) - Year scientist died" << endl;
         cout << "(2) - Year range of when scientist died" << endl << endl;
         cout << "Select: ";
 
