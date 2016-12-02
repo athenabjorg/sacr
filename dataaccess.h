@@ -14,7 +14,7 @@ class DataAccess
 {
 public:
     DataAccess();
-    void saveScientists(vector<Scientist>& scientists);
+    void saveScientists(const vector<Scientist>& scientists);
     vector<Scientist> loadScientists();
 
 private:

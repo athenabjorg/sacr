@@ -473,7 +473,7 @@ void ConsoleUI::userMenuPrint()                             // Print whole list
          << setw(10) << "died:"
          << setw(10) << "age:" << endl;
     cout << "======================================================================" << endl;
-    for (size_t i = 0; i< scientist.size(); ++i)
+    for (size_t i = 0; i < scientist.size(); ++i)
     {
         cout << left << setw(30) << scientist[i].getName()
              << setw(10) << right << scientist[i].getGender()
@@ -494,7 +494,7 @@ void ConsoleUI::userMenuPrint()                             // Print whole list
 
     askReturnToMenu();
 }
-void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
+void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print list
 {
     /*
      * Prints out a partial list of scientist, depending on how
@@ -528,7 +528,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
     cout << "Total: " << scientist.size() << " scientists" << endl;
 
 }
-int  ConsoleUI::userCheckInput()                            // Check input from userMenuAdd
+int  ConsoleUI::userCheckInput() const                      // Check input from userMenuAdd
 {
     /*
      * Check if all data is correct and return a int depending on what user selected.
@@ -546,7 +546,7 @@ int  ConsoleUI::userCheckInput()                            // Check input from 
         cout << endl << "Select: ";
 
         cin.ignore(-1);
-        cin >> answer;
+        getline(cin, answer);
 
 
         if(answer[0] == 'y' || answer[0] == 'Y')
@@ -656,7 +656,7 @@ void ConsoleUI::forceLowerCase(string &command)             // Force input to lo
         command[i] = tolower(command[i]);
     }
 }
-void ConsoleUI::askReturnToMenu()                           // Gives user option to menu
+void ConsoleUI::askReturnToMenu() const                     // Gives user option to menu
 {
     cout << endl;
     cout << "To return to the menu press m" << endl;
@@ -668,12 +668,12 @@ void ConsoleUI::askReturnToMenu()                           // Gives user option
        getline(cin, userInput);
    }
 }
-void ConsoleUI::clearScreen()                               // Clears console screen
+void ConsoleUI::clearScreen() const                         // Clears console screen
 {
     const int spaceLength = 10;
     cout << string( spaceLength, '\n' );
 }
-int  ConsoleUI::whatYearIsIt() // Returns the current year.
+int  ConsoleUI::whatYearIsIt() const // Returns the current year.
 {
     time_t     currentTime;
     struct tm* timeinfo;

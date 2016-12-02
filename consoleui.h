@@ -21,13 +21,13 @@ private:
     void userMenuSearch();
     void userMenuSort();
     void userMenuPrint();
-    void userMenuPrint(vector<Scientist> scientist);
-    int  userCheckInput();
+    void userMenuPrint(const vector<Scientist>& scientist);
+    int  userCheckInput() const;
     void userMenuRemove();
     void forceLowerCase(string &command);
-    void askReturnToMenu();
-    void clearScreen();
-    int whatYearIsIt();
+    void askReturnToMenu() const;
+    void clearScreen() const;
+    int whatYearIsIt() const;
 
 private:
     ScientistService _service;

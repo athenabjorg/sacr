@@ -7,7 +7,7 @@ DataAccess::DataAccess()
 {
 
 }
-void DataAccess::saveScientists(vector<Scientist>& scientists)  // From vector to text file
+void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From vector to text file
 {
     /*
      * This function uses ofstream to save the vector from scientists from service layer
