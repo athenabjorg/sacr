@@ -30,12 +30,12 @@ void ConsoleUI::run()                                       // The main function
 
         cout << "Select one of the following options: " << endl;
         cout << "======================================================================" << endl;
-        cout << "Add     -   add a programmer/computer scientist" << endl;
-        cout << "Remove  -   remove a programmer/computer scientist" << endl;
-        cout << "List    -   show a list of all programmer's/computer scientist's" << endl;
-        cout << "Search  -   search the list of programmer's/computer scientist's" << endl;
-        cout << "Sort    -   sort list by name, gender, age or year of death" << endl;
-        cout << "Quit    -   end program" << endl;
+        cout << "Add     -   Add a scientist" << endl;
+        cout << "Remove  -   Remove a scientist" << endl;
+        cout << "List    -   Show a list of all scientist's" << endl;
+        cout << "Search  -   Search the list of scientist's" << endl;
+        cout << "Sort    -   Sort list by name, gender, year of birth, year of death or age" << endl;
+        cout << "Quit    -   End program" << endl;
         cout << "======================================================================" << endl;
 
         invalidInput = true;
@@ -106,9 +106,9 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
     {
         cout << endl;
         cout << "Enter the scientist's gender" << endl;
-        cout << "F - Female" << endl;
+        cout << endl << "F - Female" << endl;
         cout << "M - Male" << endl;
-        cout << "Gender: ";
+        cout << endl << "Gender: ";
         cin >> genderInput;
         forceLowerCase(genderInput);
         gender = genderInput[0];
@@ -125,7 +125,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
     while(true) // Check year of birth
         {
-           cout << endl << "Enter the programmer's/computer scientist's year of birth: ";
+           cout << endl << "Enter the scientist's year of birth: ";
            cin >> birthYear;
 
 
@@ -141,7 +141,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             }
             else
             {
-                cout << "Invalid input - You can't be born in the future!" << endl;
+                cout << "Invalid input...or you are Marty McFly" << endl;
             }
         }
 
@@ -274,9 +274,9 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
         clearScreen();
         cout << "Search by:" << endl;
-        cout << "(1) - Age" << endl;
-        cout << "(2) - Age range" << endl << endl;
-        cout << "Select: ";
+        cout << endl << "(1) - Age" << endl;
+        cout << "(2) - Age range" << endl;
+        cout << endl << "Select: ";
 
         cin >> inputCheck;
 
@@ -316,10 +316,9 @@ void ConsoleUI::userMenuSearch()                            // Search list
     {
         int inputCheck;
 
-        cout << "To search by year of birth(1), to search by range of year of birth(2)" << endl;
         clearScreen();
         cout << "Search by:" << endl;
-        cout << "(1) - Year of birth" << endl;
+        cout << endl << "(1) - Year of birth" << endl;
         cout << "(2) - Range of year of birth" << endl << endl;
         cout << "Select: ";
 
