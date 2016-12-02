@@ -23,10 +23,10 @@ void ConsoleUI::run()                                       // The main function
     string command;
 
 
+    clearScreen();
 
     while(true)
     {
-        clearScreen();
 
         cout << "Select one of the following options: " << endl;
         cout << "======================================================================" << endl;
@@ -38,8 +38,10 @@ void ConsoleUI::run()                                       // The main function
         cout << "Quit    -   end program" << endl;
         cout << "======================================================================" << endl;
 
-        cout << "Select: ";
+        cout << endl << "Select: ";
         cin >> command;
+        cin.clear();
+
         forceLowerCase(command);
 
         if(command == "add")
@@ -64,15 +66,15 @@ void ConsoleUI::run()                                       // The main function
         }
         else if(command == "quit")
         {
-            clearScreen();
             break;
         }
         else
         {
-            clearScreen();
             cout << "Invalid input" << endl;
             cout << endl;
         }
+
+        clearScreen();
     }
 }
 void ConsoleUI::userMenuAdd()                               // Adds a new programmer
@@ -93,7 +95,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
     clearScreen();
 
-    cout << "Enter the programmer's/computer scientist's name: ";
+    cout << "Enter the scientist's name: ";
     cin.ignore();
     getline(cin, name);
 
@@ -120,7 +122,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
     while(true) // Check year of birth
         {
-           cout << "Enter the programmer's/computer scientist's year of birth: ";
+           cout << endl << "Enter the programmer's/computer scientist's year of birth: ";
            cin >> birthYear;
 
 
@@ -143,17 +145,15 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
         while(true) // Check when year of death (if dead)
         {
 
-                cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
-                cin >> deathYear;
+            cout << endl << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
+            cin >> deathYear;
 
-                if(cin.fail())
-                {
-                    cout << "Invalid input" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-
-
+            if(cin.fail())
+            {
+                cout << "Invalid input" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
             else if (deathYear == 0)
             {
                 break;
@@ -212,10 +212,9 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
     }
     else if (a == 1)
     {
-        cout << name << " not added to the list" << endl;
+        cout << name << " not added to the list" << endl << endl;
     }
 
-    cout << endl;
     askReturnToMenu();
 }
 void ConsoleUI::userMenuList()                              // List of commands
@@ -249,7 +248,6 @@ void ConsoleUI::userMenuSearch()                            // Search list
     cout << "Select: ";
     cin >> command;
     cin.clear();
-    //cin.ignore(INT_MAX, '\n');
     cout << endl;
 
     forceLowerCase(command);
@@ -493,7 +491,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
              cout << setw(10) << scientist[i].getAge() << endl;
     }
     cout << "======================================================================" << endl;
-
+    cout << "Total: " << scientist.size() << " scientists" << endl;
 
 }
 int  ConsoleUI::userCheckInput()                            // Check input from userMenuAdd
@@ -565,14 +563,14 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         scientistsToRemove = _service.findScientistByName(userInputName);
         userMenuPrint(scientistsToRemove);
         cout << endl << "Are you sure you want to remove these scientists from the list? (y/n)" << endl;
-        cout << "Select: ";
+        cout << endl << "Select: ";
 
         getline(cin, confirm);
 
         if (confirm[0] == 'y' || confirm[0] == 'Y')
         {
             _service.removeScientist(userInputName);
-            cout << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
+            cout << endl << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
             askReturnToMenu();
         }
 
@@ -623,7 +621,7 @@ void ConsoleUI::askReturnToMenu()                           // Gives user option
     cout << "Select: ";
 
    string userInput = " ";
-   while (userInput != "m")
+   while (userInput[0] != 'm' && userInput[0] != 'M')
    {
        cin >> userInput;
    }
