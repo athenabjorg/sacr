@@ -508,20 +508,23 @@ int  ConsoleUI::userCheckInput()                            // Check input from 
 
     while(true)
     {
-        char answear;
-        cout << "Is this data correct? (input y/n, or press m to return to menu)" << endl;
+        char answer;
+        cout << "Is this data correct?" << endl;
+        cout << "Y - Yes" << endl;
+        cout << "N - No" << endl;
+        cout << "M - Return to menu" << endl;
         cout << "Select: ";
-        cin >> answear;
+        cin >> answer;
 
-        if(answear == 'y')
+        if(answer == 'y')
         {
             return 0;
         }
-        else if (answear == 'n')
+        else if (answer == 'n')
         {
             return 1;
         }
-        else if (answear == 'm')
+        else if (answer == 'm')
         {
             return 2;
         }
