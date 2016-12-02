@@ -91,13 +91,9 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
      * name, gender, birth year and year of death. Error checks included.
      */
 
-    string name;
-    string genderInput;
+    string name, genderInput;
     char gender;
-    int birthYear;
-    int deathYear = 0;
-    int age = 0;
-    int a;
+    int birthYear = 0, deathYear = 0, age = 0, checkInput;
 
 
     clearScreen();
@@ -189,9 +185,9 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
         cout << endl;
     }
 
-    a = userCheckInput(); // A function that checks if the input is valid
+    checkInput = userCheckInput(); // A function that checks if the input is valid
 
-    if (a == 0)
+    if (checkInput == 0)
     {
         if(_service.addScientist(name, gender, birthYear, deathYear, age))
         {
@@ -216,7 +212,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
         }
     }
-    else if (a == 1)
+    else if (checkInput == 1)
     {
         cout << name << " not added to the list" << endl << endl;
     }
@@ -599,18 +595,28 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         cin.ignore();
         getline(cin, userInputName);
         scientistsToRemove = _service.findScientistByName(userInputName);
-        userMenuPrint(scientistsToRemove);
-        cout << endl << "Are you sure you want to remove these scientists from the list? (y/n)" << endl;
-        cout << endl << "Select: ";
 
-        getline(cin, confirm);
-
-        if (confirm[0] == 'y' || confirm[0] == 'Y')
+        if(scientistsToRemove.size() > 0)
         {
-            _service.removeScientist(userInputName);
-            cout << endl << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
+            userMenuPrint(scientistsToRemove);
+            cout << endl << "Are you sure you want to remove these scientists from the list? (y/n)" << endl;
+            cout << endl << "Select: ";
+
+            getline(cin, confirm);
+
+            if (confirm[0] == 'y' || confirm[0] == 'Y')
+            {
+                _service.removeScientist(userInputName);
+                cout << endl << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
+                askReturnToMenu();
+            }
+        }
+        else
+        {
+            cout << endl << "There are no scientists with names containing '" << userInputName << "'" << endl;
             askReturnToMenu();
         }
+
 
 
 
@@ -651,7 +657,7 @@ void ConsoleUI::forceLowerCase(string &command)             // Force input to lo
 void ConsoleUI::askReturnToMenu()                           // Gives user option to menu
 {
     cout << endl;
-    cout << "To return to menu press m" << endl;
+    cout << "To return to the menu press m" << endl;
     cout << "Select: ";
 
    string userInput = " ";
@@ -666,7 +672,7 @@ void ConsoleUI::clearScreen()                               // Clears console sc
     const int spaceLength = 10;
     cout << string( spaceLength, '\n' );
 }
-int ConsoleUI::whatYearIsIt() // Returns the current year.
+int  ConsoleUI::whatYearIsIt() // Returns the current year.
 {
     time_t     currentTime;
     struct tm* timeinfo;
