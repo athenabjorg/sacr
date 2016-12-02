@@ -1,8 +1,5 @@
-#include <iostream>
-#include <string>
 #include "consoleui.h"
 #include "scientist.h"
-#include <iomanip>
 
 
 using namespace std;

@@ -1,6 +1,8 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
-
+#include <iostream>
+#include <string>
+#include <iomanip>
 #include "scientistservice.h"
 
 class ConsoleUI
