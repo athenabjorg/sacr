@@ -564,7 +564,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         getline(cin, userInputName);
         scientistsToRemove = _service.findScientistByName(userInputName);
         userMenuPrint(scientistsToRemove);
-        cout << endl << "Are you sure you want to remove these scientists from the list (y/n)" << endl;
+        cout << endl << "Are you sure you want to remove these scientists from the list? (y/n)" << endl;
         cout << "Select: ";
 
         getline(cin, confirm);
@@ -573,6 +573,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         {
             _service.removeScientist(userInputName);
             cout << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
+            askReturnToMenu();
         }
 
 
