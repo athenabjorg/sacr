@@ -21,7 +21,7 @@ void ConsoleUI::run()                                       // The main function
      */
 
     string command;
-
+    bool invalidInput = true;
 
     clearScreen();
 
@@ -38,42 +38,46 @@ void ConsoleUI::run()                                       // The main function
         cout << "Quit    -   end program" << endl;
         cout << "======================================================================" << endl;
 
-        cout << endl << "Select: ";
-        cin >> command;
-        cin.clear();
+        while(invalidInput)
+        {
+            invalidInput = false;
 
-        forceLowerCase(command);
+            cout << endl << "Select: ";
+            getline(cin, command);
 
-        if(command == "add")
-        {
-           userMenuAdd();
-        }
-        else if(command == "remove")
-        {
-           userMenuRemove();
-        }
-        else if(command == "list")
-        {
-           userMenuList();
-        }
-        else if(command == "search")
-        {
-           userMenuSearch();
-        }
-        else if(command == "sort")
-        {
-            userMenuSort();
-        }
-        else if(command == "quit")
-        {
-            break;
-        }
-        else
-        {
-            cout << "Invalid input" << endl;
-            cout << endl;
-        }
+            forceLowerCase(command);
 
+            if(command == "add")
+            {
+               userMenuAdd();
+            }
+            else if(command == "remove")
+            {
+               userMenuRemove();
+            }
+            else if(command == "list")
+            {
+               userMenuList();
+            }
+            else if(command == "search")
+            {
+               userMenuSearch();
+            }
+            else if(command == "sort")
+            {
+                userMenuSort();
+            }
+            else if(command == "quit")
+            {
+                break;
+            }
+            else
+            {
+                invalidInput = true;
+
+                cout << "Invalid input" << endl;
+            }
+        }
         clearScreen();
     }
 }
@@ -629,7 +633,7 @@ void ConsoleUI::askReturnToMenu()                           // Gives user option
 }
 void ConsoleUI::clearScreen()                               // Clears console screen
 {
-    const int spaceLength = 100;
+    const int spaceLength = 10;
     cout << string( spaceLength, '\n' );
 }
 string ConsoleUI::getInput()
