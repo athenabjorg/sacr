@@ -119,59 +119,55 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
     }
 
     while(true) // Check year of birth
-    {
-        bool inputCheck;
-        do
         {
-            cout << endl;
-            cout << "Enter the scientist's year of birth: ";
-            cin >> birthYear;
-            inputCheck = cin.fail();
-            if(inputCheck)
+           cout << "Enter the programmer's/computer scientist's year of birth: ";
+           cin >> birthYear;
+
+
+            if(cin.fail())
             {
-                cout << "Invalid input" << endl;
+                cout << "Invalid input!" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-            cin.clear();
-        }
-        while(inputCheck);
-
-
-        if(birthYear <= 2016) // Just in case we discover a programmer of the universe
-        {
-            break;
-        }
-        else
-        {
-            cout << "Invalid input...or you are Marty McFly" << endl;
-        }
-    }
-
-    while(true) // Check when year of death (if dead)
-    {
-        bool inputCheck;
-        do
-        {
-            cout << endl;
-            cout << "Enter the scientist's year of death (type 0 if not applicable): ";
-            cin >> deathYear;
-            inputCheck = cin.fail();
-            if(inputCheck)
+            else if(birthYear <= 2016) // Just in case we discover a programmer of the universe
             {
-                cout << "Invalid input" << endl;
+                break;
             }
-            cin.clear();
-        }while(inputCheck);
+            else
+            {
+                cout << "Invalid input - You can't be born in the future!" << endl;
+            }
+        }
+
+        while(true) // Check when year of death (if dead)
+        {
+
+                cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
+                cin >> deathYear;
+
+                if(cin.fail())
+                {
+                    cout << "Invalid input" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
 
 
-        if (deathYear == 0 || deathYear >= birthYear)
-        {
-            break;
+            else if (deathYear == 0)
+            {
+                break;
+            }
+            else if(deathYear >= birthYear)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input - You can't die before you are born!" << endl;
+                cin.clear();
+            }
         }
-        else
-        {
-            cout << "Death year can't be earlier than birth year" << endl;
-        }
-    }
 
     // Check if input is correct
     clearScreen();
@@ -231,7 +227,7 @@ void ConsoleUI::userMenuList()                              // List of commands
 
     vector<Scientist> scientist = _service.getScientists();
     userMenuPrint(scientist);
-
+    askReturnToMenu();
 }
 void ConsoleUI::userMenuSearch()                            // Search list
 {
@@ -498,7 +494,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
     }
     cout << "======================================================================" << endl;
 
-    askReturnToMenu();
+
 }
 int  ConsoleUI::userCheckInput()                            // Check input from userMenuAdd
 {
@@ -555,7 +551,8 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
     if(command == 1) // Remove scientist/s by input.
     {
-        userMenuList();
+        vector<Scientist> scientist = _service.getScientists();
+        userMenuPrint(scientist);
 
         string userInputName, confirm;
         vector<Scientist> scientistsToRemove;
