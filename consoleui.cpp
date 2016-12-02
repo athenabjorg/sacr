@@ -529,20 +529,20 @@ int  ConsoleUI::userCheckInput() const                      // Checks input from
 {
     /*
      * Check if all data is correct and return a int depending on what user selected.
-     * (0) yes, (1) no, (2) quit and if nothing selected or wrong input the loop will
+     * (0) yes, (1) no, (2) cancel and if nothing selected or wrong input the loop will
      * keep running until one of the 3 is selected.
      */
 
     while(true)
     {
         string answer;
-        cout << "Is this data correct?" << endl;
+        cout << endl << "Is this data correct?" << endl;
         cout << endl << "Y - Yes, add the name to the list" << endl;
         cout << "N - No, let me try again" << endl;
         cout << "C - Cancel add and return to the menu" << endl;
         cout << endl << "Select: ";
 
-        cin.ignore(-1);
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, answer);
 
 

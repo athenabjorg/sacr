@@ -13,9 +13,14 @@ using namespace std;
 class DataAccess
 {
 public:
+
     DataAccess();
+
     void saveScientists(const vector<Scientist>& scientists);
+        // Saves the vector of scientists to a file.
+
     vector<Scientist> loadScientists();
+        // Loads scientists from a file, into a vector.
 
 private:
 

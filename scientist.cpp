@@ -45,8 +45,9 @@ int    Scientist::getAge() const
         return (_death - _birth);
     }
 }
-int Scientist::whatYearIsIt() const // Returns the current year.
-{
+int Scientist::whatYearIsIt() const
+{   // Returns the current year.
+
     time_t     currentTime;
     struct tm* timeinfo;
 

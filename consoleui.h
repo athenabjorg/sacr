@@ -18,18 +18,40 @@ public:
 private:
 
     void userMenuAdd();
+        // Asks for information about a scientist, and then adds them to the text file.
+
     void userMenuSearch();
+        // Searches for a scientist depending on the input, prints a list of the result.
+
     void userMenuSort();
+        // Sorts the list of scientist depending on the input, prints a list of the result and saves to the text file.
+
     void userMenuPrint();
+        // Prints to the screen the scientist list from the text file.
+
     void userMenuPrint(const vector<Scientist>& scientist);
+        // Prints to the screen a scientist list provided (for example a search result).
+
     int  userCheckInput() const;
+        // Asks for a yes, no, or cancel input and returns a corresponding numerical value (y = 0, n = 1, cancel = 2)
+
     void userMenuRemove();
+        // Permanently removes scientists from the list, who have names containing the user input.
+
     void forceLowerCase(string &command);
+        // Makes a string all lower case, to make commands eaier to read.
+
     void askReturnToMenu() const;
+        // Halts the return to menu so the user can look at the output from other functions before returning.
+
     void clearScreen() const;
+        // Adds 50 empty lines to the screen.
+
     int  whatYearIsIt() const;
+        // Returns what year it is now.
 
 private:
+
     ScientistService _service;
 };
 

@@ -64,9 +64,10 @@ private:
     vector<Scientist> _scientists;
 
     void scientistSortForFind(int sortType, vector<Scientist>& scientists);
-        // Sort list by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,
+        // Sort list by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,
         //                              4 = birth, 5 = death, 6 = age.
-        // Sorts the list provided by the find function without saving to file.
+        // Sorts the list provided by the find function without saving to file,
+        // so that the search result is displayed according to the search type.
 };
 
 #endif // SCIENTISTSERVICE_H

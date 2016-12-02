@@ -10,8 +10,7 @@ DataAccess::DataAccess()
 void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From vector to text file
 {
     /*
-     * This function uses ofstream to save the vector from scientists from service layer
-     * to the scientists.txt file.
+     * This function uses ofstream to save the vector of scientists to the scientists.txt file.
      */
 
     ofstream file;
@@ -34,8 +33,7 @@ void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From ve
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
     /*
-     * This function uses ifstream to read from scientists.txt file and read them
-     * into a vector in service layer of the program.
+     * This function uses ifstream to read from scientists.txt file and read them into a vector.
      */
 
     vector<Scientist> scientists;
