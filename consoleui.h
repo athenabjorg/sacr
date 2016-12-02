@@ -24,7 +24,7 @@ private:
     void userMenuRemove();
     void forceLowerCase(string &command);
     void askReturnToMenu();
-    void makeSpace();
+    void clearScreen();
 
 private:
     ScientistService _service;

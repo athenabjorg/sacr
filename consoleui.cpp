@@ -520,19 +520,26 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
     int command;
 
-    cout << "To remove programmers / computer scientist by name  (1), to remove *ALL* programmers / computer scientists (2)" << endl;
+    cout << string( 100, '\n' );
+    cout << "Select one of the following options: " << endl;
+    cout << "======================================================================" << endl;
+    cout << "(1)     -   Remove a single programmer / computer scientist " << endl;
+    cout << "(2)     -   Remove *ALL* programmers / computer scientists (2)" << endl;
     cout << "Select: ";
+
     cin >> command;
     cin.clear();
     cout << endl;
 
     if(command == 1) // Remove programmer/s by input.
     {
+
         string userInputName, confirm;
         vector<Scientist> scientistsToRemove;
-        makeSpace();
+        clearScreen();
 
         cout << "Remove programmers/computer scientists with names containing: ";
+
         cin.ignore();
         getline(cin, userInputName);
         scientistsToRemove = _service.findScientistByName(userInputName);
@@ -548,13 +555,14 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
             cout << "Scientists with names containing " << userInputName << " have been removed from the list." << endl;
         }
 
-        makeSpace();
+        clearScreen();
 
     }
     else if(command == 2) // Remove all programmers
     {
         string userInputName;
-        makeSpace();
+
+        clearScreen();
 
         cout << "Confirm remove *ALL* programmers / computer scientists (y), any other letter to cancel" << endl;
         cin.ignore();
@@ -564,19 +572,19 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         if(userInputName == "y")
         {
             _service.removeAllScientists();
-            makeSpace();
+            clearScreen();
             userMenuList();
         }
         else
         {
-            makeSpace();
+            clearScreen();
             cout << "Wrong Input" << endl;
         }
 
     }
     else
     {
-        makeSpace();
+        clearScreen();
         cout << "Wrong Input" << endl;
     }
 }
@@ -607,7 +615,7 @@ void ConsoleUI::askReturnToMenu()
    cout << string( 2, '\n' );
 }
 
-void ConsoleUI::makeSpace()
+void ConsoleUI::clearScreen()
 {
     const int spaceLength = 100;
     cout << string( spaceLength, '\n' );
