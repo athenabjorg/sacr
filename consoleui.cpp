@@ -87,146 +87,132 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
     int age = 0;
     int a;
 
-    while(true)
+
+    clearScreen();
+
+    cout << "Enter the programmer's/computer scientist's name: ";
+    cin.ignore();
+    getline(cin, name);
+
+    while(true) // Check for gender
     {
-        clearScreen();
+        cout << "Enter the programmer's/computer scientist's gender (m/f): ";
+        cin >> genderInput;
+        forceLowerCase(genderInput);
 
-        cout << "Enter the programmer's/computer scientist's name: ";
-        cin.ignore();
-        getline(cin, name);
-
-        clearScreen();
-
-        while(true) // Check for gender
+        if((genderInput == "m") || (genderInput == "f"))
         {
-            cout << "Enter the programmer's/computer scientist's gender (m/f): ";
-            cin >> genderInput;
-            forceLowerCase(genderInput);
-
-            if((genderInput == "m") || (genderInput == "f"))
-            {
-                gender = genderInput[0];
-                cin.clear();
-                break;
-            }
-            else
-            {
-                clearScreen();
-                cout << "Invalid input" << endl;
-            }
-        }
-
-        clearScreen();
-
-        while(true) // Check year of birth
-        {
-            bool inputCheck;
-            do
-            {
-                cout << "Enter the programmer's/computer scientist's year of birth: ";
-                cin >> birthYear;
-                inputCheck = cin.fail();
-                if(inputCheck)
-                {
-                    clearScreen();
-                    cout << "Invalid input" << endl;
-                }
-                cin.clear();
-            }
-            while(inputCheck);
-
-
-            if(birthYear < 2016) // Just in case we discover a programmer of the universe
-            {
-                break;
-            }
-            else
-            {
-                clearScreen();
-                cout << "Invalid input - You can't be born in the future!" << endl;
-            }
-        }
-
-        clearScreen();
-
-
-        while(true) // Check when year of death (if dead)
-        {    
-            bool inputCheck;
-            do
-            {
-                cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
-                cin >> deathYear;
-                inputCheck = cin.fail();
-                if(inputCheck)
-                {
-                    clearScreen();
-                    cout << "Invalid input" << endl;
-                }
-                cin.clear();
-            }while(inputCheck);
-
-
-            if (deathYear == 0)
-            {
-                break;
-            }
-            else if(deathYear >= birthYear)
-            {
-                break;
-            }
-            else
-            {
-                clearScreen();
-                cout << "Invalid input" << endl;
-            }
-        }
-
-        // Check if input is correct
-        clearScreen();
-        cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
-
-        if(deathYear != 0)
-        {
-            cout << "Died: " << deathYear << endl;
+            gender = genderInput[0];
+            break;
         }
         else
         {
-            cout << endl;
+            cout << "Invalid input" << endl;
         }
+    }
 
-        a = userCheckInput(); // A function that lets user select if the input that was selected is right or not
-
-        if (a == 0)
+    while(true) // Check year of birth
+    {
+        bool inputCheck;
+        do
         {
-            // false sama nafn
-            if(_service.addScientist(name, gender, birthYear, deathYear, age))
+            cout << "Enter the programmer's/computer scientist's year of birth: ";
+            cin >> birthYear;
+            inputCheck = cin.fail();
+            if(inputCheck)
             {
-                cout << name << " has been successfully added to the list" << endl;
-                clearScreen();
+                cout << "Invalid input" << endl;
             }
-            else
-            {
-                int userInput;
-                clearScreen();
-
-                cout << "This name is allready taken, replace existing name(1), start over(2)" << endl;
-                cout << "Select: ";
-                cin >> userInput;
-                if(userInput == 1)
-                {
-                    _service.removeScientist(name);
-                    _service.addScientist(name, gender, birthYear, deathYear, age);
-                    break;
-                }
-            }
+            cin.clear();
         }
-        else if (a == 2)
+        while(inputCheck);
+
+
+        if(birthYear <= 2016) // Just in case we discover a programmer of the universe
         {
             break;
         }
+        else
+        {
+            cout << "Invalid input - You can't be born in the future!" << endl;
+        }
     }
+
+    while(true) // Check when year of death (if dead)
+    {
+        bool inputCheck;
+        do
+        {
+            cout << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
+            cin >> deathYear;
+            inputCheck = cin.fail();
+            if(inputCheck)
+            {
+                cout << "Invalid input" << endl;
+            }
+            cin.clear();
+        }while(inputCheck);
+
+
+        if (deathYear == 0)
+        {
+            break;
+        }
+        else if(deathYear >= birthYear)
+        {
+            break;
+        }
+        else
+        {
+            clearScreen();
+            cout << "Invalid input" << endl;
+        }
+    }
+
+    // Check if input is correct
+    clearScreen();
+    cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
+
+    if(deathYear != 0)
+    {
+        cout << "Died: " << deathYear << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
+
+    a = userCheckInput(); // A function that lets user select if the input that was selected is right or not
+
+    if (a == 0)
+    {
+        // false sama nafn
+        if(_service.addScientist(name, gender, birthYear, deathYear, age))
+        {
+            cout << endl << name << " successfully added to the list" << endl;
+
+        }
+        else
+        {
+            int userInput;
+
+            cout << "This name is allready taken, replace existing name(1), start over(2)" << endl;
+            cout << "Select: ";
+            cin >> userInput;
+            if(userInput == 1)
+            {
+                _service.removeScientist(name);
+                _service.addScientist(name, gender, birthYear, deathYear, age);
+            }
+        }
+    }
+    else if (a == 1)
+    {
+        cout << name << " not added to the list" << endl;
+    }
+
     cout << endl;
+    askReturnToMenu();
 }
 void ConsoleUI::userMenuList()                              // List of commands
 {
@@ -627,4 +613,9 @@ void ConsoleUI::clearScreen()
 {
     const int spaceLength = 100;
     cout << string( spaceLength, '\n' );
+}
+
+string ConsoleUI::getInput()
+{
+    return " ";
 }

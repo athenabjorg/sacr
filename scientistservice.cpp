@@ -168,8 +168,6 @@ vector<Scientist> ScientistService::findScientistByName(string name)
     string databaseName;
     int pos = -1;
 
-    cout << name << "   <-------- name in find function" << endl;
-
     for (size_t i = 0; i < _scientists.size(); i++)
     {
         databaseName = _scientists[i].getName();

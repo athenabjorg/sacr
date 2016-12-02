@@ -25,6 +25,7 @@ private:
     void forceLowerCase(string &command);
     void askReturnToMenu();
     void clearScreen();
+    string getInput();
 
 private:
     ScientistService _service;
