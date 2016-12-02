@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <ctime>
+
 #include "scientistservice.h"
 
 class ConsoleUI
@@ -26,6 +28,7 @@ private:
     void forceLowerCase(string &command);
     void askReturnToMenu();
     void clearScreen();
+    int whatYearIsIt();
 
 private:
     ScientistService _service;
