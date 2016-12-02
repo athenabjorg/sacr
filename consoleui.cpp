@@ -425,7 +425,14 @@ void ConsoleUI::userMenuSort()                              // Sort list
     {
         cout << string( 100, '\n' );
 
-        cout << "Sort list by Name A-Z(1), Name Z-A(2), Gender(3), Year of Birth(4), Year of Death(5) or Age (6)" << endl;
+        cout << "Select a sort option: " << endl;
+        cout << "===================================" << endl;
+        cout << "(1)     -   Sort by name (A-Z)" << endl;
+        cout << "(2)     -   Sort by name (Z-A)" << endl;
+        cout << "(3)     -   Sort by gender" << endl;
+        cout << "(4)     -   Sort by year of birth" << endl;
+        cout << "(5)     -   Sort by year of death" << endl;
+        cout << "(6)     -   Sort by age" << endl;
         cout << "Select: ";
         cin >> userInput;
 
