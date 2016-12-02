@@ -12,20 +12,20 @@ public:
 
     // Displays the main menu of the program.
     void run();
-    void userMenuAdd();
+
 
 private:
 
-    void userMenuList();
+    void userMenuAdd();
     void userMenuSearch();
     void userMenuSort();
-    void userMenuPrint(vector<Scientist>scientist);
+    void userMenuPrint();
+    void userMenuPrint(vector<Scientist> scientist);
     int  userCheckInput();
     void userMenuRemove();
     void forceLowerCase(string &command);
     void askReturnToMenu();
     void clearScreen();
-    string getInput();
 
 private:
     ScientistService _service;

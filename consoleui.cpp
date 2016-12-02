@@ -38,6 +38,8 @@ void ConsoleUI::run()                                       // The main function
         cout << "Quit    -   end program" << endl;
         cout << "======================================================================" << endl;
 
+        invalidInput = true;
+
         while(invalidInput)
         {
             invalidInput = false;
@@ -57,7 +59,7 @@ void ConsoleUI::run()                                       // The main function
             }
             else if(command == "list")
             {
-               userMenuList();
+               userMenuPrint();
             }
             else if(command == "search")
             {
@@ -78,6 +80,7 @@ void ConsoleUI::run()                                       // The main function
                 cout << "Invalid input" << endl;
             }
         }
+
         clearScreen();
     }
 }
@@ -100,7 +103,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
     clearScreen();
 
     cout << "Enter the scientist's name: ";
-    cin.ignore();
+    cin.ignore(-1);
     getline(cin, name);
 
     while(true) // Check for gender
@@ -146,10 +149,10 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             }
         }
 
-        while(true) // Check when year of death (if dead)
+        while(true) // Check when scientist died (if dead)
         {
 
-            cout << endl << "Enter the programmer's/computer scientist's year of death (type 0 if not applicable): ";
+            cout << endl << "Enter the scientist's year of death (type 0 if not applicable): ";
             cin >> deathYear;
 
             if(cin.fail())
@@ -186,11 +189,10 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
         cout << endl;
     }
 
-    a = userCheckInput(); // A function that lets user select if the input that was selected is right or not
+    a = userCheckInput(); // A function that checks if the input is valid
 
     if (a == 0)
     {
-        // false sama nafn
         if(_service.addScientist(name, gender, birthYear, deathYear, age))
         {
             cout << endl << name << " successfully added to the list" << endl;
@@ -219,17 +221,6 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
         cout << name << " not added to the list" << endl << endl;
     }
 
-    askReturnToMenu();
-}
-void ConsoleUI::userMenuList()                              // List of commands
-{
-    /*
-     * A menu list as a vector is loaded into the print function userMenuPrint()
-     *
-     */
-
-    vector<Scientist> scientist = _service.getScientists();
-    userMenuPrint(scientist);
     askReturnToMenu();
 }
 void ConsoleUI::userMenuSearch()                            // Search list
@@ -462,13 +453,50 @@ void ConsoleUI::userMenuSort()                              // Sort list
     }while(inputCheck);
 
      _service.scientistSort(userInput);
-     userMenuList();
+     userMenuPrint();
+}
+void ConsoleUI::userMenuPrint()                             // Print whole list
+{
+    /*
+     * Prints out a partial list of scientist, depending on how
+     * it was sent forward by the previous function.
+     */
+
+    vector<Scientist> scientist = _service.getScientists();
+
+    clearScreen();
+    cout << left << setw(30) << "Scientist name:"
+         << setw(10) << right << "gender:"
+         << setw(10) << "born:"
+         << setw(10) << "died:"
+         << setw(10) << "age:" << endl;
+    cout << "======================================================================" << endl;
+    for (size_t i = 0; i< scientist.size(); ++i)
+    {
+        cout << left << setw(30) << scientist[i].getName()
+             << setw(10) << right << scientist[i].getGender()
+             << setw(10) << scientist[i].getBirth();
+
+             if(scientist[i].getDeath() == 0)
+             {
+                 cout << setw(10) << "-";
+             }
+             else
+             {
+                 cout << setw(10) << scientist[i].getDeath();
+             }
+             cout << setw(10) << scientist[i].getAge() << endl;
+    }
+    cout << "======================================================================" << endl;
+    cout << "Total: " << scientist.size() << " scientists" << endl;
+
+    askReturnToMenu();
 }
 void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
 {
     /*
-     * This is the function that prints out the menu for user to navigate the program
-     * and make changes or add programmers / computer scientists.
+     * Prints out a partial list of scientist, depending on how
+     * it was sent forward by the previous function.
      */
 
     clearScreen();
@@ -508,20 +536,26 @@ int  ConsoleUI::userCheckInput()                            // Check input from 
 
     while(true)
     {
-        char answear;
-        cout << "Is this data correct? (input y/n, or press m to return to menu)" << endl;
-        cout << "Select: ";
-        cin >> answear;
+        string answer;
+        cout << "Is this data correct?" << endl;
+        cout << endl << "Y - Yes, add the name to the list" << endl;
+        cout << "N - No, let me try again" << endl;
+        cout << "C - Cancel add and return to the menu" << endl;
+        cout << endl << "Select: ";
 
-        if(answear == 'y')
+        cin.ignore(-1);
+        cin >> answer;
+
+
+        if(answer[0] == 'y' || answer[0] == 'Y')
         {
             return 0;
         }
-        else if (answear == 'n')
+        else if (answer[0] == 'n' || answer[0] == 'N')
         {
             return 1;
         }
-        else if (answear == 'm')
+        else if (answer[0] == 'c' || answer[0] == 'C')
         {
             return 2;
         }
@@ -596,7 +630,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         {
             _service.removeAllScientists();
             clearScreen();
-            userMenuList();
+            userMenuPrint();
         }
         else
         {
@@ -635,8 +669,4 @@ void ConsoleUI::clearScreen()                               // Clears console sc
 {
     const int spaceLength = 10;
     cout << string( spaceLength, '\n' );
-}
-string ConsoleUI::getInput()
-{
-    return " ";
 }
