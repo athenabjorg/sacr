@@ -203,7 +203,9 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             {
                 _service.removeScientist(name);
                 _service.addScientist(name, gender, birthYear, deathYear, age);
+
             }
+
         }
     }
     else if (a == 1)
@@ -597,8 +599,7 @@ void ConsoleUI::forceLowerCase(string &command)             // Force input to lo
         command[i] = tolower(command[i]);
     }
 }
-
-void ConsoleUI::askReturnToMenu()
+void ConsoleUI::askReturnToMenu()                           // Gives user option to menu
 {
     cout << "======================================================================" << endl;
     cout << "To return to menu press m" << endl;
@@ -611,13 +612,11 @@ void ConsoleUI::askReturnToMenu()
    }
    cout << string( 2, '\n' );
 }
-
-void ConsoleUI::clearScreen()
+void ConsoleUI::clearScreen()                               // Clears console screen
 {
     const int spaceLength = 100;
     cout << string( spaceLength, '\n' );
 }
-
 string ConsoleUI::getInput()
 {
     return " ";
