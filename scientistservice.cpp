@@ -93,6 +93,9 @@ void ScientistService::removeAllScientists()
     data.saveScientists(_scientists);
 }
 
+// TODO ------------------  void ScientistService::replaceScientist()
+
+
 void ScientistService::scientistSort(int sortType)
 {    // Sort by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender
      //							4 = birth, 5 = death, 6 = age.

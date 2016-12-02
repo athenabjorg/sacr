@@ -236,6 +236,8 @@ void ConsoleUI::userMenuList()                              // List of commands
 
     vector<Scientist> scientist = _service.getScientists();
     userMenuPrint(scientist);
+    askReturnToMenu();
+
 }
 void ConsoleUI::userMenuSearch()                            // Search list
 {
@@ -273,6 +275,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
         vector<Scientist> scientist = _service.findScientistByName(userInputName);
         userMenuPrint(scientist);
+        askReturnToMenu();
     }
     else if(command == "gender") // Find scientist by gender
     {
@@ -284,6 +287,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
         vector<Scientist> scientist = _service.findScientistByGender(userInputGender);
         userMenuPrint(scientist);
+        askReturnToMenu();
     }
     else if(command == "age") // Find scientist by age
     {
@@ -300,6 +304,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
             vector<Scientist> scientist = _service.findScientistByAge(userInputAge);
             userMenuPrint(scientist);
+            askReturnToMenu();
         }
         else if(inputCheck == 2)
         {
@@ -314,6 +319,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
             vector<Scientist> scientist = _service.findScientistByAgeRange(userInputAgeFirst, userInputAgeLast);
             userMenuPrint(scientist);
+            askReturnToMenu();
         }
         else
         {
@@ -337,6 +343,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
             vector<Scientist> scientist = _service.findScientistByBirth(userInputBirth);
             userMenuPrint(scientist);
+            askReturnToMenu();
         }
         else if(inputCheck == 2)
         {
@@ -352,6 +359,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
             vector<Scientist> scientist = _service.findScientistByBirthRange(userInputBirthFirst, userInputBirthLast);
             userMenuPrint(scientist);
+            askReturnToMenu();
         }
         else
         {
@@ -375,6 +383,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
             vector<Scientist> scientist = _service.findScientistByDeath(userInputDeath);
             userMenuPrint(scientist);
+            askReturnToMenu();
         }
         else if(inputCheck == 2)
         {
@@ -390,6 +399,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
             vector<Scientist> scientist = _service.findScientistByDeathRange(userInputDeathFirst, userInputDeathLast);
             userMenuPrint(scientist);
+            askReturnToMenu();
         }
         else
         {
@@ -467,16 +477,6 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
              }
              cout << setw(10) << scientist[i].getAge() << endl;
     }
-    cout << "======================================================================" << endl;
-    cout << "To return to menu press m" << endl;
-    cout << "Select: ";
-
-   string userInput = " ";
-   while (userInput != "m")
-   {
-       cin >> userInput;
-   }
-   cout << string( 2, '\n' );
 }
 int  ConsoleUI::userCheckInput()                            // Check input from userMenuAdd
 {
@@ -520,28 +520,41 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
     int command;
 
-    cout << "To remove a single programmer / computer scientist (1), to remove *ALL* programmers / computer scientists (2)" << endl;
+    cout << "To remove programmers / computer scientist by name  (1), to remove *ALL* programmers / computer scientists (2)" << endl;
     cout << "Select: ";
     cin >> command;
     cin.clear();
     cout << endl;
 
-    if(command == 1) // Remove 1 programmer
+    if(command == 1) // Remove programmer/s by input.
     {
-        string userInputName;
-        cout << string( 100, '\n' );
+        string userInputName, confirm;
+        vector<Scientist> scientistsToRemove;
+        makeSpace();
 
-        cout << "Remove a programmer/computer scientist: ";
+        cout << "Remove programmers/computer scientists with names containing: ";
         cin.ignore();
         getline(cin, userInputName);
-        _service.removeScientist(userInputName);
-        cout << string( 100, '\n' );
-        userMenuList();
+        scientistsToRemove = _service.findScientistByName(userInputName);
+        userMenuPrint(scientistsToRemove);
+        cout << endl << "Are you sure you want to remove these computer scientists from the list (y/n)" << endl;
+        cout << "Select: ";
+        cin.ignore();
+        getline(cin, confirm);
+
+        if (confirm[0] == 'y' || confirm[0] == 'Y')
+        {
+            _service.removeScientist(userInputName);
+            cout << "Scientists with names containing " << userInputName << " have been removed from the list." << endl;
+        }
+
+        makeSpace();
+
     }
     else if(command == 2) // Remove all programmers
     {
         string userInputName;
-        cout << string( 100, '\n' );
+        makeSpace();
 
         cout << "Confirm remove *ALL* programmers / computer scientists (y), any other letter to cancel" << endl;
         cin.ignore();
@@ -551,19 +564,19 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         if(userInputName == "y")
         {
             _service.removeAllScientists();
-            cout << string( 100, '\n' );
+            makeSpace();
             userMenuList();
         }
         else
         {
-            cout << string( 100, '\n' );
+            makeSpace();
             cout << "Wrong Input" << endl;
         }
 
     }
     else
     {
-        cout << string( 100, '\n' );
+        makeSpace();
         cout << "Wrong Input" << endl;
     }
 }
@@ -578,4 +591,24 @@ void ConsoleUI::forceLowerCase(string &command)             // Force input to lo
     {
         command[i] = tolower(command[i]);
     }
+}
+
+void ConsoleUI::askReturnToMenu()
+{
+    cout << "======================================================================" << endl;
+    cout << "To return to menu press m" << endl;
+    cout << "Select: ";
+
+   string userInput = " ";
+   while (userInput != "m")
+   {
+       cin >> userInput;
+   }
+   cout << string( 2, '\n' );
+}
+
+void ConsoleUI::makeSpace()
+{
+    const int spaceLength = 100;
+    cout << string( spaceLength, '\n' );
 }

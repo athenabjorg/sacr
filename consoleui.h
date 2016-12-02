@@ -23,7 +23,8 @@ private:
     int  userCheckInput();
     void userMenuRemove();
     void forceLowerCase(string &command);
-
+    void askReturnToMenu();
+    void makeSpace();
 
 private:
     ScientistService _service;
