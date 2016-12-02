@@ -541,10 +541,13 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
     if(command == 1) // Remove programmer/s by input.
     {
+        vector<Scientist> scientist = _service.getScientists();
+        userMenuPrint(scientist);
+        cout << endl;
 
         string userInputName, confirm;
         vector<Scientist> scientistsToRemove;
-        clearScreen();
+
 
         cout << "Remove programmers/computer scientists with names containing: ";
 
@@ -554,16 +557,16 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         userMenuPrint(scientistsToRemove);
         cout << endl << "Are you sure you want to remove these computer scientists from the list (y/n)" << endl;
         cout << "Select: ";
-        cin.ignore();
+
         getline(cin, confirm);
 
         if (confirm[0] == 'y' || confirm[0] == 'Y')
         {
             _service.removeScientist(userInputName);
-            cout << "Scientists with names containing " << userInputName << " have been removed from the list." << endl;
+            cout << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
         }
 
-        clearScreen();
+
 
     }
     else if(command == 2) // Remove all programmers
