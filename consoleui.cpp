@@ -244,9 +244,8 @@ void ConsoleUI::userMenuSearch()                            // Search list
     cout << "Death   -   Search by year of death" << endl;
     cout << "Age     -   Search by age" << endl << endl;
     cout << "Select: ";
-    cin >> command;
-    cin.clear();
-    cout << endl;
+
+    getline(cin, command);
 
     forceLowerCase(command);
 
