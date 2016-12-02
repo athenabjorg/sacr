@@ -202,7 +202,8 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             // false sama nafn
             if(_service.addScientist(name, gender, birthYear, deathYear, age))
             {
-                break;
+                cout << name << " has been successfully added to the list" << endl;
+
             }
             else
             {
