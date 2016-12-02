@@ -203,7 +203,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             if(_service.addScientist(name, gender, birthYear, deathYear, age))
             {
                 cout << name << " has been successfully added to the list" << endl;
-
+                clearScreen();
             }
             else
             {
