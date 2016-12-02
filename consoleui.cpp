@@ -240,8 +240,8 @@ void ConsoleUI::userMenuSearch()                            // Search list
     cout << "===================================" << endl;
     cout << "Name    -   Search by name" << endl;
     cout << "Gender  -   Search by gender" << endl;   
-    cout << "Birth   -   search by year of birth" << endl;
-    cout << "Death   -   search by year of death" << endl;
+    cout << "Birth   -   Search by year of birth" << endl;
+    cout << "Death   -   Search by year of death" << endl;
     cout << "Age     -   Search by age" << endl << endl;
     cout << "Select: ";
     cin >> command;
@@ -367,8 +367,6 @@ void ConsoleUI::userMenuSearch()                            // Search list
     {
         int inputCheck;
 
-        cout << "To search by year of death(1), to search by range of year of death(2)" << endl;
-
         clearScreen();
         cout << "Search by:" << endl;
         cout << "(1) - Year scientist died" << endl;
@@ -435,7 +433,7 @@ void ConsoleUI::userMenuSort()                              // Sort list
         cout << "(4)     -   Sort by year of birth" << endl;
         cout << "(5)     -   Sort by year of death" << endl;
         cout << "(6)     -   Sort by age" << endl;
-        cout << "Select: ";
+        cout << endl << "Select: ";
         cin >> userInput;
 
         if(userInput > 0 && userInput < 7) // check if input is int and if it ranges from 1 to 6
@@ -503,10 +501,10 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
 
     clearScreen();
     cout << left << setw(30) << "Scientist name:"
-         << setw(10) << right << "gender:"
-         << setw(10) << "born:"
-         << setw(10) << "died:"
-         << setw(10) << "age:" << endl;
+         << setw(10) << right << "Gender:"
+         << setw(10) << "Born:"
+         << setw(10) << "Died:"
+         << setw(10) << "Age:" << endl;
     cout << "======================================================================" << endl;
     for (size_t i = 0; i< scientist.size(); ++i)
     {
@@ -623,7 +621,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
             askReturnToMenu();
         }
     }
-    else if(command[0] == '2') // Remove all programmers
+    else if(command[0] == '2') // Remove all scientists
     {
         string userInputName;
 
