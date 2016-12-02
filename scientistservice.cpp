@@ -59,7 +59,6 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
         return true;
     }
 }
-
 bool ScientistService::removeScientist(string name)
 {   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
@@ -83,7 +82,6 @@ bool ScientistService::removeScientist(string name)
 
     return false;
 }
-
 void ScientistService::removeAllScientists()
 {   // Removes ALL scientists from the list. Be careful with this.
 
@@ -129,7 +127,6 @@ void ScientistService::scientistSort(int sortType)
 
     data.saveScientists(_scientists);
 }
-
 void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& scientists)
 {   // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age.
     // Sorts the list provided by the find function,
@@ -161,7 +158,7 @@ void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& sci
     }
 }
 
-vector<Scientist> ScientistService::findScientistByName(string name)
+vector<Scientist> ScientistService::findScientistByName(string name)                    // Search vector by name
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
 
     vector<Scientist> scientist;
@@ -186,8 +183,7 @@ vector<Scientist> ScientistService::findScientistByName(string name)
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByGender(char gender)
+vector<Scientist> ScientistService::findScientistByGender(char gender)                  // Search vector by gender
 {   // Returns all scientists of that gender.
 
     vector<Scientist> scientist;
@@ -202,8 +198,7 @@ vector<Scientist> ScientistService::findScientistByGender(char gender)
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByBirth(int birth)
+vector<Scientist> ScientistService::findScientistByBirth(int birth)                     // Search vector by year of birth
 {   // Returns all scientists born that year.
 
     vector<Scientist> scientist;
@@ -218,8 +213,7 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)
+vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)   // Search vector by range of birth
 {   // Returns all scientists born in that year range.
 
     vector<Scientist> scientist;
@@ -242,8 +236,7 @@ vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int bi
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByDeath(int death)
+vector<Scientist> ScientistService::findScientistByDeath(int death)                     // Search vector by year of death
 {   // Returns all scientists that died that year, or death = 0 if still alive.
 
     vector<Scientist> scientist;
@@ -258,8 +251,7 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)
+vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)   // Search vector by range of death
 {   // Returns all scientists who died in that range.
 
     vector<Scientist> scientist;
@@ -282,8 +274,7 @@ vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int de
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByAge(int age)
+vector<Scientist> ScientistService::findScientistByAge(int age)                         // Search vector by age
 {   // Returns all scientists of that age.
 
     vector<Scientist> scientist;
@@ -298,8 +289,7 @@ vector<Scientist> ScientistService::findScientistByAge(int age)
 
     return scientist;
 }
-
-vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
+vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)         // Search vector by range of age
 {   // Returns all scientists in that age range.
 
     vector<Scientist> scientist;

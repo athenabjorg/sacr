@@ -4,7 +4,7 @@ int main()
 {
     ConsoleUI ui;
 
-    ui.run();
+    ui.run(); // The main function in consoleui.cpp
 
     return 0;
 }

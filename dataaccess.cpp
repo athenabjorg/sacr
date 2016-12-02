@@ -7,8 +7,13 @@ DataAccess::DataAccess()
 {
 
 }
-void DataAccess::saveScientists(vector<Scientist>& scientists)
+void DataAccess::saveScientists(vector<Scientist>& scientists)  // From vector to text file
 {
+    /*
+     * This function uses ofstream to save the vector from scientists from service layer
+     * to the scientists.txt file.
+     */
+
     ofstream file;
     file.open("scientists.txt");
 
@@ -16,19 +21,23 @@ void DataAccess::saveScientists(vector<Scientist>& scientists)
     {
         for(size_t i = 0; i < scientists.size(); i++)
         {
-            file << scientists[i].getName() << ",";
-            file << scientists[i].getGender() << ",";
-            file << scientists[i].getBirth() << ",";
-            file << scientists[i].getDeath() << ",";
-            file << scientists[i].getAge() << endl; // Spurning hvort það þurfi að vera endl á
-                                                      //öllum atriðum til að geta notað getline hér fyrir neðan.
+            file << scientists[i].getName()   <<  ",";
+            file << scientists[i].getGender() <<  ",";
+            file << scientists[i].getBirth()  <<  ",";
+            file << scientists[i].getDeath()  <<  ",";
+            file << scientists[i].getAge()    << endl;
         }
         file.close( );
     }
 
 }
-vector<Scientist> DataAccess::loadScientists()
+vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
+    /*
+     * This function uses ifstream to read from scientists.txt file and read them
+     * into a vector in service layer of the program.
+     */
+
     vector<Scientist> scientists;
     Scientist scientist;
 
@@ -47,15 +56,19 @@ vector<Scientist> DataAccess::loadScientists()
             delimiterPos = line.find(delimiter);
             name = line.substr(0, delimiterPos);
             line.erase(0, delimiterPos + 1);
+
             delimiterPos = line.find(delimiter);
             gender = line.substr(0, delimiterPos);
             line.erase(0, delimiterPos + 1);
+
             delimiterPos = line.find(delimiter);
             birthYear = line.substr(0, delimiterPos);
             line.erase(0, delimiterPos + 1);
+
             delimiterPos = line.find(delimiter);
             deathYear = line.substr(0, delimiterPos);
             line.erase(0, delimiterPos + 1);
+
             delimiterPos = line.find(delimiter);
             age = line.substr(0, delimiterPos);
 
@@ -78,4 +91,3 @@ vector<Scientist> DataAccess::loadScientists()
 
     return scientists;
 }
-
