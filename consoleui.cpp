@@ -4,9 +4,13 @@
 
 using namespace std;
 
-ConsoleUI::ConsoleUI()
+ConsoleUI::ConsoleUI()                                      // Constructor function
 {
-    _service.getScientists();  // gets information from file so it's used from the beginning.
+    /*
+     * Gets information from file so it's used from the beginning.
+     */
+
+    _service.getScientists(); // Uploads the list of scientists from file.
 }
 void ConsoleUI::run()                                       // The main function
 {
@@ -70,6 +74,11 @@ void ConsoleUI::run()                                       // The main function
 }
 void ConsoleUI::userMenuAdd()                               // Adds a new programmer
 {
+    /*
+     * The function used to add a new programmer / computer scientist, user gets
+     * to enter name, gender, birth, death. Error checks included.
+     */
+
     string name;
     string genderInput;
     char gender;
@@ -87,8 +96,8 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
         getline(cin, name);
 
         cout << string( 100, '\n' );
-        // Check for gender
-        while(true)
+
+        while(true) // Check for gender
         {
             cout << "Enter the programmer's/computer scientist's gender (m/f): ";
             cin >> genderInput;
@@ -98,7 +107,6 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             {
                 gender = genderInput[0];
                 cin.clear();
-                //cin.ignore(INT_MAX, '\n');
                 break;
             }
             else
@@ -109,9 +117,8 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
         }
 
         cout << string( 100, '\n' );
-        // Check year of birth
-        while(true)
 
+        while(true) // Check year of birth
         {
             bool inputCheck;
             do
@@ -125,9 +132,6 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
-
-                //cin.ignore(INT_MAX, '\n');
-
             }
             while(inputCheck);
 
@@ -138,15 +142,15 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             }
             else
             {
-                cout << string( 100, '\n' ); // Clears screen
+                cout << string( 100, '\n' );
                 cout << "Invalid input - You can't be born in the future!" << endl;
             }
         }
 
-        cout << string( 100, '\n' ); // Clears screen
+        cout << string( 100, '\n' );
 
-        // Check when year of death (if dead)
-        while(true)
+
+        while(true) // Check when year of death (if dead)
         {    
             bool inputCheck;
             do
@@ -160,9 +164,6 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
-
-                //cin.ignore(INT_MAX, '\n');
-
             }while(inputCheck);
 
 
@@ -183,7 +184,6 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
         // Check if input is correct
         cout << string( 100, '\n' );
-
         cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
 
         if(deathYear != 0)
@@ -195,7 +195,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             cout << endl;
         }
 
-        a = userCheckInput();
+        a = userCheckInput(); // A function that lets user select if the input that was selected is right or not
 
         if (a == 0)
         {
@@ -229,21 +229,31 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 }
 void ConsoleUI::userMenuList()                              // List of commands
 {
+    /*
+     * A menu list as a vector is loaded into the print function userMenuPrint()
+     *
+     */
+
     vector<Scientist> scientist = _service.getScientists();
     userMenuPrint(scientist);
 }
 void ConsoleUI::userMenuSearch()                            // Search list
 {
+    /*
+     * A search list is printed out and user can choose from a few search commands
+     * like name, gender, age, birth, death. Error checks included
+     */
+
     string command;
 
     cout << string( 100, '\n' );
     cout << "Select a search option: " << endl;
     cout << "===================================" << endl;
     cout << "Name    -   Search by name" << endl;
-    cout << "Gender  -   Search by gender" << endl;
-    cout << "Age     -   Search by age" << endl;
+    cout << "Gender  -   Search by gender" << endl;   
     cout << "Birth   -   search by year of birth" << endl;
     cout << "Death   -   search by year of death" << endl;
+    cout << "Age     -   Search by age" << endl;
     cout << "Select: ";
     cin >> command;
     cin.clear();
@@ -256,14 +266,13 @@ void ConsoleUI::userMenuSearch()                            // Search list
     if(command == "name") // Find scientist by name
     {
         string userInputName;
-        cout << string( 100, '\n' );
 
+        cout << string( 100, '\n' );
         cout << "Search by name: ";
         getline(cin, userInputName);
 
         vector<Scientist> scientist = _service.findScientistByName(userInputName);
         userMenuPrint(scientist);
-
     }
     else if(command == "gender") // Find scientist by gender
     {
@@ -392,6 +401,12 @@ void ConsoleUI::userMenuSearch()                            // Search list
 }
 void ConsoleUI::userMenuSort()                              // Sort list
 { 
+    /*
+     * A sorting function, can call function from scientistservice.cpp scientistSort().
+     * Depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),Gender(3),
+     * Year of Birth(4), Year of Death(5) or Age (6)" the function will sort differently.
+     */
+
     bool inputCheck = true;
     int userInput;
 
@@ -417,16 +432,18 @@ void ConsoleUI::userMenuSort()                              // Sort list
         }
         cin.clear();
 
-        //cin.ignore(INT_MAX, '\n');
     }while(inputCheck);
-
-
 
      _service.scientistSort(userInput);
      userMenuList();
 }
 void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
 {
+    /*
+     * This is the function that prints out the menu for user to navigate the program
+     * and make changes or add programmers / computer scientists.
+     */
+
     cout << string( 100, '\n' );
     cout << left << setw(30) << "Scientist name:"
          << setw(10) << right << "gender:"
@@ -463,7 +480,12 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
 }
 int  ConsoleUI::userCheckInput()                            // Check input from userMenuAdd
 {
-    // Check if all data is correct
+    /*
+     * Check if all data is correct and return a int depending on what user selected.
+     * (0) yes, (1) no, (2) quit and if nothing selected or wrong input the loop will
+     * keep running untill one of the 3 is selected.
+     */
+
     while(true)
     {
         char answear;
@@ -492,15 +514,16 @@ int  ConsoleUI::userCheckInput()                            // Check input from 
 }
 void ConsoleUI::userMenuRemove()                            // Removes a programmer
 {
+    /*
+     * A function to remove a programmer / computer scientist.
+     */
+
     int command;
 
     cout << "To remove a single programmer / computer scientist (1), to remove *ALL* programmers / computer scientists (2)" << endl;
     cout << "Select: ";
     cin >> command;
     cin.clear();
-
-    //cin.ignore(INT_MAX, '\n');
-
     cout << endl;
 
     if(command == 1) // Remove 1 programmer
@@ -546,7 +569,12 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 }
 void ConsoleUI::forceLowerCase(string &command)             // Force input to lower case
 {
-    for(unsigned int i = 0; i < command.length(); i++) // to make all lowercase, taken from c++ site
+    /*
+     * A function that takes a string parameter as refrence and forces the string
+     * to be only lowercase. Code taken from c++ site
+     */
+
+    for(unsigned int i = 0; i < command.length(); i++)
     {
         command[i] = tolower(command[i]);
     }
