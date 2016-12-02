@@ -85,7 +85,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
         cout << string( 100, '\n' );
 
         cout << "Enter the programmer's/computer scientist's name: ";
-        cin.ignore();
+        //cin.ignore();
         getline(cin, name);
 
         cout << string( 100, '\n' );
@@ -100,7 +100,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             {
                 gender = genderInput[0];
                 cin.clear();
-                cin.ignore(INT_MAX, '\n');
+                //cin.ignore(INT_MAX, '\n');
                 break;
 
             }
@@ -129,7 +129,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
-                cin.ignore(INT_MAX, '\n');
+                //cin.ignore(INT_MAX, '\n');
 
             }while(inputCheck);
 
@@ -162,7 +162,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
-                cin.ignore(INT_MAX, '\n');
+                //cin.ignore(INT_MAX, '\n');
 
             }while(inputCheck);
 
@@ -254,7 +254,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
     cout << "Select: ";
     cin >> command;
     cin.clear();
-    cin.ignore(INT_MAX, '\n');
+    //cin.ignore(INT_MAX, '\n');
     cout << endl;
 
     forceLowerCase(command);
@@ -425,7 +425,7 @@ void ConsoleUI::userMenuSort()                              // Sort list
             cout << "Invalid input" << endl;
         }
         cin.clear();
-        cin.ignore(INT_MAX, '\n');
+        //cin.ignore(INT_MAX, '\n');
     }while(inputCheck);
 
 
@@ -506,7 +506,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
     cout << "Select: ";
     cin >> command;
     cin.clear();
-    cin.ignore(INT_MAX, '\n');
+    //cin.ignore(INT_MAX, '\n');
     cout << endl;
 
     if(command == 1) // Remove 1 programmer
@@ -515,7 +515,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         cout << string( 100, '\n' );
 
         cout << "Remove a programmer/computer scientist: ";
-        cin.ignore();
+        //cin.ignore();
         getline(cin, userInputName);
 
         _service.removeScientist(userInputName);
@@ -528,7 +528,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         cout << string( 100, '\n' );
 
         cout << "Confirm remove *ALL* programmers / computer scientists (y), any other letter to cancel" << endl;
-        cin.ignore();
+        //cin.ignore();
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
