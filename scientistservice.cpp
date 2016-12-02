@@ -32,6 +32,7 @@ ScientistService::ScientistService()
 
 vector<Scientist> ScientistService::getScientists()
 {   // Uploads the list of scientists from file.
+
     DataAccess data;
 
     _scientists = data.loadScientists();
@@ -41,7 +42,8 @@ vector<Scientist> ScientistService::getScientists()
 
 bool ScientistService::addScientist(string name, char gender, int birth, int death, int age)
 {   // Adds a scientist to the list and updates the file.
-    // returns true if adding succeded, false otherwise.
+    // Returns true if adding succeded, false otherwise.
+
     Scientist scientist(name, gender, birth, death, age);
     DataAccess data;
 
@@ -59,16 +61,20 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
 }
 
 bool ScientistService::removeScientist(string name)
-{   // removes a scientist with that name from the vector.
-    // returns true if removing succeded, false otherwise.
+{   // Removes a scientist with that name from the vector. Case insensitive.
+    // Returns true if removing succeded, false otherwise.
 
     DataAccess data;
+    vector<Scientist> scientistsToRemove = findScientistByName(name);
 
-    if (findScientistByName(name).size() > 0)
+    if (scientistsToRemove.size() > 0)
     {
-        Scientist toRemove = findScientistByName(name).at(0);
+        for (size_t i = 0; i < scientistsToRemove.size(); i++)
+        {
+            Scientist toRemove = scientistsToRemove.at(i);
 
-        _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
+            _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
+        }
 
         data.saveScientists(_scientists);
 
@@ -88,7 +94,8 @@ void ScientistService::removeAllScientists()
 }
 
 void ScientistService::scientistSort(int sortType)
-{    // Sort by parameter, 1 = name(A-Z), 2 = name(Z-A), 3 = gender, 4 = birth, 5 = death, 6 = age.
+{    // Sort by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender
+     //							4 = birth, 5 = death, 6 = age.
 
     DataAccess data;
 
@@ -158,6 +165,8 @@ vector<Scientist> ScientistService::findScientistByName(string name)
     string databaseName;
     int pos = -1;
 
+    cout << name << "   <-------- name in find function" << endl;
+
     for (size_t i = 0; i < _scientists.size(); i++)
     {
         databaseName = _scientists[i].getName();
@@ -179,6 +188,7 @@ vector<Scientist> ScientistService::findScientistByName(string name)
 
 vector<Scientist> ScientistService::findScientistByGender(char gender)
 {   // Returns all scientists of that gender.
+
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
@@ -194,6 +204,7 @@ vector<Scientist> ScientistService::findScientistByGender(char gender)
 
 vector<Scientist> ScientistService::findScientistByBirth(int birth)
 {   // Returns all scientists born that year.
+
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
@@ -208,7 +219,8 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)
 }
 
 vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)
-{   // Returns all scientists born in that range.
+{   // Returns all scientists born in that year range.
+
     vector<Scientist> scientist;
     int temp;
     if(birth1 > birth2)
@@ -232,6 +244,7 @@ vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int bi
 
 vector<Scientist> ScientistService::findScientistByDeath(int death)
 {   // Returns all scientists that died that year, or death = 0 if still alive.
+
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
@@ -247,6 +260,7 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)
 
 vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)
 {   // Returns all scientists who died in that range.
+
     vector<Scientist> scientist;
     int temp;
     if(death1 > death2)
@@ -270,6 +284,7 @@ vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int de
 
 vector<Scientist> ScientistService::findScientistByAge(int age)
 {   // Returns all scientists of that age.
+
     vector<Scientist> scientist;
 
     for (size_t i = 0; i < _scientists.size(); i++)
@@ -285,6 +300,7 @@ vector<Scientist> ScientistService::findScientistByAge(int age)
 
 vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)
 {   // Returns all scientists in that age range.
+
     vector<Scientist> scientist;
     int temp;
     if(age1 > age2)
