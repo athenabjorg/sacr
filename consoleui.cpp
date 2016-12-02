@@ -136,7 +136,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-            else if(birthYear <= 2016) // Just in case we discover a programmer of the universe
+            else if(birthYear <= whatYearIsIt()) // Just in case we discover a programmer of the universe
             {
                 break;
             }
@@ -639,4 +639,15 @@ void ConsoleUI::clearScreen()                               // Clears console sc
 string ConsoleUI::getInput()
 {
     return " ";
+}
+int ConsoleUI::whatYearIsIt() // Returns the current year.
+{
+    time_t     currentTime;
+    struct tm* timeinfo;
+
+    time(&currentTime);
+    timeinfo = localtime(&currentTime);
+
+    int currentYear = (timeinfo->tm_year + 1900);
+    return currentYear;
 }

@@ -2,6 +2,7 @@
 #define SCIENTIST_H
 
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -11,11 +12,12 @@ public:
     Scientist();
     Scientist(string name, char gender, int birth, int death, int age);
 
-    string getName()   const;
-    char   getGender() const;
-    int    getBirth()  const;
-    int    getDeath()  const;
-    int    getAge()    const;
+    string getName()      const;
+    char   getGender()    const;
+    int    getBirth()     const;
+    int    getDeath()     const;
+    int    getAge()       const;
+    int    whatYearIsIt() const;
 
     void setName   (string name);
     void setGender (char gender);

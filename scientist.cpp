@@ -36,7 +36,7 @@ int    Scientist::getAge() const
 {
     if(_death == 0)
     {
-        return (2016  - _birth);
+        return (whatYearIsIt()  - _birth);
     }
     else
     {
@@ -66,4 +66,15 @@ void   Scientist::setAge(int age)
 bool   operator == (const Scientist& a, const Scientist& b)
 {
     return a._name == b._name;
+}
+int Scientist::whatYearIsIt() const // Returns the current year.
+{
+    time_t     currentTime;
+    struct tm* timeinfo;
+
+    time(&currentTime);
+    timeinfo = localtime(&currentTime);
+
+    int currentYear = (timeinfo->tm_year + 1900);
+    return currentYear;
 }
