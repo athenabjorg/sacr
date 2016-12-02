@@ -520,8 +520,13 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
     int command;
 
-    cout << "To remove a single programmer / computer scientist (1), to remove *ALL* programmers / computer scientists (2)" << endl;
+    cout << string( 100, '\n' );
+    cout << "Select one of the following options: " << endl;
+    cout << "======================================================================" << endl;
+    cout << "(1)     -   Remove a single programmer / computer scientist " << endl;
+    cout << "(2)     -   Remove *ALL* programmers / computer scientists (2)" << endl;
     cout << "Select: ";
+
     cin >> command;
     cin.clear();
     cout << endl;
@@ -529,9 +534,8 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
     if(command == 1) // Remove 1 programmer
     {
         string userInputName;
-        cout << string( 100, '\n' );
 
-        cout << "Remove a programmer/computer scientist: ";
+        cout << "Enter programmer / computer scientist name to remove: ";
         cin.ignore();
         getline(cin, userInputName);
         _service.removeScientist(userInputName);
@@ -541,7 +545,6 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
     else if(command == 2) // Remove all programmers
     {
         string userInputName;
-        cout << string( 100, '\n' );
 
         cout << "Confirm remove *ALL* programmers / computer scientists (y), any other letter to cancel" << endl;
         cin.ignore();
