@@ -24,7 +24,7 @@ void ConsoleUI::run()                                       // The main function
 
     while(true)
     {
-        cout << string( 100, '\n' ); // Clears every run.
+        clearScreen(); // Clears every run.
 
         cout << "Select one of the following options: " << endl;
         cout << "======================================================================" << endl;
@@ -61,12 +61,12 @@ void ConsoleUI::run()                                       // The main function
         }
         else if(command == "quit")
         {
-            cout << string( 100, '\n' );
+            clearScreen();
             break;
         }
         else
         {
-            cout << string( 100, '\n' );
+            clearScreen();
             cout << "Invalid input" << endl;
             cout << endl;
         }
@@ -89,13 +89,13 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
     while(true)
     {
-        cout << string( 100, '\n' );
+        clearScreen();
 
         cout << "Enter the programmer's/computer scientist's name: ";
         cin.ignore();
         getline(cin, name);
 
-        cout << string( 100, '\n' );
+        clearScreen();
 
         while(true) // Check for gender
         {
@@ -111,12 +111,12 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             }
             else
             {
-                cout << string( 100, '\n' );
+                clearScreen();
                 cout << "Invalid input" << endl;
             }
         }
 
-        cout << string( 100, '\n' );
+        clearScreen();
 
         while(true) // Check year of birth
         {
@@ -128,7 +128,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                 inputCheck = cin.fail();
                 if(inputCheck)
                 {
-                    cout << string( 100, '\n' );
+                    clearScreen();
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
@@ -142,12 +142,12 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             }
             else
             {
-                cout << string( 100, '\n' );
+                clearScreen();
                 cout << "Invalid input - You can't be born in the future!" << endl;
             }
         }
 
-        cout << string( 100, '\n' );
+        clearScreen();
 
 
         while(true) // Check when year of death (if dead)
@@ -160,7 +160,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                 inputCheck = cin.fail();
                 if(inputCheck)
                 {
-                    cout << string( 100, '\n' );
+                    clearScreen();
                     cout << "Invalid input" << endl;
                 }
                 cin.clear();
@@ -177,13 +177,13 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             }
             else
             {
-                cout << string( 100, '\n' );
+                clearScreen();
                 cout << "Invalid input" << endl;
             }
         }
 
         // Check if input is correct
-        cout << string( 100, '\n' );
+        clearScreen();
         cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
 
         if(deathYear != 0)
@@ -208,7 +208,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
             else
             {
                 int userInput;
-                cout << string( 100, '\n' );
+                clearScreen();
 
                 cout << "This name is allready taken, replace existing name(1), start over(2)" << endl;
                 cout << "Select: ";
@@ -249,7 +249,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
 
     string command;
 
-    cout << string( 100, '\n' );
+    clearScreen();
     cout << "Select a search option: " << endl;
     cout << "===================================" << endl;
     cout << "Name    -   Search by name" << endl;
@@ -270,7 +270,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
     {
         string userInputName;
 
-        cout << string( 100, '\n' );
+        clearScreen();
         cout << "Search by name: ";
         getline(cin, userInputName);
 
@@ -281,7 +281,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
     else if(command == "gender") // Find scientist by gender
     {
         char userInputGender;
-        cout << string( 100, '\n' );
+        clearScreen();
 
         cout << "Search by gender: ";
         cin >> userInputGender;
@@ -324,7 +324,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
         }
         else
         {
-            cout << string( 100, '\n' );
+            clearScreen();
             cout << "Wrong Input" << endl;
         }
     }
@@ -364,7 +364,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
         }
         else
         {
-            cout << string( 100, '\n' );
+            clearScreen();
             cout << "Wrong Input" << endl;
         }
     }
@@ -404,7 +404,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
         }
         else
         {
-            cout << string( 100, '\n' );
+            clearScreen();
             cout << "Wrong Input" << endl;
         }
     }
@@ -423,7 +423,7 @@ void ConsoleUI::userMenuSort()                              // Sort list
 
     do
     {
-        cout << string( 100, '\n' );
+        clearScreen();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -462,7 +462,7 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
      * and make changes or add programmers / computer scientists.
      */
 
-    cout << string( 100, '\n' );
+    clearScreen();
     cout << left << setw(30) << "Scientist name:"
          << setw(10) << right << "gender:"
          << setw(10) << "born:"
@@ -528,7 +528,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
     int command;
 
-    cout << string( 100, '\n' );
+    clearScreen();
     cout << "Select one of the following options: " << endl;
     cout << "======================================================================" << endl;
     cout << "(1)     -   Remove a single programmer / computer scientist " << endl;
