@@ -12,7 +12,7 @@ ConsoleUI::ConsoleUI()                                      // Constructor funct
 
     _service.getScientists(); // Uploads the list of scientists from file.
 }
-void ConsoleUI::run()                                       // The main function
+void ConsoleUI::run()                                       // DIsplays the main menu
 {
     /*
      * This is the main function body, that is run at the start of the program every time
@@ -29,14 +29,14 @@ void ConsoleUI::run()                                       // The main function
     {
 
         cout << "Select one of the following options: " << endl;
-        cout << "======================================================================" << endl;
+        cout << "==========================================================================" << endl;
         cout << "Add     -   Add a scientist" << endl;
         cout << "Remove  -   Remove a scientist" << endl;
-        cout << "List    -   Show a list of all scientist's" << endl;
-        cout << "Search  -   Search the list of scientist's" << endl;
+        cout << "List    -   Show a list of all scientists" << endl;
+        cout << "Search  -   Search the list of scientists" << endl;
         cout << "Sort    -   Sort list by name, gender, year of birth, year of death or age" << endl;
         cout << "Quit    -   End program" << endl;
-        cout << "======================================================================" << endl;
+        cout << "==========================================================================" << endl;
 
         invalidInput = true;
 
@@ -226,7 +226,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
     askReturnToMenu();
 }
-void ConsoleUI::userMenuSearch()                            // Search list
+void ConsoleUI::userMenuSearch()                            // Searches the list
 {
     /*
      * A search list is printed out and user can choose from a few search commands
@@ -409,7 +409,7 @@ void ConsoleUI::userMenuSearch()                            // Search list
     }
     cout << endl;
 }
-void ConsoleUI::userMenuSort()                              // Sort list
+void ConsoleUI::userMenuSort()                              // Sorts list
 { 
     /*
      * A sorting function, can call function from scientistservice.cpp scientistSort().
@@ -454,7 +454,7 @@ void ConsoleUI::userMenuSort()                              // Sort list
      _service.scientistSort(userInput);
      userMenuPrint();
 }
-void ConsoleUI::userMenuPrint()                             // Print whole list
+void ConsoleUI::userMenuPrint()                             // Prints whole list
 {
     /*
      * Prints out a partial list of scientist, depending on how
@@ -491,7 +491,7 @@ void ConsoleUI::userMenuPrint()                             // Print whole list
 
     askReturnToMenu();
 }
-void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print list
+void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print list provided
 {
     /*
      * Prints out a partial list of scientist, depending on how
@@ -525,7 +525,7 @@ void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print lis
     cout << "Total: " << scientist.size() << " scientists" << endl;
 
 }
-int  ConsoleUI::userCheckInput() const                      // Check input from userMenuAdd
+int  ConsoleUI::userCheckInput() const                      // Checks input from userMenuAdd
 {
     /*
      * Check if all data is correct and return a int depending on what user selected.
@@ -641,7 +641,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
     }
 
 }
-void ConsoleUI::forceLowerCase(string &command)             // Force input to lower case
+void ConsoleUI::forceLowerCase(string &command)             // Forces input to lower case
 {
     /*
      * A function that takes a string parameter as refrence and forces the string
@@ -653,7 +653,7 @@ void ConsoleUI::forceLowerCase(string &command)             // Force input to lo
         command[i] = tolower(command[i]);
     }
 }
-void ConsoleUI::askReturnToMenu() const                     // Gives user option to menu
+void ConsoleUI::askReturnToMenu() const                     // Asks if user wants to move back to the menu
 {
     cout << endl;
     cout << "To return to the menu press m" << endl;
@@ -667,10 +667,10 @@ void ConsoleUI::askReturnToMenu() const                     // Gives user option
 }
 void ConsoleUI::clearScreen() const                         // Clears console screen
 {
-    const int spaceLength = 10;
+    const int spaceLength = 50;
     cout << string( spaceLength, '\n' );
 }
-int  ConsoleUI::whatYearIsIt() const // Returns the current year.
+int  ConsoleUI::whatYearIsIt() const                        // Returns the current year.
 {
     time_t     currentTime;
     struct tm* timeinfo;

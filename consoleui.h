@@ -27,7 +27,7 @@ private:
     void forceLowerCase(string &command);
     void askReturnToMenu() const;
     void clearScreen() const;
-    int whatYearIsIt() const;
+    int  whatYearIsIt() const;
 
 private:
     ScientistService _service;

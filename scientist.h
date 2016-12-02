@@ -19,12 +19,6 @@ public:
     int    getAge()       const;
     int    whatYearIsIt() const;
 
-    void setName   (string name);
-    void setGender (char gender);
-    void setBirth  (int birth);
-    void setDeath  (int death);
-    void setAge    (int age);
-
     friend bool operator == (const Scientist& a, const Scientist& b);
 
 private:

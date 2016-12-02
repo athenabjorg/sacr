@@ -39,7 +39,7 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
      */
 
     vector<Scientist> scientists;
-    Scientist scientist;
+
 
     string line, name, gender, birthYear, deathYear, age;
     const string delimiter = ",";
@@ -77,11 +77,8 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
             intDeathYear = atoi(deathYear.c_str());
             intAge = atoi(age.c_str());
 
-            scientist.setName(name);
-            scientist.setGender(charGender);
-            scientist.setBirth(intBirthYear);
-            scientist.setDeath(intDeathYear);
-            scientist.setAge(intAge);
+
+            Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
 
             scientists.push_back(scientist);
         }

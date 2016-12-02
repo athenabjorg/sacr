@@ -91,9 +91,6 @@ void ScientistService::removeAllScientists()
     data.saveScientists(_scientists);
 }
 
-// TODO ------------------  void ScientistService::replaceScientist()
-
-
 void ScientistService::scientistSort(int sortType)
 {    // Sort by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender
      //							4 = birth, 5 = death, 6 = age.
@@ -252,7 +249,7 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)             
     return scientist;
 }
 vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)   // Search vector by range of death
-{   // Returns all scientists who died in that range.
+{   // Returns all scientists who died in that year range.
 
     vector<Scientist> scientist;
     int temp;

@@ -1,7 +1,8 @@
 #include "scientist.h"
 
 Scientist::Scientist()
-{
+{   // Adds in the scientist parameters as empty
+
     _name = " ";
     _gender = ' ';
     _birth = 0;
@@ -9,7 +10,8 @@ Scientist::Scientist()
     _age = 0;
 }
 Scientist::Scientist(string name, char gender, int birth, int death, int age)
-{
+{   // Adds in the scientist parameters
+
     _name = name;
     _gender = gender;
     _birth = birth;
@@ -43,30 +45,6 @@ int    Scientist::getAge() const
         return (_death - _birth);
     }
 }
-void   Scientist::setName(string name)
-{
-    _name = name;
-}
-void   Scientist::setGender(char gender)
-{
-    _gender = gender;
-}
-void   Scientist::setBirth(int birth)
-{
-    _birth = birth;
-}
-void   Scientist::setDeath(int death)
-{
-    _death = death;
-}
-void   Scientist::setAge(int age)
-{
-    _age = age;
-}
-bool   operator == (const Scientist& a, const Scientist& b)
-{
-    return a._name == b._name;
-}
 int Scientist::whatYearIsIt() const // Returns the current year.
 {
     time_t     currentTime;
@@ -77,4 +55,8 @@ int Scientist::whatYearIsIt() const // Returns the current year.
 
     int currentYear = (timeinfo->tm_year + 1900);
     return currentYear;
+}
+bool   operator == (const Scientist& a, const Scientist& b)
+{
+    return a._name == b._name;
 }
