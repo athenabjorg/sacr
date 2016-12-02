@@ -279,7 +279,10 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
         char userInputGender;
         clearScreen();
 
-        cout << "Search by gender: ";
+        cout << "Search by gender" << endl;
+        cout << endl << "M - Male" << endl;
+        cout << "F - Female" << endl;
+        cout << endl << "Gender: ";
         cin >> userInputGender;
 
         vector<Scientist> scientist = _service.findScientistByGender(userInputGender);
@@ -380,7 +383,7 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
 
         clearScreen();
         cout << "Search by:" << endl;
-        cout << "(1) - Year scientist died" << endl;
+        cout << endl << "(1) - Year scientist died" << endl;
         cout << "(2) - Year range of when scientist died" << endl << endl;
         cout << "Select: ";
 
