@@ -22,9 +22,11 @@ void ConsoleUI::run()                                       // The main function
 
     string command;
 
+
+
     while(true)
     {
-        clearScreen(); // Clears every run.
+        clearScreen();
 
         cout << "Select one of the following options: " << endl;
         cout << "======================================================================" << endl;
@@ -34,6 +36,7 @@ void ConsoleUI::run()                                       // The main function
         cout << "Search  -   search the list of programmer's/computer scientist's" << endl;
         cout << "Sort    -   sort list by name, gender, age or year of death" << endl;
         cout << "Quit    -   end program" << endl;
+        cout << "======================================================================" << endl;
 
         cout << "Select: ";
         cin >> command;
@@ -223,7 +226,6 @@ void ConsoleUI::userMenuList()                              // List of commands
 
     vector<Scientist> scientist = _service.getScientists();
     userMenuPrint(scientist);
-    askReturnToMenu();
 
 }
 void ConsoleUI::userMenuSearch()                            // Search list
@@ -471,6 +473,9 @@ void ConsoleUI::userMenuPrint(vector<Scientist>scientist)   // Print list
              }
              cout << setw(10) << scientist[i].getAge() << endl;
     }
+    cout << "======================================================================" << endl;
+
+    askReturnToMenu();
 }
 int  ConsoleUI::userCheckInput()                            // Check input from userMenuAdd
 {
@@ -527,15 +532,13 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
     if(command == 1) // Remove programmer/s by input.
     {
-        vector<Scientist> scientist = _service.getScientists();
-        userMenuPrint(scientist);
-        cout << endl;
+        userMenuList();
 
         string userInputName, confirm;
         vector<Scientist> scientistsToRemove;
 
 
-        cout << "Remove programmers/computer scientists with names containing: ";
+        cout << endl << "Remove programmers/computer scientists with names containing: ";
 
         cin.ignore();
         getline(cin, userInputName);
@@ -600,7 +603,7 @@ void ConsoleUI::forceLowerCase(string &command)             // Force input to lo
 
 void ConsoleUI::askReturnToMenu()
 {
-    cout << "======================================================================" << endl;
+    cout << endl;
     cout << "To return to menu press m" << endl;
     cout << "Select: ";
 
