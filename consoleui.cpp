@@ -435,9 +435,9 @@ void ConsoleUI::userMenuSort()                              // Sorts list
     bool inputCheck = true;
     int userInput;
 
-    do
-    {
-        clearScreen();
+    clearScreen();
+
+
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -447,22 +447,24 @@ void ConsoleUI::userMenuSort()                              // Sorts list
         cout << "(4)     -   Sort by year of birth (First to last)" << endl;
         cout << "(5)     -   Sort by year of death (Alive scientists first. Then first to last)" << endl;
         cout << "(6)     -   Sort by age (Youngest to oldest)" << endl;
+
+    do
+    {
         cout << endl << "Select: ";
         cin >> userInput;
 
-        if(userInput > 0 && userInput < 7) // check if input is int and if it ranges from 1 to 6
+        if(userInput < 0 || userInput > 7) // check if input is int and if it ranges from 1 to 6
         {
-            inputCheck = false;
-        }
-        else if(cin.fail())
-        {
+            inputCheck = true;
             cout << "Invalid input" << endl;
         }
         else
         {
-            cout << "Invalid input" << endl;
+            inputCheck = false;
         }
         cin.clear();
+
+        clearScreen();
 
     }while(inputCheck);
 
