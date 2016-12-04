@@ -650,7 +650,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
         clearScreen();
 
         cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
-        cin.ignore();
+
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
