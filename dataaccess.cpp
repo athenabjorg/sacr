@@ -1,5 +1,7 @@
 #include "dataaccess.h"
 #include "scientist.h"
+#include <QtSql>
+#include <iostream> // TEMP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 using namespace std;
 
@@ -13,6 +15,13 @@ void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From ve
      * This function uses ofstream to save the vector of scientists to the scientists.txt file.
      */
 
+
+
+
+
+
+
+    /*
     ofstream file;
     file.open("scientists.txt");
 
@@ -28,7 +37,7 @@ void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From ve
         }
         file.close( );
     }
-
+    */
 }
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
@@ -36,6 +45,44 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
      * This function uses ifstream to read from scientists.txt file and read them into a vector.
      */
 
+    vector<Scientist> scientists;
+    string line, name, gender, birthYear, deathYear, age;
+    char charGender;
+    int intBirthYear, intDeathYear, intAge;
+
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("test.sqlite");  // witch database to select ( aka what file )
+
+    db.open();      // open database
+
+
+    QSqlQuery query;
+        query.exec("SELECT * FROM Scientists"); // open table scientists
+
+
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string stringGender = query.value(2).toString().toStdString();
+        int intBirthYear = query.value(3).toInt();
+        int intDeathYear = query.value(4).toInt();
+        char charGender = stringGender[0];
+
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        scientists.push_back(scientist);
+    }
+
+
+
+    db.close();
+    return scientists;
+
+
+
+
+    /*
     vector<Scientist> scientists;
 
 
@@ -84,5 +131,9 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     file.close( );
     }
 
+
+
     return scientists;
+
+    */
 }

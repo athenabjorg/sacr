@@ -1,6 +1,9 @@
 #include "consoleui.h"
 #include "scientist.h"
 
+#include <QtSql>
+
+
 
 using namespace std;
 
@@ -24,6 +27,7 @@ void ConsoleUI::run()                                       // DIsplays the main
     bool invalidInput = true;
 
     clearScreen();
+
 
     while(true)
     {
