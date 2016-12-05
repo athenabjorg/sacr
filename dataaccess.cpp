@@ -52,7 +52,7 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
 
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("test.sqlite");  // witch database to select ( aka what file )
+    db.setDatabaseName("DataBase.sqlite");  // witch database to select ( aka what file )
 
     db.open();      // open database
 
