@@ -190,6 +190,8 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)             
 
     vector<Scientist> scientists;
 
+    scientists = _data.loadScientistByDeath(death);
+
     return scientists;
 }
 vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)   // Search vector by range of death
@@ -197,6 +199,7 @@ vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int de
 
     vector<Scientist> scientists;
 
+    scientists = _data.loadScientistByDeathRange(death1, death2);
 
     return scientists;
 }

@@ -200,7 +200,7 @@ vector<Scientist> DataAccess::loadScientistByDeath(int inputDeath)
     string line, name, gender, birthYear, deathYear, age;
     int intBirthYear, intDeathYear, intAge;
 
-    line = "SELECT * FROM Scientists  Where Died LIKE " + inputDeath;
+    line = "SELECT * FROM Scientists  Where Died LIKE " + to_string(inputDeath);
 
     QString input = QString::fromStdString(line);
 
