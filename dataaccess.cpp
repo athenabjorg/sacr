@@ -38,6 +38,20 @@ void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite data
 
 }
 
+void DataAccess::removeScientist(string inputName)
+{
+    string line;
+
+    line = "DELETE * FROM Scientists  Where Name LIKE \"%" + inputName + "%\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+    db.close();
+}
+
 void DataAccess::removeAllScientists()
 {
     db.open();
