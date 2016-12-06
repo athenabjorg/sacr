@@ -22,6 +22,7 @@ public:
 
     vector<Scientist> loadScientists();
         // Loads scientists from a file, into a vector.
+    void removeAllScientists();
 
     vector<Scientist> loadScientistByName(string name);
     vector<Scientist> loadScientistByGender(char inputGender);

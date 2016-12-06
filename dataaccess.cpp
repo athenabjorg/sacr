@@ -39,6 +39,15 @@ void DataAccess::saveScientists(Scientist newScientist)  // Saving to database S
 
 
 }
+
+void DataAccess::removeAllScientists()
+{
+    db.open();
+    QSqlQuery query;
+    query.exec("DELETE FROM Scientists"); // open table scientists
+    db.close();
+}
+
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
     /*
