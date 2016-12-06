@@ -26,6 +26,7 @@ public:
 private:
 
         QSqlDatabase db;
+
 };
 
 #endif // DATAACCESS_H

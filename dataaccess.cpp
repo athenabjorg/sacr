@@ -11,30 +11,30 @@ DataAccess::DataAccess()
 
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("test.sqlite");  // witch database to select ( aka what file )
-    db.open();
 
 }
 void DataAccess::saveScientists(Scientist newScientist)  // Saving to database SQLite
 {
-    string sName, line, name, gender, birthYear, deathYear, age;
+    string sName, line, name, gender, strBirthYear, strDeathYear;
+    int birthYear, deathYear;
+
 
     name = newScientist.getName();
     gender = newScientist.getGender();
     birthYear = newScientist.getBirth();
     deathYear = newScientist.getDeath();
 
+    strBirthYear = to_string(birthYear);
+    strDeathYear = to_string(deathYear);
+
     sName = "INSERT INTO Scientists(name,gender,birth,death) "
-            "VALUES(\"" + name + "\",\"" + gender + "\"," + birthYear + "," + deathYear + ")";
+            "VALUES(\"" + name + "\",\"" + gender + "\"," + strBirthYear + "," + strDeathYear + ")";
 
 
     QString input = QString::fromStdString(sName);
-
-    //db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setDatabaseName("test.sqlite");  // witch database to select ( aka what file )
-    //db.open();      // open database
-
+    db.open();
     QSqlQuery query;
-    query.exec(input); // open table scientists
+    query.exec(input);
     db.close();
 
 
@@ -42,7 +42,7 @@ void DataAccess::saveScientists(Scientist newScientist)  // Saving to database S
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
     /*
-     * This function uses SQLite Manager database and adds scientits table into a vector.
+     * This function uses SQLite Manager database and adds scientits table   into a vector.
      */
 
     vector<Scientist> scientists;
@@ -50,12 +50,7 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     //char charGender;
     int intBirthYear, intDeathYear, intAge;
 
-
-    //db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setDatabaseName("test.sqlite");  // witch database to select ( aka what file )
-
-
-    //db.open();      // open database
+    db.open();
     QSqlQuery query;
     query.exec("SELECT * FROM Scientists"); // open table scientists
 
@@ -71,7 +66,7 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
         scientists.push_back(scientist);
     }
 
-    //db.close();
+    db.close();
     return scientists;
 }
 
