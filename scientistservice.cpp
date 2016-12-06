@@ -155,7 +155,7 @@ vector<Scientist> ScientistService::findScientistByName(string name)            
 
     vector<Scientist> scientists;
 
-    scientist = data.loadScientistByName();
+    scientists = _data.loadScientistByName(name);
 
     return scientists;
 }
