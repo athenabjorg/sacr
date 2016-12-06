@@ -17,8 +17,8 @@ public:
 
     DataAccess();
 
-    void saveScientists(Scientist newScientist);
-        // Saves the vector of scientists to a file.
+    void saveScientist(Scientist newScientist);
+        // Saves a scientist to the database.
 
     vector<Scientist> loadScientists();
         // Loads scientists from a file, into a vector.

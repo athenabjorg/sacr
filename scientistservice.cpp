@@ -27,34 +27,25 @@ bool sortByAge     (const Scientist &a, const Scientist &b) { return a.getAge() 
 
 ScientistService::ScientistService()
 {
-
+     _scientists = _data.loadScientists();
 }
 
 vector<Scientist> ScientistService::getScientists() //CHECK
-{   // Uploads the list of scientists from file.
-
-    _scientists = _data.loadScientists();
+{   // Returns the list of scientists from file.
 
     return _scientists;
 }
 
-bool ScientistService::addScientist(string name, char gender, int birth, int death, int age) // CHECK
+bool ScientistService::addScientist(string name, char gender, int birth, int death) // CHECK
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
 
-    Scientist scientist(name, gender, birth, death, age);
+    Scientist scientist(name, gender, birth, death);
 
-    if (findScientistByName(name).size() > 0)
-    {
-        return false;
-    }
+     _scientists.push_back(scientist);
+     _data.saveScientist(scientist);
+     return true;
 
-    else
-    {
-        _scientists.push_back(scientist);
-        _data.saveScientists(scientist);
-        return true;
-    }
 }
 bool ScientistService::removeScientist(string name) // TODO
 {   // Removes a scientist with that name from the vector. Case insensitive.
@@ -78,7 +69,7 @@ bool ScientistService::removeScientist(string name) // TODO
 
     return false;
 }
-void ScientistService::removeAllScientists() // TODO
+void ScientistService::removeAllScientists()
 {   // Removes ALL scientists from the list. Be careful with this.
 
     _scientists.clear();

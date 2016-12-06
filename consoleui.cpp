@@ -103,7 +103,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
     string name, genderInput;
     char gender;
-    int birthYear = 0, deathYear = 0, age = 0, checkInput;
+    int birthYear = 0, deathYear = 0, checkInput;
 
     while(true)
     {
@@ -205,7 +205,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
 
         if (checkInput == 0)
         {
-            if(_service.addScientist(name, gender, birthYear, deathYear, age))
+            if(_service.addScientist(name, gender, birthYear, deathYear))
             {
                 cout << endl << name << " successfully added to the list" << endl;
 
@@ -223,7 +223,7 @@ void ConsoleUI::userMenuAdd()                               // Adds a new progra
                 if(userInput == 1)
                 {
                     _service.removeScientist(name);
-                    _service.addScientist(name, gender, birthYear, deathYear, age);
+                    _service.addScientist(name, gender, birthYear, deathYear);
                 }
 
             }

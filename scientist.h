@@ -10,7 +10,7 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string name, char gender, int birth, int death, int age);
+    Scientist(string name, char gender, int birth, int death);
 
     string getName()      const;
     char   getGender()    const;

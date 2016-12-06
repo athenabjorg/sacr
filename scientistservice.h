@@ -18,7 +18,7 @@ public:
     vector<Scientist> getScientists();
         // Uploads the list of scientists from file.
 
-    bool addScientist(string name, char gender, int birth, int death, int age);
+    bool addScientist(string name, char gender, int birth, int death);
         // Adds a scientist to the list and updates the file.
         // Returns true if adding succeded, false otherwise.
 

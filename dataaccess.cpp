@@ -13,9 +13,9 @@ DataAccess::DataAccess()
     db.setDatabaseName("DataBase.sqlite");  // witch database to select ( aka what file )
 
 }
-void DataAccess::saveScientists(Scientist newScientist)  // Saving to database SQLite
+void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite database
 {
-    string sName, line, name, gender, strBirthYear, strDeathYear;
+    string line, name, gender;
     int birthYear, deathYear;
 
 
@@ -24,14 +24,12 @@ void DataAccess::saveScientists(Scientist newScientist)  // Saving to database S
     birthYear = newScientist.getBirth();
     deathYear = newScientist.getDeath();
 
-    strBirthYear = to_string(birthYear);
-    strDeathYear = to_string(deathYear);
 
-    sName = "INSERT INTO Scientists(name,gender,birth,death) "
-            "VALUES(\"" + name + "\",\"" + gender + "\"," + strBirthYear + "," + strDeathYear + ")";
+    line = "INSERT INTO Scientists(name,gender,born,died) "
+            "VALUES(\"" + name + "\",\"" + gender + "\"," + to_string(birthYear) + "," + to_string(deathYear) + ")";
 
+    QString input = QString::fromStdString(line);
 
-    QString input = QString::fromStdString(sName);
     db.open();
     QSqlQuery query;
     query.exec(input);
@@ -55,9 +53,10 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
      */
 
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age;
+    string line, name, gender, birthYear, deathYear;
     //char charGender;
-    int intBirthYear, intDeathYear, intAge;
+    int intBirthYear, intDeathYear;
+    char charGender;
 
     db.open();
     QSqlQuery query;
@@ -67,11 +66,11 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     {
         string name = query.value(1).toString().toStdString();
         string stringGender = query.value(2).toString().toStdString();
-        int intBirthYear = query.value(3).toInt();
-        int intDeathYear = query.value(4).toInt();
-        char charGender = stringGender[0];
+        intBirthYear = query.value(3).toInt();
+        intDeathYear = query.value(4).toInt();
+        charGender = stringGender[0];
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
         scientists.push_back(scientist);
     }
 
@@ -81,10 +80,10 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
 vector<Scientist> DataAccess::loadScientistByName(string inputName)
 {
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age;
+    string line, name, gender, birthYear, deathYear;
     //char charGender;
-    int intBirthYear, intDeathYear, intAge;
-
+    int intBirthYear, intDeathYear;
+    char charGender;
 
     line = "SELECT * FROM Scientists  Where Name LIKE \"%" + inputName + "%\"";
 
@@ -99,11 +98,11 @@ vector<Scientist> DataAccess::loadScientistByName(string inputName)
     {
         string name = query.value(1).toString().toStdString();
         string stringGender = query.value(2).toString().toStdString();
-        int intBirthYear = query.value(3).toInt();
-        int intDeathYear = query.value(4).toInt();
-        char charGender = stringGender[0];
+        intBirthYear = query.value(3).toInt();
+        intDeathYear = query.value(4).toInt();
+        charGender = stringGender[0];
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
         scientists.push_back(scientist);
     }
 
@@ -113,11 +112,12 @@ vector<Scientist> DataAccess::loadScientistByName(string inputName)
 vector<Scientist> DataAccess::loadScientistByGender(char inputGender)
 {
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age, strGender = "";
-    int intBirthYear, intDeathYear, intAge;
+    string line, name, gender, birthYear, deathYear, strGender = "";
+    int intBirthYear, intDeathYear;
+    char charGender;
+
+
     strGender = inputGender;
-
-
     line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + strGender + "%\"";
 
 
@@ -132,11 +132,11 @@ vector<Scientist> DataAccess::loadScientistByGender(char inputGender)
     {
         string name = query.value(1).toString().toStdString();
         string stringGender = query.value(2).toString().toStdString();
-        int intBirthYear = query.value(3).toInt();
-        int intDeathYear = query.value(4).toInt();
-        char charGender = stringGender[0];
+        intBirthYear = query.value(3).toInt();
+        intDeathYear = query.value(4).toInt();
+        charGender = stringGender[0];
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
         scientists.push_back(scientist);
     }
 
@@ -146,8 +146,9 @@ vector<Scientist> DataAccess::loadScientistByGender(char inputGender)
 vector<Scientist> DataAccess::loadScientistByBirth(int inputBirth)
 {
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age;
-    int intBirthYear, intDeathYear, intAge;
+    string line, name, gender, birthYear, deathYear;
+    int intBirthYear, intDeathYear;
+    char charGender;
 
     line = "SELECT * FROM Scientists  Where Birth LIKE " + inputBirth;
 
@@ -162,11 +163,11 @@ vector<Scientist> DataAccess::loadScientistByBirth(int inputBirth)
     {
         string name = query.value(1).toString().toStdString();
         string stringGender = query.value(2).toString().toStdString();
-        int intBirthYear = query.value(3).toInt();
-        int intDeathYear = query.value(4).toInt();
-        char charGender = stringGender[0];
+        intBirthYear = query.value(3).toInt();
+        intDeathYear = query.value(4).toInt();
+        charGender = stringGender[0];
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
         scientists.push_back(scientist);
     }
 
@@ -176,8 +177,9 @@ vector<Scientist> DataAccess::loadScientistByBirth(int inputBirth)
 vector<Scientist> DataAccess::loadScientistByBirthRange(int inputBirth1, int inputBirth2)
 {
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age;
-    int intBirthYear, intDeathYear, intAge;
+    string line, name, gender, birthYear, deathYear;
+    int intBirthYear, intDeathYear;
+    char charGender;
 
     line = "SELECT * FROM scientists WHERE born BETWEEN " + to_string(inputBirth1) + " AND " + to_string(inputBirth2);
 
@@ -192,11 +194,11 @@ vector<Scientist> DataAccess::loadScientistByBirthRange(int inputBirth1, int inp
     {
         string name = query.value(1).toString().toStdString();
         string stringGender = query.value(2).toString().toStdString();
-        int intBirthYear = query.value(3).toInt();
-        int intDeathYear = query.value(4).toInt();
-        char charGender = stringGender[0];
+        intBirthYear = query.value(3).toInt();
+        intDeathYear = query.value(4).toInt();
+        charGender = stringGender[0];
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
         scientists.push_back(scientist);
     }
 
@@ -206,8 +208,9 @@ vector<Scientist> DataAccess::loadScientistByBirthRange(int inputBirth1, int inp
 vector<Scientist> DataAccess::loadScientistByDeath(int inputDeath)
 {
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age;
-    int intBirthYear, intDeathYear, intAge;
+    string line, name, gender, birthYear, deathYear;
+    int intBirthYear, intDeathYear;
+    char charGender;
 
     line = "SELECT * FROM Scientists  Where Died LIKE " + to_string(inputDeath);
 
@@ -222,11 +225,11 @@ vector<Scientist> DataAccess::loadScientistByDeath(int inputDeath)
     {
         string name = query.value(1).toString().toStdString();
         string stringGender = query.value(2).toString().toStdString();
-        int intBirthYear = query.value(3).toInt();
-        int intDeathYear = query.value(4).toInt();
-        char charGender = stringGender[0];
+        intBirthYear = query.value(3).toInt();
+        intDeathYear = query.value(4).toInt();
+        charGender = stringGender[0];
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
         scientists.push_back(scientist);
     }
 
@@ -236,8 +239,9 @@ vector<Scientist> DataAccess::loadScientistByDeath(int inputDeath)
 vector<Scientist> DataAccess::loadScientistByDeathRange(int inputDeath1, int inputDeath2)
 {
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age;
-    int intBirthYear, intDeathYear, intAge;
+    string line, name, gender, birthYear, deathYear;
+    int intBirthYear, intDeathYear;
+    char charGender;
 
     line = "SELECT * FROM scientists WHERE Died BETWEEN " + to_string(inputDeath1) + " AND " + to_string(inputDeath2);
 
@@ -252,11 +256,11 @@ vector<Scientist> DataAccess::loadScientistByDeathRange(int inputDeath1, int inp
     {
         string name = query.value(1).toString().toStdString();
         string stringGender = query.value(2).toString().toStdString();
-        int intBirthYear = query.value(3).toInt();
-        int intDeathYear = query.value(4).toInt();
-        char charGender = stringGender[0];
+        intBirthYear = query.value(3).toInt();
+        intDeathYear = query.value(4).toInt();
+        charGender = stringGender[0];
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
         scientists.push_back(scientist);
     }
 

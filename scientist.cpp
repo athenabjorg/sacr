@@ -9,14 +9,22 @@ Scientist::Scientist()
     _death = 0;
     _age = 0;
 }
-Scientist::Scientist(string name, char gender, int birth, int death, int age)
+Scientist::Scientist(string name, char gender, int birth, int death)
 {   // Adds in the scientist parameters
 
     _name = name;
     _gender = gender;
     _birth = birth;
     _death = death;
-    _age = age;
+
+    if(_death == NULL )
+    {
+        _age = whatYearIsIt() - _birth;
+    }
+    else
+    {
+        _age = _death - _birth;
+    }
 }
 string Scientist::getName() const
 {
