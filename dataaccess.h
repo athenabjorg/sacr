@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <QtSql>
 
 #include "scientist.h"
 
@@ -24,6 +25,7 @@ public:
 
 private:
 
+        QSqlDatabase db;
 };
 
 #endif // DATAACCESS_H
