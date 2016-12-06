@@ -30,7 +30,7 @@ ScientistService::ScientistService()
 
 }
 
-vector<Scientist> ScientistService::getScientists()
+vector<Scientist> ScientistService::getScientists() //CHECK
 {   // Uploads the list of scientists from file.
 
     _scientists = _data.loadScientists();
@@ -38,7 +38,7 @@ vector<Scientist> ScientistService::getScientists()
     return _scientists;
 }
 
-bool ScientistService::addScientist(string name, char gender, int birth, int death, int age)
+bool ScientistService::addScientist(string name, char gender, int birth, int death, int age) // CHECK
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
 
@@ -56,7 +56,7 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
         return true;
     }
 }
-bool ScientistService::removeScientist(string name)
+bool ScientistService::removeScientist(string name) // TODO
 {   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
 
@@ -78,7 +78,7 @@ bool ScientistService::removeScientist(string name)
 
     return false;
 }
-void ScientistService::removeAllScientists()
+void ScientistService::removeAllScientists() // TODO
 {   // Removes ALL scientists from the list. Be careful with this.
 
     _scientists.clear();
@@ -86,7 +86,7 @@ void ScientistService::removeAllScientists()
     // TODO KOMA ÞESSU TIL SKILA TIL DATABASE
 }
 
-void ScientistService::scientistSort(int sortType)
+void ScientistService::scientistSort(int sortType) // TODO SOON
 {    // Sort by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender
      //							4 = birth, 5 = death, 6 = age.
 
@@ -118,7 +118,7 @@ void ScientistService::scientistSort(int sortType)
 
     // TODO PRENTA ÚT SORTIÐ
 }
-void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& scientists)
+void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& scientists) // TODO, DELETE?
 {   // Sort list by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,
     //                              4 = birth, 5 = death, 6 = age.
     // Sorts the list provided by the find function without saving to file,
@@ -153,27 +153,11 @@ void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& sci
 vector<Scientist> ScientistService::findScientistByName(string name)                    // Search vector by name
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
 
-    vector<Scientist> scientist;
-    string databaseName;
-    int pos = -1;
+    vector<Scientist> scientists;
 
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        databaseName = _scientists[i].getName();
-        transform(databaseName.begin(), databaseName.end(), databaseName.begin(), ::tolower);
-        transform(name.begin(), name.end(), name.begin(), ::tolower);
+    scientist = data.loadScientistByName();
 
-        pos = databaseName.find(name);
-
-        if (pos > -1)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
-
-    scientistSortForFind(1, scientist);
-
-    return scientist;
+    return scientists;
 }
 vector<Scientist> ScientistService::findScientistByGender(char gender)                  // Search vector by gender
 {   // Returns all scientists of that gender.
