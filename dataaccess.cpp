@@ -14,37 +14,25 @@ DataAccess::DataAccess()
     db.open();
 
 }
-//void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From vector to text file
 void DataAccess::saveScientists(Scientist newScientist)  // Saving to database SQLite
 {
-    /*
-     * This function uses ofstream to save the vector of scientists to the scientists.txt file.
-     */
     string sName, line, name, gender, birthYear, deathYear, age;
-
 
     name = newScientist.getName();
     gender = newScientist.getGender();
     birthYear = newScientist.getBirth();
     deathYear = newScientist.getDeath();
 
-
-
     sName = "INSERT INTO Scientists(name,gender,birth,death) "
             "VALUES(\"" + name + "\",\"" + gender + "\"," + birthYear + "," + deathYear + ")";
 
 
-
-    cout << sName;
-
     QString input = QString::fromStdString(sName);
-
-
 
     //db = QSqlDatabase::addDatabase("QSQLITE");
     //db.setDatabaseName("test.sqlite");  // witch database to select ( aka what file )
-
     //db.open();      // open database
+
     QSqlQuery query;
     query.exec(input); // open table scientists
     db.close();
@@ -54,7 +42,7 @@ void DataAccess::saveScientists(Scientist newScientist)  // Saving to database S
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
     /*
-     * This function uses ifstream to read from scientists.txt file and read them into a vector.
+     * This function uses SQLite Manager database and adds scientits table into a vector.
      */
 
     vector<Scientist> scientists;
