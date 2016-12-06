@@ -71,7 +71,7 @@ bool ScientistService::removeScientist(string name)
             _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
         }
 
-        _data.saveScientists(_scientists);
+        // TODO KOMA ÞESSU TIL SKILA TIL DATABASE
 
         return true;
     }
@@ -83,7 +83,7 @@ void ScientistService::removeAllScientists()
 
     _scientists.clear();
 
-    _data.saveScientists(_scientists);
+    // TODO KOMA ÞESSU TIL SKILA TIL DATABASE
 }
 
 void ScientistService::scientistSort(int sortType)
@@ -116,7 +116,7 @@ void ScientistService::scientistSort(int sortType)
         sort(_scientists.begin(), _scientists.end(), sortByAge);
     }
 
-    _data.saveScientists(_scientists);
+    // TODO PRENTA ÚT SORTIÐ
 }
 void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& scientists)
 {   // Sort list by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,
