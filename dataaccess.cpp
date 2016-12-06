@@ -230,7 +230,7 @@ vector<Scientist> DataAccess::loadScientistByDeathRange(int inputDeath1, int inp
     string line, name, gender, birthYear, deathYear, age;
     int intBirthYear, intDeathYear, intAge;
 
-    line = "SELECT * FROM scientists WHERE born BETWEEN " + to_string(inputDeath1) + " AND " + to_string(inputDeath2);
+    line = "SELECT * FROM scientists WHERE Died BETWEEN " + to_string(inputDeath1) + " AND " + to_string(inputDeath2);
 
     QString input = QString::fromStdString(line);
 
