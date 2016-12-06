@@ -21,7 +21,7 @@ void DataAccess::saveScientists(const Scientist newScientist)  // Saving to data
      * This function uses ofstream to save the vector of scientists to the scientists.txt file.
      */
     string sName, line, name, gender, birthYear, deathYear, age;
-    newScientist
+
 
     name = newScientist.getName();
     gender = newScientist.getGender();
