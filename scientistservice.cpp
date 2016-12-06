@@ -83,7 +83,7 @@ void ScientistService::removeAllScientists() // TODO
 
     _scientists.clear();
 
-    // TODO KOMA ÞESSU TIL SKILA TIL DATABASE
+    _data.removeAllScientists();
 }
 
 void ScientistService::scientistSort(int sortType) // TODO SOON
