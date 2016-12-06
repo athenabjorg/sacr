@@ -24,7 +24,7 @@ public:
         // Loads scientists from a file, into a vector.
 
     vector<Scientist> loadScientistByName(string name);
-    vector<Scientist> loadScientistByGender(string inputGender);
+    vector<Scientist> loadScientistByGender(char inputGender);
 
 private:
 

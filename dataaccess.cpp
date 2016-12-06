@@ -101,15 +101,16 @@ vector<Scientist> DataAccess::loadScientistByName(string inputName)
     db.close();
     return scientists;
 }
-vector<Scientist> DataAccess::loadScientistByGender(string inputGender)
+vector<Scientist> DataAccess::loadScientistByGender(char inputGender)
 {
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, age;
+    string line, name, gender, birthYear, deathYear, age, strGender = "";
     //char charGender;
     int intBirthYear, intDeathYear, intAge;
+    strGender[0] = inputGender;
 
 
-    line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + inputGender + "%\"";
+    line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + strGender + "%\"";
 
     QString input = QString::fromStdString(line);
 

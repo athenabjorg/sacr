@@ -164,8 +164,7 @@ vector<Scientist> ScientistService::findScientistByGender(char gender)          
 
     vector<Scientist> scientists;
 
-    scientists = loadScientistByGender(gender);
-
+    scientists = _data.loadScientistByGender(gender);
     return scientists;
 }
 vector<Scientist> ScientistService::findScientistByBirth(int birth)                     // Search vector by year of birth
