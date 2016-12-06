@@ -172,7 +172,7 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)             
 
     vector<Scientist> scientists;
 
-
+    scientists = _data.loadScientistByBirth()birth;
 
     return scientists;
 }
