@@ -33,9 +33,7 @@ ScientistService::ScientistService()
 vector<Scientist> ScientistService::getScientists()
 {   // Uploads the list of scientists from file.
 
-    DataAccess data;
-
-    _scientists = data.loadScientists();
+    _scientists = _data.loadScientists();
 
     return _scientists;
 }
@@ -45,7 +43,6 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
     // Returns true if adding succeded, false otherwise.
 
     Scientist scientist(name, gender, birth, death, age);
-    DataAccess data;
 
     if (findScientistByName(name).size() > 0)
     {
@@ -55,7 +52,7 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
     else
     {
         _scientists.push_back(scientist);
-        data.saveScientists(_scientists);
+        _data.saveScientists(_scientists);
         return true;
     }
 }
@@ -63,7 +60,6 @@ bool ScientistService::removeScientist(string name)
 {   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
 
-    DataAccess data;
     vector<Scientist> scientistsToRemove = findScientistByName(name);
 
     if (scientistsToRemove.size() > 0)
@@ -75,7 +71,7 @@ bool ScientistService::removeScientist(string name)
             _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
         }
 
-        data.saveScientists(_scientists);
+        _data.saveScientists(_scientists);
 
         return true;
     }
@@ -85,17 +81,15 @@ bool ScientistService::removeScientist(string name)
 void ScientistService::removeAllScientists()
 {   // Removes ALL scientists from the list. Be careful with this.
 
-    DataAccess data;
     _scientists.clear();
 
-    data.saveScientists(_scientists);
+    _data.saveScientists(_scientists);
 }
 
 void ScientistService::scientistSort(int sortType)
 {    // Sort by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender
      //							4 = birth, 5 = death, 6 = age.
 
-    DataAccess data;
 
     if (sortType == 1)
     {
@@ -122,7 +116,7 @@ void ScientistService::scientistSort(int sortType)
         sort(_scientists.begin(), _scientists.end(), sortByAge);
     }
 
-    data.saveScientists(_scientists);
+    _data.saveScientists(_scientists);
 }
 void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& scientists)
 {   // Sort list by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,

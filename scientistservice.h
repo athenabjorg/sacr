@@ -63,6 +63,8 @@ private:
 
     vector<Scientist> _scientists;
 
+    DataAccess _data;
+
     void scientistSortForFind(int sortType, vector<Scientist>& scientists);
         // Sort list by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,
         //                              4 = birth, 5 = death, 6 = age.
