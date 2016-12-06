@@ -4,27 +4,6 @@
 using namespace std;
 
 
-//operator overloading functions for scientistSort.
-bool sortByNameAsc (const Scientist &a, const Scientist &b)
-{   // also makes the sort case insensitive.
-    string aName = a.getName(), bName = b.getName();
-    transform(aName.begin(), aName.end(), aName.begin(), ::tolower);
-    transform(bName.begin(), bName.end(), bName.begin(), ::tolower);
-    return aName < bName;
-}
-bool sortByNameDesc(const Scientist &a, const Scientist &b)
-{   // also makes the sort case insensitive.
-    string aName = a.getName(), bName = b.getName();
-    transform(aName.begin(), aName.end(), aName.begin(), ::tolower);
-    transform(bName.begin(), bName.end(), bName.begin(), ::tolower);
-    return aName > bName;
-}
-bool sortByGender  (const Scientist &a, const Scientist &b) { return a.getGender() <  b.getGender(); }
-bool sortByBirth   (const Scientist &a, const Scientist &b) { return a.getBirth()  <  b.getBirth();  }
-bool sortByDeath   (const Scientist &a, const Scientist &b) { return a.getDeath()  <  b.getDeath();  }
-bool sortByAge     (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
-
-
 ScientistService::ScientistService()
 {
 
@@ -150,7 +129,7 @@ void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& sci
     }
 }
 
-vector<Scientist> ScientistService::findScientistByName(string name)                    // Search vector by name
+vector<Scientist> ScientistService::findScientistByName(string name) // DONE                   // Search vector by name
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
 
     vector<Scientist> scientists;
@@ -162,129 +141,56 @@ vector<Scientist> ScientistService::findScientistByName(string name)            
 vector<Scientist> ScientistService::findScientistByGender(char gender)                  // Search vector by gender
 {   // Returns all scientists of that gender.
 
-    vector<Scientist> scientist;
+    vector<Scientist> scientists;
 
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        if (_scientists[i].getGender() == gender)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
+    scientists = loadScientistByGender(gender);
 
-    return scientist;
+    return scientists;
 }
 vector<Scientist> ScientistService::findScientistByBirth(int birth)                     // Search vector by year of birth
 {   // Returns all scientists born that year.
 
-    vector<Scientist> scientist;
+    vector<Scientist> scientists;
 
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        if (_scientists[i].getBirth() == birth)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
 
-    return scientist;
+
+    return scientists;
 }
 vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)   // Search vector by range of birth
 {   // Returns all scientists born in that year range.
 
     vector<Scientist> scientist;
-    int temp;
-    if(birth1 > birth2)
-    {
-        temp = birth1;
-        birth1 = birth2;
-        birth2 = temp;
-    }
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        if (_scientists[i].getBirth() >= birth1 && _scientists[i].getBirth() <= birth2)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
-
-    scientistSortForFind(4, scientist);
 
     return scientist;
 }
 vector<Scientist> ScientistService::findScientistByDeath(int death)                     // Search vector by year of death
 {   // Returns all scientists that died that year, or death = 0 if still alive.
 
-    vector<Scientist> scientist;
+    vector<Scientist> scientists;
 
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        if (_scientists[i].getDeath() == death)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
-
-    return scientist;
+    return scientists;
 }
 vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int death2)   // Search vector by range of death
 {   // Returns all scientists who died in that year range.
 
-    vector<Scientist> scientist;
-    int temp;
-    if(death1 > death2)
-    {
-        temp = death1;
-        death1 = death2;
-        death2 = temp;
-    }
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        if (_scientists[i].getDeath() >= death1 && _scientists[i].getDeath() <= death2)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
+    vector<Scientist> scientists;
 
-    scientistSortForFind(5, scientist);
 
-    return scientist;
+    return scientists;
 }
 vector<Scientist> ScientistService::findScientistByAge(int age)                         // Search vector by age
 {   // Returns all scientists of that age.
 
-    vector<Scientist> scientist;
+    vector<Scientist> scientists;
 
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        if (_scientists[i].getAge() == age)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
 
-    return scientist;
+    return scientists;
 }
 vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2)         // Search vector by range of age
 {   // Returns all scientists in that age range.
 
-    vector<Scientist> scientist;
-    int temp;
-    if(age1 > age2)
-    {
-        temp = age1;
-        age1 = age2;
-        age2 = temp;
-    }
-    for (size_t i = 0; i < _scientists.size(); i++)
-    {
-        if (_scientists[i].getAge() >= age1 && _scientists[i].getAge() <= age2)
-        {
-            scientist.push_back(_scientists[i]);
-        }
-    }
+    vector<Scientist> scientists;
 
-    scientistSortForFind(6, scientist);
 
-    return scientist;
+    return scientists;
 }
