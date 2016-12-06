@@ -26,6 +26,7 @@ public:
     vector<Scientist> loadScientistByName(string name);
     vector<Scientist> loadScientistByGender(char inputGender);
     vector<Scientist> loadScientistByBirth(int inputBirth);
+    vector<Scientist> loadScientistByBirthRange(int inputBirth1, int inputBirth2);
 
 private:
 

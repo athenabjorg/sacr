@@ -164,7 +164,36 @@ vector<Scientist> DataAccess::loadScientistByBirth(int inputBirth)
     db.close();
     return scientists;
 }
+vector<Scientist> DataAccess::loadScientistByBirthRange(int inputBirth1, int inputBirth2)
+{
+    vector<Scientist> scientists;
+    string line, name, gender, birthYear, deathYear, age;
+    int intBirthYear, intDeathYear, intAge;
 
+    line = "SELECT * FROM scientists WHERE born BETWEEN " + inputBirth1 + " AND " + inputBirth2;
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string stringGender = query.value(2).toString().toStdString();
+        int intBirthYear = query.value(3).toInt();
+        int intDeathYear = query.value(4).toInt();
+        char charGender = stringGender[0];
+
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        scientists.push_back(scientist);
+    }
+
+    db.close();
+    return scientists;
+}
 
 
 

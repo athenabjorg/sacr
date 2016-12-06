@@ -172,16 +172,18 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)             
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientistByBirth()birth;
+    scientists = _data.loadScientistByBirth(birth);
 
     return scientists;
 }
 vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int birth2)   // Search vector by range of birth
 {   // Returns all scientists born in that year range.
 
-    vector<Scientist> scientist;
+    vector<Scientist> scientists;
 
-    return scientist;
+    scientists = _data.loadScientistByBirthRange(birth1, birth2);
+
+    return scientists;
 }
 vector<Scientist> ScientistService::findScientistByDeath(int death)                     // Search vector by year of death
 {   // Returns all scientists that died that year, or death = 0 if still alive.
