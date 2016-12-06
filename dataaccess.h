@@ -17,7 +17,7 @@ public:
 
     DataAccess();
 
-    void saveScientists(const vector<Scientist>& scientists);
+    void saveScientists(Scientist newScientist);
         // Saves the vector of scientists to a file.
 
     vector<Scientist> loadScientists();

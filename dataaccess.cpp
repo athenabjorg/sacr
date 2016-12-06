@@ -15,7 +15,7 @@ DataAccess::DataAccess()
 
 }
 //void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From vector to text file
-void DataAccess::saveScientists(const Scientist newScientist)  // Saving to database SQLite
+void DataAccess::saveScientists(Scientist newScientist)  // Saving to database SQLite
 {
     /*
      * This function uses ofstream to save the vector of scientists to the scientists.txt file.
