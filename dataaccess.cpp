@@ -14,25 +14,24 @@ DataAccess::DataAccess()
     db.open();
 
 }
-void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From vector to text file
+//void DataAccess::saveScientists(const vector<Scientist>& scientists)  // From vector to text file
+void DataAccess::saveScientists(const Scientist newScientist)  // Saving to database SQLite
 {
     /*
      * This function uses ofstream to save the vector of scientists to the scientists.txt file.
      */
-
     string sName, line, name, gender, birthYear, deathYear, age;
-    //char charGender;
-    //int intBirthYear, intDeathYear, intAge;
+    newScientist
 
-    name = "LSKDFJLSDKFJSDLKFJSD";
-    gender = "m";
-    birthYear = "1555";
-    deathYear = "1665";
-
+    name = newScientist.getName();
+    gender = newScientist.getGender();
+    birthYear = newScientist.getBirth();
+    deathYear = newScientist.getDeath();
 
 
-    sName = "INSERT INTO Scientists(name,gender,birth,death) VALUES(\"" + name
-          + "\",\"" + gender + "\"," + birthYear + "," + deathYear + ")";
+
+    sName = "INSERT INTO Scientists(name,gender,birth,death) "
+            "VALUES(\"" + name + "\",\"" + gender + "\"," + birthYear + "," + deathYear + ")";
 
 
 
