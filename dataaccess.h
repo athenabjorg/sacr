@@ -23,6 +23,8 @@ public:
     vector<Scientist> loadScientists();
         // Loads scientists from a file, into a vector.
 
+    vector<Scientist> loadScientistByName(string name);
+
 private:
 
         QSqlDatabase db;

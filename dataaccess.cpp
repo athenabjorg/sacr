@@ -69,6 +69,41 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     db.close();
     return scientists;
 }
+vector<Scientist> DataAccess::loadScientistByName(string inputName)
+{
+    /*
+     * This function uses SQLite Manager database and adds scientits table   into a vector.
+     */
+
+    vector<Scientist> scientists;
+    string line, name, gender, birthYear, deathYear, age;
+    //char charGender;
+    int intBirthYear, intDeathYear, intAge;
+
+
+    inputName = "SELECT * FROM Scientists  Where Name LIKE \"%" + name + "%\"";
+
+    QString input = QString::fromStdString(name);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string stringGender = query.value(2).toString().toStdString();
+        int intBirthYear = query.value(3).toInt();
+        int intDeathYear = query.value(4).toInt();
+        char charGender = stringGender[0];
+
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        scientists.push_back(scientist);
+    }
+
+    db.close();
+    return scientists;
+}
 
 
 
