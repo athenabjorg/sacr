@@ -105,12 +105,12 @@ vector<Scientist> DataAccess::loadScientistByGender(char inputGender)
 {
     vector<Scientist> scientists;
     string line, name, gender, birthYear, deathYear, age, strGender = "";
-    //char charGender;
     int intBirthYear, intDeathYear, intAge;
-    strGender[0] = inputGender;
+    strGender = inputGender;
 
 
     line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + strGender + "%\"";
+
 
     QString input = QString::fromStdString(line);
 
@@ -134,7 +134,36 @@ vector<Scientist> DataAccess::loadScientistByGender(char inputGender)
     db.close();
     return scientists;
 }
+vector<Scientist> DataAccess::loadScientistByBirth(int inputBirth)
+{
+    vector<Scientist> scientists;
+    string line, name, gender, birthYear, deathYear, age;
+    int intBirthYear, intDeathYear, intAge;
 
+    line = "SELECT * FROM Scientists  Where Birth LIKE " + inputBirth;
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string stringGender = query.value(2).toString().toStdString();
+        int intBirthYear = query.value(3).toInt();
+        int intDeathYear = query.value(4).toInt();
+        char charGender = stringGender[0];
+
+        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
+        scientists.push_back(scientist);
+    }
+
+    db.close();
+    return scientists;
+}
 
 
 

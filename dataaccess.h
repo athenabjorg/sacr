@@ -25,6 +25,7 @@ public:
 
     vector<Scientist> loadScientistByName(string name);
     vector<Scientist> loadScientistByGender(char inputGender);
+    vector<Scientist> loadScientistByBirth(int inputBirth);
 
 private:
 
