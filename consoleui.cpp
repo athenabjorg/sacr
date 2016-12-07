@@ -138,7 +138,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     searchScientist();
                     break;
             case 5: cin.ignore();
-                    //sortScientist();
+                    sortScientist();
                     break;
 
         }
@@ -160,7 +160,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     searchComputer();
                     break;
             case 5: cin.ignore();
-                    //sortComputer();
+                    sortComputer();
                     break;
 
         }
