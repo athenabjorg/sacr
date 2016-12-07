@@ -34,7 +34,7 @@ void ConsoleUI::run()                                       // DIsplays the main
 
         cout << "Select one of the following options: " << endl;
         cout << "==========================================================================" << endl;
-        cout << "Add     -   Add a scientist" << endl;
+        cout << "Add     -   Add a scientist or a computer" << endl;
         cout << "Remove  -   Remove a scientist" << endl;
         cout << "List    -   Show a list of all scientists" << endl;
         cout << "Search  -   Search the list of scientists" << endl;
@@ -103,9 +103,15 @@ void ConsoleUI::userMenuAdd()  // Adds a new programmer
     cin >> selection;
 
     if (selection == 1)
+    {
+        cin.ignore();
         addScientist();
+    }
     else if (selection == 2)
+    {
+        cin.ignore();
         addComputer();
+    }
     else
         cout << "Invalid input" << endl;
 }
@@ -324,12 +330,12 @@ void ConsoleUI::userMenuSort()                              // Sorts list
      * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
      */
 
+
+    vector<Scientist> sortedScientists;
     bool inputCheck = true;
     int userInput;
 
     clearScreen();
-
-
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -345,7 +351,7 @@ void ConsoleUI::userMenuSort()                              // Sorts list
         cout << endl << "Select: ";
         cin >> userInput;
 
-        if(userInput < 0 || userInput > 7) // check if input is int and if it ranges from 1 to 6
+        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
         {
             inputCheck = true;
             cout << "Invalid input" << endl;
@@ -360,8 +366,11 @@ void ConsoleUI::userMenuSort()                              // Sorts list
 
     }while(inputCheck);
 
-     _service.scientistSort(userInput);
-     userMenuPrint();
+     sortedScientists = _service.scientistSort(userInput);
+
+     userMenuPrint(sortedScientists);
+
+     askReturnToMenu();
 }
 void ConsoleUI::userMenuPrint()                             // Prints whole list
 {
@@ -748,7 +757,7 @@ void ConsoleUI::addComputer()
         clearScreen();
 
         cout << "Enter the computer's name: ";
-        cin.ignore();
+        cin.ignore(-1);
         getline(cin, name);
 
         while(true) // Check for type
@@ -785,10 +794,15 @@ void ConsoleUI::addComputer()
                     case 4:
                         type = "Transistor";
                         break;
-                    default:
-                        cout << "Invalid input";
                 }
-            break;
+                if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Invalid input" << endl;
+                }
             }
         }
 
