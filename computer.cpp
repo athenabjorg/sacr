@@ -14,19 +14,19 @@ Computer::Computer(string name, int yearBuilt, string type, bool built)
     _yearBuilt = yearBuilt;
     _built = built;
 }
-string Computer::getName()
+string Computer::getName() const
 {
     return _name;
 }
-int Computer::getYearBuilt()
+int Computer::getYearBuilt() const
 {
     return _yearBuilt;
 }
-string Computer::getType()
+string Computer::getType() const
 {
     return _type;
 }
-bool Computer::getBuilt()
+bool Computer::getBuilt() const
 {
     return _built;
 }

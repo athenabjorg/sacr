@@ -311,31 +311,22 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)   // Print list 
      * it was sent forward by the previous function.
      */
 
+
     clearScreen();
-    cout << left << setw(30) << "Scientist name:"
-         << setw(10) << right << "Gender:"
-         << setw(10) << "Born:"
-         << setw(10) << "Died:"
-         << setw(10) << "Age:" << endl;
+    cout << left << setw(30) << "Computer name:"
+         << setw(10) << right << "Year built:"
+         << setw(10) << "Type:"
+         << setw(10) << "Was built:" << endl;
     cout << "======================================================================" << endl;
     for (size_t i = 0; i< computer.size(); ++i)
     {
         cout << left << setw(30) << computer[i].getName()
-             << setw(10) << right << computer[i].getGender()
-             << setw(10) << computer[i].getBirth();
-
-             if(computer[i].getDeath() == 0)
-             {
-                 cout << setw(10) << "-";
-             }
-             else
-             {
-                 cout << setw(10) << computer[i].getDeath();
-             }
-             cout << setw(10) << computer[i].getAge() << endl;
+             << setw(10) << right << computer[i].getYearBuilt()
+             << setw(10) << computer[i].getType()
+             << setw(10) << computer[i].getBuilt() << endl;
     }
     cout << "======================================================================" << endl;
-    cout << "Total: " << computer.size() << " scientists" << endl;
+    cout << "Total: " << computer.size() << " computers" << endl;
 
 }
 int  ConsoleUI::userCheckInput() const                      // Checks input from userMenuAdd
