@@ -1128,7 +1128,7 @@ void ConsoleUI::searchComputer()
             case 1: cout << "Search by year built" << endl;
                     cout << endl << "Year: ";
                     cin >> userInputYear;
-                    computer = _service.findComputer(2, to_string(userInputYear)); // TODO:: right type input etc.
+                    computer = _service.findComputer(2, to_string(userInputYear));
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
@@ -1138,7 +1138,7 @@ void ConsoleUI::searchComputer()
                     cin >> userInputYearFirst;
                     cout << endl << "Ending year: ";
                     cin >> userInputYearLast;
-                    computer = _service.findComputer(2, to_string(userInputYearFirst), to_string(userInputYearLast)); // TODO:: right type input etc.
+                    computer = _service.findComputer(3, to_string(userInputYearFirst), to_string(userInputYearLast));
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
@@ -1147,7 +1147,7 @@ void ConsoleUI::searchComputer()
 
 
 
-        computer = _service.findComputer(2, to_string(userInputYear)); // TODO:: right type input etc.
+        computer = _service.findComputer(2, to_string(userInputYear));
         userMenuPrint(computer);
         askReturnToMenu();
     }
@@ -1168,19 +1168,19 @@ void ConsoleUI::searchComputer()
 
         switch(inputCheck)
         {
-            case 1: computer = _service.findComputer(7,"ElectroMechanical"); // TODO:: right type input etc.
+            case 1: computer = _service.findComputer(4,"ElectroMechanical");
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            case 2: computer = _service.findComputer(7,"Electronic"); // TODO:: right type input etc.
+            case 2: computer = _service.findComputer(4,"Electronic");
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            case 3: computer = _service.findComputer(7,"Mechanical"); // TODO:: right type input etc.
+            case 3: computer = _service.findComputer(4,"Mechanical");
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            case 4: computer = _service.findComputer(7,"Transistor"); // TODO:: right type input etc.
+            case 4: computer = _service.findComputer(4,"Transistor");
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
@@ -1202,11 +1202,11 @@ void ConsoleUI::searchComputer()
 
         switch(inputCheck)
         {
-            case 1: computers = _service.findComputer(7,"0"); // TODO:: right type input etc.
+            case 1: computers = _service.findComputer(5,"0");
                     userMenuPrint(computers);
                     askReturnToMenu();
                     break;
-            case 2: computers = _service.findComputer(7,"1"); // TODO:: right type input etc.
+            case 2: computers = _service.findComputer(5,"1");
                     userMenuPrint(computers);
                     askReturnToMenu();
                     break;

@@ -117,6 +117,8 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
 
     switch(loadType) // TODO case 2 (gender) virkar ekki
     {
+        case 0: line = "SELECT * FROM Scientists  Where Name LIKE \"" + parameter + "\""; // load by whole name
+                break;
         case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\""; // load by name
                 break;
         case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\""; // load by gender
@@ -256,7 +258,7 @@ bool DataAccess::doesScientistExist(string name)
 {
     vector<Scientist> scientists;
 
-    scientists = loadScientists(1, name);
+    scientists = loadScientists(0, name);
 
     if(scientists.size() > 0)
     {
@@ -324,10 +326,7 @@ void DataAccess::removeAllComputers()
 vector<Computer> DataAccess::loadComputers()                  // From text file to vector
 {
     /*
-     * This function uses SQLite Manager database and adds scientits table into a vector.
-     * 1 = load by name, 2 = load by gender, 3 = load by birth year
-     * 5 = load by death year, 7 = load by age, 9 load by ...
-     * 4, 6 and 8 are used in the loadScientist function with 3 parameters.
+     * Adds list of computers from a database into a vector.
      */
 
     vector<Computer> computers;
@@ -364,10 +363,9 @@ vector<Computer> DataAccess::loadComputers()                  // From text file 
 vector<Computer> DataAccess::loadComputers(int loadType, string parameter)                  // From text file to vector
 {
     /*
-     * This function uses SQLite Manager database and adds scientits table into a vector.
-     * 1 = load by name, 2 = load by gender, 3 = load by birth year
-     * 5 = load by death year, 7 = load by age, 9 load by ...
-     * 4, 6 and 8 are used in the loadScientist function with 3 parameters.
+     * Adds list of computers from a database into a vector.
+     * 0 = load by whole name, 1 = load by name, 2 = load by year built, 4 = load by type, 5 = load by if built.
+     * 3 is used in the loadScientist function with 3 parameters.
      */
 
     vector<Computer> computers;
@@ -378,11 +376,13 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
 
     switch(loadType)
     {
+        case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\""; // load by whole name
+                break;
         case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\""; // load by name
                 break;
         case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\""; // load by year built/designed
                 break;
-        case 3: line = "SELECT * FROM Computers Where Type LIKE " + parameter; // load by type
+        case 4: line = "SELECT * FROM Computers Where Type LIKE " + parameter; // load by type
                 break;
         case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter; // load by if built
                 break;
@@ -415,9 +415,9 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
 vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, string parameter2)
 {
     /*
-     * This function uses SQLite Manager database and adds scientits table into a vector.
-     * 4 = load by birth year range, 6 = load by death year range, 8 = load by age range.
-     * 1, 2, 3, 5 and 7 are used in the loadScientist function with 2 parameters.
+     * Adds list of computers from a database into a vector.
+     * 3 = load by build year range.
+     * 0, 1, 2 and 5 are used in the loadScientist function with 2 parameters.
      */
 
     vector<Computer> computers;
@@ -428,7 +428,7 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
 
     switch(loadType)
     {
-        case 4: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2; // load by build/design year range
+        case 3: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2; // load by build/design year range
                 break;
     }
 
@@ -513,7 +513,7 @@ bool DataAccess::doesComputerExist(string name)
 {
     vector<Computer> computers;
 
-    //computers = loadComputers(1, name);
+    computers = loadComputers(0, name);
 
     if(computers.size() > 0)
     {
