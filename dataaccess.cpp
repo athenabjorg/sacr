@@ -221,8 +221,6 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
                 break;
         case 8: line = "SELECT * FROM Scientists ORDER BY DIED DESC"; // sort by death year(9-0)
                 break;
-        case 9: line = "SELECT * FROM Scientists  Where Died LIKE "; // sort by age(0-9)
-                break;
     }
 
     QString input = QString::fromStdString(line);
