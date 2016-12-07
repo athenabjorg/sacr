@@ -126,7 +126,7 @@ vector<Scientist> ScientistService::findScientist(int findType, string parameter
     return scientists;
 }
 
-vector<Computer> getComputers()
+vector<Computer> ScientistService::getComputers()
 {
     vector<Computer> computers;
 
