@@ -321,7 +321,7 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)   // Print list 
     for (size_t i = 0; i< computer.size(); ++i)
     {
         cout << left << setw(30) << computer[i].getName()
-             << setw(10) << right << computer[i].getYearBuilt()
+             << setw(10) << right << computer[i].getYear()
              << setw(10) << computer[i].getType()
              << setw(10) << computer[i].getBuilt() << endl;
     }

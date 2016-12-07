@@ -35,6 +35,7 @@ public:
     vector<Scientist> sortScientists(int sortType);
 
 
+    void saveComputer(Computer newComputer);
 
     vector<Computer> loadComputers();
     vector<Computer> loadComputers(int loadType, string parameter);
