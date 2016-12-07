@@ -344,3 +344,17 @@ vector<Computer> DataAccess::sortComputers(int sortType)
     db.close();
     return computers;
 }
+
+bool DataAccess::doesComputerExist(string name)
+{
+    vector<Computer> computers;
+
+    //computers = loadComputers(1, name);
+
+    if(computers.size() > 0)
+    {
+        return true;
+    }
+
+    return false;
+}

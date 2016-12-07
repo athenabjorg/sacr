@@ -26,7 +26,7 @@ public:
     vector<Scientist> loadScientists(int loadType, string parameter1, string parameter2);
         // Loads scientists from a database, into a vector.
 
-    bool doesScientistExist(string name);
+    bool doesScientistExist(string name); // TODO PRIVATE?
 
     void removeScientist(string inputName);
 
@@ -42,6 +42,8 @@ public:
     vector<Computer> loadComputers(int loadType, string parameter1, string parameter2);
 
     vector<Computer> sortComputers(int sortType);
+
+    bool doesComputerExist(string name); // TODO PRIVATE?
 
 private:
 

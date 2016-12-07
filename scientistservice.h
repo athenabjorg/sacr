@@ -38,6 +38,8 @@ public:
     vector<Scientist> findScientist(int findType, string parameter);
     vector<Scientist> findScientist(int findType, string parameter1, string parameter2);
 
+
+    bool addComputer(string name, int year, string type, bool built);
     vector<Computer> findComputer(int findType, string parameter);
     vector<Computer> findComputer(int findType, string parameter1, string parameter2);
 
@@ -52,6 +54,7 @@ public:
 private:
 
     vector<Scientist> _scientists;
+    vector<Computer> _computers;
 
     DataAccess _data;
 
