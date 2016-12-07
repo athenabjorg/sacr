@@ -458,24 +458,26 @@ void ConsoleUI::removeScientist()
 void ConsoleUI::removeComputer()
 {
     /*
-     * A function to remove a scientist.
+     * A function to remove a computer.
      */
 
-    string command;
+    int command;
 
     clearScreen();
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove computer by name " << endl;
     cout << "(2)     -   Remove *ALL* computers" << endl << endl;
     cout << "Select: ";
-
-    getline(cin, command);
+    cin >> command;
     cout << endl;
 
+
+
+/*
     if(command[0] == '1') // Remove computer/s by input.
     {
-        vector<Computer> Computer = _service.getComputers();
-        userMenuPrint(scientist);
+        vector<Computer> computer = _service.getComputers();
+        userMenuPrint(computer);
 
         string userInputName, confirm;
         vector<Scientist> scientistsToRemove;
@@ -535,6 +537,7 @@ void ConsoleUI::removeComputer()
         }
 
     }
+*/
 }
 void ConsoleUI::forceLowerCase(string &command)                     // Forces input to lower case
 {
