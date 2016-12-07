@@ -51,7 +51,7 @@ bool ScientistService::removeScientist(string name) // TODO
 {   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
 
-    vector<Scientist> scientistsToRemove = findScientistByName(name);
+    vector<Scientist> scientistsToRemove = findScientist(1, name);
 
     if (scientistsToRemove.size() > 0)
     {
@@ -141,15 +141,36 @@ void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& sci
     }
 }
 
-vector<Scientist> ScientistService::findScientistByName(string name) // DONE                   // Search vector by name
+
+
+
+
+
+vector<Scientist> ScientistService::findScientist(int findType, string parameter)       // Search vector by type
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientists(1, name);
+    scientists = _data.loadScientists(findType, parameter);
 
     return scientists;
 }
+vector<Scientist> ScientistService::findScientist(int findType, string parameter1, string parameter2)       // Search vector by type
+{   // Returns all scientists whos name includes the string entered. Case insensitive.
+
+    vector<Scientist> scientists;
+
+    scientists = _data.loadScientists(findType, parameter1, parameter2);
+
+    return scientists;
+}
+
+
+
+
+
+
+/*
 vector<Scientist> ScientistService::findScientistByGender(char gender)                  // Search vector by gender
 {   // Returns all scientists of that gender.
 
@@ -232,3 +253,4 @@ vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2) 
 
     return scientists;
 }
+*/

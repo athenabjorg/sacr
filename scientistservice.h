@@ -33,6 +33,14 @@ public:
         // Sort list by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,
         //                              4 = birth, 5 = death, 6 = age.
 
+
+
+    vector<Scientist> findScientist(int findType, string parameter);
+    vector<Scientist> findScientist(int findType, string parameter1, string parameter2);
+
+
+
+
     vector<Scientist> findScientistByName(string name);
         // Returns all scientists whos name includes the string entered. Case insensitive.
 

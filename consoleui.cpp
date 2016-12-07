@@ -274,7 +274,7 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
         cout << "Search by name: ";
         getline(cin, userInputName);
 
-        vector<Scientist> scientist = _service.findScientistByName(userInputName);
+        vector<Scientist> scientist = _service.findScientist(1, userInputName);
         userMenuPrint(scientist);
         askReturnToMenu();
     }
@@ -289,7 +289,7 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
         cout << endl << "Gender: ";
         cin >> userInputGender;
 
-        vector<Scientist> scientist = _service.findScientistByGender(userInputGender);
+        vector<Scientist> scientist = _service.findScientist(2, to_string(userInputGender));
         userMenuPrint(scientist);
         askReturnToMenu();
     }
@@ -312,7 +312,7 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
             cout << "Select: ";
             cin >> userInputAge;
 
-            vector<Scientist> scientist = _service.findScientistByAge(userInputAge);
+            vector<Scientist> scientist = _service.findScientist(7, to_string(userInputAge));
             userMenuPrint(scientist);
             askReturnToMenu();
         }
@@ -327,7 +327,14 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
             cin >> userInputAgeLast;
             cout << endl;
 
-            vector<Scientist> scientist = _service.findScientistByAgeRange(userInputAgeFirst, userInputAgeLast);
+            if(userInputAgeFirst > userInputAgeLast)
+            {
+                int temp = userInputAgeFirst;
+                userInputAgeFirst = userInputAgeLast;
+                userInputAgeLast = temp;
+            }
+
+            vector<Scientist> scientist = _service.findScientist(8, to_string(userInputAgeFirst), to_string(userInputAgeLast));
             userMenuPrint(scientist);
             askReturnToMenu();
         }
@@ -356,7 +363,7 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
             cout << "Search by year of birth: ";
             cin >> userInputBirth;
 
-            vector<Scientist> scientist = _service.findScientistByBirth(userInputBirth);
+            vector<Scientist> scientist = _service.findScientist(3, to_string(userInputBirth));
             userMenuPrint(scientist);
             askReturnToMenu();
         }
@@ -372,7 +379,14 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
             cin >> userInputBirthLast;
             cout << endl;
 
-            vector<Scientist> scientist = _service.findScientistByBirthRange(userInputBirthFirst, userInputBirthLast);
+            if(userInputBirthFirst > userInputBirthLast)
+            {
+                int temp = userInputBirthFirst;
+                userInputBirthFirst = userInputBirthLast;
+                userInputBirthLast = temp;
+            }
+
+            vector<Scientist> scientist = _service.findScientist(4, to_string(userInputBirthFirst), to_string(userInputBirthLast));
             userMenuPrint(scientist);
             askReturnToMenu();
         }
@@ -400,7 +414,7 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
             cout << "Search by year scientist died (0 for still alive): ";
             cin >> userInputDeath;
 
-            vector<Scientist> scientist = _service.findScientistByDeath(userInputDeath);
+            vector<Scientist> scientist = _service.findScientist(5, to_string(userInputDeath));
             userMenuPrint(scientist);
             askReturnToMenu();
         }
@@ -416,7 +430,14 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
             cin >> userInputDeathLast;
             cout << endl;
 
-            vector<Scientist> scientist = _service.findScientistByDeathRange(userInputDeathFirst, userInputDeathLast);
+            if(userInputDeathFirst > userInputDeathLast)
+            {
+                int temp = userInputDeathFirst;
+                userInputDeathFirst = userInputDeathLast;
+                userInputDeathLast = temp;
+            }
+
+            vector<Scientist> scientist = _service.findScientist(6, to_string(userInputDeathFirst), to_string(userInputDeathLast));
             userMenuPrint(scientist);
             askReturnToMenu();
         }
@@ -616,7 +637,7 @@ void ConsoleUI::userMenuRemove()                            // Removes a program
 
 
         getline(cin, userInputName);
-        scientistsToRemove = _service.findScientistByName(userInputName);
+        scientistsToRemove = _service.findScientist(1, userInputName);
 
         if(scientistsToRemove.size() > 0)
         {

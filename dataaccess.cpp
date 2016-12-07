@@ -107,7 +107,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
     bool valid;
 
 
-    switch(loadType)
+    switch(loadType) // TODO case 2 (gender) virkar ekki
     {
         case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\""; // load by name
                 break;
@@ -183,6 +183,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
     db.close();
     return scientists;
 }
+/*
 vector<Scientist> DataAccess::loadScientistByName(string inputName)
 {
     vector<Scientist> scientists;
@@ -374,7 +375,7 @@ vector<Scientist> DataAccess::loadScientistByDeathRange(int inputDeath1, int inp
     return scientists;
 }
 
-
+*/
 
 
 
