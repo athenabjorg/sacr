@@ -43,9 +43,6 @@ private:
     int  userCheckInput() const;
         // Asks for a yes, no, or cancel input and returns a corresponding numerical value (y = 0, n = 1, cancel = 2)
 
-    void userMenuRemove();
-        // Permanently removes scientists from the list, who have names containing the user input.
-
     void removeScientist();
         // Permanently removes scientists from the list, who have names containing the user input.
 

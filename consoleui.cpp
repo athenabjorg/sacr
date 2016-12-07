@@ -128,7 +128,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     addScientist();
                     break;
             case 2: cin.ignore();
-                    userMenuRemove();// TODO::change name and seprate; removeScientist(), removeComputer().
+                    removeScientist();
                     break;
             case 3: cin.ignore();
                     userMenuPrint(_service.getScientists());
@@ -151,7 +151,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     addComputer();
                     break;
             case 2: cin.ignore();
-                    userMenuRemove();// TODO::change name and seprate; removeScientist(), removeComputer().
+                    removeComputer();
                     break;
             case 3: cin.ignore();
                     userMenuPrint(_service.getComputers());
@@ -368,12 +368,6 @@ int  ConsoleUI::userCheckInput() const                              // Checks in
 
     }
 }
-void ConsoleUI::userMenuRemove()                                    // Removes a programmer
-{
-
-
-
-}
 void ConsoleUI::removeScientist()
 {
     /*
@@ -499,7 +493,7 @@ void ConsoleUI::removeComputer()
 
             if (confirm[0] == 'y' || confirm[0] == 'Y')
             {
-                //_service.removeComputer(userInputName); // TODO::Needs a functin in service layer
+                _service.removeComputer(userInputName); // TODO::Needs a functin in service layer
                 cout << endl << "Computers with names containing '" << userInputName << "' have been removed from the list." << endl;
                 askReturnToMenu();
             }
@@ -529,7 +523,7 @@ void ConsoleUI::removeComputer()
 
         if(userInputName == "remove")
         {
-            //_service.removeAllComputers(); // TODO::Needs a functin in service layer
+            _service.removeAllComputers(); // TODO::Needs a functin in service layer
             clearScreen();
             userMenuPrint();
         }
