@@ -1004,14 +1004,45 @@ void ConsoleUI::searchComputer()
     }
     else if(command == "year") // Find computer by year
     {
-        char userInputYear;
+        int userInputYear;
+        int userInputYearFirst;
+        int userInputYearLast;
+        int inputCheck;
+        vector<Computer> computer;
+
         clearScreen();
+        cout << "Search by year:" << endl;
+        cout << endl << "(1) - Search for a computer by year it was made" << endl;
+        cout << "(2) - Search for a computer by range of year it was made " << endl;
+        cout << endl << "Select: ";
 
-        cout << "Search by year built" << endl;
-        cout << endl << "Year: ";
-        cin >> userInputYear;
+        cin >> inputCheck;
 
-        vector<Computer> computer = _service.findComputer(2, userInputYear); // TODO:: right type input etc.
+        switch(inputCheck)
+        {
+            case 1: cout << "Search by year built" << endl;
+                    cout << endl << "Year: ";
+                    cin >> userInputYear;
+                    computer = _service.findComputer(2, userInputYear); // TODO:: right type input etc.
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+
+            case 2: cout << "Search by range of year built" << endl;
+                    cout << endl << "Starting year: ";
+                    cin >> userInputYearFirst;
+                    cout << endl << "Ending year: ";
+                    cin >> userInputYearLast;
+                    computer = _service.findComputer(2, userInputYearFirst, userInputYearLast); // TODO:: right type input etc.
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+            default: cout << "Wrong Input" << endl;
+        }
+
+
+
+        computer = _service.findComputer(2, userInputYear); // TODO:: right type input etc.
         userMenuPrint(computer);
         askReturnToMenu();
     }
