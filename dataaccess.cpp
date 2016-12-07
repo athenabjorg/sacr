@@ -1,5 +1,4 @@
 #include "dataaccess.h"
-#include "scientist.h"
 #include <QtSql>
 #include <iostream> // TEMP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #include <sstream>
@@ -13,6 +12,7 @@ DataAccess::DataAccess()
     db.setDatabaseName("DataBase.sqlite");  // witch database to select ( aka what file )
 
 }
+
 void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite database
 {
     string line, name, gender;
@@ -146,6 +146,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
     db.close();
     return scientists;
 }
+
 vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, string parameter2)
 {
     /*
@@ -194,6 +195,19 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
     return scientists;
 }
 
+bool DataAccess::doesScientistExist(string name)
+{
+    vector<Scientist> scientists;
+
+    scientists = loadScientists(1, name);
+
+    if(scientists.size() > 0)
+    {
+        return true;
+    }
+
+    return false;
+}
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
@@ -246,4 +260,53 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
 
     db.close();
     return scientists;
+}
+
+vector<Computer> DataAccess::sortComputers(int sortType)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
+    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
+
+    vector<Computer> computers;
+    string line, name, type;
+    int yearBuilt;
+    bool valid, built;
+
+    switch(sortType)
+    {
+        case 1: line = "SELECT * FROM Computers ORDER BY Name ASC"; // sort by name(A-Z)
+                break;
+        case 2: line = "SELECT * FROM Computers ORDER BY Name DESC"; // sort by name(Z-A)
+                break;
+        case 3: line = "SELECT * FROM Computers ORDER BY Type ASC"; // sort by gender(f-m)
+                break;
+        case 4: line = "SELECT * FROM Computers ORDER BY Type DESC"; // sort by gender(m-f)
+                break;
+        case 5: line = "SELECT * FROM Computers ORDER BY Year Built ASC"; // sort by birth year(0-9)
+                break;
+        case 6: line = "SELECT * FROM Computers ORDER BY Year Built DESC"; // sort by birth year(9-0)
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string type = query.value(3).toString().toStdString();
+        yearBuilt = query.value(2).toInt();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            //Computer computer(name, yearBuilt, type, built);
+            //computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
 }

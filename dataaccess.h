@@ -8,6 +8,7 @@
 #include <QtSql>
 
 #include "scientist.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -25,10 +26,13 @@ public:
     vector<Scientist> loadScientists(int loadType, string parameter1, string parameter2);
         // Loads scientists from a database, into a vector.
 
+    bool doesScientistExist(string name);
+
     void removeScientist(string inputName);
     void removeAllScientists();
 
     vector<Scientist> sortScientists(int sortType);
+    vector<Computer> sortComputers(int sortType);
 
 private:
 

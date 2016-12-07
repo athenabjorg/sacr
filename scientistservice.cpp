@@ -40,11 +40,16 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
 
-    Scientist scientist(name, gender, birth, death);
+    if(_data.doesScientistExist(name) == false)
+    {
+        Scientist scientist(name, gender, birth, death);
 
-     _scientists.push_back(scientist);
-     _data.saveScientist(scientist);
-     return true;
+        _scientists.push_back(scientist);
+        _data.saveScientist(scientist);
+        return true;
+    }
+
+    return false;
 
 }
 bool ScientistService::removeScientist(string name) // TODO
@@ -53,7 +58,7 @@ bool ScientistService::removeScientist(string name) // TODO
 
     vector<Scientist> scientistsToRemove = findScientist(1, name);
 
-    if (true)
+    if (scientistsToRemove.size() > 0)
     {
         for (size_t i = 0; i < scientistsToRemove.size(); i++)
         {
@@ -86,6 +91,17 @@ vector<Scientist> ScientistService::scientistSort(int sortType) // TODO SOON
     scientists = _data.sortScientists(sortType);
 
     return scientists;
+
+}
+vector<Computer> ScientistService::computerSort(int sortType) // TODO SOON
+{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
+     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+
+    vector<Computer> computers;
+
+    computers = _data.sortComputers(sortType);
+
+    return computers;
 
 }
 

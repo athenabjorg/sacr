@@ -1,5 +1,6 @@
 #include "consoleui.h"
 #include "scientist.h"
+#include "computer.h"
 
 #include <QtSql>
 
@@ -99,6 +100,7 @@ void ConsoleUI::run()                                       // DIsplays the main
         clearScreen();
     }
 }
+
 void ConsoleUI::userMenuSwitch(int loadType)
 {
     int selection = 0;
@@ -173,7 +175,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
 
 }
 
-void ConsoleUI::userMenuAdd()  // Adds a new programmer
+void ConsoleUI::userMenuAdd()                               // Adds a new programmer
 {
     int selection = 0;
     cout << "Would you like to add a scientist or a computer to the database?" << endl
@@ -216,54 +218,25 @@ void ConsoleUI::userMenuSearch()                            // Searches the list
         cout << "Invalid input" << endl;
 }
 void ConsoleUI::userMenuSort()                              // Sorts list
-{ 
-    /*
-     * A sorting function, can call function from scientistservice.cpp scientistSort().
-     * The function will sort depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),
-     * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
-     */
+{
+    int selection = 0;
+    cout << "Would you like to sort the list of scientists or the computers" << endl
+         << "1 - Scientists" << endl
+         << "2 - Computers" << endl;
+    cin >> selection;
 
-
-    vector<Scientist> sortedScientists;
-    bool inputCheck = true;
-    int userInput;
-
-    clearScreen();
-
-        cout << "Select a sort option: " << endl;
-        cout << "===================================" << endl;
-        cout << "(1)     -   Sort by name (A-Z)" << endl;
-        cout << "(2)     -   Sort by name (Z-A)" << endl;
-        cout << "(3)     -   Sort by gender" << endl;
-        cout << "(4)     -   Sort by year of birth (First to last)" << endl;
-        cout << "(5)     -   Sort by year of death (Alive scientists first. Then first to last)" << endl;
-        cout << "(6)     -   Sort by age (Youngest to oldest)" << endl;
-
-    do
+    if (selection == 1)
     {
-        cout << endl << "Select: ";
-        cin >> userInput;
-
-        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
-        {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
-        }
-        else
-        {
-            inputCheck = false;
-        }
-        cin.clear();
-
-        clearScreen();
-
-    }while(inputCheck);
-
-     sortedScientists = _service.scientistSort(userInput);
-
-     userMenuPrint(sortedScientists);
-
-     askReturnToMenu();
+        cin.ignore();
+        sortScientist();
+    }
+    else if (selection == 2)
+    {
+        cin.ignore();
+        sortComputer();
+    }
+    else
+        cout << "Invalid input" << endl;
 }
 void ConsoleUI::userMenuPrint()                             // Prints whole list
 {
@@ -1206,4 +1179,103 @@ void ConsoleUI::searchComputer()
         }
     }
     cout << endl;
+}
+void ConsoleUI::sortScientist()
+{
+    /*
+     * A sorting function, can call function from scientistservice.cpp scientistSort().
+     * The function will sort depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),
+     * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
+     */
+
+
+    vector<Scientist> sortedScientists;
+    bool inputCheck = true;
+    int userInput;
+
+    clearScreen();
+
+        cout << "Select a sort option: " << endl;
+        cout << "===================================" << endl;
+        cout << "(1)     -   Sort by name (A-Z)" << endl;
+        cout << "(2)     -   Sort by name (Z-A)" << endl;
+        cout << "(3)     -   Sort by gender" << endl;
+        cout << "(4)     -   Sort by year of birth (First to last)" << endl;
+        cout << "(5)     -   Sort by year of death (Alive scientists first. Then first to last)" << endl;
+        cout << "(6)     -   Sort by age (Youngest to oldest)" << endl;
+
+    do
+    {
+        cout << endl << "Select: ";
+        cin >> userInput;
+
+        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
+        {
+            inputCheck = true;
+            cout << "Invalid input" << endl;
+        }
+        else
+        {
+            inputCheck = false;
+        }
+        cin.clear();
+
+        clearScreen();
+
+    }while(inputCheck);
+
+     sortedScientists = _service.scientistSort(userInput);
+
+     userMenuPrint(sortedScientists);
+
+     askReturnToMenu();
+}
+void ConsoleUI::sortComputer()
+{
+    /*
+     * A sorting function, can call function from scientistservice.cpp scientistSort().
+     * The function will sort depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),
+     * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
+     */
+
+
+    vector<Computer> sortedComputers;
+    bool inputCheck = true;
+    int userInput;
+
+    clearScreen();
+
+        cout << "Select a sort option: " << endl;
+        cout << "===================================" << endl;
+        cout << "(1)     -   Sort by name (A-Z)" << endl;
+        cout << "(2)     -   Sort by name (Z-A)" << endl;
+        cout << "(3)     -   Sort by type" << endl;
+        cout << "(4)     -   Sort by year built (First to last)" << endl;
+
+    do
+    {
+        cout << endl << "Select: ";
+        cin >> userInput;
+
+        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
+        {
+            inputCheck = true;
+            cout << "Invalid input" << endl;
+        }
+        else
+        {
+            inputCheck = false;
+        }
+        cin.clear();
+
+        clearScreen();
+
+    }while(inputCheck);
+
+     sortedComputers = _service.computerSort(userInput);
+
+     //userMenuPrint(sortedComputers); ############### Laga þegar print er orðið klárt #########
+
+     askReturnToMenu();
+
 }
