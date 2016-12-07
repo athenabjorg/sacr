@@ -44,7 +44,7 @@ public:
 
     vector<Computer> computerSort(int sortType);
 
-    vector<Scientist> getScientists();
+    vector<Computer> getComputers();
         // Uploads the list of computers from file.
 
 

@@ -29,7 +29,7 @@ private:
     void userMenuSort();
         // Sorts the list of scientist depending on the input, prints a list of the result and saves to the text file.
 
-    void userMenuPrint();
+    void userMenuPrint(int type);
         // Prints to the screen the scientist list from the text file.
 
     void userMenuPrint(const vector<Scientist>& scientist);
