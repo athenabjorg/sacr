@@ -83,11 +83,13 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-     //   valid = query.value(5).toBool();
+        valid = query.value(5).toBool();
 
-
-        Scientist scientist(name, gender[0], birthYear, deathYear);
-        scientists.push_back(scientist);
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
     }
 
     db.close();
@@ -132,10 +134,13 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-     //   valid = query.value(5).toBool();
+        valid = query.value(5).toBool();
 
-        Scientist scientist(name, gender[0], birthYear, deathYear);
-        scientists.push_back(scientist);
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
     }
 
     db.close();
@@ -176,284 +181,70 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-     //   valid = query.value(5).toBool();
+        valid = query.value(5).toBool();
 
-        Scientist scientist(name, gender[0], birthYear, deathYear);
-        scientists.push_back(scientist);
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
     }
 
     db.close();
     return scientists;
 }
-/*
-vector<Scientist> DataAccess::loadScientistByName(string inputName)
-{
-    vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear;
-    //char charGender;
-    int intBirthYear, intDeathYear;
-    char charGender;
 
-    line = "SELECT * FROM Scientists  Where Name LIKE \"%" + inputName + "%\"";
+
+vector<Scientist> DataAccess::sortScientists(int sortType)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
+    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
+
+    vector<Scientist> scientists;
+    string line, name, gender;
+    int birthYear, deathYear;
+    bool valid;
+
+
+    switch(sortType) // TODO case 2 (gender) virkar ekki
+    {
+        case 1: line = "SELECT * FROM Scientists ORDER BY Name ASC"; // sort by name(A-Z)
+                break;
+        case 2: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by name(Z-A)
+                break;
+        case 3: line = "SELECT * FROM Scientists ORDER BY G ASC"; // sort by gender(f-m)
+                break;
+        case 4: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by gender(m-f)
+                break;
+        case 5: line = "SELECT * FROM Scientists ORDER BY Birth ASC"; // sort by birth year(0-9)
+                break;
+        case 6: line = "SELECT * FROM Scientists ORDER BY Birth DESC"; // sort by birth year(9-0)
+                break;
+        case 7: line = "SELECT * FROM Scientists ORDER BY DIED ASC"; // sort by death year(0-9)
+                break;
+        case 8: line = "SELECT * FROM Scientists ORDER BY DIED DESC"; // sort by death year(9-0)
+                break;
+    }
 
     QString input = QString::fromStdString(line);
-
     db.open();
     QSqlQuery query;
-    query.exec(input); // open table scientists
-
+    query.exec(input);
 
     while (query.next())
     {
         string name = query.value(1).toString().toStdString();
-        string stringGender = query.value(2).toString().toStdString();
-        intBirthYear = query.value(3).toInt();
-        intDeathYear = query.value(4).toInt();
-        charGender = stringGender[0];
+        string gender = query.value(2).toString().toStdString();
+        birthYear = query.value(3).toInt();
+        deathYear = query.value(4).toInt();
+        valid = query.value(5).toBool();
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
-        scientists.push_back(scientist);
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
     }
 
     db.close();
     return scientists;
 }
-vector<Scientist> DataAccess::loadScientistByGender(char inputGender)
-{
-    vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear, strGender = "";
-    int intBirthYear, intDeathYear;
-    char charGender;
-
-
-    strGender = inputGender;
-    line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + strGender + "%\"";
-
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-
-
-    while (query.next())
-    {
-        string name = query.value(1).toString().toStdString();
-        string stringGender = query.value(2).toString().toStdString();
-        intBirthYear = query.value(3).toInt();
-        intDeathYear = query.value(4).toInt();
-        charGender = stringGender[0];
-
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
-        scientists.push_back(scientist);
-    }
-
-    db.close();
-    return scientists;
-}
-vector<Scientist> DataAccess::loadScientistByBirth(int inputBirth)
-{
-    vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear;
-    int intBirthYear, intDeathYear;
-    char charGender;
-
-    line = "SELECT * FROM Scientists  Where Birth LIKE " + inputBirth;
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-
-
-    while (query.next())
-    {
-        string name = query.value(1).toString().toStdString();
-        string stringGender = query.value(2).toString().toStdString();
-        intBirthYear = query.value(3).toInt();
-        intDeathYear = query.value(4).toInt();
-        charGender = stringGender[0];
-
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
-        scientists.push_back(scientist);
-    }
-
-    db.close();
-    return scientists;
-}
-vector<Scientist> DataAccess::loadScientistByBirthRange(int inputBirth1, int inputBirth2)
-{
-    vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear;
-    int intBirthYear, intDeathYear;
-    char charGender;
-
-    line = "SELECT * FROM scientists WHERE born BETWEEN " + to_string(inputBirth1) + " AND " + to_string(inputBirth2);
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-
-
-    while (query.next())
-    {
-        string name = query.value(1).toString().toStdString();
-        string stringGender = query.value(2).toString().toStdString();
-        intBirthYear = query.value(3).toInt();
-        intDeathYear = query.value(4).toInt();
-        charGender = stringGender[0];
-
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
-        scientists.push_back(scientist);
-    }
-
-    db.close();
-    return scientists;
-}
-vector<Scientist> DataAccess::loadScientistByDeath(int inputDeath)
-{
-    vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear;
-    int intBirthYear, intDeathYear;
-    char charGender;
-
-    line = "SELECT * FROM Scientists  Where Died LIKE " + to_string(inputDeath);
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-
-
-    while (query.next())
-    {
-        string name = query.value(1).toString().toStdString();
-        string stringGender = query.value(2).toString().toStdString();
-        intBirthYear = query.value(3).toInt();
-        intDeathYear = query.value(4).toInt();
-        charGender = stringGender[0];
-
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
-        scientists.push_back(scientist);
-    }
-
-    db.close();
-    return scientists;
-}
-vector<Scientist> DataAccess::loadScientistByDeathRange(int inputDeath1, int inputDeath2)
-{
-    vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear;
-    int intBirthYear, intDeathYear;
-    char charGender;
-
-    line = "SELECT * FROM scientists WHERE Died BETWEEN " + to_string(inputDeath1) + " AND " + to_string(inputDeath2);
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-
-
-    while (query.next())
-    {
-        string name = query.value(1).toString().toStdString();
-        string stringGender = query.value(2).toString().toStdString();
-        intBirthYear = query.value(3).toInt();
-        intDeathYear = query.value(4).toInt();
-        charGender = stringGender[0];
-
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
-        scientists.push_back(scientist);
-    }
-
-    db.close();
-    return scientists;
-}
-
-*/
-
-
-
-
-
-
-// OLD CODE
-/*
-ofstream file;
-file.open("scientists.txt");
-
-if(file.is_open())
-{
-    for(size_t i = 0; i < scientists.size(); i++)
-    {
-        file << scientists[i].getName()   <<  ",";
-        file << scientists[i].getGender() <<  ",";
-        file << scientists[i].getBirth()  <<  ",";
-        file << scientists[i].getDeath()  <<  ",";
-        file << scientists[i].getAge()    << endl;
-    }
-    file.close( );
-}
-*/
-
-/*
-vector<Scientist> scientists;
-
-
-string line, name, gender, birthYear, deathYear, age;
-const string delimiter = ",";
-char charGender;
-int intBirthYear, intDeathYear, intAge, delimiterPos;
-
-ifstream file;
-file.open("scientists.txt");
-
-if(file.is_open())
-{
-    while(getline(file, line))
-    {
-        delimiterPos = line.find(delimiter);
-        name = line.substr(0, delimiterPos);
-        line.erase(0, delimiterPos + 1);
-
-        delimiterPos = line.find(delimiter);
-        gender = line.substr(0, delimiterPos);
-        line.erase(0, delimiterPos + 1);
-
-        delimiterPos = line.find(delimiter);
-        birthYear = line.substr(0, delimiterPos);
-        line.erase(0, delimiterPos + 1);
-
-        delimiterPos = line.find(delimiter);
-        deathYear = line.substr(0, delimiterPos);
-        line.erase(0, delimiterPos + 1);
-
-        delimiterPos = line.find(delimiter);
-        age = line.substr(0, delimiterPos);
-
-        charGender = gender[0];
-        intBirthYear = atoi(birthYear.c_str());
-        intDeathYear = atoi(deathYear.c_str());
-        intAge = atoi(age.c_str());
-
-
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear, intAge);
-
-        scientists.push_back(scientist);
-    }
-
-file.close( );
-}
-
-
-
-return scientists;
-
-*/
