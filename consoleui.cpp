@@ -998,7 +998,7 @@ void ConsoleUI::searchComputer()
         cout << "Search by name: ";
         getline(cin, userInputName);
 
-        vector<Scientist> computer = _service.findComputer(1, userInputName);
+        vector<Computer> computer = _service.findComputer(1, userInputName);
         userMenuPrint(computer);
         askReturnToMenu();
     }
@@ -1011,14 +1011,14 @@ void ConsoleUI::searchComputer()
         cout << endl << "Year: ";
         cin >> userInputYear;
 
-        vector<Scientist> computer = _service.findComputer(2, userInputYear); // TODO:: right type input etc.
+        vector<Computer> computer = _service.findComputer(2, userInputYear); // TODO:: right type input etc.
         userMenuPrint(computer);
         askReturnToMenu();
     }
     else if(command == "type") // Find computer by type
     {
         int inputCheck;
-        vector<Scientist> computer;
+        vector<Computer> computer;
 
         clearScreen();
         cout << "Search by type:" << endl;
@@ -1032,19 +1032,19 @@ void ConsoleUI::searchComputer()
 
         switch(inputCheck)
         {
-            case 1: computer = _service.findScientist(7,"ElectroMechanical"); // TODO:: right type input etc.
+            case 1: computer = _service.findComputer(7,"ElectroMechanical"); // TODO:: right type input etc.
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            case 2: computer = _service.findScientist(7,"Electronic"); // TODO:: right type input etc.
+            case 2: computer = _service.findComputer(7,"Electronic"); // TODO:: right type input etc.
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            case 3: computer = _service.findScientist(7,"Mechanical"); // TODO:: right type input etc.
+            case 3: computer = _service.findComputer(7,"Mechanical"); // TODO:: right type input etc.
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            case 4: computer = _service.findScientist(7,"Transistor"); // TODO:: right type input etc.
+            case 4: computer = _service.findComputer(7,"Transistor"); // TODO:: right type input etc.
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
