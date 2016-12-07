@@ -334,7 +334,7 @@ vector<Computer> DataAccess::sortComputers(int sortType)
 
     vector<Computer> computers;
     string line, name, type;
-    int yearBuilt;
+    int year;
     bool valid, built;
 
     switch(sortType)
@@ -362,14 +362,14 @@ vector<Computer> DataAccess::sortComputers(int sortType)
     {
         string name = query.value(1).toString().toStdString();
         string type = query.value(3).toString().toStdString();
-        yearBuilt = query.value(2).toInt();
+        year = query.value(2).toInt();
         built = query.value(4).toBool();
         valid = query.value(5).toBool();
 
         if(valid)
         {
-            //Computer computer(name, yearBuilt, type, built);
-            //computers.push_back(computer);
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
         }
     }
 
