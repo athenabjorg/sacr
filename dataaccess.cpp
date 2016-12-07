@@ -194,8 +194,8 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
 
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
-{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f),
-    // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
+    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
 
     vector<Scientist> scientists;
     string line, name, gender;
@@ -218,6 +218,8 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
         case 6: line = "SELECT * FROM Scientists  Where Gende"; // sort by birth year(9-0)
                 break;
         case 7: line = "SELECT * FROM Scientists  Where Birth"; // sort by death year(0-9)
+                break;
+        case 7: line = "SELECT * FROM Scientists  Where Birth"; // sort by death year(9-0)
                 break;
         case 8: line = "SELECT * FROM Scientists  Where Died LIKE "; // sort by age(0-9)
                 break;
