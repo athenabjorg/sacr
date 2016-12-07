@@ -21,7 +21,9 @@ public:
         // Saves a scientist to the database.
 
     vector<Scientist> loadScientists();
-        // Loads scientists from a file, into a vector.
+    vector<Scientist> loadScientists(int loadType, string parameter);
+    vector<Scientist> loadScientists(int loadType, string parameter1, string parameter2);
+        // Loads scientists from a database, into a vector.
 
     void removeScientist(string inputName);
     void removeAllScientists();

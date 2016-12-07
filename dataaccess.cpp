@@ -63,28 +63,120 @@ void DataAccess::removeAllScientists()
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
     /*
-     * This function uses SQLite Manager database and adds scientits table   into a vector.
+     * This function uses SQLite Manager database and adds scientits table into a vector.
      */
 
     vector<Scientist> scientists;
-    string line, name, gender, birthYear, deathYear;
-    //char charGender;
-    int intBirthYear, intDeathYear;
-    char charGender;
+    string name, gender;
+    int birthYear, deathYear;
+    bool valid;
 
     db.open();
     QSqlQuery query;
-    query.exec("SELECT * FROM Scientists"); // open table scientists
+    query.exec("SELECT * FROM Scientists");
 
     while (query.next())
     {
         string name = query.value(1).toString().toStdString();
-        string stringGender = query.value(2).toString().toStdString();
-        intBirthYear = query.value(3).toInt();
-        intDeathYear = query.value(4).toInt();
-        charGender = stringGender[0];
+        string gender = query.value(2).toString().toStdString();
+        birthYear = query.value(3).toInt();
+        deathYear = query.value(4).toInt();
+     //   valid = query.value(5).toBool();
 
-        Scientist scientist(name, charGender, intBirthYear, intDeathYear);
+
+        Scientist scientist(name, gender[0], birthYear, deathYear);
+        scientists.push_back(scientist);
+    }
+
+    db.close();
+    return scientists;
+}
+
+vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)                  // From text file to vector
+{
+    /*
+     * This function uses SQLite Manager database and adds scientits table into a vector.
+     * 1 = load by name, 2 = load by gender, 3 = load by birth year
+     * 5 = load by death year, 7 = load by age, 9 load by ...
+     * 4, 6 and 8 are used in the loadScientist function with 3 parameters.
+     */
+
+    vector<Scientist> scientists;
+    string line, name, gender;
+    int birthYear, deathYear;
+    bool valid;
+
+
+    switch(loadType)
+    {
+        case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\""; // load by name
+                break;
+        case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\""; // load by gender
+                break;
+        case 3: line = "SELECT * FROM Scientists  Where Birth LIKE " + parameter; // load by birth year
+                break;
+        case 5: line = "SELECT * FROM Scientists  Where Died LIKE " + parameter; // load by death year
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string gender = query.value(2).toString().toStdString();
+        birthYear = query.value(3).toInt();
+        deathYear = query.value(4).toInt();
+     //   valid = query.value(5).toBool();
+
+        Scientist scientist(name, gender[0], birthYear, deathYear);
+        scientists.push_back(scientist);
+    }
+
+    db.close();
+    return scientists;
+}
+vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, string parameter2)
+{
+    /*
+     * This function uses SQLite Manager database and adds scientits table into a vector.
+     * 4 = load by birth year range, 6 = load by death year range, 8 = load by age range.
+     * 1, 2, 3, 5 and 7 are used in the loadScientist function with 2 parameters.
+     */
+
+    vector<Scientist> scientists;
+    string line, name, gender;
+    int birthYear, deathYear;
+    bool valid;
+
+
+    switch(loadType)
+    {
+        case 4: line = "SELECT * FROM scientists WHERE born BETWEEN " + parameter1 + " AND " + parameter2; // load by birth year range
+                break;
+        case 6: line = "SELECT * FROM scientists WHERE Died BETWEEN " + parameter1 + " AND " + parameter2; // load by death year range
+                break;
+        case 8: // load by age range
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string gender = query.value(2).toString().toStdString();
+        birthYear = query.value(3).toInt();
+        deathYear = query.value(4).toInt();
+     //   valid = query.value(5).toBool();
+
+        Scientist scientist(name, gender[0], birthYear, deathYear);
         scientists.push_back(scientist);
     }
 

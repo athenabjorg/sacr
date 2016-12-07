@@ -146,7 +146,7 @@ vector<Scientist> ScientistService::findScientistByName(string name) // DONE    
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientistByName(name);
+    scientists = _data.loadScientists(1, name);
 
     return scientists;
 }
@@ -155,7 +155,8 @@ vector<Scientist> ScientistService::findScientistByGender(char gender)          
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientistByGender(gender);
+    scientists = _data.loadScientists(2, to_string(gender));
+
     return scientists;
 }
 vector<Scientist> ScientistService::findScientistByBirth(int birth)                     // Search vector by year of birth
@@ -163,7 +164,7 @@ vector<Scientist> ScientistService::findScientistByBirth(int birth)             
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientistByBirth(birth);
+    scientists = _data.loadScientists(3, to_string(birth));
 
     return scientists;
 }
@@ -172,7 +173,14 @@ vector<Scientist> ScientistService::findScientistByBirthRange(int birth1, int bi
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientistByBirthRange(birth1, birth2);
+    if(birth1 > birth2)
+    {
+        int temp = birth1;
+        birth1 = birth2;
+        birth2 = temp;
+    }
+
+    scientists = _data.loadScientists(4, to_string(birth1), to_string(birth2));
 
     return scientists;
 }
@@ -181,7 +189,7 @@ vector<Scientist> ScientistService::findScientistByDeath(int death)             
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientistByDeath(death);
+    scientists = _data.loadScientists(5, to_string(death));
 
     return scientists;
 }
@@ -190,7 +198,14 @@ vector<Scientist> ScientistService::findScientistByDeathRange(int death1, int de
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientistByDeathRange(death1, death2);
+    if(death1 > death2)
+    {
+        int temp = death1;
+        death1 = death2;
+        death2 = temp;
+    }
+
+    scientists = _data.loadScientists(6, to_string(death1), to_string(death2));
 
     return scientists;
 }
@@ -206,6 +221,13 @@ vector<Scientist> ScientistService::findScientistByAgeRange(int age1, int age2) 
 {   // Returns all scientists in that age range.
 
     vector<Scientist> scientists;
+
+    if(age1 > age2)
+    {
+        int temp = age1;
+        age1 = age2;
+        age2 = temp;
+    }
 
 
     return scientists;
