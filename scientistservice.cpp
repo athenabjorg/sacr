@@ -40,11 +40,16 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
 
-    Scientist scientist(name, gender, birth, death);
+    if(_data.doesScientistExist(name) == false)
+    {
+        Scientist scientist(name, gender, birth, death);
 
-     _scientists.push_back(scientist);
-     _data.saveScientist(scientist);
-     return true;
+        _scientists.push_back(scientist);
+        _data.saveScientist(scientist);
+        return true;
+    }
+
+    return false;
 
 }
 bool ScientistService::removeScientist(string name) // TODO
