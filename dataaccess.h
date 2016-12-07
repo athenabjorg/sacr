@@ -1,14 +1,14 @@
 #ifndef DATAACCESS_H
 #define DATAACCESS_H
-#include <iostream>
+
 #include <vector>
 #include <string>
-#include <fstream>
-#include <sstream>
 #include <QtSql>
+#include <iostream> // TEMP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 #include "scientist.h"
 #include "computer.h"
+
 
 using namespace std;
 

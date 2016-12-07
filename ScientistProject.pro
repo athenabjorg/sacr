@@ -12,14 +12,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     consoleui.cpp \
-    scientistservice.cpp \
     scientist.cpp \
     dataaccess.cpp \
-    computer.cpp
+    computer.cpp \
+    service.cpp
 
 HEADERS += \
     consoleui.h \
     dataaccess.h \
     scientist.h \
-    scientistservice.h \
-    computer.h
+    computer.h \
+    service.h

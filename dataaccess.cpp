@@ -1,7 +1,5 @@
 #include "dataaccess.h"
-#include <QtSql>
-#include <iostream> // TEMP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-#include <sstream>
+
 
 using namespace std;
 

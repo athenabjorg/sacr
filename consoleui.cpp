@@ -1,8 +1,5 @@
 #include "consoleui.h"
-#include "scientist.h"
-#include "computer.h"
 
-#include <QtSql>
 
 
 
@@ -1218,7 +1215,7 @@ void ConsoleUI::searchComputer()
 void ConsoleUI::sortScientist()
 {
     /*
-     * A sorting function, can call function from scientistservice.cpp scientistSort().
+     * A sorting function, can call function from service.cpp scientistSort().
      * The function will sort depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),
      * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
      */
@@ -1268,7 +1265,7 @@ void ConsoleUI::sortScientist()
 void ConsoleUI::sortComputer()
 {
     /*
-     * A sorting function, can call function from scientistservice.cpp scientistSort().
+     * A sorting function, can call function from service.cpp scientistSort().
      * The function will sort depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),
      * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
      */

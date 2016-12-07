@@ -5,7 +5,10 @@
 #include <iomanip>
 #include <ctime>
 
-#include "scientistservice.h"
+
+#include "service.h"
+#include "scientist.h"
+#include "computer.h"
 
 
 class ConsoleUI
@@ -83,7 +86,7 @@ private:
 
 private:
 
-    ScientistService _service;
+    service _service;
 };
 
 #endif // CONSOLEUI_H

@@ -1,4 +1,4 @@
-#include "scientistservice.h"
+#include "service.h"
 
 
 using namespace std;
@@ -25,18 +25,18 @@ bool sortByDeath   (const Scientist &a, const Scientist &b) { return a.getDeath(
 bool sortByAge     (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
 
 
-ScientistService::ScientistService()
+service::service()
 {
      _scientists = _data.loadScientists();
 }
 
-vector<Scientist> ScientistService::getScientists() //CHECK
+vector<Scientist> service::getScientists() //CHECK
 {   // Returns the list of scientists from file.
 
     return _scientists;
 }
 
-bool ScientistService::addScientist(string name, char gender, int birth, int death) // CHECK
+bool service::addScientist(string name, char gender, int birth, int death) // CHECK
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
 
@@ -53,7 +53,7 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
 
 }
 
-bool ScientistService::removeScientist(string name) // TODO
+bool service::removeScientist(string name) // TODO
 {   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
 
@@ -75,7 +75,7 @@ bool ScientistService::removeScientist(string name) // TODO
 
     return false;
 }
-void ScientistService::removeAllScientists()
+void service::removeAllScientists()
 {   // Removes ALL scientists from the list. Be careful with this.
 
     _scientists.clear();
@@ -83,7 +83,7 @@ void ScientistService::removeAllScientists()
     _data.removeAllScientists();
 }
 
-vector<Scientist> ScientistService::scientistSort(int sortType) // TODO SOON
+vector<Scientist> service::scientistSort(int sortType) // TODO SOON
 {    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
      // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
@@ -99,7 +99,7 @@ vector<Scientist> ScientistService::scientistSort(int sortType) // TODO SOON
 
 
 
-vector<Scientist> ScientistService::findScientist(int findType, string parameter)       // Search vector by type
+vector<Scientist> service::findScientist(int findType, string parameter)       // Search vector by type
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
 
     vector<Scientist> scientists;
@@ -108,7 +108,7 @@ vector<Scientist> ScientistService::findScientist(int findType, string parameter
 
     return scientists;
 }
-vector<Scientist> ScientistService::findScientist(int findType, string parameter1, string parameter2)       // Search vector by type
+vector<Scientist> service::findScientist(int findType, string parameter1, string parameter2)       // Search vector by type
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
 
     vector<Scientist> scientists;
@@ -118,7 +118,7 @@ vector<Scientist> ScientistService::findScientist(int findType, string parameter
     return scientists;
 }
 
-vector<Computer> ScientistService::getComputers()
+vector<Computer> service::getComputers()
 {
     vector<Computer> computers;
 
@@ -127,7 +127,7 @@ vector<Computer> ScientistService::getComputers()
     return computers;
 }
 
-bool ScientistService::addComputer(string name, int year, string type, bool built)
+bool service::addComputer(string name, int year, string type, bool built)
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
 
@@ -144,7 +144,7 @@ bool ScientistService::addComputer(string name, int year, string type, bool buil
 
 }
 
-vector<Computer> ScientistService::findComputer(int findType, string parameter)       // Search vector by type
+vector<Computer> service::findComputer(int findType, string parameter)       // Search vector by type
 {
     vector<Computer> computers;
 
@@ -152,7 +152,7 @@ vector<Computer> ScientistService::findComputer(int findType, string parameter) 
 
     return computers;
 }
-vector<Computer> ScientistService::findComputer(int findType, string parameter1, string parameter2)       // Search vector by type
+vector<Computer> service::findComputer(int findType, string parameter1, string parameter2)       // Search vector by type
 {
     vector<Computer> computers;
 
@@ -161,7 +161,7 @@ vector<Computer> ScientistService::findComputer(int findType, string parameter1,
     return computers;
 }
 
-vector<Computer> ScientistService::computerSort(int sortType)
+vector<Computer> service::computerSort(int sortType)
 {    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
      // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
@@ -173,14 +173,14 @@ vector<Computer> ScientistService::computerSort(int sortType)
 
 }
 
-bool ScientistService::removeComputer(string name)
+bool service::removeComputer(string name)
 {
     _data.removeComputer(name);
     return true;
 }
 
 
-void ScientistService::removeAllComputers()
+void service::removeAllComputers()
 {
     _data.removeAllComputers();
 }

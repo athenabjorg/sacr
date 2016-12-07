@@ -1,20 +1,21 @@
-#ifndef SCIENTISTSERVICE_H
-#define SCIENTISTSERVICE_H
+#ifndef service_H
+#define service_H
 
 #include <vector>
-#include <algorithm>
+#include <algorithm>   // <---------- remove?
 #include <string>
+
 #include "scientist.h"
 #include "dataaccess.h"
 #include "computer.h"
 
 using namespace std;
 
-class ScientistService
+class service
 {
 public:
 
-    ScientistService();
+    service();
 
     vector<Scientist> getScientists();
         // Uploads the list of scientists from file.
@@ -65,4 +66,4 @@ private:
 
 };
 
-#endif // SCIENTISTSERVICE_H
+#endif // service_H
