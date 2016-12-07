@@ -155,6 +155,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     break;
             case 3: cin.ignore();
                     userMenuPrint(_service.getComputers());
+                    askReturnToMenu();
                     break;
             case 4: cin.ignore();
                     searchComputer();

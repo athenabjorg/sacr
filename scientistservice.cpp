@@ -161,7 +161,7 @@ vector<Computer> ScientistService::findComputer(int findType, string parameter1,
     return computers;
 }
 
-vector<Computer> ScientistService::computerSort(int sortType) // TODO SOON
+vector<Computer> ScientistService::computerSort(int sortType)
 {    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
      // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
@@ -175,11 +175,12 @@ vector<Computer> ScientistService::computerSort(int sortType) // TODO SOON
 
 bool ScientistService::removeComputer(string name)
 {
+    _data.removeComputer(name);
     return true;
 }
 
 
 void ScientistService::removeAllComputers()
 {
-
+    _data.removeAllComputers();
 }
