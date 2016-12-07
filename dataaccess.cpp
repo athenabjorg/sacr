@@ -194,7 +194,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
 
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
-{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f),
     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
     vector<Scientist> scientists;
@@ -205,13 +205,23 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
 
     switch(sortType) // TODO case 2 (gender) virkar ekki
     {
-        case 1: line = "SELECT * FROM Scientists  W"; // load by name
+        case 1: line = "SELECT * FROM Scientists  W"; // sort by name(A-Z)
                 break;
-        case 2: line = "SELECT * FROM Scientists  Where Gende"; // load by gender
+        case 2: line = "SELECT * FROM Scientists  Where Gende"; // sort by name(Z-A)
                 break;
-        case 3: line = "SELECT * FROM Scientists  Where Birth"; // load by birth year
+        case 3: line = "SELECT * FROM Scientists  Where Birth"; // sort by gender(f-m)
                 break;
-        case 5: line = "SELECT * FROM Scientists  Where Died LIKE "; // load by death year
+        case 4: line = "SELECT * FROM Scientists  Where Died LIKE "; // sort by gender(m-f)
+                break;
+        case 5: line = "SELECT * FROM Scientists  W"; // sort by birth year(0-9)
+                break;
+        case 6: line = "SELECT * FROM Scientists  Where Gende"; // sort by birth year(9-0)
+                break;
+        case 7: line = "SELECT * FROM Scientists  Where Birth"; // sort by death year(0-9)
+                break;
+        case 8: line = "SELECT * FROM Scientists  Where Died LIKE "; // sort by age(0-9)
+                break;
+        case 9: line = "SELECT * FROM Scientists  W"; // sort by age(9-0)
                 break;
     }
 
