@@ -36,9 +36,9 @@ public:
 
 
 
-    vector<Scientist> loadComputers();
-    vector<Scientist> loadComputers(int loadType, string parameter);
-    vector<Scientist> loadComputers(int loadType, string parameter1, string parameter2);
+    vector<Computer> loadComputers();
+    vector<Computer> loadComputers(int loadType, string parameter);
+    vector<Computer> loadComputers(int loadType, string parameter1, string parameter2);
 
     vector<Computer> sortComputers(int sortType);
 

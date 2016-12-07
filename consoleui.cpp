@@ -304,6 +304,40 @@ void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print lis
     cout << "Total: " << scientist.size() << " scientists" << endl;
 
 }
+void ConsoleUI::userMenuPrint(const vector<Computer> &computer)   // Print list provided
+{
+    /*
+     * Prints out a partial list of scientist, depending on how
+     * it was sent forward by the previous function.
+     */
+/*
+    clearScreen();
+    cout << left << setw(30) << "Scientist name:"
+         << setw(10) << right << "Gender:"
+         << setw(10) << "Born:"
+         << setw(10) << "Died:"
+         << setw(10) << "Age:" << endl;
+    cout << "======================================================================" << endl;
+    for (size_t i = 0; i< computer.size(); ++i)
+    {
+        cout << left << setw(30) << computer[i].getName()
+             << setw(10) << right << computer[i].getGender()
+             << setw(10) << computer[i].getBirth();
+
+             if(computer[i].getDeath() == 0)
+             {
+                 cout << setw(10) << "-";
+             }
+             else
+             {
+                 cout << setw(10) << computer[i].getDeath();
+             }
+             cout << setw(10) << computer[i].getAge() << endl;
+    }
+    cout << "======================================================================" << endl;
+    cout << "Total: " << computer.size() << " scientists" << endl;
+*/
+}
 int  ConsoleUI::userCheckInput() const                      // Checks input from userMenuAdd
 {
     /*
@@ -1023,7 +1057,7 @@ void ConsoleUI::searchComputer()
             case 1: cout << "Search by year built" << endl;
                     cout << endl << "Year: ";
                     cin >> userInputYear;
-                    computer = _service.findComputer(2, userInputYear); // TODO:: right type input etc.
+                    computer = _service.findComputer(2, to_string(userInputYear)); // TODO:: right type input etc.
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
@@ -1033,7 +1067,7 @@ void ConsoleUI::searchComputer()
                     cin >> userInputYearFirst;
                     cout << endl << "Ending year: ";
                     cin >> userInputYearLast;
-                    computer = _service.findComputer(2, userInputYearFirst, userInputYearLast); // TODO:: right type input etc.
+                    computer = _service.findComputer(2, to_string(userInputYearFirst), to_string(userInputYearLast)); // TODO:: right type input etc.
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
@@ -1042,7 +1076,7 @@ void ConsoleUI::searchComputer()
 
 
 
-        computer = _service.findComputer(2, userInputYear); // TODO:: right type input etc.
+        computer = _service.findComputer(2, to_string(userInputYear)); // TODO:: right type input etc.
         userMenuPrint(computer);
         askReturnToMenu();
     }
@@ -1085,7 +1119,7 @@ void ConsoleUI::searchComputer()
     else if(command == "built") // Find computer if built or not
     {
         int inputCheck;
-        vector<Scientist> computer;
+        vector<Computer> computers;
 
         clearScreen();
         cout << "Search by:" << endl;
@@ -1097,12 +1131,12 @@ void ConsoleUI::searchComputer()
 
         switch(inputCheck)
         {
-            case 1: computer = _service.findComputer(7,0); // TODO:: right type input etc.
-                    userMenuPrint(computer);
+            case 1: computers = _service.findComputer(7,"0"); // TODO:: right type input etc.
+                    userMenuPrint(computers);
                     askReturnToMenu();
                     break;
-            case 2: computer = _service.findComputer(7,1); // TODO:: right type input etc.
-                    userMenuPrint(computer);
+            case 2: computers = _service.findComputer(7,"1"); // TODO:: right type input etc.
+                    userMenuPrint(computers);
                     askReturnToMenu();
                     break;
             default: cout << "Wrong Input" << endl;

@@ -35,6 +35,9 @@ private:
     void userMenuPrint(const vector<Scientist>& scientist);
         // Prints to the screen a scientist list provided (for example a search result).
 
+    void userMenuPrint(const vector<Computer> &computer);
+        // Prints to the screen a computer list provided (for example a search result).
+
     int  userCheckInput() const;
         // Asks for a yes, no, or cancel input and returns a corresponding numerical value (y = 0, n = 1, cancel = 2)
 
