@@ -133,6 +133,22 @@ vector<Computer> ScientistService::getComputers()
     return computers;
 }
 
+bool ScientistService::addComputer(string name, int year, string type, bool built)
+{   // Adds a scientist to the list and updates the file.
+    // Returns true if adding succeded, false otherwise.
+
+    if(_data.doesComputerExist(name) == false)
+    {
+        Computer computer(name, year, type, built);
+
+        _computers.push_back(computer);
+        _data.saveComputer(computer);
+        return true;
+    }
+
+    return false;
+
+}
 
 vector<Computer> ScientistService::findComputer(int findType, string parameter)       // Search vector by type
 {
@@ -150,3 +166,4 @@ vector<Computer> ScientistService::findComputer(int findType, string parameter1,
 
     return computers;
 }
+
