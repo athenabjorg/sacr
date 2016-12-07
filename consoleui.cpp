@@ -499,7 +499,7 @@ void ConsoleUI::removeComputer()
 
             if (confirm[0] == 'y' || confirm[0] == 'Y')
             {
-                _service.removeComputer(userInputName); // TODO::Needs a functin in service layer
+                //_service.removeComputer(userInputName); // TODO::Needs a functin in service layer
                 cout << endl << "Computers with names containing '" << userInputName << "' have been removed from the list." << endl;
                 askReturnToMenu();
             }
@@ -529,7 +529,7 @@ void ConsoleUI::removeComputer()
 
         if(userInputName == "remove")
         {
-            _service.removeAllComputers(); // TODO::Needs a functin in service layer
+            //_service.removeAllComputers(); // TODO::Needs a functin in service layer
             clearScreen();
             userMenuPrint();
         }
@@ -587,7 +587,7 @@ void ConsoleUI::addScientist()
         clearScreen();
 
         cout << "Enter the scientist's name: ";
-        cin.ignore();
+        cin.ignore(-1);
         getline(cin, name);
 
         while(true) // Check for gender
