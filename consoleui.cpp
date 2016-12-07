@@ -461,38 +461,36 @@ void ConsoleUI::removeComputer()
      * A function to remove a computer.
      */
 
-    int command;
+    string command;
 
     clearScreen();
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove computer by name " << endl;
     cout << "(2)     -   Remove *ALL* computers" << endl << endl;
     cout << "Select: ";
-    cin >> command;
+
+    getline(cin, command);
     cout << endl;
 
-
-
-/*
     if(command[0] == '1') // Remove computer/s by input.
     {
         vector<Computer> computer = _service.getComputers();
         userMenuPrint(computer);
 
         string userInputName, confirm;
-        vector<Scientist> scientistsToRemove;
+        vector<Computer> computersToRemove;
 
 
-        cout << endl << "Remove scientists with names containing: ";
+        cout << endl << "Remove computers with names containing: ";
 
 
         getline(cin, userInputName);
-        scientistsToRemove = _service.findScientist(1, userInputName);
+        computersToRemove = _service.findComputer(1, userInputName);
 
-        if(scientistsToRemove.size() > 0)
+        if(computersToRemove.size() > 0)
         {
-            userMenuPrint(scientistsToRemove);
-            cout << endl << "Are you sure you want to remove these scientists from the list?" << endl;
+            userMenuPrint(computersToRemove);
+            cout << endl << "Are you sure you want to remove these computers from the list?" << endl;
             cout << "Y     -   Yes, remove them " << endl;
             cout << "N     -   No, do not remove them" << endl << endl;
             cout << endl << "Select: ";
@@ -501,43 +499,42 @@ void ConsoleUI::removeComputer()
 
             if (confirm[0] == 'y' || confirm[0] == 'Y')
             {
-                _service.removeScientist(userInputName);
-                cout << endl << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
+                _service.removeComputer(userInputName); // TODO::Needs a functin in service layer
+                cout << endl << "Computers with names containing '" << userInputName << "' have been removed from the list." << endl;
                 askReturnToMenu();
             }
             else
             {
-                cout << endl << "No scientists were removed" << endl;
+                cout << endl << "No computers were removed" << endl;
                 askReturnToMenu();
             }
 
         }
         else
         {
-            cout << endl << "There are no scientists with names containing '" << userInputName << "'" << endl;
+            cout << endl << "There are no computers with names containing '" << userInputName << "'" << endl;
             askReturnToMenu();
         }
     }
-    else if(command[0] == '2') // Remove all scientists
+    else if(command[0] == '2') // Remove all computers
     {
         string userInputName;
 
         clearScreen();
 
-        cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
+        cout << "Type in \"remove\" to remove *ALL* computers, any other input to cancel" << endl;
 
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
         if(userInputName == "remove")
         {
-            _service.removeAllScientists();
+            _service.removeAllComputers(); // TODO::Needs a functin in service layer
             clearScreen();
             userMenuPrint();
         }
 
     }
-*/
 }
 void ConsoleUI::forceLowerCase(string &command)                     // Forces input to lower case
 {
