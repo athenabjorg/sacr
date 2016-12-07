@@ -204,8 +204,7 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
     int birthYear, deathYear;
     bool valid;
 
-
-    switch(sortType) // TODO case 2 (gender) virkar ekki
+    switch(sortType)
     {
         case 1: line = "SELECT * FROM Scientists ORDER BY Name ASC"; // sort by name(A-Z)
                 break;
@@ -215,9 +214,9 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
                 break;
         case 4: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by gender(m-f)
                 break;
-        case 5: line = "SELECT * FROM Scientists ORDER BY Birth ASC"; // sort by birth year(0-9)
+        case 5: line = "SELECT * FROM Scientists ORDER BY Born ASC"; // sort by birth year(0-9)
                 break;
-        case 6: line = "SELECT * FROM Scientists ORDER BY Birth DESC"; // sort by birth year(9-0)
+        case 6: line = "SELECT * FROM Scientists ORDER BY Born DESC"; // sort by birth year(9-0)
                 break;
         case 7: line = "SELECT * FROM Scientists ORDER BY DIED ASC"; // sort by death year(0-9)
                 break;

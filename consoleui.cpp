@@ -330,12 +330,12 @@ void ConsoleUI::userMenuSort()                              // Sorts list
      * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
      */
 
+
+    vector<Scientist> sortedScientists;
     bool inputCheck = true;
     int userInput;
 
     clearScreen();
-
-
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -351,7 +351,7 @@ void ConsoleUI::userMenuSort()                              // Sorts list
         cout << endl << "Select: ";
         cin >> userInput;
 
-        if(userInput < 0 || userInput > 7) // check if input is int and if it ranges from 1 to 6
+        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
         {
             inputCheck = true;
             cout << "Invalid input" << endl;
@@ -366,8 +366,11 @@ void ConsoleUI::userMenuSort()                              // Sorts list
 
     }while(inputCheck);
 
-     _service.scientistSort(userInput);
-     userMenuPrint();
+     sortedScientists = _service.scientistSort(userInput);
+
+     userMenuPrint(sortedScientists);
+
+     askReturnToMenu();
 }
 void ConsoleUI::userMenuPrint()                             // Prints whole list
 {
