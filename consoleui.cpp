@@ -154,7 +154,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     userMenuRemove();// TODO::change name and seprate; removeScientist(), removeComputer().
                     break;
             case 3: cin.ignore();
-                    userMenuPrint(_service.getComputers());
+                    //userMenuPrint(_service.getComputers());
                     break;
             case 4: cin.ignore();
                     searchComputer();
