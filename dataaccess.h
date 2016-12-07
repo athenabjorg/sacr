@@ -8,6 +8,7 @@
 #include <QtSql>
 
 #include "scientist.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
     void removeAllScientists();
 
     vector<Scientist> sortScientists(int sortType);
+    vector<Computer> sortComputers(int sortType);
 
 private:
 

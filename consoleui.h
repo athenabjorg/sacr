@@ -7,6 +7,7 @@
 
 #include "scientistservice.h"
 
+
 class ConsoleUI
 {
 public:
@@ -55,6 +56,12 @@ private:
 
     void addComputer();
     // Asks for information about a computer, and then adds them to the database.
+
+    void sortScientist();
+    // Sorts scientists.
+
+    void sortComputer();
+    // Sorts computers.
 
 private:
 
