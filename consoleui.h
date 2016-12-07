@@ -18,7 +18,7 @@ public:
 private:
 
     void userMenuAdd();
-        // Asks for information about a scientist, and then adds them to the text file.
+        // Enters the add menu.
 
     void userMenuSearch();
         // Searches for a scientist depending on the input, prints a list of the result.
@@ -49,6 +49,12 @@ private:
 
     int  whatYearIsIt() const;
         // Returns what year it is now.
+
+    void addScientist();
+        // Asks for information about a scientist, and then adds them to the database.
+
+    void addComputer();
+    // Asks for information about a computer, and then adds them to the database.
 
 private:
 

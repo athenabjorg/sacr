@@ -94,153 +94,20 @@ void ConsoleUI::run()                                       // DIsplays the main
         clearScreen();
     }
 }
-void ConsoleUI::userMenuAdd()                               // Adds a new programmer
+void ConsoleUI::userMenuAdd()  // Adds a new programmer
 {
-    /*
-     * The function used to add a new scientist. The user enters
-     * name, gender, birth year and year of death. Error checks included.
-     */
+    int selection = 0;
+    cout << "Would you like to add a scientist or a computer to the database?" << endl
+         << "1 - Scientist" << endl
+         << "2 - Computer" << endl;
+    cin >> selection;
 
-    string name, genderInput;
-    char gender;
-    int birthYear = 0, deathYear = 0, checkInput;
-
-    while(true)
-    {
-        clearScreen();
-
-        cout << "Enter the scientist's name: ";
-        cin.ignore(-1);
-        getline(cin, name);
-
-        while(true) // Check for gender
-        {
-            cout << endl;
-            cout << "Enter the scientist's gender" << endl;
-            cout << endl << "F - Female" << endl;
-            cout << "M - Male" << endl;
-            cout << endl << "Gender: ";
-            cin >> genderInput;
-            forceLowerCase(genderInput);
-            gender = genderInput[0];
-
-            if((gender == 'm') || (gender == 'f'))
-            {
-                break;
-            }
-            else
-            {
-                cout << "Invalid input" << endl;
-            }
-        }
-
-        while(true) // Check year of birth
-            {
-               cout << endl << "Enter the scientist's year of birth: ";
-               cin >> birthYear;
-
-
-                if(cin.fail())
-                {
-                    cout << "Invalid input!" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-                else if(birthYear <= whatYearIsIt()) // Just in case we discover a programmer of the universe
-                {
-                    break;
-                }
-                else
-                {
-                    cout << "Invalid input...or you are Marty McFly" << endl;
-                }
-            }
-
-            while(true) // Check when scientist died (if dead)
-            {
-
-                cout << endl << "Enter the scientist's year of death (type 0 if not applicable): ";
-                cin >> deathYear;
-
-                if(cin.fail())
-                {
-                    cout << "Invalid input" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-                else if (deathYear == 0)
-                {
-                    break;
-                }
-                else if(deathYear > whatYearIsIt())
-                {
-                    cout << "Predicting the future, are we? Try again" << endl;
-                    cin.clear();
-                }
-                else if(deathYear >= birthYear)
-                {
-                    break;
-                }
-                else if(deathYear < birthYear)
-                {
-                    cout << "Invalid input - You can't die before you are born!" << endl;
-                    cin.clear();
-                }
-            }
-
-        // Check if input is correct
-        clearScreen();
-        cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
-
-        if(deathYear != 0)
-        {
-            cout << "Died: " << deathYear << endl;
-        }
-        else
-        {
-            cout << endl;
-        }
-
-        checkInput = userCheckInput(); // A function that checks if the input is valid
-
-        if (checkInput == 0)
-        {
-            if(_service.addScientist(name, gender, birthYear, deathYear))
-            {
-                cout << endl << name << " successfully added to the list" << endl;
-
-            }
-            else
-            {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing name" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeScientist(name);
-                    _service.addScientist(name, gender, birthYear, deathYear);
-                }
-
-            }
-            askReturnToMenu();
-            break;
-        }
-        else if (checkInput == 1)
-        {
-
-        }
-        else
-        {
-            break;
-        }
-    }
-
-
+    if (selection == 1)
+        addScientist();
+    else if (selection == 2)
+        addComputer();
+    else
+        cout << "Invalid input" << endl;
 }
 void ConsoleUI::userMenuSearch()                            // Searches the list
 {
@@ -579,7 +446,7 @@ int  ConsoleUI::userCheckInput() const                      // Checks input from
     {
         string answer;
         cout << endl << "Is this data correct?" << endl;
-        cout << endl << "Y - Yes, add the name to the list" << endl;
+        cout << endl << "Y - Yes, add this to the list" << endl;
         cout << "N - No, let me try again" << endl;
         cout << "C - Cancel add and return to the menu" << endl;
         cout << endl << "Select: ";
@@ -728,4 +595,294 @@ int  ConsoleUI::whatYearIsIt() const                        // Returns the curre
 
     int currentYear = (timeinfo->tm_year + 1900);
     return currentYear;
+}
+void ConsoleUI::addScientist()
+{
+    string name, genderInput;
+    char gender;
+    int birthYear = 0, deathYear = 0, checkInput;
+
+    while(true)
+    {
+        clearScreen();
+
+        cout << "Enter the scientist's name: ";
+        cin.ignore();
+        getline(cin, name);
+
+        while(true) // Check for gender
+        {
+            cout << endl;
+            cout << "Enter the scientist's gender" << endl;
+            cout << endl << "F - Female" << endl;
+            cout << "M - Male" << endl;
+            cout << endl << "Gender: ";
+            cin >> genderInput;
+            forceLowerCase(genderInput);
+            gender = genderInput[0];
+
+            if((gender == 'm') || (gender == 'f'))
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input" << endl;
+            }
+        }
+
+        while(true) // Check year of birth
+            {
+               cout << endl << "Enter the scientist's year of birth: ";
+               cin >> birthYear;
+
+
+                if(cin.fail())
+                {
+                    cout << "Invalid input!" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else if(birthYear <= whatYearIsIt()) // Just in case we discover a programmer of the universe
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Invalid input...or you are Marty McFly" << endl;
+                }
+            }
+
+            while(true) // Check when scientist died (if dead)
+            {
+
+                cout << endl << "Enter the scientist's year of death (type 0 if not applicable): ";
+                cin >> deathYear;
+
+                if(cin.fail())
+                {
+                    cout << "Invalid input" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else if (deathYear == 0)
+                {
+                    break;
+                }
+                else if(deathYear > whatYearIsIt())
+                {
+                    cout << "Predicting the future, are we? Try again" << endl;
+                    cin.clear();
+                }
+                else if(deathYear >= birthYear)
+                {
+                    break;
+                }
+                else if(deathYear < birthYear)
+                {
+                    cout << "Invalid input - You can't die before you are born!" << endl;
+                    cin.clear();
+                }
+            }
+
+        // Check if input is correct
+        clearScreen();
+        cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
+
+        if(deathYear != 0)
+        {
+            cout << "Died: " << deathYear << endl;
+        }
+        else
+        {
+            cout << endl;
+        }
+
+        checkInput = userCheckInput(); // A function that checks if the input is valid
+
+        if (checkInput == 0)
+        {
+            if(_service.addScientist(name, gender, birthYear, deathYear))
+            {
+                cout << endl << name << " successfully added to the list" << endl;
+
+            }
+            else
+            {
+                int userInput;
+
+                cout << "This name is already in the database." << endl;
+                cout << endl << "1 - Replace existing name" << endl;
+                cout << "2 - Start over" << endl;
+                cout << endl << "Select: ";
+                cin >> userInput;
+
+                if(userInput == 1)
+                {
+                    _service.removeScientist(name);
+                    _service.addScientist(name, gender, birthYear, deathYear);
+                }
+
+            }
+            askReturnToMenu();
+            break;
+        }
+        else if (checkInput == 1)
+        {
+
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+void ConsoleUI::addComputer()
+{
+    string name, type;
+    int yearBuilt = 0, checkInput;
+    bool built = false;
+
+        while(true)
+        {
+        clearScreen();
+
+        cout << "Enter the computer's name: ";
+        cin.ignore();
+        getline(cin, name);
+
+        while(true) // Check for type
+        {
+            int inputType;
+            cout << endl;
+            cout << "What type of computer is this?" << endl;
+            cout << endl << "1 - ElectroMechanical" << endl;
+            cout << "2 - Electronic" << endl;
+            cout << "3 - Mechanical" << endl;
+            cout << "4 - Transistor" << endl;
+            cout << endl << "Type: ";
+            cin >> inputType;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else
+            {
+                switch(inputType)
+                {
+                    case 1:
+                        type = "ElectroMechanical";
+                        break;
+                    case 2:
+                        type = "Electronic";
+                        break;
+                    case 3:
+                        type = "Mechanical";
+                        break;
+                    case 4:
+                        type = "Transistor";
+                        break;
+                    default:
+                        cout << "Invalid input";
+                }
+            break;
+            }
+        }
+
+        while(true) // Check if it was built
+        {
+            char builtInput;
+            cout << endl << "Was the computer ever built? (y/n)"<< endl;
+            cin >> builtInput;
+
+            if (builtInput == 'y')
+            {
+                built = true;
+                break;
+            }
+            else if (builtInput == 'n')
+            {
+                built = false;
+                break;
+            }
+
+            else
+                cout << "Invalid Input" << endl;
+        }
+
+        while(built == true) // Check when when it was built (if it was)
+        {
+            cout << endl << "What year was the computer built?" << endl;
+            cin >> yearBuilt;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(yearBuilt > whatYearIsIt())
+            {
+                cout << "Predicting the future, are we? Try again" << endl;
+                cin.clear();
+            }
+            else
+                break;
+        }
+
+        // Check if input is correct
+        clearScreen();
+        cout << "Name: " << name << endl << "Type: " << type << endl;
+
+        if(built == true)
+        {
+            cout << "Built: " << yearBuilt << endl;
+        }
+        else
+        {
+            cout << "Was never built" << endl;
+        }
+
+        checkInput = userCheckInput(); // A function that checks if the input is valid
+
+        if (checkInput == 0)
+        {
+            /*if(_service.addScientist(name, gender, birthYear, deathYear))
+            {
+                cout << endl << name << " successfully added to the list" << endl;
+
+            }
+            else
+            {
+                int userInput;
+
+                cout << "This name is already in the database." << endl;
+                cout << endl << "1 - Replace existing data" << endl;
+                cout << "2 - Start over" << endl;
+                cout << endl << "Select: ";
+                cin >> userInput;
+
+                if(userInput == 1)
+                {
+                    _service.removeScientist(name);
+                    _service.addScientist(name, gender, birthYear, deathYear);
+                }
+
+            }
+            askReturnToMenu();
+            break;
+            */
+        }
+        else if (checkInput == 1)
+        {
+
+        }
+        else
+        {
+            break;
+        }
+    }
 }

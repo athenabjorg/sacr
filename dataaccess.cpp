@@ -52,12 +52,14 @@ void DataAccess::removeScientist(string inputName)
     db.close();
 }
 
-void DataAccess::removeAllScientists()
+void DataAccess::removeAllScientists() // Not practical
 {
+    /*
     db.open();
     QSqlQuery query;
     query.exec("DELETE FROM Scientists"); // open table scientists
     db.close();
+    */
 }
 
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
