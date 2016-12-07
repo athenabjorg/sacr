@@ -34,7 +34,7 @@ void ConsoleUI::run()                                       // DIsplays the main
 
         cout << "Select one of the following options: " << endl;
         cout << "==========================================================================" << endl;
-        cout << "Add     -   Add a scientist" << endl;
+        cout << "Add     -   Add a scientist or a computer" << endl;
         cout << "Remove  -   Remove a scientist" << endl;
         cout << "List    -   Show a list of all scientists" << endl;
         cout << "Search  -   Search the list of scientists" << endl;
@@ -103,9 +103,15 @@ void ConsoleUI::userMenuAdd()  // Adds a new programmer
     cin >> selection;
 
     if (selection == 1)
+    {
+        cin.ignore();
         addScientist();
+    }
     else if (selection == 2)
+    {
+        cin.ignore();
         addComputer();
+    }
     else
         cout << "Invalid input" << endl;
 }
@@ -748,7 +754,7 @@ void ConsoleUI::addComputer()
         clearScreen();
 
         cout << "Enter the computer's name: ";
-        cin.ignore();
+        cin.ignore(-1);
         getline(cin, name);
 
         while(true) // Check for type
@@ -785,10 +791,15 @@ void ConsoleUI::addComputer()
                     case 4:
                         type = "Transistor";
                         break;
-                    default:
-                        cout << "Invalid input";
                 }
-            break;
+                if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Invalid input" << endl;
+                }
             }
         }
 
