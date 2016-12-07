@@ -17,6 +17,8 @@ public:
 
 private:
 
+    void userMenuSwitch(int loadType);
+
     void userMenuAdd();
         // Enters the add menu.
 
@@ -55,6 +57,10 @@ private:
 
     void addComputer();
     // Asks for information about a computer, and then adds them to the database.
+
+    void searchScientist();
+
+    void searchComputer();
 
 private:
 

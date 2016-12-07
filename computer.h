@@ -9,12 +9,11 @@ class Computer
 {
 public:
     Computer();
-    Computer(string name, int yearBuilt, string type, bool built, bool valid);
+    Computer(string name, int yearBuilt, string type, bool built);
     string getName();
     int getYearBuilt();
     string getType();
     bool getBuilt();
-    bool getValid();
 
 
 private:
@@ -22,7 +21,6 @@ private:
     string _type;
     int _yearBuilt;
     bool _built;
-    bool _valid;
 
 };
 

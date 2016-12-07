@@ -6,15 +6,13 @@ Computer::Computer()
     _type = " ";
     _yearBuilt = 0;
     _built = 0;
-    _valid = 0;
 }
-Computer::Computer(string name, int yearBuilt, string type, bool built, bool valid)
+Computer::Computer(string name, int yearBuilt, string type, bool built)
 {
     _name = name;
     _type = type;
     _yearBuilt = yearBuilt;
     _built = built;
-    _valid = valid;
 }
 string Computer::getName()
 {
@@ -31,8 +29,4 @@ string Computer::getType()
 bool Computer::getBuilt()
 {
     return _built;
-}
-bool Computer::getValid()
-{
-    return _valid;
 }
