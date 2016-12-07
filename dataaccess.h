@@ -29,9 +29,17 @@ public:
     bool doesScientistExist(string name);
 
     void removeScientist(string inputName);
+
     void removeAllScientists();
 
     vector<Scientist> sortScientists(int sortType);
+
+
+
+    vector<Scientist> loadComputers();
+    vector<Scientist> loadComputers(int loadType, string parameter);
+    vector<Scientist> loadComputers(int loadType, string parameter1, string parameter2);
+
     vector<Computer> sortComputers(int sortType);
 
 private:

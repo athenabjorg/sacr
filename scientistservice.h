@@ -40,6 +40,8 @@ public:
     vector<Scientist> findScientist(int findType, string parameter);
     vector<Scientist> findScientist(int findType, string parameter1, string parameter2);
 
+    vector<Computer> findComputer(int findType, string parameter);
+    vector<Computer> findComputer(int findType, string parameter1, string parameter2);
 
 
 

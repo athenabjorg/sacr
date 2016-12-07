@@ -125,3 +125,20 @@ vector<Scientist> ScientistService::findScientist(int findType, string parameter
 
     return scientists;
 }
+
+vector<Computer> ScientistService::findComputer(int findType, string parameter)       // Search vector by type
+{
+    vector<Computer> computer;
+
+    computer = _data.loadComputers(findType, parameter);
+
+    return computer;
+}
+vector<Computer> ScientistService::findComputer(int findType, string parameter1, string parameter2)       // Search vector by type
+{
+    vector<Computer> computer;
+
+    computer = _data.loadComputers(findType, parameter1, parameter2);
+
+    return computer;
+}
