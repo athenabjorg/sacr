@@ -1308,7 +1308,7 @@ void ConsoleUI::sortComputer()
 
      sortedComputers = _service.computerSort(userInput);
 
-     //userMenuPrint(sortedComputers); ############### Laga þegar print er orðið klárt #########
+     userMenuPrint(sortedComputers); // Laga þegar print er orðið klárt
 
      askReturnToMenu();
 
