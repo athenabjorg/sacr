@@ -53,7 +53,7 @@ bool ScientistService::removeScientist(string name) // TODO
 
     vector<Scientist> scientistsToRemove = findScientist(1, name);
 
-    if (true)
+    if (scientistsToRemove.size() > 0)
     {
         for (size_t i = 0; i < scientistsToRemove.size(); i++)
         {
