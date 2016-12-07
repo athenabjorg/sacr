@@ -46,6 +46,12 @@ private:
     void userMenuRemove();
         // Permanently removes scientists from the list, who have names containing the user input.
 
+    void removeScientist();
+        // Permanently removes scientists from the list, who have names containing the user input.
+
+    void removeComputer();
+        // Permanently removes scientists from the list, who have names containing the user input.
+
     void forceLowerCase(string &command);
         // Makes a string all lower case, to make commands eaier to read.
 
