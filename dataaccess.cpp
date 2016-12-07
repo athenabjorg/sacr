@@ -66,34 +66,6 @@ void DataAccess::removeAllScientists() // Not practical
     db.close();
 }
 
-void DataAccess::removeComputer(string inputName)
-{
-    string line;
-
-    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-    db.close();
-}
-
-void DataAccess::removeAllComputers()
-{
-    string line;
-
-    line = "DELETE FROM Computers";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input);
-    db.close();
-}
-
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
 {
     /*
@@ -320,13 +292,173 @@ void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite databas
 
 }
 
-//removecomputer
+void DataAccess::removeComputer(string inputName)
+{
+    string line;
 
-//removeallcomputers
+    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
 
-// loadcomputers
-// load 2 par
-// load 3 par
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+    db.close();
+}
+
+void DataAccess::removeAllComputers()
+{
+    string line;
+
+    line = "DELETE FROM Computers";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+}
+
+
+vector<Computer> DataAccess::loadComputers()                  // From text file to vector
+{
+    /*
+     * This function uses SQLite Manager database and adds scientits table into a vector.
+     * 1 = load by name, 2 = load by gender, 3 = load by birth year
+     * 5 = load by death year, 7 = load by age, 9 load by ...
+     * 4, 6 and 8 are used in the loadScientist function with 3 parameters.
+     */
+
+    vector<Computer> computers;
+    string line, name, type;
+    int year;
+    bool built, valid;
+
+    line = "SELECT * FROM computers";
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        name = query.value(1).toString().toStdString();
+        year = query.value(2).toInt();
+        type = query.value(3).toString().toStdString();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
+}
+
+vector<Computer> DataAccess::loadComputers(int loadType, string parameter)                  // From text file to vector
+{
+    /*
+     * This function uses SQLite Manager database and adds scientits table into a vector.
+     * 1 = load by name, 2 = load by gender, 3 = load by birth year
+     * 5 = load by death year, 7 = load by age, 9 load by ...
+     * 4, 6 and 8 are used in the loadScientist function with 3 parameters.
+     */
+
+    vector<Computer> computers;
+    string line, name, type;
+    int year;
+    bool built, valid;
+
+
+    switch(loadType)
+    {
+        case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\""; // load by name
+                break;
+        case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\""; // load by year built/designed
+                break;
+        case 3: line = "SELECT * FROM Computers Where Type LIKE " + parameter; // load by type
+                break;
+        case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter; // load by if built
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        name = query.value(1).toString().toStdString();
+        year = query.value(2).toInt();
+        type = query.value(3).toString().toStdString();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
+}
+
+vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, string parameter2)
+{
+    /*
+     * This function uses SQLite Manager database and adds scientits table into a vector.
+     * 4 = load by birth year range, 6 = load by death year range, 8 = load by age range.
+     * 1, 2, 3, 5 and 7 are used in the loadScientist function with 2 parameters.
+     */
+
+    vector<Computer> computers;
+    string line, name, type;
+    int year;
+    bool built, valid;
+
+
+    switch(loadType)
+    {
+        case 4: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2; // load by build/design year range
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        name = query.value(1).toString().toStdString();
+        year = query.value(2).toInt();
+        type = query.value(3).toString().toStdString();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
+}
+
+
+
+
 
 vector<Computer> DataAccess::sortComputers(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),

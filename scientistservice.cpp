@@ -122,6 +122,8 @@ vector<Computer> ScientistService::getComputers()
 {
     vector<Computer> computers;
 
+    computers = _data.loadComputers();
+
     return computers;
 }
 
@@ -146,7 +148,7 @@ vector<Computer> ScientistService::findComputer(int findType, string parameter) 
 {
     vector<Computer> computers;
 
-    // computers = _data.loadComputers(findType, parameter);
+    computers = _data.loadComputers(findType, parameter);
 
     return computers;
 }
@@ -154,7 +156,7 @@ vector<Computer> ScientistService::findComputer(int findType, string parameter1,
 {
     vector<Computer> computers;
 
-    // computers = _data.loadComputers(findType, parameter1, parameter2);
+    computers = _data.loadComputers(findType, parameter1, parameter2);
 
     return computers;
 }
