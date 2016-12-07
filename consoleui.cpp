@@ -132,7 +132,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     userMenuRemove();// TODO::change name and seprate; removeScientist(), removeComputer().
                     break;
             case 3: cin.ignore();
-                    userMenuPrint();// TODO::change name and seperate; printScientist(), printComputer.
+                    userMenuPrint(_service.getScientists());
                     break;
             case 4: cin.ignore();
                     searchScientist();
@@ -154,7 +154,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     userMenuRemove();// TODO::change name and seprate; removeScientist(), removeComputer().
                     break;
             case 3: cin.ignore();
-                    userMenuPrint();// TODO::change name and seperate; printScientist(), printComputer.
+                    userMenuPrint(_service.getComputers());
                     break;
             case 4: cin.ignore();
                     searchComputer();
