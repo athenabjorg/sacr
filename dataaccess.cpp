@@ -12,6 +12,7 @@ DataAccess::DataAccess()
     db.setDatabaseName("DataBase.sqlite");  // witch database to select ( aka what file )
 
 }
+
 void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite database
 {
     string line, name, gender;
@@ -145,6 +146,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
     db.close();
     return scientists;
 }
+
 vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, string parameter2)
 {
     /*
@@ -193,6 +195,19 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
     return scientists;
 }
 
+bool DataAccess::doesScientistExist(string name)
+{
+    vector<Scientist> scientists;
+
+    scientists = loadScientists(1, name);
+
+    if(scientists.size() > 0)
+    {
+        return true;
+    }
+
+    return false;
+}
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
