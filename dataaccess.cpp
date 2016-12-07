@@ -81,11 +81,13 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-     //   valid = query.value(5).toBool();
+        valid = query.value(5).toBool();
 
-
-        Scientist scientist(name, gender[0], birthYear, deathYear);
-        scientists.push_back(scientist);
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
     }
 
     db.close();
@@ -130,10 +132,13 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-     //   valid = query.value(5).toBool();
+        valid = query.value(5).toBool();
 
-        Scientist scientist(name, gender[0], birthYear, deathYear);
-        scientists.push_back(scientist);
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
     }
 
     db.close();
@@ -174,10 +179,60 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-     //   valid = query.value(5).toBool();
+        valid = query.value(5).toBool();
 
-        Scientist scientist(name, gender[0], birthYear, deathYear);
-        scientists.push_back(scientist);
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
+    }
+
+    db.close();
+    return scientists;
+}
+
+
+vector<Scientist> DataAccess::sortScientists(int sortType)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
+    // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+
+    vector<Scientist> scientists;
+    string line, name, gender;
+    int birthYear, deathYear;
+    bool valid;
+
+
+    switch(sortType) // TODO case 2 (gender) virkar ekki
+    {
+        case 1: line = "SELECT * FROM Scientists  W"; // load by name
+                break;
+        case 2: line = "SELECT * FROM Scientists  Where Gende"; // load by gender
+                break;
+        case 3: line = "SELECT * FROM Scientists  Where Birth"; // load by birth year
+                break;
+        case 5: line = "SELECT * FROM Scientists  Where Died LIKE "; // load by death year
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string gender = query.value(2).toString().toStdString();
+        birthYear = query.value(3).toInt();
+        deathYear = query.value(4).toInt();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Scientist scientist(name, gender[0], birthYear, deathYear);
+            scientists.push_back(scientist);
+        }
     }
 
     db.close();

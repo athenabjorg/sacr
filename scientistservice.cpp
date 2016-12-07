@@ -77,72 +77,13 @@ void ScientistService::removeAllScientists()
     _data.removeAllScientists();
 }
 
-void ScientistService::scientistSort(int sortType) // TODO SOON
-{    // Sort by parameter: 1 = name(A-Z), 2 = name(Z-A), 3 = gender
-     //							4 = birth, 5 = death, 6 = age.
+vector<Scientist> ScientistService::scientistSort(int sortType) // TODO SOON
+{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
+     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
 
-    if (sortType == 1)
-    {
-        sort(_scientists.begin(), _scientists.end(), sortByNameAsc);
-    }
-    else if (sortType == 2)
-    {
-        sort(_scientists.begin(), _scientists.end(), sortByNameDesc);
-    }
-    else if (sortType == 3)
-    {
-        sort(_scientists.begin(), _scientists.end(), sortByGender);
-    }
-    else if (sortType == 4)
-    {
-        sort(_scientists.begin(), _scientists.end(), sortByBirth);
-    }
-    else if (sortType == 5)
-    {
-        sort(_scientists.begin(), _scientists.end(), sortByDeath);
-    }
-    else if (sortType == 6)
-    {
-        sort(_scientists.begin(), _scientists.end(), sortByAge);
-    }
 
-    // TODO PRENTA ÚT SORTIÐ
 }
-void ScientistService::scientistSortForFind(int sortType, vector<Scientist>& scientists) // TODO, DELETE?
-{   // Sort list by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender,
-    //                              4 = birth, 5 = death, 6 = age.
-    // Sorts the list provided by the find function without saving to file,
-    // so that the search result is displayed according to the search type.
-
-    if (sortType == 1)
-    {
-        sort(scientists.begin(), scientists.end(), sortByNameAsc);
-    }
-    else if (sortType == 2)
-    {
-        sort(scientists.begin(), scientists.end(), sortByNameDesc);
-    }
-    else if (sortType == 3)
-    {
-        sort(scientists.begin(), scientists.end(), sortByGender);
-    }
-    else if (sortType == 4)
-    {
-        sort(scientists.begin(), scientists.end(), sortByBirth);
-    }
-    else if (sortType == 5)
-    {
-        sort(scientists.begin(), scientists.end(), sortByDeath);
-    }
-    else if (sortType == 6)
-    {
-        sort(scientists.begin(), scientists.end(), sortByAge);
-    }
-}
-
-
-
 
 
 
