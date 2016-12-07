@@ -52,6 +52,7 @@ bool ScientistService::addScientist(string name, char gender, int birth, int dea
     return false;
 
 }
+
 bool ScientistService::removeScientist(string name) // TODO
 {   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
@@ -93,17 +94,8 @@ vector<Scientist> ScientistService::scientistSort(int sortType) // TODO SOON
     return scientists;
 
 }
-vector<Computer> ScientistService::computerSort(int sortType) // TODO SOON
-{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
-     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
-    vector<Computer> computers;
 
-    computers = _data.sortComputers(sortType);
-
-    return computers;
-
-}
 
 
 
@@ -167,3 +159,25 @@ vector<Computer> ScientistService::findComputer(int findType, string parameter1,
     return computers;
 }
 
+vector<Computer> ScientistService::computerSort(int sortType) // TODO SOON
+{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
+     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+
+    vector<Computer> computers;
+
+    computers = _data.sortComputers(sortType);
+
+    return computers;
+
+}
+
+bool ScientistService::removeComputer(string name)
+{
+    return true;
+}
+
+
+void ScientistService::removeAllComputers()
+{
+
+}
