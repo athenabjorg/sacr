@@ -310,7 +310,7 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)   // Print list 
      * Prints out a partial list of scientist, depending on how
      * it was sent forward by the previous function.
      */
-/*
+
     clearScreen();
     cout << left << setw(30) << "Scientist name:"
          << setw(10) << right << "Gender:"
@@ -336,7 +336,7 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)   // Print list 
     }
     cout << "======================================================================" << endl;
     cout << "Total: " << computer.size() << " scientists" << endl;
-*/
+
 }
 int  ConsoleUI::userCheckInput() const                      // Checks input from userMenuAdd
 {
