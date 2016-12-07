@@ -53,7 +53,7 @@ bool ScientistService::removeScientist(string name) // TODO
 
     vector<Scientist> scientistsToRemove = findScientist(1, name);
 
-    if (scientistsToRemove.size() > 0)
+    if (true)
     {
         for (size_t i = 0; i < scientistsToRemove.size(); i++)
         {
@@ -62,7 +62,7 @@ bool ScientistService::removeScientist(string name) // TODO
             _scientists.erase(remove(_scientists.begin(), _scientists.end(), toRemove), _scientists.end());
         }
 
-        // TODO KOMA ÞESSU TIL SKILA TIL DATABASE
+        _data.removeScientist(name);
 
         return true;
     }

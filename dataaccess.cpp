@@ -42,7 +42,7 @@ void DataAccess::removeScientist(string inputName)
 {
     string line;
 
-    line = "DELETE * FROM Scientists  Where Name LIKE \"%" + inputName + "%\"";
+    line = "UPDATE Scientists SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
 
     QString input = QString::fromStdString(line);
 
