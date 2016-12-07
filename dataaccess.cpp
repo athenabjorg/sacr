@@ -54,12 +54,44 @@ void DataAccess::removeScientist(string inputName)
 
 void DataAccess::removeAllScientists() // Not practical
 {
-    /*
+    string line;
+
+    line = "DELETE FROM Scientists";
+
+    QString input = QString::fromStdString(line);
+
     db.open();
     QSqlQuery query;
-    query.exec("DELETE FROM Scientists"); // open table scientists
+    query.exec(input); // open table scientists
     db.close();
-    */
+}
+
+void DataAccess::removeComputer(string inputName)
+{
+    string line;
+
+    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+    db.close();
+}
+
+void DataAccess::removeAllComputers()
+{
+    string line;
+
+    line = "DELETE FROM Computers";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
 }
 
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
