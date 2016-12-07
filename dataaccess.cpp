@@ -205,25 +205,23 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
 
     switch(sortType) // TODO case 2 (gender) virkar ekki
     {
-        case 1: line = "SELECT * FROM Scientists  W"; // sort by name(A-Z)
+        case 1: line = "SELECT * FROM Scientists ORDER BY Name ASC"; // sort by name(A-Z)
                 break;
-        case 2: line = "SELECT * FROM Scientists  Where Gende"; // sort by name(Z-A)
+        case 2: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by name(Z-A)
                 break;
-        case 3: line = "SELECT * FROM Scientists  Where Birth"; // sort by gender(f-m)
+        case 3: line = "SELECT * FROM Scientists ORDER BY G ASC"; // sort by gender(f-m)
                 break;
-        case 4: line = "SELECT * FROM Scientists  Where Died LIKE "; // sort by gender(m-f)
+        case 4: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by gender(m-f)
                 break;
-        case 5: line = "SELECT * FROM Scientists  W"; // sort by birth year(0-9)
+        case 5: line = "SELECT * FROM Scientists ORDER BY Birth ASC"; // sort by birth year(0-9)
                 break;
-        case 6: line = "SELECT * FROM Scientists  Where Gende"; // sort by birth year(9-0)
+        case 6: line = "SELECT * FROM Scientists ORDER BY Birth DESC"; // sort by birth year(9-0)
                 break;
-        case 7: line = "SELECT * FROM Scientists  Where Birth"; // sort by death year(0-9)
+        case 7: line = "SELECT * FROM Scientists ORDER BY DIED ASC"; // sort by death year(0-9)
                 break;
-        case 7: line = "SELECT * FROM Scientists  Where Birth"; // sort by death year(9-0)
+        case 8: line = "SELECT * FROM Scientists ORDER BY DIED DESC"; // sort by death year(9-0)
                 break;
-        case 8: line = "SELECT * FROM Scientists  Where Died LIKE "; // sort by age(0-9)
-                break;
-        case 9: line = "SELECT * FROM Scientists  W"; // sort by age(9-0)
+        case 9: line = "SELECT * FROM Scientists  Where Died LIKE "; // sort by age(0-9)
                 break;
     }
 
