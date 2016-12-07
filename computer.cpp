@@ -4,23 +4,23 @@ Computer::Computer()
 {
     _name = " ";
     _type = " ";
-    _yearBuilt = 0;
+    _year = 0;
     _built = 0;
 }
-Computer::Computer(string name, int yearBuilt, string type, bool built)
+Computer::Computer(string name, int year, string type, bool built)
 {
     _name = name;
     _type = type;
-    _yearBuilt = yearBuilt;
+    _year = year;
     _built = built;
 }
 string Computer::getName() const
 {
     return _name;
 }
-int Computer::getYearBuilt() const
+int Computer::getYear() const
 {
-    return _yearBuilt;
+    return _year;
 }
 string Computer::getType() const
 {

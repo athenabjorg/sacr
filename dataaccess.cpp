@@ -195,20 +195,6 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
     return scientists;
 }
 
-bool DataAccess::doesScientistExist(string name)
-{
-    vector<Scientist> scientists;
-
-    scientists = loadScientists(1, name);
-
-    if(scientists.size() > 0)
-    {
-        return true;
-    }
-
-    return false;
-}
-
 vector<Scientist> DataAccess::sortScientists(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
     // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
@@ -262,6 +248,54 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
     return scientists;
 }
 
+bool DataAccess::doesScientistExist(string name)
+{
+    vector<Scientist> scientists;
+
+    scientists = loadScientists(1, name);
+
+    if(scientists.size() > 0)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite database
+{
+    string line, name, type;
+    int year;
+    bool built;
+
+
+    name = newComputer.getName();
+    type = newComputer.getType();
+    year = newComputer.getYear();
+    built = newComputer.getBuilt();
+
+
+    line = "INSERT INTO Computers(name,type,year,built) "
+            "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+
+
+}
+
+//removecomputer
+
+//removeallcomputers
+
+// loadcomputers
+// load 2 par
+// load 3 par
+
 vector<Computer> DataAccess::sortComputers(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
     // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
@@ -277,13 +311,13 @@ vector<Computer> DataAccess::sortComputers(int sortType)
                 break;
         case 2: line = "SELECT * FROM Computers ORDER BY Name DESC"; // sort by name(Z-A)
                 break;
-        case 3: line = "SELECT * FROM Computers ORDER BY Type ASC"; // sort by gender(f-m)
+        case 3: line = "SELECT * FROM Computers ORDER BY Type ASC"; // sort by type(A-Z)
                 break;
-        case 4: line = "SELECT * FROM Computers ORDER BY Type DESC"; // sort by gender(m-f)
+        case 4: line = "SELECT * FROM Computers ORDER BY Type DESC"; // sort by type(Z-A)
                 break;
-        case 5: line = "SELECT * FROM Computers ORDER BY Year Built ASC"; // sort by birth year(0-9)
+        case 5: line = "SELECT * FROM Computers ORDER BY Year Built ASC"; // sort by year made(0-9)
                 break;
-        case 6: line = "SELECT * FROM Computers ORDER BY Year Built DESC"; // sort by birth year(9-0)
+        case 6: line = "SELECT * FROM Computers ORDER BY Year Built DESC"; // sort by year made(9-0)
                 break;
     }
 

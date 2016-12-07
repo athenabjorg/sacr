@@ -12,14 +12,14 @@ public:
     Computer(string name, int yearBuilt, string type, bool built);
     string  getName() const;
     string  getType() const;
-    int     getYearBuilt() const;
+    int     getYear() const;
     bool    getBuilt() const;
 
 
 private:
     string _name;
     string _type;
-    int _yearBuilt;
+    int _year;
     bool _built;
 
 };
