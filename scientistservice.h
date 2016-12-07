@@ -43,6 +43,11 @@ public:
     vector<Computer> findComputer(int findType, string parameter);
     vector<Computer> findComputer(int findType, string parameter1, string parameter2);
 
+    bool removeComputer(string name);
+
+
+    void removeAllComputers();
+
 
     vector<Computer> computerSort(int sortType);
 
