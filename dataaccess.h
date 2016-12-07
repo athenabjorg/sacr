@@ -41,6 +41,9 @@ public:
     vector<Computer> loadComputers(int loadType, string parameter);
     vector<Computer> loadComputers(int loadType, string parameter1, string parameter2);
 
+    void removeComputer(string inputName);
+    void removeAllComputers();
+
     vector<Computer> sortComputers(int sortType);
 
     bool doesComputerExist(string name); // TODO PRIVATE?
