@@ -76,7 +76,7 @@ private:
         // Adds 50 empty lines to the screen.
     int  whatYearIsIt() const;
         // Returns what year it is now.
-
+    void smallLogoPrint();
 
 
 };
