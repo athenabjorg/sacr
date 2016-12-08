@@ -10,16 +10,19 @@ class Relation
 public:
 
     Relation();
-    Relation(string scientist, string computer);
+    Relation(string scientist, string computer, int year);
 
     string getScientist();
 
     string getComputer();
 
+    int getYear();
+
 private:
 
     string _scientist;
     string _computer;
+    int _year;
 
 };
 

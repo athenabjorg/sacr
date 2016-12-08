@@ -52,6 +52,7 @@ public:
 
     bool doesComputerExist(string name);
 
+    int yearComputerBuilt(string computer);
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
@@ -66,7 +67,7 @@ public:
 
     vector<Relation> sortRelations(int sortType);
 
-    bool doesRelationExist(string name);
+    bool doesRelationExist(string scientist, string computer);
 
 
 private:

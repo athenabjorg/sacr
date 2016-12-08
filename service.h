@@ -5,9 +5,10 @@
 #include <algorithm>   // <---------- remove?
 #include <string>
 
-#include "scientist.h"
 #include "dataaccess.h"
+#include "scientist.h"
 #include "computer.h"
+#include "relation.h"
 
 using namespace std;
 
@@ -61,7 +62,7 @@ public:
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-    // relations functions here
+    bool addRelation(string scientist, string computer);
 
 
 
@@ -72,6 +73,7 @@ private:
 
     vector<Scientist> _scientists;
     vector<Computer> _computers;
+    vector<Relation> _relations;
 
     DataAccess _data;
 
