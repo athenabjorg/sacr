@@ -25,12 +25,6 @@ public:
 
 // ---------------------------------- USER MENU FUNCTIONS ---------------------------------- //
 private:
-    void userMenuAdd();
-        // Enters the add menu.
-    void userMenuSearch();
-        // Searches for a scientist depending on the input, prints a list of the result.
-    void userMenuSort();
-        // Sorts the list of scientist depending on the input, prints a list of the result and saves to the text file.
     void userMenuSwitch(int loadType);
         // ::TODO::
     void userMenuPrint();
