@@ -78,6 +78,8 @@ private:
         // Returns what year it is now.
     void smallLogoPrint();
 
+    void largeLogoPrint();
+
 
 };
 
