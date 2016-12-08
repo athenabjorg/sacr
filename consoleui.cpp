@@ -87,6 +87,7 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
         if(command == "quit")
         {
+            smallLogoPrint();
             break;
         }
         clearScreen();
@@ -98,6 +99,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
     string line;
 
     clearScreen();
+    //smallLogoPrint();
     switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
     {
         case 1: line = "Would you like to add a scientist or a computer to the database?";
@@ -384,6 +386,7 @@ void ConsoleUI::addScientist()
 
         // Check if input is correct
         clearScreen();
+        smallLogoPrint();
         cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
 
         if(deathYear != 0)
@@ -507,6 +510,7 @@ void ConsoleUI::removeScientist()
         string userInputName;
 
         clearScreen();
+        smallLogoPrint();
 
         cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
 
@@ -517,6 +521,7 @@ void ConsoleUI::removeScientist()
         {
             _service.removeAllScientists();
             clearScreen();
+            smallLogoPrint();
             userMenuPrint();
         }
 
@@ -552,6 +557,7 @@ void ConsoleUI::searchScientist()
         string userInputName;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by name: ";
         getline(cin, userInputName);
 
@@ -563,6 +569,7 @@ void ConsoleUI::searchScientist()
     {
         char userInputGender;
         clearScreen();
+        smallLogoPrint();
 
         cout << "Search by gender" << endl;
         cout << endl << "M - Male" << endl;
@@ -579,6 +586,7 @@ void ConsoleUI::searchScientist()
         int inputCheck;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Age" << endl;
         cout << "(2) - Age range" << endl;
@@ -622,6 +630,7 @@ void ConsoleUI::searchScientist()
         else
         {
             clearScreen();
+            smallLogoPrint();
             cout << "Wrong Input" << endl;
         }
     }
@@ -630,6 +639,7 @@ void ConsoleUI::searchScientist()
         int inputCheck;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Year of birth" << endl;
         cout << "(2) - Range of year of birth" << endl << endl;
@@ -681,6 +691,7 @@ void ConsoleUI::searchScientist()
         int inputCheck;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Year scientist died" << endl;
         cout << "(2) - Year range of when scientist died" << endl << endl;
@@ -725,6 +736,7 @@ void ConsoleUI::searchScientist()
         else
         {
             clearScreen();
+            smallLogoPrint();
             cout << "Wrong Input" << endl;
         }
     }
@@ -777,6 +789,7 @@ void ConsoleUI::sortScientist()
         cin.clear();
 
         clearScreen();
+        smallLogoPrint();
 
     }while(inputCheck);
 
@@ -926,6 +939,7 @@ void ConsoleUI::addComputer()
 
         // Check if input is correct
         clearScreen();
+        smallLogoPrint();
         cout << "Name: " << name << endl << "Type: " << type << endl;
 
         if(built == true)
@@ -1055,6 +1069,7 @@ void ConsoleUI::removeComputer()
         {
             _service.removeAllComputers(); // TODO::Needs a functin in service layer
             clearScreen();
+            smallLogoPrint();
             userMenuPrint();
         }
 
@@ -1070,6 +1085,7 @@ void ConsoleUI::searchComputer()
     string command;
 
     clearScreen();
+    smallLogoPrint();
     cout << "Select a search option: " << endl;
     cout << "===================================" << endl;
     cout << "Name    -   Search by name" << endl;
@@ -1087,6 +1103,7 @@ void ConsoleUI::searchComputer()
         string userInputName;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by name: ";
         getline(cin, userInputName);
 
@@ -1103,6 +1120,7 @@ void ConsoleUI::searchComputer()
         vector<Computer> computer;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by year:" << endl;
         cout << endl << "(1) - Search for a computer by year it was made" << endl;
         cout << "(2) - Search for a computer by range of year it was made " << endl;
@@ -1144,6 +1162,7 @@ void ConsoleUI::searchComputer()
         vector<Computer> computer;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by type:" << endl;
         cout << endl << "(1) - ElectroMechanical" << endl;
         cout << "(2) - Electronic" << endl;
@@ -1180,6 +1199,7 @@ void ConsoleUI::searchComputer()
         vector<Computer> computers;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Was built" << endl;
         cout << "(2) - Was not built" << endl << endl;
@@ -1217,6 +1237,7 @@ void ConsoleUI::sortComputer()
     int userInput;
 
     clearScreen();
+    smallLogoPrint();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -1244,6 +1265,7 @@ void ConsoleUI::sortComputer()
         cin.clear();
 
         clearScreen();
+        smallLogoPrint();
 
     }while(inputCheck);
 
