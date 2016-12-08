@@ -35,6 +35,8 @@ private:
         // Prints to the screen a scientist list provided (for example a search result).
     void userMenuPrint(const vector<Computer> &computer);
         // Prints to the screen a computer list provided (for example a search result).
+    void userMenuPrint(const vector<Relation> &relation);
+        // Prints to the screen a relation list provided (for example a search result).
 
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
@@ -62,7 +64,15 @@ private:
 
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
-
+private:
+    void addRelation();
+        // Asks for information about a scientist-computer relation, and then adds them to the database.
+    void removeRelation();
+        // Permanently removes scientist-computer relation from the list, who have names containing the user input.
+    void searchRelation();
+        // Search scientist-computer relations
+    void sortRelation();
+        // Sorts scientist-computer relations.
 
 // ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
 private:

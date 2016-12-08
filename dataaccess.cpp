@@ -556,7 +556,7 @@ int DataAccess::yearComputerBuilt(string computer)
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-void DataAccess::saveRelation(Relation newRelation)  // Saving to SQLite database
+void DataAccess::saveRelation(const Relation newRelation)  // Saving to SQLite database
 {
     string line, scientist, computer, scientistID, computerID;
 

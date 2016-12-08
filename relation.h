@@ -12,11 +12,11 @@ public:
     Relation();
     Relation(string scientist, string computer, int year);
 
-    string getScientist();
+    string getScientist() const;
 
-    string getComputer();
+    string getComputer() const;
 
-    int getYear();
+    int getYear() const;
 
 private:
 
