@@ -549,12 +549,27 @@ void ConsoleUI::searchScientist()
     cout << "Birth   -   Search by year of birth" << endl;
     cout << "Death   -   Search by year of death" << endl;
     cout << "Age     -   Search by age" << endl << endl;
-    cout << "Select: ";
 
-    getline(cin, command);
+    bool inputCheck;
+        do
+        {
+            cout << endl << "Select: ";
+            getline(cin, command);
 
-    forceLowerCase(command);
+            forceLowerCase(command);
 
+            if(command == "name" || command == "gender" || command == "birth" || command == "death" || command == "age") // check if input is int and if it ranges from 1 to 10
+            {
+                inputCheck = false;
+            }
+            else
+            {
+                inputCheck = true;
+                cout << "Invalid input!" << endl;
+            }
+            cin.clear();
+
+        }while(inputCheck);
 
     if(command == "name") // Find scientist by name
     {
@@ -578,11 +593,25 @@ void ConsoleUI::searchScientist()
         cout << "Search by gender" << endl;
         cout << endl << "M - Male" << endl;
         cout << "F - Female" << endl;
-        cout << endl << "Gender: ";
-        cin >> userInputGender;
+        while(true)
+        {
+            cout << endl << "Gender: ";
+            cin >> userInputGender;
 
-        userInputGender = userInputGender[0];
-        forceLowerCase(userInputGender);
+            userInputGender = userInputGender[0];
+            forceLowerCase(userInputGender);
+
+            if(userInputGender[0] == 'm' || userInputGender[0] == 'f')
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl;
+            }
+            cin.clear();
+        }
+
 
         if(userInputGender == "f" || userInputGender == "m")
         {
@@ -605,17 +634,50 @@ void ConsoleUI::searchScientist()
         smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Age" << endl;
-        cout << "(2) - Age range" << endl;
-        cout << endl << "Select: ";
+        cout << "(2) - Age range" << endl << endl;
 
-        cin >> inputCheck;
+        while(true)
+        {
+            cout << "Select: ";
+            cin >> inputCheck;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(inputCheck == 1 || inputCheck == 2)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl;
+            }
+        }
 
         if(inputCheck == 1)
         {
             int userInputAge;
-            cout << "Search by age: ";
-            cout << "Select: ";
-            cin >> userInputAge;
+            cout << endl << "Search by age: " << endl;
+
+            while(true)
+            {
+                cout << "Select: ";
+                cin >> userInputAge;
+
+                if(cin.fail())
+                {
+                    cout << endl << "Enter a valid age!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+            }
 
             vector<Scientist> scientist = _service.findScientist(7, to_string(userInputAge));
             userMenuPrint(scientist);
@@ -625,12 +687,38 @@ void ConsoleUI::searchScientist()
         {
             int userInputAgeFirst;
             int userInputAgeLast;
-            cout << "From age: ";
-            cin >> userInputAgeFirst;
-            cout << endl;
-            cout << "To age: ";
-            cin >> userInputAgeLast;
-            cout << endl;
+            while(true)
+            {
+                cout << "From age: ";
+                cin >> userInputAgeFirst;
+
+                if(cin.fail())
+                {
+                    cout << endl << "Enter a valid age!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while(true)
+            {
+                cout << "To age: ";
+                cin >> userInputAgeLast;
+
+                if(cin.fail())
+                {
+                    cout << endl << "Enter a valid age!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+            }
 
             if(userInputAgeFirst > userInputAgeLast)
             {
@@ -659,17 +747,48 @@ void ConsoleUI::searchScientist()
         cout << "Search by:" << endl;
         cout << endl << "(1) - Year of birth" << endl;
         cout << "(2) - Range of year of birth" << endl << endl;
-        cout << "Select: ";
+        while(true)
+        {
+            cout << "Select: ";
+            cin >> inputCheck;
 
-        cin >> inputCheck;
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(inputCheck == 1 || inputCheck == 2)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl << endl;
+            }
+        }
 
         if(inputCheck == 1)
         {
             int userInputBirth;
 
             cout << "Search by year of birth: ";
-            cin >> userInputBirth;
+            while(true)
+            {
+                cout << "Select: ";
+                cin >> userInputBirth;
 
+                if(cin.fail())
+                {
+                    cout << endl << "Enter a valid year!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+           }
             vector<Scientist> scientist = _service.findScientist(3, to_string(userInputBirth));
             cout << to_string(userInputBirth);
             userMenuPrint(scientist);
@@ -680,12 +799,41 @@ void ConsoleUI::searchScientist()
             int userInputBirthFirst;
             int userInputBirthLast;
 
-            cout << "Search from year of birth: ";
-            cin >> userInputBirthFirst;
-            cout << endl;
-            cout << "to year of birth: ";
-            cin >> userInputBirthLast;
-            cout << endl;
+            while(true)
+            {
+                cout << "Search from year of birth: ";
+                cin >> userInputBirthFirst;
+                cout << endl;
+
+                if(cin.fail())
+                {
+                    cout << "Enter a valid year!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+           }
+
+            while(true)
+            {
+                cout << "to year of birth: ";
+                cin >> userInputBirthLast;
+                cout << endl;
+
+                if(cin.fail())
+                {
+                    cout << "Enter a valid year!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+           }
 
             if(userInputBirthFirst > userInputBirthLast)
             {
@@ -712,16 +860,48 @@ void ConsoleUI::searchScientist()
         cout << "Search by:" << endl;
         cout << endl << "(1) - Year scientist died" << endl;
         cout << "(2) - Year range of when scientist died" << endl << endl;
-        cout << "Select: ";
 
-        cin >> inputCheck;
+        while(true)
+        {
+            cout << "Select: ";
+            cin >> inputCheck;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(inputCheck == 1 || inputCheck == 2)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl << endl;
+            }
+        }
 
         if(inputCheck == 1)
         {
             int userInputDeath;
 
-            cout << "Year scientist died (0 for still alive): ";
-            cin >> userInputDeath;
+            while(true)
+            {
+                cout << "Year scientist died (0 for still alive): ";
+                cin >> userInputDeath;
+
+                if(cin.fail())
+                {
+                    cout << endl << "Enter a valid year!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+           }
 
             vector<Scientist> scientist = _service.findScientist(5, to_string(userInputDeath));
             userMenuPrint(scientist);
@@ -732,13 +912,38 @@ void ConsoleUI::searchScientist()
             int userInputDeathFirst;
             int userInputDeathLast;
 
-            cout << "From year: ";
-            cin >> userInputDeathFirst;
-            cout << endl;
-            cout << "To year(0 for still alive): ";
-            cin >> userInputDeathLast;
-            cout << endl;
+            while(true)
+            {
+                cout << "From year: ";
+                cin >> userInputDeathFirst;
 
+                if(cin.fail())
+                {
+                    cout << endl << "Enter a valid year!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+           }
+           while(true)
+           {
+               cout << "To year(0 for still alive): ";
+               cin >> userInputDeathLast;
+
+                if(cin.fail())
+                {
+                    cout << endl << "Enter a valid year!" << endl << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+           }
             if(userInputDeathFirst > userInputDeathLast)
             {
                 int temp = userInputDeathFirst;
