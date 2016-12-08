@@ -1239,16 +1239,16 @@ void ConsoleUI::sortScientist()
 {
     /*
      * A sorting function, can call function from service.cpp scientistSort().
-     * The function will sort depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),
-     * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
+     * The function will sort depending on int parameter "1 = name(A-Z), 2 = name(Z-A),
+     * 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9), 6 = birth year(9-0)
+     * 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)".
      */
 
 
     vector<Scientist> sortedScientists;
     bool inputCheck = true;
     int userInput;
-    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
-    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
+
     clearScreen();
 
         cout << "Select a sort option: " << endl;
@@ -1293,9 +1293,10 @@ void ConsoleUI::sortScientist()
 void ConsoleUI::sortComputer()
 {
     /*
-     * A sorting function, can call function from service.cpp scientistSort().
-     * The function will sort depending on int parameter "Sort list by Name A-Z(1), Name Z-A(2),
-     * Gender(3), Year of Birth(4), Year of Death(5) or Age (6)".
+     * A sorting function, can call function from service.cpp computerSort().
+     * The function will sort depending on int parameter "Sort by sortType:
+     *  1 = name(A-Z), 2 = name(Z-A), 3 = type(A-Z), 4 = type(Z-A),
+     *  5 = year made(0-9),  6 = year made(9-0)".
      */
 
 
@@ -1309,8 +1310,10 @@ void ConsoleUI::sortComputer()
         cout << "===================================" << endl;
         cout << "(1)     -   Sort by name (A-Z)" << endl;
         cout << "(2)     -   Sort by name (Z-A)" << endl;
-        cout << "(3)     -   Sort by type" << endl;
-        cout << "(4)     -   Sort by year built (First to last)" << endl;
+        cout << "(3)     -   Sort by type (A-Z)" << endl;
+        cout << "(4)     -   Sort by type (Z-A)" << endl;
+        cout << "(5)     -   Sort by year built (0-9)" << endl;
+        cout << "(6)     -   Sort by year built (9-0)" << endl;
 
     do
     {
