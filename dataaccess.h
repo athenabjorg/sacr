@@ -8,7 +8,7 @@
 
 #include "scientist.h"
 #include "computer.h"
-
+#include "relation.h"
 
 using namespace std;
 
@@ -55,7 +55,18 @@ public:
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-    // relations functions go here
+    void saveRelation(Computer newRelation);
+
+    vector<Relation> loadRelations();
+    vector<Relation> loadRelations(int loadType, string parameter);
+    vector<Relation> loadRelations(int loadType, string parameter1, string parameter2);
+
+    void removeRelation(string inputName);
+    void removeAllRelations();
+
+    vector<Relation> sortRelations(int sortType);
+
+    bool doesRelationExist(string name);
 
 
 private:

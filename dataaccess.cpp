@@ -519,4 +519,257 @@ bool DataAccess::doesComputerExist(string name)
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-// relations funcitons go here
+void DataAccess::saveRelation(Computer newRelation)  // Saving to SQLite database
+{/*
+    string line, name, type;
+    int year;
+    bool built;
+
+
+    name = newComputer.getName();
+    type = newComputer.getType();
+    year = newComputer.getYear();
+    built = newComputer.getBuilt();
+
+
+    line = "INSERT INTO Computers(name,type,year,built) "
+            "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+
+*/
+}
+
+vector<Relation> DataAccess::loadRelations()                  // From text file to vector
+{
+    /*
+     * Adds list of computers from a database into a vector.
+     */
+/*
+    vector<Computer> computers;
+    string line, name, type;
+    int year;
+    bool built, valid;
+
+    line = "SELECT * FROM computers";
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        name = query.value(1).toString().toStdString();
+        year = query.value(2).toInt();
+        type = query.value(3).toString().toStdString();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
+    */
+}
+vector<Relation> DataAccess::loadRelations(int loadType, string parameter)                  // From text file to vector
+{
+    /*
+     * Adds list of computers from a database into a vector.
+     * 0 = load by whole name, 1 = load by name, 2 = load by year built, 4 = load by type, 5 = load by if built.
+     * 3 is used in the loadScientist function with 3 parameters.
+     */
+/*
+    vector<Computer> computers;
+    string line, name, type;
+    int year;
+    bool built, valid;
+
+
+    switch(loadType)
+    {
+        case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\""; // load by whole name
+                break;
+        case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\""; // load by name
+                break;
+        case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\""; // load by year built/designed
+                break;
+        case 4: line = "SELECT * FROM Computers Where Type LIKE " + parameter; // load by type
+                break;
+        case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter; // load by if built
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        name = query.value(1).toString().toStdString();
+        year = query.value(2).toInt();
+        type = query.value(3).toString().toStdString();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
+    */
+}
+vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, string parameter2)
+{
+    /*
+     * Adds list of computers from a database into a vector.
+     * 3 = load by build year range.
+     * 0, 1, 2 and 5 are used in the loadScientist function with 2 parameters.
+     */
+/*
+    vector<Computer> computers;
+    string line, name, type;
+    int year;
+    bool built, valid;
+
+
+    switch(loadType)
+    {
+        case 3: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2; // load by build/design year range
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        name = query.value(1).toString().toStdString();
+        year = query.value(2).toInt();
+        type = query.value(3).toString().toStdString();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
+    */
+}
+
+void DataAccess::removeRelation(string inputName)
+{
+    /*
+    string line;
+
+    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+    db.close();
+    */
+}
+void DataAccess::removeAllRelations()
+{/*
+    string line;
+
+    line = "DELETE FROM Computers";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+    */
+}
+
+vector<Relation> DataAccess::sortRelations(int sortType)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
+    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
+/*
+    vector<Computer> computers;
+    string line, name, type;
+    int year;
+    bool valid, built;
+
+    switch(sortType)
+    {
+        case 1: line = "SELECT * FROM Computers ORDER BY Name ASC"; // sort by name(A-Z)
+                break;
+        case 2: line = "SELECT * FROM Computers ORDER BY Name DESC"; // sort by name(Z-A)
+                break;
+        case 3: line = "SELECT * FROM Computers ORDER BY Type ASC"; // sort by type(A-Z)
+                break;
+        case 4: line = "SELECT * FROM Computers ORDER BY Type DESC"; // sort by type(Z-A)
+                break;
+        case 5: line = "SELECT * FROM Computers ORDER BY Year Built ASC"; // sort by year made(0-9)
+                break;
+        case 6: line = "SELECT * FROM Computers ORDER BY Year Built DESC"; // sort by year made(9-0)
+                break;
+    }
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    while (query.next())
+    {
+        string name = query.value(1).toString().toStdString();
+        string type = query.value(3).toString().toStdString();
+        year = query.value(2).toInt();
+        built = query.value(4).toBool();
+        valid = query.value(5).toBool();
+
+        if(valid)
+        {
+            Computer computer(name, year, type, built);
+            computers.push_back(computer);
+        }
+    }
+
+    db.close();
+    return computers;
+    */
+}
+
+bool DataAccess::doesRelationExist(string name)
+{/*
+    vector<Computer> computers;
+
+    computers = loadComputers(0, name);
+
+    if(computers.size() > 0)
+    {
+        return true;
+    }
+
+    return false;
+    */
+}
