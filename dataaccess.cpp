@@ -214,9 +214,9 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
                 break;
         case 2: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by name(Z-A)
                 break;
-        case 3: line = "SELECT * FROM Scientists ORDER BY G ASC"; // sort by gender(f-m)
+        case 3: line = "SELECT * FROM Scientists ORDER BY Gender ASC"; // sort by gender(f-m)
                 break;
-        case 4: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by gender(m-f)
+        case 4: line = "SELECT * FROM Scientists ORDER BY Gender DESC"; // sort by gender(m-f)
                 break;
         case 5: line = "SELECT * FROM Scientists ORDER BY Born ASC"; // sort by birth year(0-9)
                 break;
@@ -468,13 +468,17 @@ vector<Computer> DataAccess::sortComputers(int sortType)
                 break;
         case 2: line = "SELECT * FROM Computers ORDER BY Name DESC"; // sort by name(Z-A)
                 break;
-        case 3: line = "SELECT * FROM Computers ORDER BY Type ASC"; // sort by type(A-Z)
+        case 3: line = "SELECT * FROM Computers ORDER BY Year ASC"; // sort by Year(0-9)
                 break;
-        case 4: line = "SELECT * FROM Computers ORDER BY Type DESC"; // sort by type(Z-A)
+        case 4: line = "SELECT * FROM Computers ORDER BY Year DESC"; // sort by Year(9-0)
                 break;
-        case 5: line = "SELECT * FROM Computers ORDER BY Year Built ASC"; // sort by year made(0-9)
+        case 5: line = "SELECT * FROM Computers ORDER BY Type ASC"; // sort by type(A-Z)
                 break;
-        case 6: line = "SELECT * FROM Computers ORDER BY Year Built DESC"; // sort by year made(9-0)
+        case 6: line = "SELECT * FROM Computers ORDER BY Type DESC"; // sort by type(Z-A)
+                break;
+        case 7: line = "SELECT * FROM Computers ORDER BY Built ASC"; // sort by if built(N-Y)
+                break;
+        case 8: line = "SELECT * FROM Computers ORDER BY Built DESC"; // sort by if built(Y-N)
                 break;
     }
 
