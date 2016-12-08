@@ -568,7 +568,7 @@ void ConsoleUI::searchScientist()
     }
     else if(command == "gender") // Find scientist by gender
     {
-        char userInputGender;
+        string userInputGender;
         clearScreen();
         smallLogoPrint();
 
@@ -578,9 +578,21 @@ void ConsoleUI::searchScientist()
         cout << endl << "Gender: ";
         cin >> userInputGender;
 
-        vector<Scientist> scientist = _service.findScientist(2, to_string(userInputGender));
-        userMenuPrint(scientist);
-        askReturnToMenu();
+        userInputGender = userInputGender[0];
+        forceLowerCase(userInputGender);
+
+        if(userInputGender == "f" || userInputGender == "m")
+        {
+            vector<Scientist> scientist = _service.findScientist(2, userInputGender);
+            userMenuPrint(scientist);
+            askReturnToMenu();
+        }
+        else
+        {
+            cout << "Wrong Input" << endl;
+        }
+
+
     }
     else if(command == "age") // Find scientist by age
     {
@@ -610,10 +622,10 @@ void ConsoleUI::searchScientist()
         {
             int userInputAgeFirst;
             int userInputAgeLast;
-            cout << "Search from age: ";
+            cout << "From age: ";
             cin >> userInputAgeFirst;
             cout << endl;
-            cout << "to age: ";
+            cout << "To age: ";
             cin >> userInputAgeLast;
             cout << endl;
 
@@ -656,6 +668,7 @@ void ConsoleUI::searchScientist()
             cin >> userInputBirth;
 
             vector<Scientist> scientist = _service.findScientist(3, to_string(userInputBirth));
+            cout << to_string(userInputBirth);
             userMenuPrint(scientist);
             askReturnToMenu();
         }

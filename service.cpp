@@ -96,7 +96,23 @@ vector<Scientist> service::findScientist(int findType, string parameter)       /
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientists(findType, parameter);
+    if(findType == 7)
+    {
+        for(unsigned int i = 0; i < _scientists.size(); i++)
+        {
+
+            if(_scientists[i].getAge() == stoi(parameter))
+            {
+                scientists.push_back(_scientists[i]);
+            }
+        }
+    }
+    else
+    {
+        scientists = _data.loadScientists(findType, parameter);
+    }
+
+
 
     return scientists;
 }
@@ -105,7 +121,29 @@ vector<Scientist> service::findScientist(int findType, string parameter1, string
 
     vector<Scientist> scientists;
 
-    scientists = _data.loadScientists(findType, parameter1, parameter2);
+    if(findType == 8)
+    {
+        if(stoi(parameter1) > stoi(parameter2))
+        {
+            string temp = parameter1;
+            parameter1 = parameter2;
+            parameter2 = temp;
+        }
+        for(unsigned int i = 0; i < _scientists.size(); i++)
+        {
+
+            if((_scientists[i].getAge() >= stoi(parameter1)) && (_scientists[i].getAge() <= stoi(parameter2)))
+            {
+                scientists.push_back(_scientists[i]);
+            }
+        }
+    }
+    else
+    {
+        scientists = _data.loadScientists(findType, parameter1, parameter2);
+    }
+
+
 
     return scientists;
 }

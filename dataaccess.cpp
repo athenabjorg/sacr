@@ -95,7 +95,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
                 break;
         case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\""; // load by gender
                 break;
-        case 3: line = "SELECT * FROM Scientists  Where Birth LIKE " + parameter; // load by birth year
+        case 3: line = "SELECT * FROM Scientists  Where Born LIKE " + parameter; // load by birth year
                 break;
         case 5: line = "SELECT * FROM Scientists  Where Died LIKE " + parameter; // load by death year
                 break;
@@ -140,7 +140,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
 
     switch(loadType)
     {
-        case 4: line = "SELECT * FROM scientists WHERE born BETWEEN " + parameter1 + " AND " + parameter2; // load by birth year range
+        case 4: line = "SELECT * FROM scientists WHERE Born BETWEEN " + parameter1 + " AND " + parameter2; // load by birth year range
                 break;
         case 6: line = "SELECT * FROM scientists WHERE Died BETWEEN " + parameter1 + " AND " + parameter2; // load by death year range
                 break;
