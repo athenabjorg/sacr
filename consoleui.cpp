@@ -717,7 +717,7 @@ void ConsoleUI::searchScientist()
         {
             int userInputDeath;
 
-            cout << "Search by year scientist died (0 for still alive): ";
+            cout << "Year scientist died (0 for still alive): ";
             cin >> userInputDeath;
 
             vector<Scientist> scientist = _service.findScientist(5, to_string(userInputDeath));
@@ -729,10 +729,10 @@ void ConsoleUI::searchScientist()
             int userInputDeathFirst;
             int userInputDeathLast;
 
-            cout << "Search from year of death (0 for still alive): ";
+            cout << "From year: ";
             cin >> userInputDeathFirst;
             cout << endl;
-            cout << "to year of death: ";
+            cout << "To year(0 for still alive): ";
             cin >> userInputDeathLast;
             cout << endl;
 
