@@ -29,16 +29,24 @@ void ConsoleUI::run()                                               // DIsplays 
 
     while(true)
     {
+        int w = 65;
+        cout << setw(w) << "  _____   ___    ______ ____" << endl;
+        cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
+        cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
+        cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
+        cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
+        cout << setw(w+4) << "Scientist and computer realtions." << endl;
+        cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
 
         cout << "Select one of the following options: " << endl;
-        cout << "=====================================================================================================" << endl;
+        cout << "========================================================================================================" << endl;
         cout << "Add     -   Add a scientist or a computer" << endl;
         cout << "Remove  -   Remove a scientist or a computer" << endl;
         cout << "List    -   Show a list of all scientists or computers" << endl;
         cout << "Search  -   Search the list of scientists or computers" << endl;
         cout << "Sort    -   Sort list of scientists or computers by name, gender, year of birth, year of death or age" << endl;
         cout << "Quit    -   End program" << endl;
-        cout << "=====================================================================================================" << endl;
+        cout << "========================================================================================================" << endl;
 
         invalidInput = true;
 
