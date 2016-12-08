@@ -105,79 +105,86 @@ void ConsoleUI::userMenuSwitch(int loadType)
     int selection = 0;
     string line;
 
-
-    switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
+    while(selection != 1 || selection != 2)
     {
-        case 1: line = "Would you like to add a scientist or a computer to the database?";
-                break;
-        case 2: line = "Would you like to remove a scientist or a computer from the database?";
-                break;
-        case 3: line = "Would you like to print a list of scientists or a computers?";
-                break;
-        case 4: line = "Would you like to search for scientist or a computer in the database?";
-                break;
-        case 5: line = "Would you like to sort scientists or a computers?";
-                break;
-    }
-
-    cout << line << endl
-         << "1 - Scientist" << endl
-         << "2 - Computer" << endl;
-    cin >> selection;
-
-    if (selection == 1) // Scientist selected
-    {
-        switch(loadType)
+        clearScreen();
+        switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
         {
-            case 1: cin.ignore();
-                    addScientist();
+            case 1: line = "Would you like to add a scientist or a computer to the database?";
                     break;
-            case 2: cin.ignore();
-                    removeScientist();
+            case 2: line = "Would you like to remove a scientist or a computer from the database?";
                     break;
-            case 3: cin.ignore();
-                    userMenuPrint(_service.getScientists());
-                    askReturnToMenu();
+            case 3: line = "Would you like to print a list of scientists or a computers?";
                     break;
-            case 4: cin.ignore();
-                    searchScientist();
+            case 4: line = "Would you like to search for scientist or a computer in the database?";
                     break;
-            case 5: cin.ignore();
-                    sortScientist();
+            case 5: line = "Would you like to sort scientists or a computers?";
                     break;
+        }
 
+        cout << line << endl
+             << "1 - Scientist" << endl
+             << "2 - Computer" << endl;
+        cin >> selection;
+
+        if (selection == 1) // Scientist selected
+        {
+            switch(loadType)
+            {
+                case 1: cin.ignore();
+                        addScientist();
+                        break;
+                case 2: cin.ignore();
+                        removeScientist();
+                        break;
+                case 3: cin.ignore();
+                        userMenuPrint(_service.getScientists());
+                        askReturnToMenu();
+                        break;
+                case 4: cin.ignore();
+                        searchScientist();
+                        break;
+                case 5: cin.ignore();
+                        sortScientist();
+                        break;
+
+            }
+        }
+        else if (selection == 2) // Computer selected
+        {
+            switch(loadType)
+            {
+                case 1: cin.ignore();
+                        addComputer();
+                        break;
+                case 2: cin.ignore();
+                        removeComputer();
+                        break;
+                case 3: cin.ignore();
+                        userMenuPrint(_service.getComputers());
+                        askReturnToMenu();
+                        break;
+                case 4: cin.ignore();
+                        searchComputer();
+                        break;
+                case 5: cin.ignore();
+                        sortComputer();
+                        break;
+
+            }
+        }
+        else
+        {
+            cout << "Invalid input" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
-    else if (selection == 2) // Computer selected
-    {
-        switch(loadType)
-        {
-            case 1: cin.ignore();
-                    addComputer();
-                    break;
-            case 2: cin.ignore();
-                    removeComputer();
-                    break;
-            case 3: cin.ignore();
-                    userMenuPrint(_service.getComputers());
-                    askReturnToMenu();
-                    break;
-            case 4: cin.ignore();
-                    searchComputer();
-                    break;
-            case 5: cin.ignore();
-                    sortComputer();
-                    break;
-
-        }
-    }
-    else
-        cout << "Invalid input" << endl;
-
 }
 void ConsoleUI::userMenuAdd()                                       // Adds a new programmer
 {
     int selection = 0;
+    cout << "Check /n";
     cout << "Would you like to add a scientist or a computer to the database?" << endl
          << "1 - Scientist" << endl
          << "2 - Computer" << endl;
@@ -199,6 +206,7 @@ void ConsoleUI::userMenuAdd()                                       // Adds a ne
 void ConsoleUI::userMenuSearch()                                    // Searches the list
 {
     int selection = 0;
+    clearScreen();
     cout << "Would you like to search for scientist or a computer in the database?" << endl
          << "1 - Scientist" << endl
          << "2 - Computer" << endl;
@@ -220,6 +228,7 @@ void ConsoleUI::userMenuSearch()                                    // Searches 
 void ConsoleUI::userMenuSort()                                      // Sorts list
 {
     int selection = 0;
+    clearScreen();
     cout << "Would you like to sort the list of scientists or the computers" << endl
          << "1 - Scientists" << endl
          << "2 - Computers" << endl;
