@@ -532,7 +532,11 @@ void DataAccess::saveRelation(Relation newRelation)  // Saving to SQLite databas
 
     input = QString::fromStdString("SELECT ID FROM Scientists WHERE name LIKE \"" + scientist + "\"");
     query.exec(input);
-    scientistID = query.value(0).toInt();
+    scientistID = query.value(0).toString().toStdString();
+
+    input = QString::fromStdString("SELECT ID FROM Computers WHERE name LIKE \"" + computer + "\"");
+    query.exec(input);
+    computerID = query.value(0).toString().toStdString();
 
     line = "INSERT INTO Relations (ScientistID, computerID) VALUE (\"" + scientistID + "\", \"" + computerID + "\")";
 
