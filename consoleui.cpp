@@ -747,144 +747,147 @@ void ConsoleUI::addComputer()
         cin.ignore(-1);
         getline(cin, name);
 
-        while(true) // Check for type
-        {
-            int inputType;
-            cout << endl;
-            cout << "What type of computer is this?" << endl;
-            cout << endl << "1 - ElectroMechanical" << endl;
-            cout << "2 - Electronic" << endl;
-            cout << "3 - Mechanical" << endl;
-            cout << "4 - Transistor" << endl;
-            cout << endl << "Type: ";
-            cin >> inputType;
-
-            if(cin.fail())
+            while(true) // Check for type
             {
-                cout << "Invalid input!" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                int inputType;
+                cout << endl;
+                cout << "What type of computer is this?" << endl;
+                cout << endl << "1 - Electromechanical" << endl;
+                cout << "2 - Electronic" << endl;
+                cout << "3 - Mechanical" << endl;
+                cout << "4 - Transistor" << endl;
+                cout << endl << "Type: ";
+                cin >> inputType;
+
+                if(cin.fail())
+                {
+                    cout << "Invalid input!" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    switch(inputType)
+                    {
+                        case 1:
+                            type = "Electromechanical";
+                            break;
+                        case 2:
+                            type = "Electronic";
+                            break;
+                        case 3:
+                            type = "Mechanical";
+                            break;
+                        case 4:
+                            type = "Transistor";
+                            break;
+                    }
+                    if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        cout << "Invalid input" << endl;
+                    }
+                }
+            }
+
+            while(true) // Check if it was built
+            {
+                char builtInput;
+                cout << endl << "Was the computer ever built? (y/n): ";
+                cin >> builtInput;
+
+                if (builtInput == 'y')
+                {
+                    built = true;
+                    break;
+                }
+                else if (builtInput == 'n')
+                {
+                    built = false;
+                    break;
+                }
+
+                else
+                    cout << "Invalid Input" << endl;
+            }
+
+            while(built == true) // Check when when it was built (if it was)
+            {
+                cout << endl << "What year was the computer built?: ";
+                cin >> yearBuilt;
+
+                if(cin.fail())
+                {
+                    cout << "Invalid input" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else if(yearBuilt > whatYearIsIt())
+                {
+                    cout << "Predicting the future, are we? Try again" << endl;
+                    cin.clear();
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+
+            // Check if input is correct
+            clearScreen();
+            cout << "Name: " << name << endl << "Type: " << type << endl;
+
+            if(built == true)
+            {
+                cout << "Built: " << yearBuilt << endl;
             }
             else
             {
-                switch(inputType)
+                cout << "Was never built" << endl;
+            }
+
+            checkInput = userCheckInput(); // A function that checks if the input is valid
+
+            if (checkInput == 0)
+            {
+                if(_service.addComputer(name, yearBuilt, type, built))
                 {
-                    case 1:
-                        type = "ElectroMechanical";
-                        break;
-                    case 2:
-                        type = "Electronic";
-                        break;
-                    case 3:
-                        type = "Mechanical";
-                        break;
-                    case 4:
-                        type = "Transistor";
-                        break;
-                }
-                if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
-                {
+                    cout << endl << name << " successfully added to the list" << endl;
                     break;
                 }
                 else
                 {
-                    cout << "Invalid input" << endl;
+                    int userInput;
+
+                    cout << "This name is already in the database." << endl;
+                    cout << endl << "1 - Replace existing data" << endl;
+                    cout << "2 - Start over" << endl;
+                    cout << endl << "Select: ";
+                    cin >> userInput;
+
+                    if(userInput == 1)
+                    {
+                        _service.removeComputer(name);
+                        _service.addComputer(name, yearBuilt, type, built);
+                    }
+
                 }
-            }
-        }
-
-        while(true) // Check if it was built
-        {
-            char builtInput;
-            cout << endl << "Was the computer ever built? (y/n)"<< endl;
-            cin >> builtInput;
-
-            if (builtInput == 'y')
-            {
-                built = true;
+                askReturnToMenu();
                 break;
+
             }
-            else if (builtInput == 'n')
+            else if (checkInput == 1)
             {
-                built = false;
-                break;
-            }
-
-            else
-                cout << "Invalid Input" << endl;
-        }
-
-        while(built == true) // Check when when it was built (if it was)
-        {
-            cout << endl << "What year was the computer built?" << endl;
-            cin >> yearBuilt;
-
-            if(cin.fail())
-            {
-                cout << "Invalid input" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-            else if(yearBuilt > whatYearIsIt())
-            {
-                cout << "Predicting the future, are we? Try again" << endl;
-                cin.clear();
-            }
-            else
-                break;
-        }
-
-        // Check if input is correct
-        clearScreen();
-        cout << "Name: " << name << endl << "Type: " << type << endl;
-
-        if(built == true)
-        {
-            cout << "Built: " << yearBuilt << endl;
-        }
-        else
-        {
-            cout << "Was never built" << endl;
-        }
-
-        checkInput = userCheckInput(); // A function that checks if the input is valid
-
-        if (checkInput == 0)
-        {
-            /*if(_service.addScientist(name, gender, birthYear, deathYear))
-            {
-                cout << endl << name << " successfully added to the list" << endl;
 
             }
             else
             {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing data" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeScientist(name);
-                    _service.addScientist(name, gender, birthYear, deathYear);
-                }
-
+                break;
             }
-            askReturnToMenu();
-            break;
-            */
-        }
-        else if (checkInput == 1)
-        {
-
-        }
-        else
-        {
-            break;
-        }
     }
 }
 void ConsoleUI::searchScientist()
