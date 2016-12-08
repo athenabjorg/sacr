@@ -871,10 +871,10 @@ void ConsoleUI::addComputer()
                     _service.addScientist(name, gender, birthYear, deathYear);
                 }
 
-            }
+            }*/
             askReturnToMenu();
             break;
-            */
+
         }
         else if (checkInput == 1)
         {
