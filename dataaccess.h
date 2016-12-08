@@ -75,6 +75,8 @@ private:
 
         QSqlDatabase db;
 
+        string sqlRelationTable();
+
 };
 
 #endif // DATAACCESS_H
