@@ -28,16 +28,8 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
     while(true)
     {
-        int w = 65;
-        cout << setw(w) << "  _____   ___    ______ ____" << endl;
-        cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
-        cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
-        cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
-        cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
-        cout << setw(w+4) << "Scientist and computer realtions." << endl;
-        cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
+        largeLogoPrint();
 
-        cout << "Select one of the following options: " << endl;
         cout << "========================================================================================================" << endl;
         cout << "Add     -   Add a scientist or a computer" << endl;
         cout << "Remove  -   Remove a scientist or a computer" << endl;
@@ -46,6 +38,7 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
         cout << "Sort    -   Sort list of scientists or computers by name, gender, year of birth, year of death or age" << endl;
         cout << "Quit    -   End program" << endl;
         cout << "========================================================================================================" << endl;
+        cout << "Select one of the options above" << endl;
 
         invalidInput = true;
 
@@ -1347,4 +1340,28 @@ void ConsoleUI::smallLogoPrint()
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
+}
+void ConsoleUI::largeLogoPrint()
+{
+    cout << "          _____                    _____                    _____                    _____          " << endl;
+           cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
+           cout << "          /::\\    \\                /::\\    \\                /::\\    \\                /::\\    \\         " << endl;
+           cout << "         /::::\\    \\              /::::\\    \\              /::::\\    \\              /::::\\    \\        " << endl;
+           cout << "        /::::::\\    \\            /::::::\\    \\            /::::::\\    \\            /::::::\\    \\       " << endl;
+           cout << "       /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\      " << endl;
+           cout << "      /:::/__\\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\        /:::/__\\:::\\    \\     " << endl;
+           cout << "      \\:::\\   \\:::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\      /::::\\   \\:::\\    \\    " << endl;
+           cout << "    ___\\:::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\    /::::::\\   \\:::\\    \\   " << endl;
+           cout << "   /\\   \\:::\\   \\:::\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /   \\:::\\    \\  /:::/\\:::\\   \\:::\\____\\  " << endl;
+           cout << "  /::\\   \\:::\\   \\:::\\____\\/:::/  \\:::\\   \\:::\\____\\/:::/____/     \\:::\\____\\/:::/  \\:::\\   \\:::|    |" << endl;
+           cout << "  \\:::\\   \\:::\\   \\::/    /\\::/    \\:::\\  /:::/    /\\:::\\    \\      \\::/    /\\::/   |::::\\  /:::|____|" << endl;
+           cout << "   \\:::\\   \\:::\\   \\/____/  \\/____/ \\:::\\/:::/    /  \\:::\\    \\      \\/____/  \\/____|:::::\\/:::/    /  " << endl;
+           cout << "    \\:::\\   \\:::\\    \\               \\::::::/    /    \\:::\\    \\                    |:::::::::/    /   " << endl;
+           cout << "     \\:::\\   \\:::\\____\\               \\::::/    /      \\:::\\    \\                   |::|\\::::/    /    " << endl;
+           cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
+           cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
+           cout << "        \\::::::/    /  Scientists   /:::/    /            \\:::\\    \\                |::|   |           " << endl;
+           cout << "         \\::::/    /  And          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
+           cout << "          \\::/    /  Computer      \\::/    /                \\::/    /                \\:|   |           " << endl;
+           cout << "           \\/____/  Relations       \\/____/  Version 1.0     \\/____/                  \\|___|           " << endl;
 }
