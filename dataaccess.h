@@ -18,7 +18,8 @@ public:
 
     DataAccess();
 
-    // ---------------------------------------------------------------------------------
+
+    // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
     void saveScientist(Scientist newScientist);
         // Saves a scientist to the database.
@@ -35,7 +36,8 @@ public:
 
     bool doesScientistExist(string name);
 
-    // ---------------------------------------------------------------------------------
+
+    // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
     void saveComputer(Computer newComputer);
 
@@ -50,7 +52,8 @@ public:
 
     bool doesComputerExist(string name);
 
-    // ---------------------------------------------------------------------------------
+
+    // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
     // relations functions go here
 
