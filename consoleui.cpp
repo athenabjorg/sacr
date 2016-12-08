@@ -28,16 +28,8 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
     while(true)
     {
-        int w = 65;
-        cout << setw(w) << "  _____   ___    ______ ____" << endl;
-        cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
-        cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
-        cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
-        cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
-        cout << setw(w+4) << "Scientist and computer realtions." << endl;
-        cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
+        largeLogoPrint();
 
-        cout << "Select one of the following options: " << endl;
         cout << "========================================================================================================" << endl;
         cout << "Add     -   Add a scientist or a computer" << endl;
         cout << "Remove  -   Remove a scientist or a computer" << endl;
@@ -46,6 +38,7 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
         cout << "Sort    -   Sort list of scientists or computers by name, gender, year of birth, year of death or age" << endl;
         cout << "Quit    -   End program" << endl;
         cout << "========================================================================================================" << endl;
+        cout << "Select one of the options above" << endl;
 
         invalidInput = true;
 
@@ -94,6 +87,7 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
         if(command == "quit")
         {
+            smallLogoPrint();
             break;
         }
         clearScreen();
@@ -105,6 +99,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
     string line;
 
     clearScreen();
+    //smallLogoPrint();
     switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
     {
         case 1: line = "Would you like to add a scientist or a computer to the database?";
@@ -118,7 +113,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
         case 5: line = "Would you like to sort scientists or a computers?";
                 break;
     }
-
+    smallLogoPrint();
     cout << line << endl
          << "1 - Scientist" << endl
          << "2 - Computer" << endl;
@@ -189,6 +184,7 @@ void ConsoleUI::userMenuPrint()                                     // Prints wh
     vector<Scientist> scientist = _service.getScientists();
 
     clearScreen();
+    smallLogoPrint();
     cout << left << setw(30) << "Scientist name:"
          << setw(10) << right << "gender:"
          << setw(10) << "born:"
@@ -224,6 +220,7 @@ void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print lis
      */
 
     clearScreen();
+    smallLogoPrint();
     cout << left << setw(30) << "Scientist name:"
          << setw(10) << right << "Gender:"
          << setw(10) << "Born:"
@@ -259,6 +256,7 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
 
 
     clearScreen();
+    smallLogoPrint();
     cout << left << setw(25) << "Computer name:"
          << setw(10) << right << "Year built:"
          << setw(20) << "Type:"
@@ -293,6 +291,8 @@ void ConsoleUI::addScientist()
     while(true)
     {
         clearScreen();
+        smallLogoPrint();
+
        while(true)
        {
             cout << "Enter the scientist's name: ";
@@ -386,6 +386,7 @@ void ConsoleUI::addScientist()
 
         // Check if input is correct
         clearScreen();
+        smallLogoPrint();
         cout << "Name: " << name << endl << "Gender: " << gender << endl << "Born: " << birthYear << endl;
 
         if(deathYear != 0)
@@ -451,6 +452,7 @@ void ConsoleUI::removeScientist()
     string command;
 
     clearScreen();
+    smallLogoPrint();
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove scientists by name " << endl;
     cout << "(2)     -   Remove *ALL* scientists" << endl << endl;
@@ -508,6 +510,7 @@ void ConsoleUI::removeScientist()
         string userInputName;
 
         clearScreen();
+        smallLogoPrint();
 
         cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
 
@@ -518,6 +521,7 @@ void ConsoleUI::removeScientist()
         {
             _service.removeAllScientists();
             clearScreen();
+            smallLogoPrint();
             userMenuPrint();
         }
 
@@ -533,6 +537,7 @@ void ConsoleUI::searchScientist()
     string command;
 
     clearScreen();
+    smallLogoPrint();
     cout << "Select a search option: " << endl;
     cout << "===================================" << endl;
     cout << "Name    -   Search by name" << endl;
@@ -552,6 +557,7 @@ void ConsoleUI::searchScientist()
         string userInputName;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by name: ";
         getline(cin, userInputName);
 
@@ -563,6 +569,7 @@ void ConsoleUI::searchScientist()
     {
         char userInputGender;
         clearScreen();
+        smallLogoPrint();
 
         cout << "Search by gender" << endl;
         cout << endl << "M - Male" << endl;
@@ -579,6 +586,7 @@ void ConsoleUI::searchScientist()
         int inputCheck;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Age" << endl;
         cout << "(2) - Age range" << endl;
@@ -622,6 +630,7 @@ void ConsoleUI::searchScientist()
         else
         {
             clearScreen();
+            smallLogoPrint();
             cout << "Wrong Input" << endl;
         }
     }
@@ -630,6 +639,7 @@ void ConsoleUI::searchScientist()
         int inputCheck;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Year of birth" << endl;
         cout << "(2) - Range of year of birth" << endl << endl;
@@ -681,6 +691,7 @@ void ConsoleUI::searchScientist()
         int inputCheck;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Year scientist died" << endl;
         cout << "(2) - Year range of when scientist died" << endl << endl;
@@ -725,6 +736,7 @@ void ConsoleUI::searchScientist()
         else
         {
             clearScreen();
+            smallLogoPrint();
             cout << "Wrong Input" << endl;
         }
     }
@@ -745,6 +757,7 @@ void ConsoleUI::sortScientist()
     int userInput;
 
     clearScreen();
+    smallLogoPrint();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -776,6 +789,7 @@ void ConsoleUI::sortScientist()
         cin.clear();
 
         clearScreen();
+        smallLogoPrint();
 
     }while(inputCheck);
 
@@ -797,6 +811,7 @@ void ConsoleUI::addComputer()
         while(true)
         {
         clearScreen();
+        smallLogoPrint();
 
         while(true)
         {
@@ -924,6 +939,7 @@ void ConsoleUI::addComputer()
 
         // Check if input is correct
         clearScreen();
+        smallLogoPrint();
         cout << "Name: " << name << endl << "Type: " << type << endl;
 
         if(built == true)
@@ -984,6 +1000,7 @@ void ConsoleUI::removeComputer()
     string command;
 
     clearScreen();
+    smallLogoPrint();
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove computer by name " << endl;
     cout << "(2)     -   Remove *ALL* computers" << endl << endl;
@@ -1041,6 +1058,7 @@ void ConsoleUI::removeComputer()
         string userInputName;
 
         clearScreen();
+        smallLogoPrint();
 
         cout << "Type in \"remove\" to remove *ALL* computers, any other input to cancel" << endl;
 
@@ -1051,6 +1069,7 @@ void ConsoleUI::removeComputer()
         {
             _service.removeAllComputers(); // TODO::Needs a functin in service layer
             clearScreen();
+            smallLogoPrint();
             userMenuPrint();
         }
 
@@ -1066,6 +1085,7 @@ void ConsoleUI::searchComputer()
     string command;
 
     clearScreen();
+    smallLogoPrint();
     cout << "Select a search option: " << endl;
     cout << "===================================" << endl;
     cout << "Name    -   Search by name" << endl;
@@ -1083,6 +1103,7 @@ void ConsoleUI::searchComputer()
         string userInputName;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by name: ";
         getline(cin, userInputName);
 
@@ -1099,6 +1120,7 @@ void ConsoleUI::searchComputer()
         vector<Computer> computer;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by year:" << endl;
         cout << endl << "(1) - Search for a computer by year it was made" << endl;
         cout << "(2) - Search for a computer by range of year it was made " << endl;
@@ -1140,6 +1162,7 @@ void ConsoleUI::searchComputer()
         vector<Computer> computer;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by type:" << endl;
         cout << endl << "(1) - ElectroMechanical" << endl;
         cout << "(2) - Electronic" << endl;
@@ -1176,6 +1199,7 @@ void ConsoleUI::searchComputer()
         vector<Computer> computers;
 
         clearScreen();
+        smallLogoPrint();
         cout << "Search by:" << endl;
         cout << endl << "(1) - Was built" << endl;
         cout << "(2) - Was not built" << endl << endl;
@@ -1213,6 +1237,7 @@ void ConsoleUI::sortComputer()
     int userInput;
 
     clearScreen();
+    smallLogoPrint();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -1242,6 +1267,7 @@ void ConsoleUI::sortComputer()
         cin.clear();
 
         clearScreen();
+        smallLogoPrint();
 
     }while(inputCheck);
 
@@ -1349,4 +1375,28 @@ void ConsoleUI::smallLogoPrint()
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
+}
+void ConsoleUI::largeLogoPrint()
+{
+    cout << "          _____                    _____                    _____                    _____          " << endl;
+           cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
+           cout << "          /::\\    \\                /::\\    \\                /::\\    \\                /::\\    \\         " << endl;
+           cout << "         /::::\\    \\              /::::\\    \\              /::::\\    \\              /::::\\    \\        " << endl;
+           cout << "        /::::::\\    \\            /::::::\\    \\            /::::::\\    \\            /::::::\\    \\       " << endl;
+           cout << "       /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\      " << endl;
+           cout << "      /:::/__\\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\        /:::/__\\:::\\    \\     " << endl;
+           cout << "      \\:::\\   \\:::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\      /::::\\   \\:::\\    \\    " << endl;
+           cout << "    ___\\:::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\    /::::::\\   \\:::\\    \\   " << endl;
+           cout << "   /\\   \\:::\\   \\:::\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /   \\:::\\    \\  /:::/\\:::\\   \\:::\\____\\  " << endl;
+           cout << "  /::\\   \\:::\\   \\:::\\____\\/:::/  \\:::\\   \\:::\\____\\/:::/____/     \\:::\\____\\/:::/  \\:::\\   \\:::|    |" << endl;
+           cout << "  \\:::\\   \\:::\\   \\::/    /\\::/    \\:::\\  /:::/    /\\:::\\    \\      \\::/    /\\::/   |::::\\  /:::|____|" << endl;
+           cout << "   \\:::\\   \\:::\\   \\/____/  \\/____/ \\:::\\/:::/    /  \\:::\\    \\      \\/____/  \\/____|:::::\\/:::/    /  " << endl;
+           cout << "    \\:::\\   \\:::\\    \\               \\::::::/    /    \\:::\\    \\                    |:::::::::/    /   " << endl;
+           cout << "     \\:::\\   \\:::\\____\\               \\::::/    /      \\:::\\    \\                   |::|\\::::/    /    " << endl;
+           cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
+           cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
+           cout << "        \\::::::/    /  Scientist    /:::/    /            \\:::\\    \\                |::|   |           " << endl;
+           cout << "         \\::::/    /  And          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
+           cout << "          \\::/    /  Computer      \\::/    /                \\::/    /                \\:|   |           " << endl;
+           cout << "           \\/____/  Relations       \\/____/  Version 1.0     \\/____/                  \\|___|           " << endl;
 }
