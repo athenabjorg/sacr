@@ -1337,4 +1337,13 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
     int currentYear = (timeinfo->tm_year + 1900);
     return currentYear;
 }
-
+void ConsoleUI::smallLogoPrint()
+{
+    cout << setw(w) << "  _____   ___    ______ ____" << endl;
+    cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
+    cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
+    cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
+    cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
+    cout << setw(w+4) << "Scientist and computer realtions." << endl;
+    cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
+}
