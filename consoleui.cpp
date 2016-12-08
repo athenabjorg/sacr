@@ -179,78 +179,12 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
 
 }
-void ConsoleUI::userMenuAdd()                                       // Adds a new programmer
-{
-    int selection = 0;
-    cout << "Check /n";
-    cout << "Would you like to add a scientist or a computer to the database?" << endl
-         << "1 - Scientist" << endl
-         << "2 - Computer" << endl;
-    cin >> selection;
-
-    if (selection == 1)
-    {
-        cin.ignore();
-        addScientist();
-    }
-    else if (selection == 2)
-    {
-        cin.ignore();
-        addComputer();
-    }
-    else
-        cout << "Invalid input" << endl;
-}
-void ConsoleUI::userMenuSearch()                                    // Searches the list
-{
-    int selection = 0;
-    clearScreen();
-    cout << "Would you like to search for scientist or a computer in the database?" << endl
-         << "1 - Scientist" << endl
-         << "2 - Computer" << endl;
-    cin >> selection;
-
-    if (selection == 1)
-    {
-        cin.ignore();
-        addScientist();
-    }
-    else if (selection == 2)
-    {
-        cin.ignore();
-        addComputer();
-    }
-    else
-        cout << "Invalid input" << endl;
-}
-void ConsoleUI::userMenuSort()                                      // Sorts list
-{
-    int selection = 0;
-    clearScreen();
-    cout << "Would you like to sort the list of scientists or the computers" << endl
-         << "1 - Scientists" << endl
-         << "2 - Computers" << endl;
-    cin >> selection;
-
-    if (selection == 1)
-    {
-        cin.ignore();
-        sortScientist();
-    }
-    else if (selection == 2)
-    {
-        cin.ignore();
-        sortComputer();
-    }
-    else
-        cout << "Invalid input" << endl;
-}
 void ConsoleUI::userMenuPrint()                                     // Prints whole list
 {
     /*
      * Prints out a partial list of scientist, depending on how
      * it was sent forward by the previous function.
-     */
+    */
 
     vector<Scientist> scientist = _service.getScientists();
 
