@@ -184,6 +184,8 @@ void DataAccess::removeScientist(string inputName)
     QSqlQuery query;
     query.exec(input); // open table scientists
     db.close();
+
+    removeRelationToComputer(inputName);
 }
 void DataAccess::removeAllScientists() // Not practical
 {
@@ -197,6 +199,8 @@ void DataAccess::removeAllScientists() // Not practical
     QSqlQuery query;
     query.exec(input); // open table scientists
     db.close();
+
+    removeAllRelations();
 }
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
@@ -438,6 +442,8 @@ void DataAccess::removeComputer(string inputName)
     QSqlQuery query;
     query.exec(input); // open table scientists
     db.close();
+
+    removeRelationToComputer(inputName);
 }
 void DataAccess::removeAllComputers()
 {
@@ -451,6 +457,8 @@ void DataAccess::removeAllComputers()
     QSqlQuery query;
     query.exec(input);
     db.close();
+
+    removeAllRelations();
 }
 
 vector<Computer> DataAccess::sortComputers(int sortType)
@@ -520,6 +528,30 @@ bool DataAccess::doesComputerExist(string name)
     return false;
 }
 
+int DataAccess::yearComputerBuilt(string computer)
+{
+    string line;
+    int year;
+    bool valid;
+
+    line = "SELECT year FROM computers WHERE name LIKE \"" + computer + "\"";
+
+    QString input = QString::fromStdString(line);
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    year = query.value(2).toInt();
+
+    db.close();
+
+    if(valid)
+    {
+        return year;
+    }
+
+    return 0;
+}
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
@@ -556,37 +588,51 @@ vector<Relation> DataAccess::loadRelations()                  // From text file 
     /*
      * Adds list of computers from a database into a vector.
      */
-/*
-    vector<Computer> computers;
-    string line, name, type;
-    int year;
-    bool built, valid;
 
-    line = "SELECT * FROM computers";
+    vector<Relation> relations;
+    string line, scientist, computer, scientistID, computerID;
+    bool year, valid;
+
+    line = "SELECT * FROM relations";
 
     QString input = QString::fromStdString(line);
     db.open();
     QSqlQuery query;
+    QSqlQuery parameterQuery;
+
     query.exec(input);
 
     while (query.next())
     {
-        name = query.value(1).toString().toStdString();
-        year = query.value(2).toInt();
-        type = query.value(3).toString().toStdString();
-        built = query.value(4).toBool();
-        valid = query.value(5).toBool();
+        scientistID = query.value(0).toString().toStdString();
+        computerID = query.value(1).toString().toStdString();
+        valid = query.value(2).toBool();
+
+        line = "SELECT name FROM Scientists WHERE id LIKE \"" + scientistID + "\"";
+        input = QString::fromStdString(line);
+        parameterQuery.exec(input);
+        scientist = query.value(0).toString().toStdString();
+
+        line = "SELECT name FROM Computers WHERE id LIKE \"" + computerID + "\"";
+        input = QString::fromStdString(line);
+        parameterQuery.exec(input);
+        computer = query.value(0).toString().toStdString();
+
+        line = "SELECT year FROM Copmuters WHERE id LIKE \"" + computerID + "\"";
+        input = QString::fromStdString(line);
+        parameterQuery.exec(input);
+        year = query.value(0).toInt();
 
         if(valid)
         {
-            Computer computer(name, year, type, built);
-            computers.push_back(computer);
+            Relation relation(scientist, computer, year);
+            relations.push_back(relation);
         }
     }
-
     db.close();
-    return computers;
-    */
+
+    return relations;
+
 }
 vector<Relation> DataAccess::loadRelations(int loadType, string parameter)                  // From text file to vector
 {
@@ -685,26 +731,11 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
     */
 }
 
-void DataAccess::removeRelation(string inputName)
+void DataAccess::removeRelationToScientist(string inputName)
 {
-    /*
     string line;
 
-    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-    db.close();
-    */
-}
-void DataAccess::removeAllRelations()
-{/*
-    string line;
-
-    line = "DELETE FROM Computers";
+    line = "UPDATE Relations SET Valid = 0 WHERE Scientist LIKE \"%" + inputName + "%\"";
 
     QString input = QString::fromStdString(line);
 
@@ -712,7 +743,35 @@ void DataAccess::removeAllRelations()
     QSqlQuery query;
     query.exec(input);
     db.close();
-    */
+}
+
+void DataAccess::removeRelationToComputer(string inputName)
+{
+    string line;
+
+    line = "UPDATE Relations SET Valid = 0 WHERE Computers LIKE \"%" + inputName + "%\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+}
+
+void DataAccess::removeAllRelations()
+{
+    string line;
+
+    line = "DELETE FROM Relations";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+
 }
 
 vector<Relation> DataAccess::sortRelations(int sortType)
@@ -765,7 +824,7 @@ vector<Relation> DataAccess::sortRelations(int sortType)
     */
 }
 
-bool DataAccess::doesRelationExist(string name)
+bool DataAccess::doesRelationExist(string scientist, string computer)
 {/*
     vector<Computer> computers;
 
