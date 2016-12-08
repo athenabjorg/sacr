@@ -4,10 +4,11 @@ Relation::Relation()
 {
 
 }
-Relation::Relation(string scientist, string computer)
+Relation::Relation(string scientist, string computer, int year)
 {
     _scientist = scientist;
     _computer = computer;
+    _year = year;
 }
 
 string Relation::getScientist()
@@ -18,4 +19,9 @@ string Relation::getScientist()
 string Relation::getComputer()
 {
     return _computer;
+}
+
+int Relation::getYear()
+{
+    return _year;
 }

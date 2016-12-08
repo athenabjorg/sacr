@@ -52,6 +52,7 @@ public:
 
     bool doesComputerExist(string name);
 
+    int yearComputerBuilt(string computer);
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
@@ -61,12 +62,13 @@ public:
     vector<Relation> loadRelations(int loadType, string parameter);
     vector<Relation> loadRelations(int loadType, string parameter1, string parameter2);
 
-    void removeRelation(string inputName);
+    void removeRelationToScientist(string inputName);
+    void removeRelationToComputer(string inputName);
     void removeAllRelations();
 
     vector<Relation> sortRelations(int sortType);
 
-    bool doesRelationExist(string name);
+    bool doesRelationExist(string scientist, string computer);
 
 
 private:
