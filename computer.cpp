@@ -1,3 +1,4 @@
+#include <ctime>
 #include "computer.h"
 
 Computer::Computer()
@@ -30,3 +31,20 @@ bool Computer::getBuilt() const
 {
     return _built;
 }
+/*int Computer::whatYearIsIt() const // Óþarfi ef við ætlum ekki að hafa yearsSinceBuilt
+{   // Returns the current year.
+
+    time_t     currentTime;
+    struct tm* timeinfo;
+
+    time(&currentTime);
+    timeinfo = localtime(&currentTime);
+
+    int currentYear = (timeinfo->tm_year + 1900);
+    return currentYear;
+}
+int Computer::getYearsSinceBuilt() const
+{
+        return (whatYearIsIt() - _year);
+}
+*/

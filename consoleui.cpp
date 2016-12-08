@@ -262,6 +262,7 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
          << setw(10) << right << "Year built:"
          << setw(20) << "Type:"
          << setw(15) << "Was built:" << endl;
+         //<< setw(22) << "Years since built:" << endl;
     cout << "=======================================================================" << endl;
     for (size_t i = 0; i< computer.size(); ++i)
     {
@@ -271,10 +272,12 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
                 if(computer[i].getBuilt()==true)
                 {
                      cout << setw(15) << "Yes" << endl;
+                     //cout << setw(22) << computer[i].getYearsSinceBuilt() << endl; // Mætir afgangi
                 }
                 else
                 {
                      cout << setw(15) << "No" << endl;
+                     //cout << setw (22) << "-" << endl; // Þarf að vera ef við setjum inn yearsSinceBuilt
                 }
     }
     cout << "=======================================================================" << endl;
