@@ -359,10 +359,21 @@ void ConsoleUI::addScientist()
     while(true)
     {
         clearScreen();
+       while(true)
+       {
+            cout << "Enter the scientist's name: ";
+            cin.ignore(-1);
+            getline(cin, name);
 
-        cout << "Enter the scientist's name: ";
-        cin.ignore(-1);
-        getline(cin, name);
+            if(name == "")
+            {
+                cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl;
+            }
+            else
+            {
+                break;
+            }
+        }
 
         while(true) // Check for gender
         {
@@ -853,9 +864,22 @@ void ConsoleUI::addComputer()
         {
         clearScreen();
 
-        cout << "Enter the computer's name: ";
-        cin.ignore(-1);
-        getline(cin, name);
+        while(true)
+        {
+            cout << "Enter the computer's name: ";
+            cin.ignore(-1);
+            getline(cin, name);
+
+            if(name == "")
+            {
+                cout << "Computers have names too!" << endl;
+            }
+            else
+            {
+                break;
+            }
+        }
+
 
         while(true) // Check for type
         {
