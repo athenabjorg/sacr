@@ -18,9 +18,6 @@ public:
     int    getDeath()     const;
     int    getAge()       const;
 
-    int    whatYearIsIt() const;
-        // Returns the current year.
-
     friend bool operator == (const Scientist& a, const Scientist& b);
 
 private:
@@ -30,7 +27,9 @@ private:
     int    _birth;
     int    _death;
     int    _age;
-    bool   _valid;
+
+    int    whatYearIsIt() const;
+        // Returns the current year.
 };
 
 #endif // SCIENTIST_H
