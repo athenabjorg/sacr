@@ -1339,6 +1339,7 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
 }
 void ConsoleUI::smallLogoPrint()
 {
+    int w = 65;
     cout << setw(w) << "  _____   ___    ______ ____" << endl;
     cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
     cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
