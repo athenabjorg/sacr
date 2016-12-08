@@ -1,9 +1,6 @@
 #include "consoleui.h"
-
-
-
-
 using namespace std;
+
 
 ConsoleUI::ConsoleUI()                                              // Constructor function
 {
@@ -13,7 +10,9 @@ ConsoleUI::ConsoleUI()                                              // Construct
 
     _service.getScientists(); // Uploads the list of scientists from file.
 }
-void ConsoleUI::run()                                               // DIsplays the main menu
+
+// ---------------------------------- USER MENU FUNCTIONS ---------------------------------- //
+void ConsoleUI::userMenuRun()                                       // DIsplays the main menu
 {
     /*
      * This is the main function body, that is run at the start of the program every time
@@ -349,248 +348,8 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
     cout << "Total: " << computer.size() << " computers" << endl;
 }
 
-int  ConsoleUI::userCheckInput() const                              // Checks input from userMenuAdd
-{
-    /*
-     * Check if all data is correct and return a int depending on what user selected.
-     * (0) yes, (1) no, (2) cancel and if nothing selected or wrong input the loop will
-     * keep running until one of the 3 is selected.
-     */
 
-    while(true)
-    {
-        string answer;
-        cout << endl << "Is this data correct?" << endl;
-        cout << endl << "Y - Yes, add this to the list" << endl;
-        cout << "N - No, let me try again" << endl;
-        cout << "C - Cancel add and return to the menu" << endl;
-        cout << endl << "Select: ";
-
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        getline(cin, answer);
-
-
-        if(answer[0] == 'y' || answer[0] == 'Y')
-        {
-            return 0;
-        }
-        else if (answer[0] == 'n' || answer[0] == 'N')
-        {
-            return 1;
-        }
-        else if (answer[0] == 'c' || answer[0] == 'C')
-        {
-            return 2;
-        }
-        else
-        {
-            cout << "Invalid input!";
-        }
-
-    }
-}
-void ConsoleUI::removeScientist()
-{
-    /*
-     * A function to remove a scientist.
-     */
-
-    string command;
-
-    clearScreen();
-    cout << "Select one of the following options: " << endl;
-    cout << "(1)     -   Remove scientists by name " << endl;
-    cout << "(2)     -   Remove *ALL* scientists" << endl << endl;
-    cout << "Select: ";
-
-    getline(cin, command);
-    cout << endl;
-
-    if(command[0] == '1') // Remove scientist/s by input.
-    {
-        vector<Scientist> scientist = _service.getScientists();
-        userMenuPrint(scientist);
-
-        string userInputName, confirm;
-        vector<Scientist> scientistsToRemove;
-
-
-        cout << endl << "Remove scientists with names containing: ";
-
-
-        getline(cin, userInputName);
-        scientistsToRemove = _service.findScientist(1, userInputName);
-
-        if(scientistsToRemove.size() > 0)
-        {
-            userMenuPrint(scientistsToRemove);
-            cout << endl << "Are you sure you want to remove these scientists from the list?" << endl;
-            cout << "Y     -   Yes, remove them " << endl;
-            cout << "N     -   No, do not remove them" << endl << endl;
-            cout << endl << "Select: ";
-
-            getline(cin, confirm);
-
-            if (confirm[0] == 'y' || confirm[0] == 'Y')
-            {
-                _service.removeScientist(userInputName);
-                cout << endl << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
-                askReturnToMenu();
-            }
-            else
-            {
-                cout << endl << "No scientists were removed" << endl;
-                askReturnToMenu();
-            }
-
-        }
-        else
-        {
-            cout << endl << "There are no scientists with names containing '" << userInputName << "'" << endl;
-            askReturnToMenu();
-        }
-    }
-    else if(command[0] == '2') // Remove all scientists
-    {
-        string userInputName;
-
-        clearScreen();
-
-        cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
-
-        getline(cin, userInputName);
-        forceLowerCase(userInputName);
-
-        if(userInputName == "remove")
-        {
-            _service.removeAllScientists();
-            clearScreen();
-            userMenuPrint();
-        }
-
-    }
-}
-void ConsoleUI::removeComputer()
-{
-    /*
-     * A function to remove a computer.
-     */
-
-    string command;
-
-    clearScreen();
-    cout << "Select one of the following options: " << endl;
-    cout << "(1)     -   Remove computer by name " << endl;
-    cout << "(2)     -   Remove *ALL* computers" << endl << endl;
-    cout << "Select: ";
-
-    getline(cin, command);
-    cout << endl;
-
-    if(command[0] == '1') // Remove computer/s by input.
-    {
-        vector<Computer> computer = _service.getComputers();
-        userMenuPrint(computer);
-
-        string userInputName, confirm;
-        vector<Computer> computersToRemove;
-
-
-        cout << endl << "Remove computers with names containing: ";
-
-
-        getline(cin, userInputName);
-        computersToRemove = _service.findComputer(1, userInputName);
-
-        if(computersToRemove.size() > 0)
-        {
-            userMenuPrint(computersToRemove);
-            cout << endl << "Are you sure you want to remove these computers from the list?" << endl;
-            cout << "Y     -   Yes, remove them " << endl;
-            cout << "N     -   No, do not remove them" << endl << endl;
-            cout << endl << "Select: ";
-
-            getline(cin, confirm);
-
-            if (confirm[0] == 'y' || confirm[0] == 'Y')
-            {
-                _service.removeComputer(userInputName); // TODO::Needs a functin in service layer
-                cout << endl << "Computers with names containing '" << userInputName << "' have been removed from the list." << endl;
-                askReturnToMenu();
-            }
-            else
-            {
-                cout << endl << "No computers were removed" << endl;
-                askReturnToMenu();
-            }
-
-        }
-        else
-        {
-            cout << endl << "There are no computers with names containing '" << userInputName << "'" << endl;
-            askReturnToMenu();
-        }
-    }
-    else if(command[0] == '2') // Remove all computers
-    {
-        string userInputName;
-
-        clearScreen();
-
-        cout << "Type in \"remove\" to remove *ALL* computers, any other input to cancel" << endl;
-
-        getline(cin, userInputName);
-        forceLowerCase(userInputName);
-
-        if(userInputName == "remove")
-        {
-            _service.removeAllComputers(); // TODO::Needs a functin in service layer
-            clearScreen();
-            userMenuPrint();
-        }
-
-    }
-}
-void ConsoleUI::forceLowerCase(string &command)                     // Forces input to lower case
-{
-    /*
-     * A function that takes a string parameter as refrence and forces the string
-     * to be only lowercase. Code taken from c++ site
-     */
-
-    for(unsigned int i = 0; i < command.length(); i++)
-    {
-        command[i] = tolower(command[i]);
-    }
-}
-void ConsoleUI::askReturnToMenu() const                             // Asks if user wants to move back to the menu
-{
-    cout << endl;
-    cout << "To return to the menu input 'm'" << endl;
-    cout << "Select: ";
-
-   string userInput = " ";
-   while (userInput[0] != 'm' && userInput[0] != 'M')
-   {
-       getline(cin, userInput);
-   }
-}
-void ConsoleUI::clearScreen() const                                 // Clears console screen
-{
-    const int spaceLength = 50;
-    cout << string( spaceLength, '\n' );
-}
-int  ConsoleUI::whatYearIsIt() const                                // Returns the current year.
-{
-    time_t     currentTime;
-    struct tm* timeinfo;
-
-    time(&currentTime);
-    timeinfo = localtime(&currentTime);
-
-    int currentYear = (timeinfo->tm_year + 1900);
-    return currentYear;
-}
+// ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 void ConsoleUI::addScientist()
 {
     string name, genderInput;
@@ -738,178 +497,85 @@ void ConsoleUI::addScientist()
         }
     }
 }
-void ConsoleUI::addComputer()
+void ConsoleUI::removeScientist()
 {
-    string name, type;
-    int yearBuilt = 0, checkInput;
-    bool built = false;
+    /*
+     * A function to remove a scientist.
+     */
 
-        while(true)
+    string command;
+
+    clearScreen();
+    cout << "Select one of the following options: " << endl;
+    cout << "(1)     -   Remove scientists by name " << endl;
+    cout << "(2)     -   Remove *ALL* scientists" << endl << endl;
+    cout << "Select: ";
+
+    getline(cin, command);
+    cout << endl;
+
+    if(command[0] == '1') // Remove scientist/s by input.
+    {
+        vector<Scientist> scientist = _service.getScientists();
+        userMenuPrint(scientist);
+
+        string userInputName, confirm;
+        vector<Scientist> scientistsToRemove;
+
+
+        cout << endl << "Remove scientists with names containing: ";
+
+
+        getline(cin, userInputName);
+        scientistsToRemove = _service.findScientist(1, userInputName);
+
+        if(scientistsToRemove.size() > 0)
         {
-        clearScreen();
+            userMenuPrint(scientistsToRemove);
+            cout << endl << "Are you sure you want to remove these scientists from the list?" << endl;
+            cout << "Y     -   Yes, remove them " << endl;
+            cout << "N     -   No, do not remove them" << endl << endl;
+            cout << endl << "Select: ";
 
-        cout << "Enter the computer's name: ";
-        cin.ignore(-1);
-        getline(cin, name);
+            getline(cin, confirm);
 
-        while(true) // Check for type
-        {
-            int inputType;
-            cout << endl;
-            cout << "What type of computer is this?" << endl;
-            cout << endl << "1 - ElectroMechanical" << endl;
-            cout << "2 - Electronic" << endl;
-            cout << "3 - Mechanical" << endl;
-            cout << "4 - Transistor" << endl;
-            cout << endl << "Type: ";
-            cin >> inputType;
-
-            if(cin.fail())
+            if (confirm[0] == 'y' || confirm[0] == 'Y')
             {
-                cout << "Invalid input!" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                _service.removeScientist(userInputName);
+                cout << endl << "Scientists with names containing '" << userInputName << "' have been removed from the list." << endl;
+                askReturnToMenu();
             }
             else
             {
-                switch(inputType)
-                {
-                    case 1:
-                        type = "ElectroMechanical";
-                        break;
-                    case 2:
-                        type = "Electronic";
-                        break;
-                    case 3:
-                        type = "Mechanical";
-                        break;
-                    case 4:
-                        type = "Transistor";
-                        break;
-                }
-                if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
-                {
-                    break;
-                }
-                else
-                {
-                    cout << "Invalid input" << endl;
-                }
-            }
-        }
-
-        while(true) // Check if it was built
-        {
-            char builtInput;
-            cout << endl << "Was the computer ever built? (y/n): ";
-            cin >> builtInput;
-
-            if (builtInput == 'y')
-            {
-                built = true;
-                break;
-            }
-            else if (builtInput == 'n')
-            {
-                built = false;
-                break;
+                cout << endl << "No scientists were removed" << endl;
+                askReturnToMenu();
             }
 
-            else
-                cout << "Invalid Input" << endl;
-        }
-
-        while(built == true) // Check when when it was built (if it was)
-        {
-            cout << endl << "What year was the computer built?: ";
-            cin >> yearBuilt;
-
-            if(cin.fail())
-            {
-                cout << "Invalid input" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-            else if(yearBuilt > whatYearIsIt())
-            {
-                cout << endl << "Predicting the future, are we? Try again" << endl;
-                cin.clear();
-            }
-            else
-                break;
-        }
-
-        while(built == false) // Check when when it was built (if it was)
-        {
-            cout << endl << "What year was the computer designed?: ";
-            cin >> yearBuilt;
-
-            if(cin.fail())
-            {
-                cout << "Invalid input" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-            else if(yearBuilt > whatYearIsIt())
-            {
-                cout << endl << "Predicting the future, are we? Try again" << endl;
-                cin.clear();
-            }
-            else
-                break;
-        }
-
-        // Check if input is correct
-        clearScreen();
-        cout << "Name: " << name << endl << "Type: " << type << endl;
-
-        if(built == true)
-        {
-            cout << "Built: " << yearBuilt << endl;
         }
         else
         {
-            cout << "Was never built" << endl;
-        }
-
-        checkInput = userCheckInput(); // A function that checks if the input is valid
-
-        if (checkInput == 0)
-        {
-            if(_service.addComputer(name, yearBuilt, type, built))
-            {
-                cout << endl << name << " successfully added to the list" << endl;
-
-            }
-            else
-            {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing data" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeComputer(name);
-                    _service.addComputer(name, yearBuilt, type, built);
-                }
-
-            }
+            cout << endl << "There are no scientists with names containing '" << userInputName << "'" << endl;
             askReturnToMenu();
-            break;
+        }
+    }
+    else if(command[0] == '2') // Remove all scientists
+    {
+        string userInputName;
 
-        }
-        else if (checkInput == 1)
-        {
+        clearScreen();
 
-        }
-        else
+        cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
+
+        getline(cin, userInputName);
+        forceLowerCase(userInputName);
+
+        if(userInputName == "remove")
         {
-            break;
+            _service.removeAllScientists();
+            clearScreen();
+            userMenuPrint();
         }
+
     }
 }
 void ConsoleUI::searchScientist()
@@ -1119,6 +785,319 @@ void ConsoleUI::searchScientist()
     }
     cout << endl;
 }
+void ConsoleUI::sortScientist()
+{
+    /*
+     * A sorting function, can call function from service.cpp scientistSort().
+     * The function will sort depending on int parameter "1 = name(A-Z), 2 = name(Z-A),
+     * 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9), 6 = birth year(9-0)
+     * 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)".
+     */
+
+
+    vector<Scientist> sortedScientists;
+    bool inputCheck = true;
+    int userInput;
+
+    clearScreen();
+
+        cout << "Select a sort option: " << endl;
+        cout << "===================================" << endl;
+        cout << "(1)     -   Sort by name (A-Z)" << endl;
+        cout << "(2)     -   Sort by name (Z-A)" << endl;
+        cout << "(3)     -   Sort by gender (F-M)" << endl;
+        cout << "(4)     -   Sort by gender (M-F)" << endl;
+        cout << "(5)     -   Sort by year of birth (0-9)" << endl;
+        cout << "(6)     -   Sort by year of birth (9-0)" << endl;
+        cout << "(7)     -   Sort by year of death (0-9)" << endl;
+        cout << "(8)     -   Sort by year of death (9-0)" << endl;
+        cout << "(9)     -   Sort by age (0-9)" << endl;
+        cout << "(10)    -   Sort by age (9-0)" << endl;
+
+    do
+    {
+        cout << endl << "Select: ";
+        cin >> userInput;
+
+        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
+        {
+            inputCheck = true;
+            cout << "Invalid input" << endl;
+        }
+        else
+        {
+            inputCheck = false;
+        }
+        cin.clear();
+
+        clearScreen();
+
+    }while(inputCheck);
+
+     sortedScientists = _service.scientistSort(userInput);
+
+     userMenuPrint(sortedScientists);
+
+     askReturnToMenu();
+}
+
+
+// ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
+void ConsoleUI::addComputer()
+{
+    string name, type;
+    int yearBuilt = 0, checkInput;
+    bool built = false;
+
+        while(true)
+        {
+        clearScreen();
+
+        cout << "Enter the computer's name: ";
+        cin.ignore(-1);
+        getline(cin, name);
+
+        while(true) // Check for type
+        {
+            int inputType;
+            cout << endl;
+            cout << "What type of computer is this?" << endl;
+            cout << endl << "1 - ElectroMechanical" << endl;
+            cout << "2 - Electronic" << endl;
+            cout << "3 - Mechanical" << endl;
+            cout << "4 - Transistor" << endl;
+            cout << endl << "Type: ";
+            cin >> inputType;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else
+            {
+                switch(inputType)
+                {
+                    case 1:
+                        type = "ElectroMechanical";
+                        break;
+                    case 2:
+                        type = "Electronic";
+                        break;
+                    case 3:
+                        type = "Mechanical";
+                        break;
+                    case 4:
+                        type = "Transistor";
+                        break;
+                }
+                if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Invalid input" << endl;
+                }
+            }
+        }
+
+        while(true) // Check if it was built
+        {
+            char builtInput;
+            cout << endl << "Was the computer ever built? (y/n): ";
+            cin >> builtInput;
+
+            if (builtInput == 'y')
+            {
+                built = true;
+                break;
+            }
+            else if (builtInput == 'n')
+            {
+                built = false;
+                break;
+            }
+
+            else
+                cout << "Invalid Input" << endl;
+        }
+
+        while(built == true) // Check when when it was built (if it was)
+        {
+            cout << endl << "What year was the computer built?: ";
+            cin >> yearBuilt;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(yearBuilt > whatYearIsIt())
+            {
+                cout << endl << "Predicting the future, are we? Try again" << endl;
+                cin.clear();
+            }
+            else
+                break;
+        }
+
+        while(built == false) // Check when when it was built (if it was)
+        {
+            cout << endl << "What year was the computer designed?: ";
+            cin >> yearBuilt;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(yearBuilt > whatYearIsIt())
+            {
+                cout << endl << "Predicting the future, are we? Try again" << endl;
+                cin.clear();
+            }
+            else
+                break;
+        }
+
+        // Check if input is correct
+        clearScreen();
+        cout << "Name: " << name << endl << "Type: " << type << endl;
+
+        if(built == true)
+        {
+            cout << "Built: " << yearBuilt << endl;
+        }
+        else
+        {
+            cout << "Was never built" << endl;
+        }
+
+        checkInput = userCheckInput(); // A function that checks if the input is valid
+
+        if (checkInput == 0)
+        {
+            if(_service.addComputer(name, yearBuilt, type, built))
+            {
+                cout << endl << name << " successfully added to the list" << endl;
+
+            }
+            else
+            {
+                int userInput;
+
+                cout << "This name is already in the database." << endl;
+                cout << endl << "1 - Replace existing data" << endl;
+                cout << "2 - Start over" << endl;
+                cout << endl << "Select: ";
+                cin >> userInput;
+
+                if(userInput == 1)
+                {
+                    _service.removeComputer(name);
+                    _service.addComputer(name, yearBuilt, type, built);
+                }
+
+            }
+            askReturnToMenu();
+            break;
+
+        }
+        else if (checkInput == 1)
+        {
+
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+void ConsoleUI::removeComputer()
+{
+    /*
+     * A function to remove a computer.
+     */
+
+    string command;
+
+    clearScreen();
+    cout << "Select one of the following options: " << endl;
+    cout << "(1)     -   Remove computer by name " << endl;
+    cout << "(2)     -   Remove *ALL* computers" << endl << endl;
+    cout << "Select: ";
+
+    getline(cin, command);
+    cout << endl;
+
+    if(command[0] == '1') // Remove computer/s by input.
+    {
+        vector<Computer> computer = _service.getComputers();
+        userMenuPrint(computer);
+
+        string userInputName, confirm;
+        vector<Computer> computersToRemove;
+
+
+        cout << endl << "Remove computers with names containing: ";
+
+
+        getline(cin, userInputName);
+        computersToRemove = _service.findComputer(1, userInputName);
+
+        if(computersToRemove.size() > 0)
+        {
+            userMenuPrint(computersToRemove);
+            cout << endl << "Are you sure you want to remove these computers from the list?" << endl;
+            cout << "Y     -   Yes, remove them " << endl;
+            cout << "N     -   No, do not remove them" << endl << endl;
+            cout << endl << "Select: ";
+
+            getline(cin, confirm);
+
+            if (confirm[0] == 'y' || confirm[0] == 'Y')
+            {
+                _service.removeComputer(userInputName); // TODO::Needs a functin in service layer
+                cout << endl << "Computers with names containing '" << userInputName << "' have been removed from the list." << endl;
+                askReturnToMenu();
+            }
+            else
+            {
+                cout << endl << "No computers were removed" << endl;
+                askReturnToMenu();
+            }
+
+        }
+        else
+        {
+            cout << endl << "There are no computers with names containing '" << userInputName << "'" << endl;
+            askReturnToMenu();
+        }
+    }
+    else if(command[0] == '2') // Remove all computers
+    {
+        string userInputName;
+
+        clearScreen();
+
+        cout << "Type in \"remove\" to remove *ALL* computers, any other input to cancel" << endl;
+
+        getline(cin, userInputName);
+        forceLowerCase(userInputName);
+
+        if(userInputName == "remove")
+        {
+            _service.removeAllComputers(); // TODO::Needs a functin in service layer
+            clearScreen();
+            userMenuPrint();
+        }
+
+    }
+}
 void ConsoleUI::searchComputer()
 {
     /*
@@ -1261,61 +1240,6 @@ void ConsoleUI::searchComputer()
     }
     cout << endl;
 }
-void ConsoleUI::sortScientist()
-{
-    /*
-     * A sorting function, can call function from service.cpp scientistSort().
-     * The function will sort depending on int parameter "1 = name(A-Z), 2 = name(Z-A),
-     * 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9), 6 = birth year(9-0)
-     * 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)".
-     */
-
-
-    vector<Scientist> sortedScientists;
-    bool inputCheck = true;
-    int userInput;
-
-    clearScreen();
-
-        cout << "Select a sort option: " << endl;
-        cout << "===================================" << endl;
-        cout << "(1)     -   Sort by name (A-Z)" << endl;
-        cout << "(2)     -   Sort by name (Z-A)" << endl;
-        cout << "(3)     -   Sort by gender (F-M)" << endl;
-        cout << "(4)     -   Sort by gender (M-F)" << endl;
-        cout << "(5)     -   Sort by year of birth (0-9)" << endl;
-        cout << "(6)     -   Sort by year of birth (9-0)" << endl;
-        cout << "(7)     -   Sort by year of death (0-9)" << endl;
-        cout << "(8)     -   Sort by year of death (9-0)" << endl;
-        cout << "(9)     -   Sort by age (0-9)" << endl;
-        cout << "(10)    -   Sort by age (9-0)" << endl;
-
-    do
-    {
-        cout << endl << "Select: ";
-        cin >> userInput;
-
-        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
-        {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
-        }
-        else
-        {
-            inputCheck = false;
-        }
-        cin.clear();
-
-        clearScreen();
-
-    }while(inputCheck);
-
-     sortedScientists = _service.scientistSort(userInput);
-
-     userMenuPrint(sortedScientists);
-
-     askReturnToMenu();
-}
 void ConsoleUI::sortComputer()
 {
     /*
@@ -1368,3 +1292,91 @@ void ConsoleUI::sortComputer()
      askReturnToMenu();
 
 }
+
+
+// ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
+
+
+
+// ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
+void ConsoleUI::askReturnToMenu() const                             // Asks if user wants to move back to the menu
+{
+    cout << endl;
+    cout << "To return to the menu input 'm'" << endl;
+    cout << "Select: ";
+
+   string userInput = " ";
+   while (userInput[0] != 'm' && userInput[0] != 'M')
+   {
+       getline(cin, userInput);
+   }
+}
+int  ConsoleUI::userCheckInput() const                              // Checks input from userMenuAdd
+{
+    /*
+     * Check if all data is correct and return a int depending on what user selected.
+     * (0) yes, (1) no, (2) cancel and if nothing selected or wrong input the loop will
+     * keep running until one of the 3 is selected.
+     */
+
+    while(true)
+    {
+        string answer;
+        cout << endl << "Is this data correct?" << endl;
+        cout << endl << "Y - Yes, add this to the list" << endl;
+        cout << "N - No, let me try again" << endl;
+        cout << "C - Cancel add and return to the menu" << endl;
+        cout << endl << "Select: ";
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, answer);
+
+
+        if(answer[0] == 'y' || answer[0] == 'Y')
+        {
+            return 0;
+        }
+        else if (answer[0] == 'n' || answer[0] == 'N')
+        {
+            return 1;
+        }
+        else if (answer[0] == 'c' || answer[0] == 'C')
+        {
+            return 2;
+        }
+        else
+        {
+            cout << "Invalid input!";
+        }
+
+    }
+}
+void ConsoleUI::forceLowerCase(string &command)                     // Forces input to lower case
+{
+    /*
+     * A function that takes a string parameter as refrence and forces the string
+     * to be only lowercase. Code taken from c++ site
+     */
+
+    for(unsigned int i = 0; i < command.length(); i++)
+    {
+        command[i] = tolower(command[i]);
+    }
+}
+void ConsoleUI::clearScreen() const                                 // Clears console screen
+{
+    const int spaceLength = 50;
+    cout << string( spaceLength, '\n' );
+}
+int  ConsoleUI::whatYearIsIt() const                                // Returns the current year.
+{
+    time_t     currentTime;
+    struct tm* timeinfo;
+
+    time(&currentTime);
+    timeinfo = localtime(&currentTime);
+
+    int currentYear = (timeinfo->tm_year + 1900);
+    return currentYear;
+}
+

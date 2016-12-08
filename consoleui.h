@@ -16,7 +16,7 @@ class ConsoleUI
 public:
     ConsoleUI();
 
-    void run();
+    void userMenuRun();
         // Displays the main menu of the program.
 
 private:
