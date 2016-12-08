@@ -717,6 +717,12 @@ void ConsoleUI::addScientist()
                     _service.removeScientist(name);
                     _service.addScientist(name, gender, birthYear, deathYear);
                 }
+                else if (userInput == 2)
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    addScientist();
+                }
 
             }
             askReturnToMenu();
