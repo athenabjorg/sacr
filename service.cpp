@@ -5,24 +5,8 @@ using namespace std;
 
 
 //operator overloading functions for scientistSort. TODO REMOVE?? geyma bara age?
-bool sortByNameAsc (const Scientist &a, const Scientist &b)
-{   // also makes the sort case insensitive.
-    string aName = a.getName(), bName = b.getName();
-    transform(aName.begin(), aName.end(), aName.begin(), ::tolower);
-    transform(bName.begin(), bName.end(), bName.begin(), ::tolower);
-    return aName < bName;
-}
-bool sortByNameDesc(const Scientist &a, const Scientist &b)
-{   // also makes the sort case insensitive.
-    string aName = a.getName(), bName = b.getName();
-    transform(aName.begin(), aName.end(), aName.begin(), ::tolower);
-    transform(bName.begin(), bName.end(), bName.begin(), ::tolower);
-    return aName > bName;
-}
-bool sortByGender  (const Scientist &a, const Scientist &b) { return a.getGender() <  b.getGender(); }
-bool sortByBirth   (const Scientist &a, const Scientist &b) { return a.getBirth()  <  b.getBirth();  }
-bool sortByDeath   (const Scientist &a, const Scientist &b) { return a.getDeath()  <  b.getDeath();  }
-bool sortByAge     (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
+bool sortByAgeAsc (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
+bool sortByAgeDesc(const Scientist &a, const Scientist &b) { return a.getAge()    >  b.getAge();    }
 
 
 service::service()
@@ -88,14 +72,23 @@ void service::removeAllScientists()
 
 vector<Scientist> service::scientistSort(int sortType)
 {    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
-     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(0-9), 9 = age(0-9), 10 = age(9-0)
 
-    vector<Scientist> scientists;
+    vector<Scientist> scientists = _scientists;
 
-    scientists = _data.sortScientists(sortType);
-
+    if(sortType == 9)
+    {
+        sort(scientists.begin(), scientists.end(), sortByAgeAsc);
+    }
+    else if(sortType == 10)
+    {
+        sort(scientists.begin(), scientists.end(), sortByAgeDesc);
+    }
+    else
+    {
+        scientists = _data.sortScientists(sortType);
+    }
     return scientists;
-
 }
 
 vector<Scientist> service::findScientist(int findType, string parameter)       // Search vector by type
