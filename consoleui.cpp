@@ -1411,11 +1411,11 @@ void ConsoleUI::searchComputer()
 
         switch(inputCheck)
         {
-            case 1: computers = _service.findComputer(5,"0");
+            case 1: computers = _service.findComputer(5,"1");
                     userMenuPrint(computers);
                     askReturnToMenu();
                     break;
-            case 2: computers = _service.findComputer(5,"1");
+            case 2: computers = _service.findComputer(5,"0");
                     userMenuPrint(computers);
                     askReturnToMenu();
                     break;
