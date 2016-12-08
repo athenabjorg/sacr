@@ -105,81 +105,80 @@ void ConsoleUI::userMenuSwitch(int loadType)
     int selection = 0;
     string line;
 
-    while(selection != 1 || selection != 2)
+    clearScreen();
+    switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
     {
-        clearScreen();
-        switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
-        {
-            case 1: line = "Would you like to add a scientist or a computer to the database?";
-                    break;
-            case 2: line = "Would you like to remove a scientist or a computer from the database?";
-                    break;
-            case 3: line = "Would you like to print a list of scientists or a computers?";
-                    break;
-            case 4: line = "Would you like to search for scientist or a computer in the database?";
-                    break;
-            case 5: line = "Would you like to sort scientists or a computers?";
-                    break;
-        }
+        case 1: line = "Would you like to add a scientist or a computer to the database?";
+                break;
+        case 2: line = "Would you like to remove a scientist or a computer from the database?";
+                break;
+        case 3: line = "Would you like to print a list of scientists or a computers?";
+                break;
+        case 4: line = "Would you like to search for scientist or a computer in the database?";
+                break;
+        case 5: line = "Would you like to sort scientists or a computers?";
+                break;
+    }
 
-        cout << line << endl
-             << "1 - Scientist" << endl
-             << "2 - Computer" << endl;
-        cin >> selection;
+    cout << line << endl
+         << "1 - Scientist" << endl
+         << "2 - Computer" << endl;
+    cin >> selection;
 
-        if (selection == 1) // Scientist selected
+    if (selection == 1) // Scientist selected
+    {
+        switch(loadType)
         {
-            switch(loadType)
-            {
-                case 1: cin.ignore();
-                        addScientist();
-                        break;
-                case 2: cin.ignore();
-                        removeScientist();
-                        break;
-                case 3: cin.ignore();
-                        userMenuPrint(_service.getScientists());
-                        askReturnToMenu();
-                        break;
-                case 4: cin.ignore();
-                        searchScientist();
-                        break;
-                case 5: cin.ignore();
-                        sortScientist();
-                        break;
+            case 1: cin.ignore();
+                    addScientist();
+                    break;
+            case 2: cin.ignore();
+                    removeScientist();
+                    break;
+            case 3: cin.ignore();
+                    userMenuPrint(_service.getScientists());
+                    askReturnToMenu();
+                    break;
+            case 4: cin.ignore();
+                    searchScientist();
+                    break;
+            case 5: cin.ignore();
+                    sortScientist();
+                    break;
 
-            }
-        }
-        else if (selection == 2) // Computer selected
-        {
-            switch(loadType)
-            {
-                case 1: cin.ignore();
-                        addComputer();
-                        break;
-                case 2: cin.ignore();
-                        removeComputer();
-                        break;
-                case 3: cin.ignore();
-                        userMenuPrint(_service.getComputers());
-                        askReturnToMenu();
-                        break;
-                case 4: cin.ignore();
-                        searchComputer();
-                        break;
-                case 5: cin.ignore();
-                        sortComputer();
-                        break;
-
-            }
-        }
-        else
-        {
-            cout << "Invalid input" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
+    else if (selection == 2) // Computer selected
+    {
+        switch(loadType)
+        {
+            case 1: cin.ignore();
+                    addComputer();
+                    break;
+            case 2: cin.ignore();
+                    removeComputer();
+                    break;
+            case 3: cin.ignore();
+                    userMenuPrint(_service.getComputers());
+                    askReturnToMenu();
+                    break;
+            case 4: cin.ignore();
+                    searchComputer();
+                    break;
+            case 5: cin.ignore();
+                    sortComputer();
+                    break;
+
+        }
+    }
+    else
+    {
+        cout << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        userMenuSwitch(loadType);
+    }
+
 }
 void ConsoleUI::userMenuAdd()                                       // Adds a new programmer
 {
@@ -718,6 +717,12 @@ void ConsoleUI::addScientist()
                     _service.removeScientist(name);
                     _service.addScientist(name, gender, birthYear, deathYear);
                 }
+                else if (userInput == 2)
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    addScientist();
+                }
 
             }
             askReturnToMenu();
@@ -747,147 +752,144 @@ void ConsoleUI::addComputer()
         cin.ignore(-1);
         getline(cin, name);
 
-            while(true) // Check for type
-            {
-                int inputType;
-                cout << endl;
-                cout << "What type of computer is this?" << endl;
-                cout << endl << "1 - Electromechanical" << endl;
-                cout << "2 - Electronic" << endl;
-                cout << "3 - Mechanical" << endl;
-                cout << "4 - Transistor" << endl;
-                cout << endl << "Type: ";
-                cin >> inputType;
+        while(true) // Check for type
+        {
+            int inputType;
+            cout << endl;
+            cout << "What type of computer is this?" << endl;
+            cout << endl << "1 - ElectroMechanical" << endl;
+            cout << "2 - Electronic" << endl;
+            cout << "3 - Mechanical" << endl;
+            cout << "4 - Transistor" << endl;
+            cout << endl << "Type: ";
+            cin >> inputType;
 
-                if(cin.fail())
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else
+            {
+                switch(inputType)
                 {
-                    cout << "Invalid input!" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-                else
-                {
-                    switch(inputType)
-                    {
-                        case 1:
-                            type = "Electromechanical";
-                            break;
-                        case 2:
-                            type = "Electronic";
-                            break;
-                        case 3:
-                            type = "Mechanical";
-                            break;
-                        case 4:
-                            type = "Transistor";
-                            break;
-                    }
-                    if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
-                    {
+                    case 1:
+                        type = "ElectroMechanical";
                         break;
-                    }
-                    else
-                    {
-                        cout << "Invalid input" << endl;
-                    }
+                    case 2:
+                        type = "Electronic";
+                        break;
+                    case 3:
+                        type = "Mechanical";
+                        break;
+                    case 4:
+                        type = "Transistor";
+                        break;
                 }
-            }
-
-            while(true) // Check if it was built
-            {
-                char builtInput;
-                cout << endl << "Was the computer ever built? (y/n): ";
-                cin >> builtInput;
-
-                if (builtInput == 'y')
+                if(inputType == 1 || inputType == 2 || inputType == 3 || inputType == 4)
                 {
-                    built = true;
                     break;
                 }
-                else if (builtInput == 'n')
-                {
-                    built = false;
-                    break;
-                }
-
                 else
-                    cout << "Invalid Input" << endl;
-            }
-
-            while(built == true) // Check when when it was built (if it was)
-            {
-                cout << endl << "What year was the computer built?: ";
-                cin >> yearBuilt;
-
-                if(cin.fail())
                 {
                     cout << "Invalid input" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
-                else if(yearBuilt > whatYearIsIt())
-                {
-                    cout << "Predicting the future, are we? Try again" << endl;
-                    cin.clear();
-                }
-                else
-                {
-                    break;
-                }
+            }
+        }
 
+        while(true) // Check if it was built
+        {
+            char builtInput;
+            cout << endl << "Was the computer ever built? (y/n)"<< endl;
+            cin >> builtInput;
+
+            if (builtInput == 'y')
+            {
+                built = true;
+                break;
+            }
+            else if (builtInput == 'n')
+            {
+                built = false;
+                break;
             }
 
-            // Check if input is correct
-            clearScreen();
-            cout << "Name: " << name << endl << "Type: " << type << endl;
+            else
+                cout << "Invalid Input" << endl;
+        }
 
-            if(built == true)
+        while(built == true) // Check when when it was built (if it was)
+        {
+            cout << endl << "What year was the computer built?" << endl;
+            cin >> yearBuilt;
+
+            if(cin.fail())
             {
-                cout << "Built: " << yearBuilt << endl;
+                cout << "Invalid input" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(yearBuilt > whatYearIsIt())
+            {
+                cout << "Predicting the future, are we? Try again" << endl;
+                cin.clear();
+            }
+            else
+                break;
+        }
+
+        // Check if input is correct
+        clearScreen();
+        cout << "Name: " << name << endl << "Type: " << type << endl;
+
+        if(built == true)
+        {
+            cout << "Built: " << yearBuilt << endl;
+        }
+        else
+        {
+            cout << "Was never built" << endl;
+        }
+
+        checkInput = userCheckInput(); // A function that checks if the input is valid
+
+        if (checkInput == 0)
+        {
+            if(_service.addComputer(name, yearBuilt, type, built))
+            {
+                cout << endl << name << " successfully added to the list" << endl;
+
             }
             else
             {
-                cout << "Was never built" << endl;
-            }
+                int userInput;
 
-            checkInput = userCheckInput(); // A function that checks if the input is valid
+                cout << "This name is already in the database." << endl;
+                cout << endl << "1 - Replace existing data" << endl;
+                cout << "2 - Start over" << endl;
+                cout << endl << "Select: ";
+                cin >> userInput;
 
-            if (checkInput == 0)
-            {
-                if(_service.addComputer(name, yearBuilt, type, built))
+                if(userInput == 1)
                 {
-                    cout << endl << name << " successfully added to the list" << endl;
-                    break;
+                    _service.removeComputer(name);
+                    _service.addComputer(name, yearBuilt, type, built);
                 }
-                else
-                {
-                    int userInput;
-
-                    cout << "This name is already in the database." << endl;
-                    cout << endl << "1 - Replace existing data" << endl;
-                    cout << "2 - Start over" << endl;
-                    cout << endl << "Select: ";
-                    cin >> userInput;
-
-                    if(userInput == 1)
-                    {
-                        _service.removeComputer(name);
-                        _service.addComputer(name, yearBuilt, type, built);
-                    }
-
-                }
-                askReturnToMenu();
-                break;
 
             }
-            else if (checkInput == 1)
-            {
+            askReturnToMenu();
+            break;
 
-            }
-            else
-            {
-                break;
-            }
+        }
+        else if (checkInput == 1)
+        {
+
+        }
+        else
+        {
+            break;
+        }
     }
 }
 void ConsoleUI::searchScientist()
