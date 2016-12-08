@@ -184,6 +184,8 @@ void DataAccess::removeScientist(string inputName)
     QSqlQuery query;
     query.exec(input); // open table scientists
     db.close();
+
+    removeRelationToComputer(inputName);
 }
 void DataAccess::removeAllScientists() // Not practical
 {
@@ -197,6 +199,8 @@ void DataAccess::removeAllScientists() // Not practical
     QSqlQuery query;
     query.exec(input); // open table scientists
     db.close();
+
+    removeAllRelations();
 }
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
@@ -438,6 +442,8 @@ void DataAccess::removeComputer(string inputName)
     QSqlQuery query;
     query.exec(input); // open table scientists
     db.close();
+
+    removeRelationToComputer(inputName);
 }
 void DataAccess::removeAllComputers()
 {
@@ -451,6 +457,8 @@ void DataAccess::removeAllComputers()
     QSqlQuery query;
     query.exec(input);
     db.close();
+
+    removeAllRelations();
 }
 
 vector<Computer> DataAccess::sortComputers(int sortType)
@@ -723,26 +731,11 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
     */
 }
 
-void DataAccess::removeRelation(string inputName)
+void DataAccess::removeRelationToScientist(string inputName)
 {
-    /*
     string line;
 
-    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-    db.close();
-    */
-}
-void DataAccess::removeAllRelations()
-{/*
-    string line;
-
-    line = "DELETE FROM Computers";
+    line = "UPDATE Relations SET Valid = 0 WHERE Scientist LIKE \"%" + inputName + "%\"";
 
     QString input = QString::fromStdString(line);
 
@@ -750,7 +743,35 @@ void DataAccess::removeAllRelations()
     QSqlQuery query;
     query.exec(input);
     db.close();
-    */
+}
+
+void DataAccess::removeRelationToComputer(string inputName)
+{
+    string line;
+
+    line = "UPDATE Relations SET Valid = 0 WHERE Computers LIKE \"%" + inputName + "%\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+}
+
+void DataAccess::removeAllRelations()
+{
+    string line;
+
+    line = "DELETE FROM Relations";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+
 }
 
 vector<Relation> DataAccess::sortRelations(int sortType)

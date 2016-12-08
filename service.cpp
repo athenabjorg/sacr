@@ -181,6 +181,16 @@ vector<Computer> service::findComputer(int findType, string parameter1, string p
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
+
+vector<Relation> service::getRelations()
+{
+    vector<Relation> relations;
+
+    relations = _data.loadRelations();
+
+    return relations;
+}
+
 bool service::addRelation(string scientist, string computer)
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
@@ -198,7 +208,6 @@ bool service::addRelation(string scientist, string computer)
     }
 
     return false;
-
 }
 
 

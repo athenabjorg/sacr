@@ -62,6 +62,8 @@ public:
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
+    vector<Relation> getRelations();
+
     bool addRelation(string scientist, string computer);
 
 
