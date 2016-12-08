@@ -17,6 +17,8 @@ public:
 
     service();
 
+    // -------------------------------------------------------------------------------------------
+
     vector<Scientist> getScientists();
         // Uploads the list of scientists from file.
 
@@ -35,25 +37,31 @@ public:
         // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
         // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
-
     vector<Scientist> findScientist(int findType, string parameter);
     vector<Scientist> findScientist(int findType, string parameter1, string parameter2);
 
-
-    bool addComputer(string name, int year, string type, bool built);
-    vector<Computer> findComputer(int findType, string parameter);
-    vector<Computer> findComputer(int findType, string parameter1, string parameter2);
-
-    bool removeComputer(string name);
-
-
-    void removeAllComputers();
-
-
-    vector<Computer> computerSort(int sortType);
+    // -------------------------------------------------------------------------------------------
 
     vector<Computer> getComputers();
         // Uploads the list of computers from file.
+
+    bool addComputer(string name, int year, string type, bool built);
+
+    bool removeComputer(string name);
+
+    void removeAllComputers();
+
+    vector<Computer> computerSort(int sortType);
+
+    vector<Computer> findComputer(int findType, string parameter);
+    vector<Computer> findComputer(int findType, string parameter1, string parameter2);
+
+    // -------------------------------------------------------------------------------------------
+
+    // relations functions here
+
+
+
 
 
 

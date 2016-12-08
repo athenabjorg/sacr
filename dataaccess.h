@@ -18,6 +18,8 @@ public:
 
     DataAccess();
 
+    // ---------------------------------------------------------------------------------
+
     void saveScientist(Scientist newScientist);
         // Saves a scientist to the database.
 
@@ -26,14 +28,14 @@ public:
     vector<Scientist> loadScientists(int loadType, string parameter1, string parameter2);
         // Loads scientists from a database, into a vector.
 
-    bool doesScientistExist(string name);
-
     void removeScientist(string inputName);
-
     void removeAllScientists();
 
     vector<Scientist> sortScientists(int sortType);
 
+    bool doesScientistExist(string name);
+
+    // ---------------------------------------------------------------------------------
 
     void saveComputer(Computer newComputer);
 
@@ -44,10 +46,14 @@ public:
     void removeComputer(string inputName);
     void removeAllComputers();
 
-
     vector<Computer> sortComputers(int sortType);
 
     bool doesComputerExist(string name);
+
+    // ---------------------------------------------------------------------------------
+
+    // relations functions go here
+
 
 private:
 

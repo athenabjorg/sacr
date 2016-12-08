@@ -33,19 +33,19 @@ string Scientist::getName() const
 {
     return _name;
 }
-char   Scientist::getGender() const
+char Scientist::getGender() const
 {
     return _gender;
 }
-int    Scientist::getBirth() const
+int Scientist::getBirth() const
 {
     return _birth;
 }
-int    Scientist::getDeath() const
+int Scientist::getDeath() const
 {
     return _death;
 }
-int    Scientist::getAge() const
+int Scientist::getAge() const
 {
     if(_death == 0)
     {
@@ -68,7 +68,7 @@ int Scientist::whatYearIsIt() const
     int currentYear = (timeinfo->tm_year + 1900);
     return currentYear;
 }
-bool   operator == (const Scientist& a, const Scientist& b)
+bool operator == (const Scientist& a, const Scientist& b)
 {
     return a._name == b._name;
 }

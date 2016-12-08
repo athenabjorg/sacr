@@ -15,11 +15,13 @@ SOURCES += main.cpp \
     scientist.cpp \
     dataaccess.cpp \
     computer.cpp \
-    service.cpp
+    service.cpp \
+    relation.cpp
 
 HEADERS += \
     consoleui.h \
     dataaccess.h \
     scientist.h \
     computer.h \
-    service.h
+    service.h \
+    relation.h

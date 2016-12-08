@@ -11,6 +11,8 @@ DataAccess::DataAccess()
 
 }
 
+// -------------------------------------------------------------------------------------------
+
 void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite database
 {
     string line, name, gender;
@@ -34,34 +36,6 @@ void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite data
     db.close();
 
 
-}
-
-void DataAccess::removeScientist(string inputName)
-{
-    string line;
-
-    line = "UPDATE Scientists SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-    db.close();
-}
-
-void DataAccess::removeAllScientists() // Not practical
-{
-    string line;
-
-    line = "DELETE FROM Scientists";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-    db.close();
 }
 
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
@@ -97,7 +71,6 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     db.close();
     return scientists;
 }
-
 vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)                  // From text file to vector
 {
     /*
@@ -150,7 +123,6 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
     db.close();
     return scientists;
 }
-
 vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, string parameter2)
 {
     /*
@@ -197,6 +169,33 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
 
     db.close();
     return scientists;
+}
+
+void DataAccess::removeScientist(string inputName)
+{
+    string line;
+
+    line = "UPDATE Scientists SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+    db.close();
+}
+void DataAccess::removeAllScientists() // Not practical
+{
+    string line;
+
+    line = "DELETE FROM Scientists";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+    db.close();
 }
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
@@ -266,6 +265,8 @@ bool DataAccess::doesScientistExist(string name)
     return false;
 }
 
+// -------------------------------------------------------------------------------------------
+
 void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite database
 {
     string line, name, type;
@@ -291,35 +292,6 @@ void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite databas
 
 
 }
-
-void DataAccess::removeComputer(string inputName)
-{
-    string line;
-
-    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input); // open table scientists
-    db.close();
-}
-
-void DataAccess::removeAllComputers()
-{
-    string line;
-
-    line = "DELETE FROM Computers";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input);
-    db.close();
-}
-
 
 vector<Computer> DataAccess::loadComputers()                  // From text file to vector
 {
@@ -357,7 +329,6 @@ vector<Computer> DataAccess::loadComputers()                  // From text file 
     db.close();
     return computers;
 }
-
 vector<Computer> DataAccess::loadComputers(int loadType, string parameter)                  // From text file to vector
 {
     /*
@@ -409,7 +380,6 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
     db.close();
     return computers;
 }
-
 vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, string parameter2)
 {
     /*
@@ -454,9 +424,32 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
     return computers;
 }
 
+void DataAccess::removeComputer(string inputName)
+{
+    string line;
 
+    line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
 
+    QString input = QString::fromStdString(line);
 
+    db.open();
+    QSqlQuery query;
+    query.exec(input); // open table scientists
+    db.close();
+}
+void DataAccess::removeAllComputers()
+{
+    string line;
+
+    line = "DELETE FROM Computers";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+}
 
 vector<Computer> DataAccess::sortComputers(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
@@ -520,3 +513,7 @@ bool DataAccess::doesComputerExist(string name)
 
     return false;
 }
+
+// -------------------------------------------------------------------------------------------
+
+// relations funcitons go here

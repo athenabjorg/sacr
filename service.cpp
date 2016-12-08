@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//operator overloading functions for scientistSort.
+//operator overloading functions for scientistSort. TODO REMOVE?? geyma bara age?
 bool sortByNameAsc (const Scientist &a, const Scientist &b)
 {   // also makes the sort case insensitive.
     string aName = a.getName(), bName = b.getName();
@@ -30,13 +30,15 @@ service::service()
      _scientists = _data.loadScientists();
 }
 
-vector<Scientist> service::getScientists() //CHECK
+// ----------------------------------------------------------------------------------------------
+
+vector<Scientist> service::getScientists()
 {   // Returns the list of scientists from file.
 
     return _scientists;
 }
 
-bool service::addScientist(string name, char gender, int birth, int death) // CHECK
+bool service::addScientist(string name, char gender, int birth, int death)
 {   // Adds a scientist to the list and updates the file.
     // Returns true if adding succeded, false otherwise.
 
@@ -53,7 +55,7 @@ bool service::addScientist(string name, char gender, int birth, int death) // CH
 
 }
 
-bool service::removeScientist(string name) // TODO
+bool service::removeScientist(string name)
 {   // Removes a scientist with that name from the vector. Case insensitive.
     // Returns true if removing succeded, false otherwise.
 
@@ -83,7 +85,7 @@ void service::removeAllScientists()
     _data.removeAllScientists();
 }
 
-vector<Scientist> service::scientistSort(int sortType) // TODO SOON
+vector<Scientist> service::scientistSort(int sortType)
 {    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
      // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
 
@@ -94,10 +96,6 @@ vector<Scientist> service::scientistSort(int sortType) // TODO SOON
     return scientists;
 
 }
-
-
-
-
 
 vector<Scientist> service::findScientist(int findType, string parameter)       // Search vector by type
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
@@ -117,6 +115,8 @@ vector<Scientist> service::findScientist(int findType, string parameter1, string
 
     return scientists;
 }
+
+// ----------------------------------------------------------------------------------------------
 
 vector<Computer> service::getComputers()
 {
@@ -144,6 +144,28 @@ bool service::addComputer(string name, int year, string type, bool built)
 
 }
 
+bool service::removeComputer(string name)
+{
+    _data.removeComputer(name);
+    return true;
+}
+void service::removeAllComputers()
+{
+    _data.removeAllComputers();
+}
+
+vector<Computer> service::computerSort(int sortType)
+{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
+     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+
+    vector<Computer> computers;
+
+    computers = _data.sortComputers(sortType);
+
+    return computers;
+
+}
+
 vector<Computer> service::findComputer(int findType, string parameter)       // Search vector by type
 {
     vector<Computer> computers;
@@ -161,26 +183,6 @@ vector<Computer> service::findComputer(int findType, string parameter1, string p
     return computers;
 }
 
-vector<Computer> service::computerSort(int sortType)
-{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
-     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+// ----------------------------------------------------------------------------------------------
 
-    vector<Computer> computers;
-
-    computers = _data.sortComputers(sortType);
-
-    return computers;
-
-}
-
-bool service::removeComputer(string name)
-{
-    _data.removeComputer(name);
-    return true;
-}
-
-
-void service::removeAllComputers()
-{
-    _data.removeAllComputers();
-}
+//relations functions here

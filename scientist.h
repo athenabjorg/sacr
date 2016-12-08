@@ -10,7 +10,7 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string name, char gender, int birth, int death); //vantar bool valid aftast
+    Scientist(string name, char gender, int birth, int death); //vantar bool valid aftast?
 
     string getName()      const;
     char   getGender()    const;
