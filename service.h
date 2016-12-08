@@ -17,7 +17,8 @@ public:
 
     service();
 
-    // -------------------------------------------------------------------------------------------
+
+    // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
     vector<Scientist> getScientists();
         // Uploads the list of scientists from file.
@@ -40,7 +41,8 @@ public:
     vector<Scientist> findScientist(int findType, string parameter);
     vector<Scientist> findScientist(int findType, string parameter1, string parameter2);
 
-    // -------------------------------------------------------------------------------------------
+
+    // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
     vector<Computer> getComputers();
         // Uploads the list of computers from file.
@@ -56,7 +58,8 @@ public:
     vector<Computer> findComputer(int findType, string parameter);
     vector<Computer> findComputer(int findType, string parameter1, string parameter2);
 
-    // -------------------------------------------------------------------------------------------
+
+    // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
     // relations functions here
 

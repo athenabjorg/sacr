@@ -11,7 +11,8 @@ DataAccess::DataAccess()
 
 }
 
-// -------------------------------------------------------------------------------------------
+
+// ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
 void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite database
 {
@@ -265,7 +266,8 @@ bool DataAccess::doesScientistExist(string name)
     return false;
 }
 
-// -------------------------------------------------------------------------------------------
+
+// ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
 void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite database
 {
@@ -514,6 +516,7 @@ bool DataAccess::doesComputerExist(string name)
     return false;
 }
 
-// -------------------------------------------------------------------------------------------
+
+// ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
 // relations funcitons go here

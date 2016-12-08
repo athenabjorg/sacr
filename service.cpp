@@ -30,7 +30,8 @@ service::service()
      _scientists = _data.loadScientists();
 }
 
-// ----------------------------------------------------------------------------------------------
+
+// ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
 vector<Scientist> service::getScientists()
 {   // Returns the list of scientists from file.
@@ -116,7 +117,8 @@ vector<Scientist> service::findScientist(int findType, string parameter1, string
     return scientists;
 }
 
-// ----------------------------------------------------------------------------------------------
+
+// ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
 vector<Computer> service::getComputers()
 {
@@ -183,6 +185,7 @@ vector<Computer> service::findComputer(int findType, string parameter1, string p
     return computers;
 }
 
-// ----------------------------------------------------------------------------------------------
+
+// ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
 //relations functions here
