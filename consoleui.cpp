@@ -801,7 +801,7 @@ void ConsoleUI::addComputer()
         while(true) // Check if it was built
         {
             char builtInput;
-            cout << endl << "Was the computer ever built? (y/n)"<< endl;
+            cout << endl << "Was the computer ever built? (y/n): ";
             cin >> builtInput;
 
             if (builtInput == 'y')
@@ -821,7 +821,7 @@ void ConsoleUI::addComputer()
 
         while(built == true) // Check when when it was built (if it was)
         {
-            cout << endl << "What year was the computer built?" << endl;
+            cout << endl << "What year was the computer built?: ";
             cin >> yearBuilt;
 
             if(cin.fail())
@@ -832,7 +832,27 @@ void ConsoleUI::addComputer()
             }
             else if(yearBuilt > whatYearIsIt())
             {
-                cout << "Predicting the future, are we? Try again" << endl;
+                cout << endl << "Predicting the future, are we? Try again" << endl;
+                cin.clear();
+            }
+            else
+                break;
+        }
+
+        while(built == false) // Check when when it was built (if it was)
+        {
+            cout << endl << "What year was the computer designed?: ";
+            cin >> yearBuilt;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(yearBuilt > whatYearIsIt())
+            {
+                cout << endl << "Predicting the future, are we? Try again" << endl;
                 cin.clear();
             }
             else
