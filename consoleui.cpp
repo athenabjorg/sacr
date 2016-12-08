@@ -1,4 +1,6 @@
 #include "consoleui.h"
+#include <windows.h>
+
 using namespace std;
 
 
@@ -1996,36 +1998,70 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
 }
 void ConsoleUI::smallLogoPrint()
 {
+    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    SetConsoleTextAttribute( hstdout, 0xC );
+
     int w = 65;
-    cout << setw(w) << "  _____   ___    ______ ____" << endl;
+    cout << setw(w-1) << "  _____   ___    ______ ____" << endl;
     cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
     cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
     cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
+    SetConsoleTextAttribute( hstdout, 0x8 );
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
+
+    SetConsoleTextAttribute( hstdout, 0x0F );
 }
 void ConsoleUI::largeLogoPrint()
 {
-    cout << "          _____                    _____                    _____                    _____          " << endl;
-           cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
-           cout << "          /::\\    \\                /::\\    \\                /::\\    \\                /::\\    \\         " << endl;
-           cout << "         /::::\\    \\              /::::\\    \\              /::::\\    \\              /::::\\    \\        " << endl;
-           cout << "        /::::::\\    \\            /::::::\\    \\            /::::::\\    \\            /::::::\\    \\       " << endl;
-           cout << "       /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\      " << endl;
-           cout << "      /:::/__\\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\        /:::/__\\:::\\    \\     " << endl;
-           cout << "      \\:::\\   \\:::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\      /::::\\   \\:::\\    \\    " << endl;
-           cout << "    ___\\:::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\    /::::::\\   \\:::\\    \\   " << endl;
-           cout << "   /\\   \\:::\\   \\:::\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /   \\:::\\    \\  /:::/\\:::\\   \\:::\\____\\  " << endl;
-           cout << "  /::\\   \\:::\\   \\:::\\____\\/:::/  \\:::\\   \\:::\\____\\/:::/____/     \\:::\\____\\/:::/  \\:::\\   \\:::|    |" << endl;
-           cout << "  \\:::\\   \\:::\\   \\::/    /\\::/    \\:::\\  /:::/    /\\:::\\    \\      \\::/    /\\::/   |::::\\  /:::|____|" << endl;
-           cout << "   \\:::\\   \\:::\\   \\/____/  \\/____/ \\:::\\/:::/    /  \\:::\\    \\      \\/____/  \\/____|:::::\\/:::/    /  " << endl;
-           cout << "    \\:::\\   \\:::\\    \\               \\::::::/    /    \\:::\\    \\                    |:::::::::/    /   " << endl;
-           cout << "     \\:::\\   \\:::\\____\\               \\::::/    /      \\:::\\    \\                   |::|\\::::/    /    " << endl;
-           cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
-           cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
-           cout << "        \\::::::/    /  Scientist    /:::/    /            \\:::\\    \\                |::|   |           " << endl;
-           cout << "         \\::::/    /  And          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
-           cout << "          \\::/    /  Computer      \\::/    /                \\::/    /                \\:|   |           " << endl;
-           cout << "           \\/____/  Relations       \\/____/  Version 1.0     \\/____/                  \\|___|           " << endl;
+    if(true)
+    {
+    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    SetConsoleTextAttribute( hstdout, 0xC );
+
+    cout << "            _____                    _____                    _____                    _____          " << endl;
+    cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
+    cout << "          /::\\    \\                /::\\    \\                /::\\    \\                /::\\    \\         " << endl;
+    cout << "         /::::\\    \\              /::::\\    \\              /::::\\    \\              /::::\\    \\        " << endl;
+    cout << "        /::::::\\    \\            /::::::\\    \\            /::::::\\    \\            /::::::\\    \\       " << endl;
+    cout << "       /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\      " << endl;
+    cout << "      /:::/__\\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\        /:::/__\\:::\\    \\     " << endl;
+    cout << "      \\:::\\   \\:::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\      /::::\\   \\:::\\    \\    " << endl;
+    cout << "    ___\\:::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\    /::::::\\   \\:::\\    \\   " << endl;
+    cout << "   /\\   \\:::\\   \\:::\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /   \\:::\\    \\  /:::/\\:::\\   \\:::\\____\\  " << endl;
+    cout << "  /::\\   \\:::\\   \\:::\\____\\/:::/  \\:::\\   \\:::\\____\\/:::/____/     \\:::\\____\\/:::/  \\:::\\   \\:::|    |" << endl;
+    cout << "  \\:::\\   \\:::\\   \\::/    /\\::/    \\:::\\  /:::/    /\\:::\\    \\      \\::/    /\\::/   |::::\\  /:::|____|" << endl;
+    cout << "   \\:::\\   \\:::\\   \\/____/  \\/____/ \\:::\\/:::/    /  \\:::\\    \\      \\/____/  \\/____|:::::\\/:::/    /  " << endl;
+    cout << "    \\:::\\   \\:::\\    \\               \\::::::/    /    \\:::\\    \\                    |:::::::::/    /   " << endl;
+    cout << "     \\:::\\   \\:::\\____\\               \\::::/    /      \\:::\\    \\                   |::|\\::::/    /    " << endl;
+    cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
+    cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
+    cout << "        \\::::::/    /";
+    SetConsoleTextAttribute( hstdout, 0x8 );
+    cout <<"  Scientist";
+    SetConsoleTextAttribute( hstdout, 0xC );
+    cout << "    /:::/    /            \\:::\\    \\                |::|   |           " << endl;
+    cout << "         \\::::/    /  ";
+    SetConsoleTextAttribute( hstdout, 0x8 );
+    cout << "And";
+    SetConsoleTextAttribute( hstdout, 0xC );
+    cout << "          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
+    cout << "          \\::/    /  ";
+    SetConsoleTextAttribute( hstdout, 0x8 );
+    cout << "Computer";
+    SetConsoleTextAttribute( hstdout, 0xC );
+    cout << "      \\::/    /                \\::/    /                \\:|   |           " << endl;
+    cout << "           \\/____/  ";
+    SetConsoleTextAttribute( hstdout, 0x8 );
+    cout << "Relations";
+    SetConsoleTextAttribute( hstdout, 0xC );
+    cout << "       \\/____/  ";
+    SetConsoleTextAttribute( hstdout, 0x8 );
+    cout << "Version 1.0";
+    SetConsoleTextAttribute( hstdout, 0xC );
+    cout << "     \\/____/                  \\|___|           " << endl;
+
+    SetConsoleTextAttribute( hstdout, 0x0F );
+    }
 }
