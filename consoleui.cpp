@@ -87,6 +87,7 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
         if(command == "quit")
         {
+            clearScreen();
             smallLogoPrint();
             break;
         }
