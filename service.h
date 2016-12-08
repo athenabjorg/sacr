@@ -66,6 +66,14 @@ public:
 
     bool addRelation(string scientist, string computer);
 
+    bool removeRelation(int removeType, string name);
+
+    void removeAllRelations();
+
+    vector<Relation> relationSort(int sortType);
+
+    vector<Relation> findRelation(int findType, string parameter);
+    vector<Relation> findRelation(int findType, string parameter1, string parameter2);
 
 
 

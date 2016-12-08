@@ -62,8 +62,7 @@ public:
     vector<Relation> loadRelations(int loadType, string parameter);
     vector<Relation> loadRelations(int loadType, string parameter1, string parameter2);
 
-    void removeRelationToScientist(string inputName);
-    void removeRelationToComputer(string inputName);
+    void removeRelation(int removeType, string inputName);
     void removeAllRelations();
 
     vector<Relation> sortRelations(int sortType);

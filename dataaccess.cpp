@@ -185,7 +185,7 @@ void DataAccess::removeScientist(string inputName)
     query.exec(input); // open table scientists
     db.close();
 
-    removeRelationToComputer(inputName);
+    removeRelation(1, inputName);
 }
 void DataAccess::removeAllScientists() // Not practical
 {
@@ -443,7 +443,7 @@ void DataAccess::removeComputer(string inputName)
     query.exec(input); // open table scientists
     db.close();
 
-    removeRelationToComputer(inputName);
+    removeRelation(2, inputName);
 }
 void DataAccess::removeAllComputers()
 {
@@ -731,11 +731,17 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
     return relations;
 }
 
-void DataAccess::removeRelationToScientist(string inputName)
+void DataAccess::removeRelation(int removeType, string inputName)
 {
     string line;
 
-    line = "UPDATE Relations SET Valid = 0 WHERE Scientist LIKE \"%" + inputName + "%\"";
+    switch(removeType)
+    {
+        case 1: line = "UPDATE Relations SET Valid = 0 WHERE Scientist LIKE \"%" + inputName + "%\"";
+                break;
+        case 2: line = "UPDATE Relations SET Valid = 0 WHERE Computer LIKE \"%" + inputName + "%\"";
+                break;
+    }
 
     QString input = QString::fromStdString(line);
 
@@ -744,21 +750,6 @@ void DataAccess::removeRelationToScientist(string inputName)
     query.exec(input);
     db.close();
 }
-
-void DataAccess::removeRelationToComputer(string inputName)
-{
-    string line;
-
-    line = "UPDATE Relations SET Valid = 0 WHERE Computers LIKE \"%" + inputName + "%\"";
-
-    QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
-    query.exec(input);
-    db.close();
-}
-
 void DataAccess::removeAllRelations()
 {
     string line;

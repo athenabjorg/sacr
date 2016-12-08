@@ -248,5 +248,44 @@ bool service::addRelation(string scientist, string computer)
     return false;
 }
 
+bool service::removeRelation(int removeType, string name)
+{
+    _data.removeRelation(removeType, name);
+
+    return true;
+}
+
+void service::removeAllRelations()
+{
+    _data.removeAllRelations();
+}
+
+vector<Relation> service::relationSort(int sortType)
+{
+
+    vector<Relation> relations;
+
+    relations = _data.sortRelations(sortType);
+
+    return relations;
+
+}
+
+vector<Relation> service::findRelation(int findType, string parameter)       // Search vector by type
+{
+    vector<Relation> relations;
+
+    relations = _data.loadRelations(findType, parameter);
+
+    return relations;
+}
+vector<Relation> service::findRelation(int findType, string parameter1, string parameter2)       // Search vector by type
+{
+    vector<Relation> relations;
+
+    relations = _data.loadRelations(findType, parameter1, parameter2);
+
+    return relations;
+}
 
 
