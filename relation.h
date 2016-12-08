@@ -5,10 +5,16 @@
 
 using namespace std;
 
-class Relations
+class Relation
 {
 public:
-    Relations();
+
+    Relation();
+    Relation(string scientist, string computer);
+
+    string getScientist();
+
+    string getComputer();
 
 private:
 
