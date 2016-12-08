@@ -80,7 +80,6 @@ private:
 
     void largeLogoPrint();
 
-
 };
 
 #endif // CONSOLEUI_H
