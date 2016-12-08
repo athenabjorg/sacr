@@ -519,30 +519,28 @@ bool DataAccess::doesComputerExist(string name)
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-void DataAccess::saveRelation(Computer newRelation)  // Saving to SQLite database
-{/*
-    string line, name, type;
-    int year;
-    bool built;
+void DataAccess::saveRelation(Relation newRelation)  // Saving to SQLite database
+{
+    string line, scientist, computer, scientistID, computerID;
 
-
-    name = newComputer.getName();
-    type = newComputer.getType();
-    year = newComputer.getYear();
-    built = newComputer.getBuilt();
-
-
-    line = "INSERT INTO Computers(name,type,year,built) "
-            "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
-
-    QString input = QString::fromStdString(line);
+    scientist = newRelation.getScientist();
+    computer = newRelation.getComputer();
 
     db.open();
     QSqlQuery query;
+    QString input;
+
+    input = QString::fromStdString("SELECT ID FROM Scientists WHERE name LIKE \"" + scientist + "\"");
+    query.exec(input);
+    scientistID = query.value(0).toInt();
+
+    line = "INSERT INTO Relations (ScientistID, computerID) VALUE (\"" + scientistID + "\", \"" + computerID + "\")";
+
+    input = QString::fromStdString(line);
+
     query.exec(input);
     db.close();
 
-*/
 }
 
 vector<Relation> DataAccess::loadRelations()                  // From text file to vector
