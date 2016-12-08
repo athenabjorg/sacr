@@ -55,7 +55,7 @@ public:
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-    void saveRelation(Computer newRelation);
+    void saveRelation(Relation newRelation);
 
     vector<Relation> loadRelations();
     vector<Relation> loadRelations(int loadType, string parameter);
