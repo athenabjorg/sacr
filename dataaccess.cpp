@@ -357,7 +357,7 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
                 break;
         case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\""; // load by year built/designed
                 break;
-        case 4: line = "SELECT * FROM Computers Where Type LIKE " + parameter; // load by type
+        case 4: line = "SELECT * FROM Computers Where Type LIKE  \"" + parameter + "\""; // load by type
                 break;
         case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter; // load by if built
                 break;

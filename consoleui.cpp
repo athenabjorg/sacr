@@ -1158,7 +1158,7 @@ void ConsoleUI::searchComputer()
         clearScreen();
         smallLogoPrint();
         cout << "Search by type:" << endl;
-        cout << endl << "(1) - ElectroMechanical" << endl;
+        cout << endl << "(1) - Electromechanical" << endl;
         cout << "(2) - Electronic" << endl;
         cout << "(3) - Mechanical" << endl;
         cout << "(4) - Transistor" << endl;
@@ -1168,7 +1168,7 @@ void ConsoleUI::searchComputer()
 
         switch(inputCheck)
         {
-            case 1: computer = _service.findComputer(4,"ElectroMechanical");
+            case 1: computer = _service.findComputer(4,"Electromechanical");
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
