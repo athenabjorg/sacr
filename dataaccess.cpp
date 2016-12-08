@@ -454,8 +454,8 @@ void DataAccess::removeAllComputers()
 }
 
 vector<Computer> DataAccess::sortComputers(int sortType)
-{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
-    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = type(A-Z), 4 = type(Z-A), 5 = year made(0-9),
+    // 6 = year made(9-0)
 
     vector<Computer> computers;
     string line, name, type;
