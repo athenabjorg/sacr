@@ -29,16 +29,24 @@ void ConsoleUI::run()                                               // DIsplays 
 
     while(true)
     {
+        int w = 65;
+        cout << setw(w) << "  _____   ___    ______ ____" << endl;
+        cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
+        cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
+        cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
+        cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
+        cout << setw(w+4) << "Scientist and computer realtions." << endl;
+        cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
 
         cout << "Select one of the following options: " << endl;
-        cout << "=====================================================================================================" << endl;
+        cout << "========================================================================================================" << endl;
         cout << "Add     -   Add a scientist or a computer" << endl;
         cout << "Remove  -   Remove a scientist or a computer" << endl;
         cout << "List    -   Show a list of all scientists or computers" << endl;
         cout << "Search  -   Search the list of scientists or computers" << endl;
         cout << "Sort    -   Sort list of scientists or computers by name, gender, year of birth, year of death or age" << endl;
         cout << "Quit    -   End program" << endl;
-        cout << "=====================================================================================================" << endl;
+        cout << "========================================================================================================" << endl;
 
         invalidInput = true;
 
@@ -1240,17 +1248,22 @@ void ConsoleUI::sortScientist()
     vector<Scientist> sortedScientists;
     bool inputCheck = true;
     int userInput;
-
+    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
+    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
     clearScreen();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
         cout << "(1)     -   Sort by name (A-Z)" << endl;
         cout << "(2)     -   Sort by name (Z-A)" << endl;
-        cout << "(3)     -   Sort by gender" << endl;
-        cout << "(4)     -   Sort by year of birth (First to last)" << endl;
-        cout << "(5)     -   Sort by year of death (Alive scientists first. Then first to last)" << endl;
-        cout << "(6)     -   Sort by age (Youngest to oldest)" << endl;
+        cout << "(3)     -   Sort by gender (F-M)" << endl;
+        cout << "(4)     -   Sort by gender (M-F)" << endl;
+        cout << "(5)     -   Sort by year of birth (0-9)" << endl;
+        cout << "(6)     -   Sort by year of birth (9-0)" << endl;
+        cout << "(7)     -   Sort by year of death (0-9)" << endl;
+        cout << "(8)     -   Sort by year of death (9-0)" << endl;
+        cout << "(9)     -   Sort by age (0-9)" << endl;
+        cout << "(10)    -   Sort by age (9-0)" << endl;
 
     do
     {
