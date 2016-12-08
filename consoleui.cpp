@@ -310,22 +310,29 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
 
 
     clearScreen();
-    cout << left << setw(30) << "Computer name:"
+    cout << left << setw(25) << "Computer name:"
          << setw(10) << right << "Year built:"
-         << setw(10) << "Type:"
-         << setw(10) << "Was built:" << endl;
-    cout << "======================================================================" << endl;
+         << setw(20) << "Type:"
+         << setw(15) << "Was built:" << endl;
+    cout << "=======================================================================" << endl;
     for (size_t i = 0; i< computer.size(); ++i)
     {
-        cout << left << setw(30) << computer[i].getName()
+        cout << left << setw(25) << computer[i].getName()
              << setw(10) << right << computer[i].getYear()
-             << setw(10) << computer[i].getType()
-             << setw(10) << computer[i].getBuilt() << endl;
+             << setw(20) << computer[i].getType();
+                if(computer[i].getBuilt()==true)
+                {
+                     cout << setw(15) << "Yes" << endl;
+                }
+                else
+                {
+                     cout << setw(15) << "No" << endl;
+                }
     }
-    cout << "======================================================================" << endl;
+    cout << "=======================================================================" << endl;
     cout << "Total: " << computer.size() << " computers" << endl;
-
 }
+
 int  ConsoleUI::userCheckInput() const                              // Checks input from userMenuAdd
 {
     /*
