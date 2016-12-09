@@ -1701,7 +1701,6 @@ void ConsoleUI::addRelation()
         userMenuPrint(2);
         while(true)
         {
-             userMenuPrint(2);
              cout << "Enter the computer's name: ";
              cin.ignore(-1);
              getline(cin, computer);
