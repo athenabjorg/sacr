@@ -1579,35 +1579,38 @@ void ConsoleUI::searchComputer()
 void ConsoleUI::sortComputer()
 {
     /*
-     * A sorting function, can call function from service.cpp computerSort().
-     * The function will sort depending on int parameter "Sort by sortType:
-     *  1 = name(A-Z), 2 = name(Z-A), 3 = year(0-9), 4 = year(9-0) 5 = type(A-Z),
-     *  6 = type(Z-A), 7 = was built(N-Y),  8 = year made(Y-N)".
-     */
+         * A sorting function, can call function from service.cpp computerSort().
+         * The function will sort depending on int parameter "Sort by sortType:
+         *  1 = name(A-Z), 2 = name(Z-A), 3 = year(0-9), 4 = year(9-0) 5 = type(A-Z),
+         *  6 = type(Z-A), 7 = was built(N-Y),  8 = year made(Y-N), 9 = years since built(0-9)
+         *  10 = years sine built(9-0)".
+         */
 
+        vector<Computer> sortedComputers;
+        int userInput;
+        bool inputNotValid = false;
 
-    vector<Computer> sortedComputers;
-    int userInput;
-    bool inputNotValid = false;
-
-    clearScreen();
-    smallLogoPrint();
-
-    do
-    {
         clearScreen();
         smallLogoPrint();
 
-        cout << "Select a sort option: " << endl;
-        cout << "===================================" << endl;
-        cout << "(1)     -   Sort by name (A-Z)" << endl;
-        cout << "(2)     -   Sort by name (Z-A)" << endl;
-        cout << "(3)     -   Sort by year (0-9)" << endl;
-        cout << "(4)     -   Sort by year (9-0)" << endl;
-        cout << "(5)     -   Sort by type (A-Z)" << endl;
-        cout << "(6)     -   Sort by type (Z-A)" << endl;
-        cout << "(7)     -   Sort by if built (N-Y)" << endl;
-        cout << "(8)     -   Sort by if built (Y-N)" << endl;
+        do
+        {
+            clearScreen();
+            smallLogoPrint();
+
+            cout << "Select a sort option: " << endl;
+            cout << "===================================" << endl;
+            cout << "(1)     -   Sort by name (A-Z)" << endl;
+            cout << "(2)     -   Sort by name (Z-A)" << endl;
+            cout << "(3)     -   Sort by year (0-9)" << endl;
+            cout << "(4)     -   Sort by year (9-0)" << endl;
+            cout << "(5)     -   Sort by type (A-Z)" << endl;
+            cout << "(6)     -   Sort by type (Z-A)" << endl;
+            cout << "(7)     -   Sort by if built (N-Y)" << endl;
+            cout << "(8)     -   Sort by if built (Y-N)" << endl;
+            cout << "(9)     -   Sort by years since built (0-9))" << endl;
+            cout << "(10)    -   Sort by years since built (9-0))" << endl;
+
 
         if(inputNotValid)
         {
