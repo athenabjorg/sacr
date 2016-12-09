@@ -27,9 +27,7 @@ public:
 private:
     void userMenuSwitch(int loadType);
         // ::TODO::
-    void userMenuPrint();
-        // ::TODO::
-    void userMenuPrint(int type);
+    void userMenuPrint(int loadType);
         // Prints to the screen the scientist list from the text file.
     void userMenuPrint(const vector<Scientist>& scientist);
         // Prints to the screen a scientist list provided (for example a search result).

@@ -204,13 +204,31 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
 
 }
-void ConsoleUI::userMenuPrint()  //remove þetta, nota bara vecor prentin?                                   // Prints whole list
+void ConsoleUI::userMenuPrint(int loadType)  //remove þetta, nota bara vecor prentin?                                   // Prints whole list
 {
     /*
      * Prints out a partial list of scientist, depending on how
      * it was sent forward by the previous function.
     */
 
+    vector<Scientist> scientist = _service.getScientists();
+    vector<Computer> computer = _service.getComputers();
+    vector<Relation> relation = _service.getRelations();
+
+    switch(loadType)
+    {
+        case 1: userMenuPrint(scientist);
+            break;
+        case 2: userMenuPrint(computer);
+            break;
+        case 3: userMenuPrint(relation);
+            break;
+        default: userMenuPrint(scientist);
+    }
+
+
+
+/*
     vector<Scientist> scientist = _service.getScientists();
 
     clearScreen();
@@ -240,7 +258,10 @@ void ConsoleUI::userMenuPrint()  //remove þetta, nota bara vecor prentin?      
     cout << "======================================================================" << endl;
     cout << "Total: " << scientist.size() << " scientists" << endl;
 
-    askReturnToMenu();
+
+   askReturnToMenu();
+
+*/
 }
 void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print list provided
 {
@@ -582,7 +603,7 @@ void ConsoleUI::removeScientist()
             _service.removeAllScientists();
             clearScreen();
             smallLogoPrint();
-            userMenuPrint();
+            userMenuPrint(1);
         }
 
     }
@@ -1307,7 +1328,7 @@ void ConsoleUI::removeComputer()
             _service.removeAllComputers(); // TODO::Needs a functin in service layer
             clearScreen();
             smallLogoPrint();
-            userMenuPrint();
+            userMenuPrint(2);
         }
 
     }
@@ -1633,6 +1654,7 @@ void ConsoleUI::addRelation()
 
         while(true)
         {
+            userMenuPrint(1);
             cout << "Enter the scientist's name: ";
             cin.ignore(-1);
             getline(cin, scientist);
@@ -1653,6 +1675,7 @@ void ConsoleUI::addRelation()
 
         while(true)
         {
+            userMenuPrint(2);
             cout << "Enter the computer's name: ";
             cin.ignore(-1);
             getline(cin, computer);
