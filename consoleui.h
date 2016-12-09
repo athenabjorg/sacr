@@ -7,6 +7,9 @@
 #include "service.h"
 #include "scientist.h"
 #include "computer.h"
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 
 class ConsoleUI
@@ -93,6 +96,16 @@ private:
     void numericLimiter();
 
     void numericLimiter(string comment);
+
+    #ifdef _WIN32
+    void textColorMain();
+    void textColorLogo();
+    void textColorSubLogo();
+    #else
+    void textColorMain();
+    void textColorLogo();
+    void textColorSubLogo();
+    #endif
 
 };
 
