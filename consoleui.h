@@ -90,6 +90,10 @@ private:
 
     void largeLogoPrint();
 
+    void numericLimiter();
+
+    void numericLimiter(string comment);
+
 };
 
 #endif // CONSOLEUI_H

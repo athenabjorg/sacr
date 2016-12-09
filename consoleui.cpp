@@ -199,9 +199,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
     else
     {
-        cout << "Invalid input" << endl;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        numericLimiter("Invalid Input!");
         userMenuSwitch(loadType);
     }
 
@@ -405,9 +403,7 @@ void ConsoleUI::addScientist()
 
                 if(cin.fail())
                 {
-                    cout << "Invalid input!" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Invalid input!");
                 }
                 else if(birthYear <= whatYearIsIt()) // Just in case we discover a programmer of the universe
                 {
@@ -427,9 +423,7 @@ void ConsoleUI::addScientist()
 
                 if(cin.fail())
                 {
-                    cout << "Invalid input" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Invalid input!");
                 }
                 else if (deathYear == 0)
                 {
@@ -491,8 +485,7 @@ void ConsoleUI::addScientist()
                 }
                 else if (userInput == 2)
                 {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter();
                     addScientist();
                 }
 
@@ -706,9 +699,7 @@ void ConsoleUI::searchScientist()
 
             if(cin.fail())
             {
-                cout << "Invalid input!" << endl << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else if(inputCheck == 1 || inputCheck == 2)
             {
@@ -732,9 +723,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << endl << "Enter a valid age!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid age!");
                 }
                 else
                 {
@@ -757,9 +746,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << endl << "Enter a valid age!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid age!");
                 }
                 else
                 {
@@ -773,9 +760,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << endl << "Enter a valid age!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid age!");
                 }
                 else
                 {
@@ -817,9 +802,7 @@ void ConsoleUI::searchScientist()
 
             if(cin.fail())
             {
-                cout << "Invalid input!" << endl << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else if(inputCheck == 1 || inputCheck == 2)
             {
@@ -843,9 +826,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << endl << "Enter a valid year!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid year!");
                 }
                 else
                 {
@@ -870,9 +851,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << "Enter a valid year!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid year!");
                 }
                 else
                 {
@@ -888,9 +867,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << "Enter a valid year!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid year!");
                 }
                 else
                 {
@@ -931,9 +908,7 @@ void ConsoleUI::searchScientist()
 
             if(cin.fail())
             {
-                cout << "Invalid input!" << endl << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else if(inputCheck == 1 || inputCheck == 2)
             {
@@ -956,9 +931,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << endl << "Enter a valid year!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid year!");
                 }
                 else
                 {
@@ -982,9 +955,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << endl << "Enter a valid year!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid year!");
                 }
                 else
                 {
@@ -998,9 +969,7 @@ void ConsoleUI::searchScientist()
 
                 if(cin.fail())
                 {
-                    cout << endl << "Enter a valid year!" << endl << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    numericLimiter("Enter a valid year!");
                 }
                 else
                 {
@@ -1129,9 +1098,7 @@ void ConsoleUI::addComputer()
 
             if(cin.fail())
             {
-                cout << "Invalid input!" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else
             {
@@ -1189,9 +1156,7 @@ void ConsoleUI::addComputer()
 
             if(cin.fail())
             {
-                cout << "Invalid input" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else if(yearBuilt > whatYearIsIt())
             {
@@ -1413,9 +1378,7 @@ void ConsoleUI::searchComputer()
 
             if(cin.fail())
             {
-                cout << "Invalid input!" << endl << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else if(inputCheck == 1 || inputCheck == 2)
             {
@@ -1437,9 +1400,7 @@ void ConsoleUI::searchComputer()
                         cin >> userInputYear;
                         if(cin.fail())
                         {
-                            cout << endl << "Invalid input!" << endl;
-                            cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            numericLimiter("Invalid input!");
                         }
                         else
                         {
@@ -1461,9 +1422,7 @@ void ConsoleUI::searchComputer()
 
                     if(cin.fail())
                     {
-                        cout << endl << "Invalid input!" << endl;
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        numericLimiter("Invalid input!");
                     }
                     else
                     {
@@ -1477,9 +1436,7 @@ void ConsoleUI::searchComputer()
 
                     if(cin.fail())
                     {
-                        cout << endl << "Invalid input!" << endl;
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        numericLimiter("Invalid input!");
                     }
                     else
                     {
@@ -1512,9 +1469,7 @@ void ConsoleUI::searchComputer()
 
             if(cin.fail())
             {
-                cout << "Invalid input!" << endl << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else if(inputCheck == 1 || inputCheck == 2 || inputCheck == 3 || inputCheck == 4)
             {
@@ -1564,9 +1519,7 @@ void ConsoleUI::searchComputer()
 
             if(cin.fail())
             {
-                cout << "Invalid input!" << endl << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                numericLimiter("Invalid input!");
             }
             else if(inputCheck == 1 || inputCheck == 2)
             {
@@ -1604,11 +1557,16 @@ void ConsoleUI::sortComputer()
 
 
     vector<Computer> sortedComputers;
-    bool inputCheck = true;
     int userInput;
+    bool inputNotValid = false;
 
     clearScreen();
     smallLogoPrint();
+
+    do
+    {
+        clearScreen();
+        smallLogoPrint();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -1621,32 +1579,37 @@ void ConsoleUI::sortComputer()
         cout << "(7)     -   Sort by if built (N-Y)" << endl;
         cout << "(8)     -   Sort by if built (Y-N)" << endl;
 
-    do
-    {
+        if(inputNotValid)
+        {
+            cout << endl << "Invalid input!" << endl;
+
+        }
+
         cout << endl << "Select: ";
         cin >> userInput;
 
-        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
+
+        if(cin.fail())
         {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
+            numericLimiter("Invalid input!");
         }
-        else
-        {
-            inputCheck = false;
-        }
-        cin.clear();
 
-        clearScreen();
-        smallLogoPrint();
 
-    }while(inputCheck);
+        inputNotValid = true;
 
-     sortedComputers = _service.computerSort(userInput);
 
-     userMenuPrint(sortedComputers); // Laga þegar print er orðið klárt
+    }while(userInput < 1 || userInput > 8);
 
-     askReturnToMenu();
+
+    cin.clear();
+
+    clearScreen();
+
+    sortedComputers = _service.computerSort(userInput);
+
+    userMenuPrint(sortedComputers); // Laga þegar print er orðið klárt
+
+    askReturnToMenu();
 
 }
 
@@ -2184,4 +2147,15 @@ void ConsoleUI::largeLogoPrint()
 
     SetConsoleTextAttribute( hstdout, 0x0F );
     }
+}
+void ConsoleUI::numericLimiter()
+{
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+void ConsoleUI::numericLimiter(string comment)
+{
+    cout << comment << endl;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
