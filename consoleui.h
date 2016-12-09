@@ -84,7 +84,7 @@ private:
         // Makes a string all lower case, to make commands eaier to read.
     void askReturnToMenu() const;
         // Halts the return to menu so the user can look at the output from other functions before returning.
-    void clearScreen() const;
+    void clearScreen();
         // Adds 50 empty lines to the screen.
     int  whatYearIsIt() const;
         // Returns what year it is now.

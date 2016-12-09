@@ -9,6 +9,7 @@
 #include "scientist.h"
 #include "computer.h"
 #include "relation.h"
+#include "funfacts.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ public:
 
     service();
 
+    string getFunFact();
 
     // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
@@ -125,6 +127,7 @@ private:
     vector<Relation> _relations;
 
     DataAccess _data;
+    FunFacts _funfacts;
 
 };
 

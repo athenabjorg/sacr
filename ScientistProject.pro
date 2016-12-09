@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     dataaccess.cpp \
     computer.cpp \
     service.cpp \
-    relation.cpp
+    relation.cpp \
+    funfacts.cpp
 
 HEADERS += \
     consoleui.h \
@@ -24,4 +25,5 @@ HEADERS += \
     scientist.h \
     computer.h \
     service.h \
-    relation.h
+    relation.h \
+    funfacts.h

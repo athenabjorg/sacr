@@ -2270,10 +2270,13 @@ void ConsoleUI::forceLowerCase(string &command)                     // Forces in
         command[i] = tolower(command[i]);
     }
 }
-void ConsoleUI::clearScreen() const                                 // Clears console screen
+void ConsoleUI::clearScreen()                                 // Clears console screen
 {
     const int spaceLength = 50;
     cout << string( spaceLength, '\n' );
+    textColorGray();
+    cout << "Fun fact:" << endl << _service.getFunFact() << endl << endl << endl << endl;
+    textColorWhite();
 }
 int  ConsoleUI::whatYearIsIt() const                                // Returns the current year.
 {
