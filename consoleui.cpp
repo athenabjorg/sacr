@@ -2346,51 +2346,66 @@ void ConsoleUI::largeLogoPrint()                                    // Prints a 
 
     }
 }
-void ConsoleUI::numericLimiter()
+void ConsoleUI::numericLimiter()                                    // Limits input to just numbers
 {
+    /*
+     * Limits input of numbers to just 1, used for selections like (1), (2) etc..
+     * this way you can only input 1 number, this will help with not getting errors.
+     */
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-void ConsoleUI::numericLimiter(string comment)
+void ConsoleUI::numericLimiter(string comment)                      // Limits input to just numbers, parameter for print out msg
 {
+    /*
+     * Limits input of numbers to just 1, used for selections like (1), (2) etc..
+     * this way you can only input 1 number, this will help with not getting errors.
+     * The parameter is used to print out a msg before the limiter.
+     */
     cout << comment << endl;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-void ConsoleUI::invalidInputPrompt()
+void ConsoleUI::invalidInputPrompt()                                // Promt for error msg, "Invalid Input!"
 {
+    /*
+     * Promt for error msg, "Invalid Input!", used in many places in the code
+     * so best to keep as function even though it is small.
+     */
     textColorRed();
     cout << endl << "Invalid input!" << endl;
     textColorWhite();
 }
 
-#ifdef _WIN32
-void ConsoleUI::textColorWhite()
+
+// ---------------------------------- OS         FUNCTIONS ---------------------------------- //
+#ifdef _WIN32                                                       // Windows user will run this
+void ConsoleUI::textColorWhite()                                    // Function for white text
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x0F );
 }
-void ConsoleUI::textColorRed()
+void ConsoleUI::textColorRed()                                      // Function for red text
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x0C );
 }
-void ConsoleUI::textColorGray()
+void ConsoleUI::textColorGray()                                     // Function for gray text
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x08 );
 }
-#else
-void ConsoleUI::textColorWhite()
+#else                                                               // If not a windows user, run this
+void ConsoleUI::textColorWhite()                                    // Function for white text
 {
     // Nothing happening! Absolutely nothing to see here!
 }
-void ConsoleUI::textColorRed()
+void ConsoleUI::textColorRed()                                      // Function for red text
 {
     // Nothing happening! Absolutely nothing to see here!
 }
 
-void ConsoleUI::textColorGray()
+void ConsoleUI::textColorGray()                                     // Function for gray text
 {
     // Nothing happening! Absolutely nothing to see here!
 }
