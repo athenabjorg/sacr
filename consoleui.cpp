@@ -1650,22 +1650,25 @@ void ConsoleUI::addRelation()
         while(true)
         {
         clearScreen();
-        smallLogoPrint();
+        userMenuPrint(1);
+        cout << "Enter the scientist's name: ";
 
         while(true)
         {
-            userMenuPrint(1);
-            cout << "Enter the scientist's name: ";
             cin.ignore(-1);
             getline(cin, scientist);
 
             if(scientist == "")
             {
+                userMenuPrint(1);
                 cout << "No name no fame!" << endl;
+                cout << "Enter the scientist's name: ";
             }
             else if(_service.doesScientistExist(scientist) == false)
             {
+                userMenuPrint(1);
                 cout << "There are no scientists by that name." << endl;
+                cout << "Enter the scientist's name: ";
             }
             else
             {
@@ -1673,20 +1676,25 @@ void ConsoleUI::addRelation()
             }
         }
 
+        userMenuPrint(2);
+        cout << "Enter the computer's name: ";
+
         while(true)
         {
-            userMenuPrint(2);
-            cout << "Enter the computer's name: ";
             cin.ignore(-1);
             getline(cin, computer);
 
             if(computer == "")
             {
+                userMenuPrint(2);
                 cout << "Computers have names too!" << endl;
+                cout << "Enter the computer's name: ";
             }
             else if(_service.doesComputerExist(computer) == false)
             {
+                userMenuPrint(2);
                 cout << "There are no computers by that name." << endl;
+                cout << "Enter the computer's name: ";
             }
             else
             {
