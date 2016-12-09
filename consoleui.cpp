@@ -1639,127 +1639,117 @@ void ConsoleUI::sortComputer()
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
 void ConsoleUI::addRelation()
 {
-    string scientist, computer;
+    string name, computer;
     int checkInput;
 
-        while(true)
-        {
-        clearScreen();
-        userMenuPrint(1);
-        cout << endl << "Enter the scientist's name: ";
-
-        while(true)
-        {
-            cin.ignore(-1);
-            getline(cin, scientist);
-
-            if(scientist == "")
-            {
-                userMenuPrint(1);
-                textColorLogo();
-                cout << endl << "No name no fame!" << endl;
-                textColorMain();
-                cout << endl << "Enter the scientist's name: ";
-            }
-            else if(_service.doesScientistExist(scientist) == false)
-            {
-                userMenuPrint(1);
-                cout << "There are no scientists by that name." << endl;
-                cout << "Enter the scientist's name: ";
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        userMenuPrint(2);
-        cout << endl << "Enter the computer's name: ";
-
-        while(true)
-        {
-            cin.ignore(-1);
-            getline(cin, computer);
-
-            if(computer == "")
-            {
-                userMenuPrint(2);
-                cout << "Computers have names too!" << endl;
-                cout << "Enter the computer's name: ";
-            }
-            else if(_service.doesComputerExist(computer) == false)
-            {
-                userMenuPrint(2);
-                cout << "There are no computers by that name." << endl;
-                cout << "Enter the computer's name: ";
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        // Check if input is correct
+    while(true)
+    {
         clearScreen();
         smallLogoPrint();
-        cout << "Scientist: " << scientist << endl << "Computer: " << computer << endl;
 
-        checkInput = userCheckInput(); // A function that checks if the input is valid
-
-        if (checkInput == 0)
+        while(true)
         {
-            if(_service.addRelation(scientist, computer))
-            {
-                cout << endl << "Relation between " << scientist << " and " << computer << " successfully added to the list" << endl;
-                askReturnToMenu();
-                break;
+             userMenuPrint(1);
+             cout << "Enter the scientist's name: ";
+             cin.ignore(-1);
+             getline(cin, name);
 
-            }
-            else
-            {
-                int userInput;
+             if(name == "")
+             {
+                 cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+             }
+             else if(_service.doesScientistExist(name) == false)
+             {
+                 clearScreen();
+                 cout << "This scientists does not exist in the database, try again!" << endl;
+             }
+             else
+             {
+                 break;
+             }
+         }
 
-                cout << "This relation is already in the database." << endl;
-                cout << endl << "1 - Start over" << endl;
-                cout << "2 - Cancel" << endl;
-                while(true)
-                {
-                    cout << endl << "Select: ";
-                    cin >> userInput;
-
-                    if(cin.fail())
-                    {
-                        numericLimiter("Invalid input!");
-                    }
-                    else if(userInput == 2 || userInput == 1)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        cout << "Invalid input!" << endl;
-                    }
-
-                }
-
-
-                if(userInput == 2)
-                {
-                    break;
-                }
-
-            }
-
-        }
-        else if (checkInput == 1)
+        while(true)
         {
+            userMenuPrint(2);
+             cout << "Enter the computer's name: ";
+             cin.ignore(-1);
+             getline(cin, computer);
 
-        }
-        else
-        {
-            break;
-        }
-    }
+             if(computer == "")
+             {
+                 cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl; // FIXME::
+             }
+             else if(_service.doesComputerExist(computer) == false)
+             {
+                 clearScreen();
+                 cout << "This computer does not exist in the database, try again!" << endl;
+             }
+             else
+             {
+                 break;
+             }
+         }
+
+
+
+         // Check if input is correct
+         clearScreen();
+         smallLogoPrint();
+         cout << "Name: " << name << endl << "Computer: " << computer << endl;
+
+
+         checkInput = userCheckInput(); // A function that checks if the input is valid
+
+         if (checkInput == 0)
+         {
+             if(_service.doesRelationExist(name, computer) == false)
+             {
+                 _service.addRelation(name, computer);
+                 cout << endl << name << " relation to " << computer << " successfully added to the list" << endl;
+             }
+             else
+             {
+                 int userInput;
+                 cout << "This relation is allready in the database" << endl;
+                 cout << "(1) To make another relation" << endl;
+                 cout << "(2) To go back to menu" << endl;
+                 cout << "Select: ";
+                 cin >> userInput;
+
+                 numericLimiter();
+
+
+                 if(userInput == 1)
+                 {
+                     continue;
+                 }
+                 else if(userInput == 2)
+                 {
+                     break;
+                 }
+                 else
+                 {
+                     cout << "Invalid input!";
+                 }
+
+             }
+             askReturnToMenu();
+             break;
+         }
+         else if (checkInput == 1)
+         {
+
+         }
+         else
+         {
+             break;
+         }
+     }
+
+
+
+
 }
 void ConsoleUI::removeRelation()
 {
