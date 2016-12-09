@@ -377,15 +377,17 @@ void ConsoleUI::addScientist()                                      // Add scien
 
             if(name == "")
             {
-                cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+                textColorRed();
+                cout << endl << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl << endl;
+                textColorWhite();
             }
             else if(_service.findScientist(0, name).size() > 0)
             {
                 int userInput;
                 cout << "This scientists is already in the database" << endl;
-                cout << "(1) To enter name again" << endl;
+                cout << endl << "(1) To enter name again" << endl;
                 cout << "(2) To replace scientist" << endl;
-                cout << "Select: ";
+                cout << endl << "Select: ";
                 cin >> userInput;
 
                 numericLimiter();
@@ -1131,9 +1133,9 @@ void ConsoleUI::addComputer()                                       // Add compu
             {
                 int userInput;
                 cout << "This computer is already in the database" << endl;
-                cout << "(1) To enter name again" << endl;
+                cout << endl << "(1) To enter name again" << endl;
                 cout << "(2) To replace computer" << endl;
-                cout << "Select: ";
+                cout << endl << "Select: ";
                 cin >> userInput;
 
                 numericLimiter();
@@ -1719,7 +1721,7 @@ void ConsoleUI::addRelation()                                       // Add relat
              else if(_service.doesScientistExist(name) == false)
              {
                  userMenuPrint(1);
-                 cout << "This scientist does not exist in the database, try again!" << endl;
+                 cout << endl << "This scientist does not exist in the database, try again!" << endl;
 
              }
              else
@@ -1770,10 +1772,10 @@ void ConsoleUI::addRelation()                                       // Add relat
              else
              {
                  int userInput;
-                 cout << "This relation is already in the database" << endl;
-                 cout << "(1) To make another relation" << endl;
+                 cout << endl << "This relation is already in the database" << endl;
+                 cout << endl << "(1) To make another relation" << endl;
                  cout << "(2) To go back to menu" << endl;
-                 cout << "Select: ";
+                 cout << endl << "Select: ";
                  cin >> userInput;
 
                  numericLimiter();
@@ -2408,17 +2410,17 @@ void ConsoleUI::textColorGray()                                     // Function 
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x08 );
 }
-#else                                                               // If not a windows user, run this
-void ConsoleUI::textColorWhite()                                    // Function for white text
+#else                                                               // If not a windows user, run these functions which dont change the color.
+void ConsoleUI::textColorWhite()
 {
     // Nothing happening! Absolutely nothing to see here!
 }
-void ConsoleUI::textColorRed()                                      // Function for red text
+void ConsoleUI::textColorRed()
 {
     // Nothing happening! Absolutely nothing to see here!
 }
 
-void ConsoleUI::textColorGray()                                     // Function for gray text
+void ConsoleUI::textColorGray()
 {
     // Nothing happening! Absolutely nothing to see here!
 }
