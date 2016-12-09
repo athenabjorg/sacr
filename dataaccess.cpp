@@ -14,8 +14,9 @@ DataAccess::DataAccess()
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
-void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite database
-{
+void DataAccess::saveScientist(Scientist newScientist)
+{   // Saves a scientist to the database.
+
     string line, name, gender;
     int birthYear, deathYear;
 
@@ -36,8 +37,9 @@ void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite data
     query.exec(input);
     db.close();
 }
-void DataAccess::updateScientist(Scientist scientist)  // Updating SQLite database
-{
+void DataAccess::updateScientist(Scientist scientist)
+{   // Updates the information for an existing scientist.
+
     string line, name, gender;
     int birthYear, deathYear;
 
@@ -61,10 +63,7 @@ void DataAccess::updateScientist(Scientist scientist)  // Updating SQLite databa
 }
 
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
-{
-    /*
-     * This function uses SQLite Manager database and adds scientits table into a vector.
-     */
+{   // Loads scientists from a database, into a vector.
 
     vector<Scientist> scientists;
     string name, gender;
@@ -89,13 +88,11 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     return scientists;
 }
 vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)                  // From text file to vector
-{
-    /*
-     * This function uses SQLite Manager database and adds scientits table into a vector.
-     * 1 = load by name, 2 = load by gender, 3 = load by birth year
-     * 5 = load by death year, 7 = load by age, 9 load by ...
-     * 4, 6 and 8 are used in the loadScientist function with 3 parameters.
-     */
+{   // Adds scientists from a database into a vector, depending on input.
+    // 0 = load by exact name, 1 = load by name, 2 = load by gender, 3 = load by birth year
+    // 5 = load by death year
+    // 4 and 6 are loaded in the loadScientist function with 3 parameters.
+    // 7 and 8 (load by age) are loaded in the service class.
 
     vector<Scientist> scientists;
     string line, name, gender;
@@ -104,7 +101,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
 
     switch(loadType) // TODO case 2 (gender) virkar ekki
     {
-        case 0: line = "SELECT * FROM Scientists  Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by whole name
+        case 0: line = "SELECT * FROM Scientists  Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by exact name
                 break;
         case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
                 break;
@@ -137,12 +134,10 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
     return scientists;
 }
 vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, string parameter2)
-{
-    /*
-     * This function uses SQLite Manager database and adds scientits table into a vector.
-     * 4 = load by birth year range, 6 = load by death year range, 8 = load by age range.
-     * 1, 2, 3, 5 and 7 are used in the loadScientist function with 2 parameters.
-     */
+{   // Adds scientists from a database into a vector, depending on input.
+    // 4 = load by birth year range, 6 = load by death year range, 8 = load by age range.
+    // 1, 2, 3, and 5 are used in the loadScientist function with 2 parameters.
+    // 7 and 8 are sorted in the service class.
 
     vector<Scientist> scientists;
     string line, name, gender;
@@ -153,8 +148,6 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
         case 4: line = "SELECT * FROM scientists WHERE Born BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by birth year range
                 break;
         case 6: line = "SELECT * FROM scientists WHERE Died BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by death year range
-                break;
-        case 8: // load by age range
                 break;
     }
 
@@ -180,7 +173,8 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
 }
 
 void DataAccess::removeScientist(string inputName)
-{
+{   // Removes scientists by name.
+
     string line;
 
     line = "UPDATE Scientists SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
@@ -195,7 +189,8 @@ void DataAccess::removeScientist(string inputName)
     removeRelation(1, inputName);
 }
 void DataAccess::removeAllScientists() // Not practical
-{
+{   // Removes all scientists from the database. Careful!
+
     string line;
 
     line = "DELETE FROM Scientists";
@@ -212,7 +207,8 @@ void DataAccess::removeAllScientists() // Not practical
 
 vector<Scientist> DataAccess::sortScientists(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
-    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0)
+    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0)
+    // 9 and 10 (sort by age) are sorted in the service class.
 
     vector<Scientist> scientists;
     string line, name, gender;
@@ -261,7 +257,8 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
 }
 
 bool DataAccess::doesScientistExist(string name)
-{
+{   //checks if a scientist by that name exists already
+
     vector<Scientist> scientists;
 
     scientists = loadScientists(0, name);

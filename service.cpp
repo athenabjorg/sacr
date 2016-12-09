@@ -11,6 +11,7 @@ bool sortByAgeDesc(const Scientist &a, const Scientist &b) { return a.getAge()  
 service::service()
 {
      _scientists = _data.loadScientists();
+     _computers = _data.loadComputers();
 }
 
 
