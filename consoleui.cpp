@@ -110,21 +110,22 @@ void ConsoleUI::userMenuSwitch(int loadType)
     //smallLogoPrint();
     switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
     {
-        case 1: line = "Would you like to add a scientist or a computer to the database?";
+        case 1: line = "Would you like to add a scientist, computer or a scientist-computer relation to the database?";
                 break;
-        case 2: line = "Would you like to remove a scientist or a computer from the database?";
+        case 2: line = "Would you like to remove a scientist, computer or a scientist-computer relation from the database?";
                 break;
-        case 3: line = "Would you like to print a list of scientists or a computers?";
+        case 3: line = "Would you like to print a list of scientist, computer or a scientist-computer relation?";
                 break;
-        case 4: line = "Would you like to search for scientist or a computer in the database?";
+        case 4: line = "Would you like to search for scientist, computer or a scientist-computer relation in the database?";
                 break;
-        case 5: line = "Would you like to sort scientists or a computers?";
+        case 5: line = "Would you like to sort scientist, computer or a scientist-computer relation?";
                 break;
     }
     smallLogoPrint();
     cout << line << endl
          << "1 - Scientist" << endl
-         << "2 - Computer" << endl;
+         << "2 - Computer" << endl
+         << "2 - Relation" << endl;
     cin >> selection;
 
     if (selection == 1) // Scientist selected
@@ -169,6 +170,29 @@ void ConsoleUI::userMenuSwitch(int loadType)
                     break;
             case 5: cin.ignore();
                     sortComputer();
+                    break;
+
+        }
+    }
+    else if (selection == 3) // Relation selected
+    {
+        switch(loadType)
+        {
+            case 1: cin.ignore();
+                    addRelation();
+                    break;
+            case 2: cin.ignore();
+                    removeRelation();
+                    break;
+            case 3: cin.ignore();
+                    userMenuPrint(_service.getRelations());
+                    askReturnToMenu();
+                    break;
+            case 4: cin.ignore();
+                    searchRelation();
+                    break;
+            case 5: cin.ignore();
+                    sortRelation();
                     break;
 
         }
@@ -258,7 +282,7 @@ void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print lis
 void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print list provided
 {
     /*
-     * Prints out a partial list of scientist, depending on how
+     * Prints out a partial list of computers, depending on how
      * it was sent forward by the previous function.
      */
 
@@ -290,7 +314,38 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
     cout << "=======================================================================" << endl;
     cout << "Total: " << computer.size() << " computers" << endl;
 }
+void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list provided
+{
+    /*
+     * Prints out a partial list of scientist-computer relations, depending on how
+     * it was sent forward by the previous function.
+     */
 
+
+    clearScreen();
+    smallLogoPrint();
+    cout << left << setw(25) << "Scientist:"
+         << setw(10) << right << "Computer:"
+         << setw(20) << "Year built" << endl;
+    cout << "=======================================================================" << endl;
+
+    for (size_t i = 0; i < relation.size(); ++i)
+    {
+        cout << left << setw(25) << relation[i].getScientist()
+             << setw(10) << right << relation[i].getComputer();
+
+            if(relation[i].getYear() == 0)
+            {
+                 cout << setw(20) << "-" << endl;
+            }
+            else
+            {
+                 cout << setw(20) << relation[i].getYear() << endl;
+            }
+    }
+    cout << "=======================================================================" << endl;
+    cout << "Total: " << relation.size() << " computers" << endl;
+}
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 void ConsoleUI::addScientist()
@@ -1490,7 +1545,379 @@ void ConsoleUI::sortComputer()
 
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
+void ConsoleUI::addRelation()
+{
+    string scientist, computer;
+    int checkInput;
 
+        while(true)
+        {
+        clearScreen();
+        smallLogoPrint();
+
+        while(true)
+        {
+            cout << "Enter the scientist's name: ";
+            cin.ignore(-1);
+            getline(cin, scientist);
+
+            if(scientist == "")
+            {
+                cout << "No name no fame!" << endl;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        while(true)
+        {
+            cout << "Enter the computer's name: ";
+            cin.ignore(-1);
+            getline(cin, computer);
+
+            if(computer == "")
+            {
+                cout << "Computers have names too!" << endl;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        // Check if input is correct
+        clearScreen();
+        smallLogoPrint();
+        cout << "Scientist: " << scientist << endl << "Computer: " << computer << endl;
+
+        checkInput = userCheckInput(); // A function that checks if the input is valid
+
+        if (checkInput == 0)
+        {
+            if(_service.addRelation(scientist, computer))
+            {
+                cout << endl << scientist << "-" << computer << " relation successfully added to the list" << endl;
+
+            }
+            else
+            {
+                int userInput;
+
+                cout << "This scientist-computer relation is already in the database." << endl;
+                cout << endl << "1 - Start over" << endl;
+                cout << "2 - Cancel" << endl;
+                cout << endl << "Select: ";
+                cin >> userInput;
+
+                if(userInput == 2)
+                {
+                    break;
+                }
+
+            }
+
+        }
+        else if (checkInput == 1)
+        {
+
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+void ConsoleUI::removeRelation()
+{
+    /*
+     * A function to remove a computer.
+     */
+/*
+    string command;
+
+    clearScreen();
+    smallLogoPrint();
+    cout << "Select one of the following options: " << endl;
+    cout << "(1)     -   Remove computer by name " << endl;
+    cout << "(2)     -   Remove *ALL* computers" << endl << endl;
+    cout << "Select: ";
+
+    getline(cin, command);
+    cout << endl;
+
+    if(command[0] == '1') // Remove computer/s by input.
+    {
+        vector<Computer> computer = _service.getComputers();
+        userMenuPrint(computer);
+
+        string userInputName, confirm;
+        vector<Computer> computersToRemove;
+
+
+        cout << endl << "Remove computers with names containing: ";
+
+
+        getline(cin, userInputName);
+        computersToRemove = _service.findComputer(1, userInputName);
+
+        if(computersToRemove.size() > 0)
+        {
+            userMenuPrint(computersToRemove);
+            cout << endl << "Are you sure you want to remove these computers from the list?" << endl;
+            cout << "Y     -   Yes, remove them " << endl;
+            cout << "N     -   No, do not remove them" << endl << endl;
+            cout << endl << "Select: ";
+
+            getline(cin, confirm);
+
+            if (confirm[0] == 'y' || confirm[0] == 'Y')
+            {
+                _service.removeComputer(userInputName); // TODO::Needs a functin in service layer
+                cout << endl << "Computers with names containing '" << userInputName << "' have been removed from the list." << endl;
+                askReturnToMenu();
+            }
+            else
+            {
+                cout << endl << "No computers were removed" << endl;
+                askReturnToMenu();
+            }
+
+        }
+        else
+        {
+            cout << endl << "There are no computers with names containing '" << userInputName << "'" << endl;
+            askReturnToMenu();
+        }
+    }
+    else if(command[0] == '2') // Remove all computers
+    {
+        string userInputName;
+
+        clearScreen();
+        smallLogoPrint();
+
+        cout << "Type in \"remove\" to remove *ALL* computers, any other input to cancel" << endl;
+
+        getline(cin, userInputName);
+        forceLowerCase(userInputName);
+
+        if(userInputName == "remove")
+        {
+            _service.removeAllComputers(); // TODO::Needs a functin in service layer
+            clearScreen();
+            smallLogoPrint();
+            userMenuPrint();
+        }
+
+    }
+    */
+}
+void ConsoleUI::searchRelation()
+{
+    /*
+     * A search list is printed out and user can choose from a few search commands
+     * like name, year built, type, and if built. Error checks included
+     */
+/*
+    string command;
+
+    clearScreen();
+    smallLogoPrint();
+    cout << "Select a search option: " << endl;
+    cout << "===================================" << endl;
+    cout << "Name    -   Search by name" << endl;
+    cout << "Year    -   Search by year built" << endl;
+    cout << "Type    -   Search by type" << endl;
+    cout << "Built   -   Search by if built or not" << endl;
+    cout << "Select: ";
+
+    getline(cin, command);
+    forceLowerCase(command);
+
+
+    if(command == "name") // Find computer by name
+    {
+        string userInputName;
+
+        clearScreen();
+        smallLogoPrint();
+        cout << "Search by name: ";
+        getline(cin, userInputName);
+
+        vector<Computer> computer = _service.findComputer(1, userInputName);
+        userMenuPrint(computer);
+        askReturnToMenu();
+    }
+    else if(command == "year") // Find computer by year
+    {
+        int userInputYear;
+        int userInputYearFirst;
+        int userInputYearLast;
+        int inputCheck;
+        vector<Computer> computer;
+
+        clearScreen();
+        smallLogoPrint();
+        cout << "Search by year:" << endl;
+        cout << endl << "(1) - Search for a computer by year it was made" << endl;
+        cout << "(2) - Search for a computer by range of year it was made " << endl;
+        cout << endl << "Select: ";
+
+        cin >> inputCheck;
+
+        switch(inputCheck)
+        {
+            case 1: cout << "Search by year built" << endl;
+                    cout << endl << "Year: ";
+                    cin >> userInputYear;
+                    computer = _service.findComputer(2, to_string(userInputYear));
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+
+            case 2: cout << "Search by range of year built" << endl;
+                    cout << endl << "Starting year: ";
+                    cin >> userInputYearFirst;
+                    cout << endl << "Ending year: ";
+                    cin >> userInputYearLast;
+                    computer = _service.findComputer(3, to_string(userInputYearFirst), to_string(userInputYearLast));
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+            default: cout << "Wrong Input" << endl;
+        }
+
+
+
+        computer = _service.findComputer(2, to_string(userInputYear));
+        userMenuPrint(computer);
+        askReturnToMenu();
+    }
+    else if(command == "type") // Find computer by type
+    {
+        int inputCheck;
+        vector<Computer> computer;
+
+        clearScreen();
+        smallLogoPrint();
+        cout << "Search by type:" << endl;
+        cout << endl << "(1) - Electromechanical" << endl;
+        cout << "(2) - Electronic" << endl;
+        cout << "(3) - Mechanical" << endl;
+        cout << "(4) - Transistor" << endl;
+        cout << endl << "Select: ";
+
+        cin >> inputCheck;
+
+        switch(inputCheck)
+        {
+            case 1: computer = _service.findComputer(4,"Electromechanical");
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+            case 2: computer = _service.findComputer(4,"Electronic");
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+            case 3: computer = _service.findComputer(4,"Mechanical");
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+            case 4: computer = _service.findComputer(4,"Transistor");
+                    userMenuPrint(computer);
+                    askReturnToMenu();
+                    break;
+            default: cout << "Wrong Input" << endl;
+        }
+    }
+    else if(command == "built") // Find computer if built or not
+    {
+        int inputCheck;
+        vector<Computer> computers;
+
+        clearScreen();
+        smallLogoPrint();
+        cout << "Search by:" << endl;
+        cout << endl << "(1) - Was built" << endl;
+        cout << "(2) - Was not built" << endl << endl;
+        cout << "Select: ";
+
+        cin >> inputCheck;
+
+        switch(inputCheck)
+        {
+            case 1: computers = _service.findComputer(5,"1");
+                    userMenuPrint(computers);
+                    askReturnToMenu();
+                    break;
+            case 2: computers = _service.findComputer(5,"0");
+                    userMenuPrint(computers);
+                    askReturnToMenu();
+                    break;
+            default: cout << "Wrong Input" << endl;
+        }
+    }
+    cout << endl;
+    */
+}
+void ConsoleUI::sortRelation()
+{
+    /*
+     * A sorting function, can call function from service.cpp computerSort().
+     * The function will sort depending on int parameter "Sort by sortType:
+     *  1 = name(A-Z), 2 = name(Z-A), 3 = year(0-9), 4 = year(9-0) 5 = type(A-Z),
+     *  6 = type(Z-A), 7 = was built(N-Y),  8 = year made(Y-N)".
+     */
+/*
+
+    vector<Computer> sortedComputers;
+    bool inputCheck = true;
+    int userInput;
+
+    clearScreen();
+    smallLogoPrint();
+
+        cout << "Select a sort option: " << endl;
+        cout << "===================================" << endl;
+        cout << "(1)     -   Sort by name (A-Z)" << endl;
+        cout << "(2)     -   Sort by name (Z-A)" << endl;
+        cout << "(3)     -   Sort by year (0-9)" << endl;
+        cout << "(4)     -   Sort by year (9-0)" << endl;
+        cout << "(5)     -   Sort by type (A-Z)" << endl;
+        cout << "(6)     -   Sort by type (Z-A)" << endl;
+        cout << "(7)     -   Sort by if built (N-Y)" << endl;
+        cout << "(8)     -   Sort by if built (Y-N)" << endl;
+
+    do
+    {
+        cout << endl << "Select: ";
+        cin >> userInput;
+
+        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
+        {
+            inputCheck = true;
+            cout << "Invalid input" << endl;
+        }
+        else
+        {
+            inputCheck = false;
+        }
+        cin.clear();
+
+        clearScreen();
+        smallLogoPrint();
+
+    }while(inputCheck);
+
+     sortedComputers = _service.computerSort(userInput);
+
+     userMenuPrint(sortedComputers); // Laga þegar print er orðið klárt
+
+     askReturnToMenu();
+*/
+}
 
 
 // ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //

@@ -56,7 +56,7 @@ public:
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-    void saveRelation(Relation newRelation);
+    void saveRelation(const Relation newRelation);
 
     vector<Relation> loadRelations();
     vector<Relation> loadRelations(int loadType, string parameter);

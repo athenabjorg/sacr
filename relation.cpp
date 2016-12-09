@@ -11,17 +11,17 @@ Relation::Relation(string scientist, string computer, int year)
     _year = year;
 }
 
-string Relation::getScientist()
+string Relation::getScientist() const
 {
     return _scientist;
 }
 
-string Relation::getComputer()
+string Relation::getComputer() const
 {
     return _computer;
 }
 
-int Relation::getYear()
+int Relation::getYear() const
 {
     return _year;
 }
