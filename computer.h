@@ -14,7 +14,7 @@ public:
     string  getType() const;
     int     getYear() const;
     bool    getBuilt() const;
-    /*int     getYearsSinceBuilt() const;*/
+    int     getYearsSinceBuilt() const;
 
 
 private:
@@ -22,10 +22,10 @@ private:
     string _type;
     int _year;
     bool _built;
-/*    int _yearsSinceBuilt;
+    int _yearsSinceBuilt;
 
     int whatYearIsIt() const;
-*/
+
 };
 
 #endif // COMPUTER_H
