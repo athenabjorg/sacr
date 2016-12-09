@@ -1843,7 +1843,6 @@ void ConsoleUI::removeRelation()
 
     }
 }
-
 void ConsoleUI::searchRelation()
 {
     /*
@@ -1942,11 +1941,18 @@ void ConsoleUI::sortRelation()
      */
 
     vector<Relation> sortedRelations;
-    bool inputCheck = true;
     int userInput;
+    bool inputNotValid = false;
 
     clearScreen();
     smallLogoPrint();
+
+
+
+    do
+    {
+        clearScreen();
+        smallLogoPrint();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -1957,39 +1963,36 @@ void ConsoleUI::sortRelation()
         cout << "(5)     -   Sort by Year Built (0-9)" << endl;
         cout << "(6)     -   Sort by Year Built (9-0)" << endl;
 
-    do
-    {
+        if(inputNotValid)
+        {
+            cout << endl << "Invalid input!" << endl;
+
+        }
+
         cout << endl << "Select: ";
         cin >> userInput;
 
         if(cin.fail())
         {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-        else if(userInput < 1 || userInput > 6) // check if input is int and if it ranges from 1 to 10
-        {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
-               cin.clear();
-        }
-        else
-        {
-            inputCheck = false;
+            numericLimiter("Invalid input!");
         }
 
-    }while(inputCheck);
-        clearScreen();
-        smallLogoPrint();
+
+        inputNotValid = true;
 
 
-     sortedRelations = _service.relationSort(userInput);
+    }while(userInput < 1 || userInput > 8);
 
-     userMenuPrint(sortedRelations); // Laga þegar print er orðið klárt
 
-     askReturnToMenu();
+    cin.clear();
+
+    clearScreen();
+
+    sortedRelations = _service.relationSort(userInput);
+
+    userMenuPrint(sortedRelations);
+
+    askReturnToMenu();
 
 }
 
