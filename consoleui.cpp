@@ -121,7 +121,8 @@ void ConsoleUI::userMenuSwitch(int loadType)
     cout << line << endl
          << "1 - Scientist" << endl
          << "2 - Computer" << endl
-         << "3 - Relation" << endl;
+         << "3 - Relation" << endl << endl
+         << "Select: ";
     cin >> selection;
 
     if (selection == 1) // Scientist selected
@@ -2096,8 +2097,8 @@ void ConsoleUI::sortRelation()
 void ConsoleUI::askReturnToMenu() const                             // Asks if user wants to move back to the menu
 {
     cout << endl;
-    cout << "To return to the menu input 'm'" << endl;
-    cout << "Select: ";
+    cout << "To return to the menu press 'm'" << endl;
+    cout << endl << "Select: ";
 
    string userInput = " ";
    while (userInput[0] != 'm' && userInput[0] != 'M')
