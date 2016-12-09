@@ -12,7 +12,7 @@ ConsoleUI::ConsoleUI()                                              // Construct
 }
 
 // ---------------------------------- USER MENU FUNCTIONS ---------------------------------- //
-void ConsoleUI::userMenuRun()                                       // DIsplays the main menu
+void ConsoleUI::userMenuRun()                                       // Displays the main menu
 {
     /*
      * This is the main function body, that is run at the start of the program every time
@@ -97,8 +97,13 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
         clearScreen();
     }
 }
-void ConsoleUI::userMenuSwitch(int loadType)
+void ConsoleUI::userMenuSwitch(int loadType)                        // Switch between functions
 {
+    /*
+     * Depending on your selection here, and parametere "loadType" this function will
+     * call on different functions for each case. This function is used in userMenuRun();
+     */
+
     int selection = 0;
     string line;
 
@@ -201,11 +206,12 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
 
 }
-void ConsoleUI::userMenuPrint(int loadType)                         //remove þetta, nota bara vecor prentin?                                   // Prints whole list
+void ConsoleUI::userMenuPrint(int loadType)                         // Prints list depending on parameter
 {
     /*
-     * Prints out a partial list of scientist, depending on how
-     * it was sent forward by the previous function.
+     * Prints out a list depending on parameter used for function
+     * (1) - list of Scientists, (2) - list of computers and
+     * (3) - list of relations.
     */
 
     vector<Scientist> scientist = _service.getScientists();
@@ -338,7 +344,7 @@ void ConsoleUI::userMenuPrint(const vector<Relation> &relation)     // Print lis
 
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
-void ConsoleUI::addScientist()      // Add scientist to database
+void ConsoleUI::addScientist()                                      // Add scientist to database
 {
     /*
      * This function gets all variables from user and makes error checks, if everything
@@ -515,7 +521,7 @@ void ConsoleUI::addScientist()      // Add scientist to database
         }
     }
 }
-void ConsoleUI::removeScientist()   // Remove scientist from database
+void ConsoleUI::removeScientist()                                   // Remove scientist from database
 {
     /*
      * This functions gets variables from user and checks if the user wants
@@ -602,7 +608,7 @@ void ConsoleUI::removeScientist()   // Remove scientist from database
 
     }
 }
-void ConsoleUI::searchScientist()   // Search the database for scientist
+void ConsoleUI::searchScientist()                                   // Search the database for scientist
 {
     /*
      * A search list is printed out and user can choose from a few search commands
@@ -1019,7 +1025,7 @@ void ConsoleUI::searchScientist()   // Search the database for scientist
     }
     cout << endl;
 }
-void ConsoleUI::sortScientist()     // Get sorted list of scientist from database
+void ConsoleUI::sortScientist()                                     // Get sorted list of scientist from database
 {
     /*
      * A sorting function, can call function from service.cpp scientistSort().
