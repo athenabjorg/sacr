@@ -382,7 +382,7 @@ void ConsoleUI::addScientist()                                      // Add scien
             else if(_service.findScientist(0, name).size() > 0)
             {
                 int userInput;
-                cout << "This scientists is allready in the database" << endl;
+                cout << "This scientists is already in the database" << endl;
                 cout << "(1) To enter name again" << endl;
                 cout << "(2) To replace scientist" << endl;
                 cout << "Select: ";
@@ -1130,7 +1130,7 @@ void ConsoleUI::addComputer()                                       // Add compu
             else if(_service.findComputer(0, name).size() > 0)
             {
                 int userInput;
-                cout << "This computer is allready in the database" << endl;
+                cout << "This computer is already in the database" << endl;
                 cout << "(1) To enter name again" << endl;
                 cout << "(2) To replace computer" << endl;
                 cout << "Select: ";
@@ -1770,7 +1770,7 @@ void ConsoleUI::addRelation()                                       // Add relat
              else
              {
                  int userInput;
-                 cout << "This relation is allready in the database" << endl;
+                 cout << "This relation is already in the database" << endl;
                  cout << "(1) To make another relation" << endl;
                  cout << "(2) To go back to menu" << endl;
                  cout << "Select: ";
