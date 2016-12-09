@@ -89,7 +89,7 @@ void ConsoleUI::userMenuRun()                                       // Displays 
             clearScreen();
             smallLogoPrint();
             textColorRed();
-            if((whatYearIsIt() - 2016) == 0)
+            if((whatYearIsIt() - 2015) == 0)
             {
                 cout << setw(85) << "SACR version 2.0 will be released in December 2016" << endl << endl;
             }
