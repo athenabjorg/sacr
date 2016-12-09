@@ -42,6 +42,7 @@ public:
     vector<Scientist> findScientist(int findType, string parameter);
     vector<Scientist> findScientist(int findType, string parameter1, string parameter2);
 
+    bool doesScientistExist(string name);
 
     // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
@@ -59,6 +60,7 @@ public:
     vector<Computer> findComputer(int findType, string parameter);
     vector<Computer> findComputer(int findType, string parameter1, string parameter2);
 
+    bool doesComputerExist(string name);
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
@@ -75,7 +77,7 @@ public:
     vector<Relation> findRelation(int findType, string parameter);
     vector<Relation> findRelation(int findType, string parameter1, string parameter2);
 
-
+    bool doesRelationExist(string scientist, string computer);
 
 
 

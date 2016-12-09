@@ -105,22 +105,22 @@ void ConsoleUI::userMenuSwitch(int loadType)
     //smallLogoPrint();
     switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
     {
-        case 1: line = "Would you like to add a scientist, computer or a scientist-computer relation to the database?";
+        case 1: line = "Would you like to add a scientist, computer or a relation to the database?";
                 break;
-        case 2: line = "Would you like to remove a scientist, computer or a scientist-computer relation from the database?";
+        case 2: line = "Would you like to remove a scientist, computer or a relation from the database?";
                 break;
-        case 3: line = "Would you like to print a list of scientist, computer or a scientist-computer relation?";
+        case 3: line = "Would you like to print a list of scientist, computer or a relation?";
                 break;
-        case 4: line = "Would you like to search for scientist, computer or a scientist-computer relation in the database?";
+        case 4: line = "Would you like to search for scientist, computer or a relation in the database?";
                 break;
-        case 5: line = "Would you like to sort scientist, computer or a scientist-computer relation?";
+        case 5: line = "Would you like to sort scientist, computer or a relation?";
                 break;
     }
     smallLogoPrint();
     cout << line << endl
          << "1 - Scientist" << endl
          << "2 - Computer" << endl
-         << "2 - Relation" << endl;
+         << "3 - Relation" << endl;
     cin >> selection;
 
     if (selection == 1) // Scientist selected
@@ -201,7 +201,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
 
 }
-void ConsoleUI::userMenuPrint()                                     // Prints whole list
+void ConsoleUI::userMenuPrint()  //remove þetta, nota bara vecor prentin?                                   // Prints whole list
 {
     /*
      * Prints out a partial list of scientist, depending on how
@@ -339,8 +339,9 @@ void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list
             }
     }
     cout << "=======================================================================" << endl;
-    cout << "Total: " << relation.size() << " computers" << endl;
+    cout << "Total: " << relation.size() << " relations" << endl;
 }
+
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 void ConsoleUI::addScientist()
@@ -1551,7 +1552,7 @@ void ConsoleUI::addRelation()
         smallLogoPrint();
 
         while(true)
-        {
+        {            
             cout << "Enter the scientist's name: ";
             cin.ignore(-1);
             getline(cin, scientist);
@@ -1559,6 +1560,10 @@ void ConsoleUI::addRelation()
             if(scientist == "")
             {
                 cout << "No name no fame!" << endl;
+            }
+            else if(_service.doesScientistExist(scientist) == false)
+            {
+                cout << "There are no scientists by that name." << endl;
             }
             else
             {
@@ -1575,6 +1580,10 @@ void ConsoleUI::addRelation()
             if(computer == "")
             {
                 cout << "Computers have names too!" << endl;
+            }
+            else if(_service.doesComputerExist(computer) == false)
+            {
+                cout << "There are no computers by that name." << endl;
             }
             else
             {
@@ -1600,7 +1609,7 @@ void ConsoleUI::addRelation()
             {
                 int userInput;
 
-                cout << "This scientist-computer relation is already in the database." << endl;
+                cout << "This relation is already in the database." << endl;
                 cout << endl << "1 - Start over" << endl;
                 cout << "2 - Cancel" << endl;
                 cout << endl << "Select: ";

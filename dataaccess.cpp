@@ -592,7 +592,8 @@ vector<Relation> DataAccess::loadRelations()                  // From text file 
 
     vector<Relation> relations;
     string line, scientist, computer, scientistID, computerID;
-    bool year, valid;
+    int year;
+    bool valid;
 
     line = sqlRelationTable();
 

@@ -148,6 +148,10 @@ vector<Scientist> service::findScientist(int findType, string parameter1, string
     return scientists;
 }
 
+bool service::doesScientistExist(string name)
+{
+    return _data.doesScientistExist(name);
+}
 
 // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
@@ -216,6 +220,11 @@ vector<Computer> service::findComputer(int findType, string parameter1, string p
     return computers;
 }
 
+bool service::doesComputerExist(string name)
+{
+    return _data.doesComputerExist(name);
+}
+
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
@@ -236,6 +245,9 @@ bool service::addRelation(string scientist, string computer)
     int year = _data.yearComputerBuilt(computer);
 
     if(_data.doesRelationExist(scientist, computer))
+    {
+    }
+    else
     {
         Relation relation(scientist, computer, year);
 
@@ -288,4 +300,7 @@ vector<Relation> service::findRelation(int findType, string parameter1, string p
     return relations;
 }
 
-
+bool service::doesRelationExist(string scientist, string computer)
+{
+    return _data.doesRelationExist(scientist, computer);
+}
