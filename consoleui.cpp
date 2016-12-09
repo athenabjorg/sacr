@@ -1092,8 +1092,13 @@ void ConsoleUI::sortScientist()                                     // Get sorte
 
 
 // ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
-void ConsoleUI::addComputer()
+void ConsoleUI::addComputer()                                       // Add computer to database
 {
+    /*
+     * This function gets all variables from user and makes error checks, if everything
+     * checks out fine this function will call on server layer functions to then add those
+     * variables to the database.
+     */
     string name, type;
     int yearBuilt = 0, checkInput;
     bool built = false;
@@ -1272,12 +1277,14 @@ void ConsoleUI::addComputer()
         }
     }
 }
-void ConsoleUI::removeComputer()
+void ConsoleUI::removeComputer()                                    // Remove computer from database
 {
     /*
-     * A function to remove a computer.
+     * This functions gets variables from user and checks if the user wants
+     * to remove 1 computer or all and uses functions from service layer
+     * to get access to dataccess layer to alter the database depending on
+     * user input.
      */
-
     string command;
 
     clearScreen();
@@ -1356,13 +1363,14 @@ void ConsoleUI::removeComputer()
 
     }
 }
-void ConsoleUI::searchComputer()
+void ConsoleUI::searchComputer()                                    // Search the database for computer
 {
     /*
      * A search list is printed out and user can choose from a few search commands
-     * like name, year built, type, and if built. Error checks included
+     * like name, year built, type, and if built. Error checks included, this function
+     * calls functions from service layer to access dataaccess layer to search
+     * the database.
      */
-
     string command;
 
     clearScreen();
@@ -1597,7 +1605,7 @@ void ConsoleUI::searchComputer()
     }
     cout << endl;
 }
-void ConsoleUI::sortComputer()
+void ConsoleUI::sortComputer()                                      // Get sorted list of computers from database
 {
     /*
          * A sorting function, can call function from service.cpp computerSort().
@@ -1668,8 +1676,13 @@ void ConsoleUI::sortComputer()
 
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
-void ConsoleUI::addRelation()
+void ConsoleUI::addRelation()                                       // Add relation to database
 {
+    /*
+     * This function gets all variables from user and makes error checks, if everything
+     * checks out fine this function will call on server layer functions to then add those
+     * variables to the database.
+     */
     string name, computer;
     int checkInput;
 
@@ -1784,12 +1797,14 @@ void ConsoleUI::addRelation()
          }
      }
 }
-void ConsoleUI::removeRelation()
+void ConsoleUI::removeRelation()                                    // Remove relation from database
 {
     /*
-     * A function to remove a computer.
+     * This functions gets variables from user and checks if the user wants
+     * to remove 1 scientist or all and uses functions from service layer
+     * to get access to dataccess layer to alter the database depending on
+     * user input.
      */
-
     string command;
 
     clearScreen();
@@ -1958,11 +1973,13 @@ void ConsoleUI::removeRelation()
 
     }
 }
-void ConsoleUI::searchRelation()
+void ConsoleUI::searchRelation()                                    // Search the database for relations
 {
     /*
      * A search list is printed out and user can choose from a few search commands
-     * like name, year built, type, and if built. Error checks included
+     * like name and computer. Error checks included, this function
+     * calls functions from service layer to access dataaccess layer to search
+     * the database.
      */
     string command;
 
@@ -2114,7 +2131,7 @@ void ConsoleUI::searchRelation()
     cout << endl;
     }
 }
-void ConsoleUI::sortRelation()
+void ConsoleUI::sortRelation()                                      // Get sorted list of relations
 {
     /*
      * A sorting function, can call function from service.cpp computerSort().
