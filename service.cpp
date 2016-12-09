@@ -297,7 +297,8 @@ bool service::doesComputerExist(string name)
 
 
 vector<Relation> service::getRelations()
-{
+{   // Uploads the list of relations from database.
+
     vector<Relation> relations;
 
     relations = _data.loadRelations();
@@ -306,7 +307,7 @@ vector<Relation> service::getRelations()
 }
 
 bool service::addRelation(string scientist, string computer)
-{   // Adds a scientist to the list and updates the database.
+{   // Adds a relation to the database.
     // Returns true if adding succeded, false otherwise.
 
     int year = _data.yearComputerBuilt(computer);
@@ -328,19 +329,23 @@ bool service::addRelation(string scientist, string computer)
 }
 
 bool service::removeRelation(int removeType, string name)
-{
+{   // Removes a relation with that name from the database. Case insensitive.
+    // Returns true if removing succeded, false otherwise.
+
     _data.removeRelation(removeType, name);
 
     return true;
 }
 
 void service::removeAllRelations()
-{
+{   // Removes ALL relations from the list. Be careful with this.
+
     _data.removeAllRelations();
 }
 
 vector<Relation> service::relationSort(int sortType)
-{
+{   // Sort by sortType: 1 = scientist name(A-Z), 2 = scientist name(Z-A), 3 = computer name(A-Z)
+    // 4 = computer name(Z-A), 5 = year made(0-9), 6 = year made(9-0).
 
     vector<Relation> relations;
 
@@ -351,7 +356,11 @@ vector<Relation> service::relationSort(int sortType)
 }
 
 vector<Relation> service::findRelation(int findType, string parameter)       // Search vector by type
-{
+{   // Loads relations from a database, into a vector, depenting on loadType.
+    // 0 = load by exact scientist name, 1 = load by scientist name,
+    // 2 = load by exact computer name, 3 = load by computer name, 4 = load by year computer built
+    // 5 is loaded in the loadRelations function with three parameters.
+
     vector<Relation> relations;
 
     relations = _data.loadRelations(findType, parameter);
@@ -359,7 +368,10 @@ vector<Relation> service::findRelation(int findType, string parameter)       // 
     return relations;
 }
 vector<Relation> service::findRelation(int findType, string parameter1, string parameter2)       // Search vector by type
-{
+{   // Loads relations from a database, into a vector, depenting on loadType.
+    // 5 = load by year built range.
+    // 0, 1, 2, 3 and 4 are loaded in the loadRelations function with two parameters.
+
     vector<Relation> relations;
 
     relations = _data.loadRelations(findType, parameter1, parameter2);
@@ -368,6 +380,7 @@ vector<Relation> service::findRelation(int findType, string parameter1, string p
 }
 
 bool service::doesRelationExist(string scientist, string computer)
-{
+{   // Checks if a relation by that name exists already
+
     return _data.doesRelationExist(scientist, computer);
 }

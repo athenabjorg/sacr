@@ -102,14 +102,15 @@ public:
         // Removes ALL relations from the list. Be careful with this.
 
     vector<Relation> relationSort(int sortType);
-        // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = type(A-Z), 4 = type(Z-A), 5 = year made(0-9),
-        // 6 = year made(9-0), 7 = if built(n-y), 8 = if built (y-n), 9 = years since built(0-9), 10 = years since built(0-9)
+        // Sort by sortType: 1 = scientist name(A-Z), 2 = scientist name(Z-A), 3 = computer name(A-Z)
+        // 4 = computer name(Z-A), 5 = year made(0-9), 6 = year made(9-0).
 
     vector<Relation> findRelation(int findType, string parameter);
     vector<Relation> findRelation(int findType, string parameter1, string parameter2);
         // Loads relations from a database, into a vector, depenting on loadType.
-        // 0 = load by exact name, 1 = load by name, 2 = load by year built
-        // 3 = load by year built range, 4 = load by type, 5 = load by if built.
+        // 0 = load by exact scientist name, 1 = load by scientist name,
+        // 2 = load by exact computer name, 3 = load by computer name, 4 = load by year computer built
+        // 5 = load by year built range.
 
     bool doesRelationExist(string scientist, string computer);
         // Checks if a relation by that name exists already
