@@ -1698,6 +1698,7 @@ void ConsoleUI::addRelation()
              }
          }
 
+        userMenuPrint(2);
         while(true)
         {
              userMenuPrint(2);
