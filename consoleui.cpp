@@ -201,7 +201,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
 
 }
-void ConsoleUI::userMenuPrint(int loadType)  //remove þetta, nota bara vecor prentin?                                   // Prints whole list
+void ConsoleUI::userMenuPrint(int loadType)                         //remove þetta, nota bara vecor prentin?                                   // Prints whole list
 {
     /*
      * Prints out a partial list of scientist, depending on how
@@ -303,7 +303,7 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
     cout << "=============================================================================================" << endl;
     cout << "Total: " << computer.size() << " computers" << endl;
 }
-void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list provided
+void ConsoleUI::userMenuPrint(const vector<Relation> &relation)     // Print list provided
 {
     /*
      * Prints out a partial list of scientist-computer relations, depending on how
