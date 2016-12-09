@@ -1,5 +1,5 @@
 #include "consoleui.h"
-#include <windows.h>
+//#include <windows.h>
 #include <iomanip>
 
 using namespace std;
@@ -90,12 +90,12 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
         if(command == "quit")
         {
-            HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+            //HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
             clearScreen();
             smallLogoPrint();
-            SetConsoleTextAttribute( hstdout, 0xC );
+            //SetConsoleTextAttribute( hstdout, 0xC );
             cout << setw(85) << "SACR version 2.0 will be released on midnight, December 15th 2016" << endl << endl;
-            SetConsoleTextAttribute( hstdout, 0xF );
+            //SetConsoleTextAttribute( hstdout, 0xF );
             break;
         }
         clearScreen();
@@ -2081,8 +2081,8 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
 }
 void ConsoleUI::smallLogoPrint()
 {
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-    SetConsoleTextAttribute( hstdout, 0xC );
+    //HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    //SetConsoleTextAttribute( hstdout, 0xC );
 
     int w = 65;
     cout << setw(w-1) << "  _____   ___    ______ ____" << endl;
@@ -2090,18 +2090,18 @@ void ConsoleUI::smallLogoPrint()
     cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
     cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    //SetConsoleTextAttribute( hstdout, 0x8 );
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
 
-    SetConsoleTextAttribute( hstdout, 0x0F );
+    //SetConsoleTextAttribute( hstdout, 0x0F );
 }
 void ConsoleUI::largeLogoPrint()
 {
     if(true)
     {
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-    SetConsoleTextAttribute( hstdout, 0xC );
+    //HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    //SetConsoleTextAttribute( hstdout, 0xC );
 
     cout << "            _____                    _____                    _____                    _____          " << endl;
     cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
@@ -2121,31 +2121,31 @@ void ConsoleUI::largeLogoPrint()
     cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
     cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
     cout << "        \\::::::/    /";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    //SetConsoleTextAttribute( hstdout, 0x8 );
     cout <<"  Scientist";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    //SetConsoleTextAttribute( hstdout, 0xC );
     cout << "    /:::/    /            \\:::\\    \\                |::|   |           " << endl;
     cout << "         \\::::/    /  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    //SetConsoleTextAttribute( hstdout, 0x8 );
     cout << "And";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    //SetConsoleTextAttribute( hstdout, 0xC );
     cout << "          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
     cout << "          \\::/    /  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    //SetConsoleTextAttribute( hstdout, 0x8 );
     cout << "Computer";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    //SetConsoleTextAttribute( hstdout, 0xC );
     cout << "      \\::/    /                \\::/    /                \\:|   |           " << endl;
     cout << "           \\/____/  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    //SetConsoleTextAttribute( hstdout, 0x8 );
     cout << "Relations";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    //SetConsoleTextAttribute( hstdout, 0xC );
     cout << "       \\/____/  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    //SetConsoleTextAttribute( hstdout, 0x8 );
     cout << "Version 1.0";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    //SetConsoleTextAttribute( hstdout, 0xC );
     cout << "     \\/____/                  \\|___|           " << endl;
 
-    SetConsoleTextAttribute( hstdout, 0x0F );
+    //SetConsoleTextAttribute( hstdout, 0x0F );
     }
 }
 void ConsoleUI::numericLimiter()
