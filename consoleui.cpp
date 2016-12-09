@@ -1,14 +1,13 @@
 #include "consoleui.h"
 //#include <windows.h>
-#include <iomanip>
+#include <stdlib.h>
 
 using namespace std;
 
 
 ConsoleUI::ConsoleUI()                                              // Constructor function
 {
-    /*
-     * Gets information from file so it's used from the beginning.
+     /* Gets information from file so it's used from the beginning.
      */
 
     _service.getScientists(); // Uploads the list of scientists from file.
@@ -25,7 +24,6 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
     string command;
     bool invalidInput = true;
-
     clearScreen();
 
 
@@ -480,6 +478,7 @@ void ConsoleUI::addScientist()
             cout << endl;
         }
 
+        numericLimiter();
         checkInput = userCheckInput(); // A function that checks if the input is valid
 
         if (checkInput == 0)
@@ -1209,6 +1208,7 @@ void ConsoleUI::addComputer()
             cout << "Was never built" << endl;
         }
 
+        numericLimiter();
         checkInput = userCheckInput(); // A function that checks if the input is valid
 
         if (checkInput == 0)
@@ -1714,6 +1714,8 @@ void ConsoleUI::addRelation()
             if(_service.addRelation(scientist, computer))
             {
                 cout << endl << scientist << "-" << computer << " relation successfully added to the list" << endl;
+                askReturnToMenu();
+                break;
 
             }
             else
@@ -2057,7 +2059,6 @@ int  ConsoleUI::userCheckInput() const                              // Checks in
         cout << "C - Cancel add and return to the menu" << endl;
         cout << endl << "Select: ";
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, answer);
 
 
