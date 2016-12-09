@@ -721,11 +721,11 @@ void ConsoleUI::searchScientist()
         if(inputCheck == 1)
         {
             int userInputAge;
-            cout << endl << "Search by age: " << endl;
+            clearScreen();
+            cout << endl << "Search by age: ";
 
             while(true)
             {
-                cout << "Select: ";
                 cin >> userInputAge;
 
                 if(cin.fail())
@@ -748,6 +748,7 @@ void ConsoleUI::searchScientist()
             int userInputAgeLast;
             while(true)
             {
+                clearScreen();
                 cout << "From age: ";
                 cin >> userInputAgeFirst;
 
@@ -762,6 +763,7 @@ void ConsoleUI::searchScientist()
             }
             while(true)
             {
+                clearScreen();
                 cout << "To age: ";
                 cin >> userInputAgeLast;
 
@@ -934,6 +936,7 @@ void ConsoleUI::searchScientist()
 
             while(true)
             {
+                clearScreen();
                 cout << "Year scientist died (0 for still alive): ";
                 cin >> userInputDeath;
 
@@ -958,6 +961,7 @@ void ConsoleUI::searchScientist()
 
             while(true)
             {
+                clearScreen();
                 cout << "From year: ";
                 cin >> userInputDeathFirst;
 
@@ -972,6 +976,7 @@ void ConsoleUI::searchScientist()
            }
            while(true)
            {
+               clearScreen();
                cout << "To year(0 for still alive): ";
                cin >> userInputDeathLast;
 
