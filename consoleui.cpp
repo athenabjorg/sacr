@@ -89,8 +89,17 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
             clearScreen();
             smallLogoPrint();
             textColorRed();
-            cout << setw(85) << "SACR version 2.0 will be released on midnight, December 16th 2016" << endl << endl;
-            cout << setw(46) << "24/7 HOTLINE: +354 7707010" << endl << endl;
+            if((whatYearIsIt() - 2016) == 0)
+            {
+                cout << setw(85) << "SACR version 2.0 will be released in December 2016" << endl << endl;
+            }
+            else
+            {
+                cout << setw(73) << "You are running an old version of SACR" << endl;
+                cout << setw(105) << "Get the latest version from www.themostamazingprogrammersintheworld.ru" << endl << endl;
+            }
+
+            cout << setw(61) << "24/7 HOTLINE: +354 7707010" << endl << endl;
             textColorWhite();
             break;
         }
@@ -1979,6 +1988,7 @@ void ConsoleUI::searchRelation()
         cout << "Search by year:" << endl;
         cout << endl << "(1) - Search for a relation by year it was made" << endl;
         cout << "(2) - Search for a relation by range of year it was made " << endl;
+
 
         while(true)
         {
