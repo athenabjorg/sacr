@@ -103,7 +103,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
     string line;
 
     clearScreen();
-    //smallLogoPrint();
+
     switch(loadType) // (1)add -> (2)remove -> (3)list -> (4)search -> (5)sort
     {
         case 1: line = "Would you like to add a scientist, computer or a relation to the database?";
@@ -270,26 +270,36 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
     cout << left << setw(25) << "Computer name:"
          << setw(10) << right << "Year built:"
          << setw(20) << "Type:"
-         << setw(15) << "Was built:" << endl;
-         //<< setw(22) << "Years since built:" << endl;
-    cout << "=======================================================================" << endl;
+         << setw(15) << "Was built:"
+         << setw(22) << "Years since built:" << endl;
+    cout << "=============================================================================================" << endl;
     for (size_t i = 0; i< computer.size(); ++i)
     {
-        cout << left << setw(25) << computer[i].getName()
-             << setw(10) << right << computer[i].getYear()
-             << setw(20) << computer[i].getType();
-                if(computer[i].getBuilt()==true)
-                {
-                     cout << setw(15) << "Yes" << endl;
-                     //cout << setw(22) << computer[i].getYearsSinceBuilt() << endl; // Mætir afgangi
-                }
-                else
-                {
-                     cout << setw(15) << "No" << endl;
-                     //cout << setw (22) << "-" << endl; // Þarf að vera ef við setjum inn yearsSinceBuilt
-                }
+        cout << left << setw(25) << computer[i].getName();
+
+        if(computer[i].getYear() == 0)
+        {
+            cout << setw(10) << right << "-";
+        }
+        else
+        {
+            cout << setw(10) << right << computer[i].getYear();
+        }
+
+        cout << setw(20) << computer[i].getType();
+
+        if(computer[i].getBuilt()==true)
+        {
+             cout << setw(15) << "Yes";
+             cout << setw(22) << computer[i].getYearsSinceBuilt() << endl; // Mætir afgangi
+        }
+        else
+        {
+             cout << setw(15) << "No";
+             cout << setw (22) << "-" << endl; // Þarf að vera ef við setjum inn yearsSinceBuilt
+        }
     }
-    cout << "=======================================================================" << endl;
+    cout << "=============================================================================================" << endl;
     cout << "Total: " << computer.size() << " computers" << endl;
 }
 void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list provided
@@ -1609,7 +1619,7 @@ void ConsoleUI::sortComputer()
         inputNotValid = true;
 
 
-    }while(userInput < 1 || userInput > 8);
+    }while(userInput < 1 || userInput > 10);
 
 
     cin.clear();

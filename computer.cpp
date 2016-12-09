@@ -31,7 +31,7 @@ bool Computer::getBuilt() const
 {
     return _built;
 }
-/*int Computer::whatYearIsIt() const // Óþarfi ef við ætlum ekki að hafa yearsSinceBuilt
+int Computer::whatYearIsIt() const // Óþarfi ef við ætlum ekki að hafa yearsSinceBuilt
 {   // Returns the current year.
 
     time_t     currentTime;
@@ -47,4 +47,4 @@ int Computer::getYearsSinceBuilt() const
 {
         return (whatYearIsIt() - _year);
 }
-*/
+

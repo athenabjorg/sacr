@@ -4,9 +4,14 @@
 using namespace std;
 
 
+//operator overloading functions for scientistSort.
+
 bool sortByAgeAsc (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
 bool sortByAgeDesc(const Scientist &a, const Scientist &b) { return a.getAge()    >  b.getAge();    }
 
+//operator overloading functions for computerSort.
+bool sortByYearsSinceBuiltAsc (const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() <  b.getYearsSinceBuilt(); }
+bool sortByYearsSinceBuiltDesc(const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() >  b.getYearsSinceBuilt(); }
 
 service::service()
 {
@@ -229,7 +234,20 @@ vector<Computer> service::computerSort(int sortType)
 
     vector<Computer> computers;
 
-    computers = _data.sortComputers(sortType);
+    if(sortType == 9)
+    {
+        computers = _computers;
+        sort(computers.begin(), computers.end(), sortByYearsSinceBuiltAsc);
+    }
+    else if(sortType == 10)
+    {
+        computers = _computers;
+        sort(computers.begin(), computers.end(), sortByYearsSinceBuiltDesc);
+    }
+    else
+    {
+       computers = _data.sortComputers(sortType);
+    }
 
     return computers;
 
