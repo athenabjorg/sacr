@@ -91,7 +91,8 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
             clearScreen();
             smallLogoPrint();
             textColorLogo();
-            cout << setw(85) << "SACR version 2.0 will be released on midnight, December 15th 2016" << endl << endl;
+            cout << setw(85) << "SACR version 2.0 will be released on midnight, December 16th 2016" << endl << endl;
+            cout << setw(46) << "24/7 HOTLINE: +354 7707010" << endl << endl;
             textColorMain();
             break;
         }
@@ -201,7 +202,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
 
 }
-void ConsoleUI::userMenuPrint()  //remove þetta, nota bara vecor prentin?                                   // Prints whole list
+void ConsoleUI::userMenuPrint(int loadType)  //remove þetta, nota bara vecor prentin?                                   // Prints whole list
 {
     /*
      * Prints out a partial list of scientist, depending on how
@@ -209,35 +210,19 @@ void ConsoleUI::userMenuPrint()  //remove þetta, nota bara vecor prentin?      
     */
 
     vector<Scientist> scientist = _service.getScientists();
+    vector<Computer> computer = _service.getComputers();
+    vector<Relation> relation = _service.getRelations();
 
-    clearScreen();
-    smallLogoPrint();
-    cout << left << setw(30) << "Scientist name:"
-         << setw(10) << right << "gender:"
-         << setw(10) << "born:"
-         << setw(10) << "died:"
-         << setw(10) << "age:" << endl;
-    cout << "======================================================================" << endl;
-    for (size_t i = 0; i < scientist.size(); ++i)
+    switch(loadType)
     {
-        cout << left << setw(30) << scientist[i].getName()
-             << setw(10) << right << scientist[i].getGender()
-             << setw(10) << scientist[i].getBirth();
-
-             if(scientist[i].getDeath() == 0)
-             {
-                 cout << setw(10) << "-";
-             }
-             else
-             {
-                 cout << setw(10) << scientist[i].getDeath();
-             }
-             cout << setw(10) << scientist[i].getAge() << endl;
+        case 1: userMenuPrint(scientist);
+            break;
+        case 2: userMenuPrint(computer);
+            break;
+        case 3: userMenuPrint(relation);
+            break;
+        default: userMenuPrint(scientist);
     }
-    cout << "======================================================================" << endl;
-    cout << "Total: " << scientist.size() << " scientists" << endl;
-
-    askReturnToMenu();
 }
 void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print list provided
 {
@@ -363,7 +348,33 @@ void ConsoleUI::addScientist()
 
             if(name == "")
             {
-                cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl;
+                cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+            }
+            else if(_service.findScientist(0, name).size() > 0)
+            {
+                int userInput;
+                cout << "This scientists is allready in the database" << endl;
+                cout << "(1) To enter name again" << endl;
+                cout << "(2) To replace scientist" << endl;
+                cout << "Select: ";
+                cin >> userInput;
+
+                numericLimiter();
+
+
+                if(userInput == 1)
+                {
+                    continue;
+                }
+                else if(userInput == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Wrong input!";
+                }
+
             }
             else
             {
@@ -467,25 +478,8 @@ void ConsoleUI::addScientist()
             }
             else
             {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing name" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeScientist(name);
-                    _service.addScientist(name, gender, birthYear, deathYear);
-                }
-                else if (userInput == 2)
-                {
-                    numericLimiter();
-                    addScientist();
-                }
-
+                _service.updateScientist(name, gender, birthYear, deathYear);
+                cout << endl << name << " successfully replaced in the list" << endl;
             }
             askReturnToMenu();
             break;
@@ -579,7 +573,7 @@ void ConsoleUI::removeScientist()
             _service.removeAllScientists();
             clearScreen();
             smallLogoPrint();
-            userMenuPrint();
+            userMenuPrint(1);
         }
 
     }
@@ -1081,6 +1075,32 @@ void ConsoleUI::addComputer()
             {
                 cout << "Computers have names too!" << endl;
             }
+            else if(_service.findComputer(0, name).size() > 0)
+            {
+                int userInput;
+                cout << "This computer is allready in the database" << endl;
+                cout << "(1) To enter name again" << endl;
+                cout << "(2) To replace computer" << endl;
+                cout << "Select: ";
+                cin >> userInput;
+
+                numericLimiter();
+
+
+                if(userInput == 1)
+                {
+                    continue;
+                }
+                else if(userInput == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Wrong input!";
+                }
+
+            }
             else
             {
                 break;
@@ -1196,20 +1216,8 @@ void ConsoleUI::addComputer()
             }
             else
             {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing data" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeComputer(name);
-                    _service.addComputer(name, yearBuilt, type, built);
-                }
-
+                cout << endl << name << " successfully replaced in the list" << endl;
+                _service.updateComputer(name, yearBuilt, type, built);
             }
             askReturnToMenu();
             break;
@@ -1304,7 +1312,7 @@ void ConsoleUI::removeComputer()
             _service.removeAllComputers(); // TODO::Needs a functin in service layer
             clearScreen();
             smallLogoPrint();
-            userMenuPrint();
+            userMenuPrint(2);
         }
 
     }
@@ -1421,7 +1429,7 @@ void ConsoleUI::searchComputer()
 
                 while(true)
                 {
-                    cout << endl << "Starting year: ";
+                    cout << endl << "From year: ";
                     cin >> userInputYearFirst;
 
                     if(cin.fail())
@@ -1435,7 +1443,7 @@ void ConsoleUI::searchComputer()
                 }
                 while(true)
                 {
-                    cout << endl << "Ending year: ";
+                    cout << endl << "To year: ";
                     cin >> userInputYearLast;
 
                     if(cin.fail())
@@ -1626,21 +1634,25 @@ void ConsoleUI::addRelation()
         while(true)
         {
         clearScreen();
-        smallLogoPrint();
+        userMenuPrint(1);
+        cout << "Enter the scientist's name: ";
 
         while(true)
         {
-            cout << "Enter the scientist's name: ";
             cin.ignore(-1);
             getline(cin, scientist);
 
             if(scientist == "")
             {
+                userMenuPrint(1);
                 cout << "No name no fame!" << endl;
+                cout << "Enter the scientist's name: ";
             }
             else if(_service.doesScientistExist(scientist) == false)
             {
+                userMenuPrint(1);
                 cout << "There are no scientists by that name." << endl;
+                cout << "Enter the scientist's name: ";
             }
             else
             {
@@ -1648,19 +1660,25 @@ void ConsoleUI::addRelation()
             }
         }
 
+        userMenuPrint(2);
+        cout << "Enter the computer's name: ";
+
         while(true)
         {
-            cout << "Enter the computer's name: ";
             cin.ignore(-1);
             getline(cin, computer);
 
             if(computer == "")
             {
+                userMenuPrint(2);
                 cout << "Computers have names too!" << endl;
+                cout << "Enter the computer's name: ";
             }
             else if(_service.doesComputerExist(computer) == false)
             {
+                userMenuPrint(2);
                 cout << "There are no computers by that name." << endl;
+                cout << "Enter the computer's name: ";
             }
             else
             {
@@ -1840,7 +1858,6 @@ void ConsoleUI::removeRelation()
 
     }
 }
-
 void ConsoleUI::searchRelation()
 {
     /*
@@ -1853,14 +1870,25 @@ void ConsoleUI::searchRelation()
     smallLogoPrint();
     cout << "Select a search option: " << endl;
     cout << "===================================" << endl;
-    cout << "(1)    -   Search by Scientist Name" << endl;
+    cout << "(1)     -   Search by Scientist Name" << endl;
     cout << "(2)     -   Search by Computer Name" << endl;
-    cout << "(3)         -   Search by Year Built" << endl;
+    cout << "(3)     -   Search by Year Built" << endl;
 
-    cout << endl << "Select: ";
-    getline(cin, command);
 
-    forceLowerCase(command);
+    while(true)
+    {
+        cout << "Select: ";
+        getline(cin, command);
+
+        if(command[0] == '1' || command[0] == '2' || command[0] == '3')
+        {
+            break;
+        }
+        else
+        {
+            cout << "Invalid input!" << endl;
+        }
+    }
 
     if(command[0] == '1') // Find relation by Scientist
     {
@@ -1901,25 +1929,82 @@ void ConsoleUI::searchRelation()
         cout << "Search by year:" << endl;
         cout << endl << "(1) - Search for a relation by year it was made" << endl;
         cout << "(2) - Search for a relation by range of year it was made " << endl;
-        cout << endl << "Select: ";
 
-        cin >> inputCheck;
+        while(true)
+        {
+            cout << endl << "Select: ";
+            cin >> inputCheck;
+
+            if(cin.fail())
+            {
+                numericLimiter("Invalid input");
+            }
+            else if(inputCheck == 1 || inputCheck == 2)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+            }
+        }
+
 
         switch(inputCheck)
         {
             case 1: cout << "Search by year built" << endl;
-                    cout << endl << "Year: ";
-                    cin >> userInputYear;
+
+
+                    while(true)
+                    {
+                        cout << endl << "Year: ";
+                        cin >> userInputYear;
+
+                        if(cin.fail())
+                        {
+                            numericLimiter("Invalid input");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     relation = _service.findRelation(4, to_string(userInputYear));
                     userMenuPrint(relation);
                     askReturnToMenu();
                     break;
 
             case 2: cout << "Search by range of year built" << endl;
-                    cout << endl << "Starting year: ";
-                    cin >> userInputYearFirst;
-                    cout << endl << "Ending year: ";
-                    cin >> userInputYearLast;
+
+                    while(true)
+                    {
+                        cout << endl << "Starting year: ";
+                        cin >> userInputYearFirst;
+
+                        if(cin.fail())
+                        {
+                            numericLimiter("Invalid input");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    while(true)
+                    {
+                        cout << endl << "Ending year: ";
+                        cin >> userInputYearLast;
+
+                        if(cin.fail())
+                        {
+                            numericLimiter("Invalid input");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     relation = _service.findRelation(5, to_string(userInputYearFirst), to_string(userInputYearLast));
                     userMenuPrint(relation);
                     askReturnToMenu();
@@ -1929,6 +2014,7 @@ void ConsoleUI::searchRelation()
     cout << endl;
     }
 }
+
 void ConsoleUI::sortRelation()
 {
     /*
@@ -1939,11 +2025,18 @@ void ConsoleUI::sortRelation()
      */
 
     vector<Relation> sortedRelations;
-    bool inputCheck = true;
     int userInput;
+    bool inputNotValid = false;
 
     clearScreen();
     smallLogoPrint();
+
+
+
+    do
+    {
+        clearScreen();
+        smallLogoPrint();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -1954,39 +2047,36 @@ void ConsoleUI::sortRelation()
         cout << "(5)     -   Sort by Year Built (0-9)" << endl;
         cout << "(6)     -   Sort by Year Built (9-0)" << endl;
 
-    do
-    {
+        if(inputNotValid)
+        {
+            cout << endl << "Invalid input!" << endl;
+
+        }
+
         cout << endl << "Select: ";
         cin >> userInput;
 
         if(cin.fail())
         {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-        else if(userInput < 1 || userInput > 6) // check if input is int and if it ranges from 1 to 10
-        {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
-               cin.clear();
-        }
-        else
-        {
-            inputCheck = false;
+            numericLimiter("Invalid input!");
         }
 
-    }while(inputCheck);
-        clearScreen();
-        smallLogoPrint();
+
+        inputNotValid = true;
 
 
-     sortedRelations = _service.relationSort(userInput);
+    }while(userInput < 1 || userInput > 8);
 
-     userMenuPrint(sortedRelations); // Laga þegar print er orðið klárt
 
-     askReturnToMenu();
+    cin.clear();
+
+    clearScreen();
+
+    sortedRelations = _service.relationSort(userInput);
+
+    userMenuPrint(sortedRelations);
+
+    askReturnToMenu();
 
 }
 
@@ -2074,12 +2164,14 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
 void ConsoleUI::smallLogoPrint()                                    // Prints a small logo to screen
 {
     textColorLogo();
+
     int w = 65;
     cout << setw(w-1) << "  _____   ___    ______ ____" << endl;
     cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
     cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
     cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
+
     textColorSubLogo();
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
@@ -2091,6 +2183,7 @@ void ConsoleUI::largeLogoPrint()                                    // Prints a 
     if(true)
     {
     textColorLogo();
+
     cout << "            _____                    _____                    _____                    _____          " << endl;
     cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
     cout << "          /::\\    \\                /::\\    \\                /::\\    \\                /::\\    \\         " << endl;
@@ -2135,6 +2228,7 @@ void ConsoleUI::largeLogoPrint()                                    // Prints a 
     cout << "     \\/____/                  \\|___|           " << endl;
 
     textColorMain();
+
     }
 }
 void ConsoleUI::numericLimiter()
@@ -2160,7 +2254,6 @@ void ConsoleUI::textColorLogo()
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x0C );
 }
-
 void ConsoleUI::textColorSubLogo()
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
