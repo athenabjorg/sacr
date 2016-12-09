@@ -381,7 +381,7 @@ void ConsoleUI::addScientist()
                 }
                 else
                 {
-                    cout << "Wrong input!";
+                    cout << "Invalid input!";
                 }
 
             }
@@ -678,7 +678,7 @@ void ConsoleUI::searchScientist()
         }
         else
         {
-            cout << "Wrong Input" << endl;
+            cout << "Invalid Input" << endl;
         }
 
 
@@ -784,7 +784,7 @@ void ConsoleUI::searchScientist()
         {
             clearScreen();
             smallLogoPrint();
-            cout << "Wrong Input" << endl;
+            cout << "Invalid Input" << endl;
         }
     }
     else if(command == "birth")
@@ -889,7 +889,7 @@ void ConsoleUI::searchScientist()
         }
         else
         {
-            cout << endl << "Wrong Input" << endl;
+            cout << endl << "Invalid Input" << endl;
         }
     }
     else if(command == "death")
@@ -992,7 +992,7 @@ void ConsoleUI::searchScientist()
         {
             clearScreen();
             smallLogoPrint();
-            cout << "Wrong Input" << endl;
+            cout << "Invalid Input" << endl;
         }
     }
     cout << endl;
@@ -1107,7 +1107,7 @@ void ConsoleUI::addComputer()
                 }
                 else
                 {
-                    cout << "Wrong input!";
+                    cout << "Invalid input!";
                 }
 
             }
@@ -1646,7 +1646,7 @@ void ConsoleUI::addRelation()
         {
         clearScreen();
         userMenuPrint(1);
-        cout << "Enter the scientist's name: ";
+        cout << endl << "Enter the scientist's name: ";
 
         while(true)
         {
@@ -1656,8 +1656,10 @@ void ConsoleUI::addRelation()
             if(scientist == "")
             {
                 userMenuPrint(1);
-                cout << "No name no fame!" << endl;
-                cout << "Enter the scientist's name: ";
+                textColorLogo();
+                cout << endl << "No name no fame!" << endl;
+                textColorMain();
+                cout << endl << "Enter the scientist's name: ";
             }
             else if(_service.doesScientistExist(scientist) == false)
             {
@@ -1672,7 +1674,7 @@ void ConsoleUI::addRelation()
         }
 
         userMenuPrint(2);
-        cout << "Enter the computer's name: ";
+        cout << endl << "Enter the computer's name: ";
 
         while(true)
         {
@@ -1708,7 +1710,7 @@ void ConsoleUI::addRelation()
         {
             if(_service.addRelation(scientist, computer))
             {
-                cout << endl << scientist << "-" << computer << " relation successfully added to the list" << endl;
+                cout << endl << "Relation between " << scientist << " and " << computer << " successfully added to the list" << endl;
                 askReturnToMenu();
                 break;
 
@@ -2022,7 +2024,7 @@ void ConsoleUI::searchRelation()
                     userMenuPrint(relation);
                     askReturnToMenu();
                     break;
-            default: cout << "Wrong Input" << endl;
+            default: cout << "Invalid Input" << endl;
         }
     cout << endl;
     }
@@ -2110,7 +2112,7 @@ int  ConsoleUI::userCheckInput() const                              // Checks in
 {
     /*
      * Check if all data is correct and return a int depending on what user selected.
-     * (0) yes, (1) no, (2) cancel and if nothing selected or wrong input the loop will
+     * (0) yes, (1) no, (2) cancel and if nothing selected or invalid input the loop will
      * keep running until one of the 3 is selected.
      */
 
@@ -2274,15 +2276,15 @@ void ConsoleUI::textColorSubLogo()
 #else
 void ConsoleUI::textColorMain()
 {
-    // Nothing happening! absolutely nothing to see here!
+    // Nothing happening! Absolutely nothing to see here!
 }
 void ConsoleUI::textColorLogo()
 {
-    // Nothing happening! absolutely nothing to see here!
+    // Nothing happening! Absolutely nothing to see here!
 }
 
 void ConsoleUI::textColorSubLogo()
 {
-    // Nothing happening! absolutely nothing to see here!
+    // Nothing happening! Absolutely nothing to see here!
 }
 #endif
