@@ -92,6 +92,8 @@ public:
 
     void removeRelation(int removeType, string inputName);
         // Removes relation by either; removeType 1 = scientist name, 2 = computer name.
+    void removeRelation(string scientist, string computer);
+        // Removes a specific relation.
     void removeAllRelations();
         // Removes all relations from the database. Careful!
 
