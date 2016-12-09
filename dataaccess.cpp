@@ -332,9 +332,10 @@ void DataAccess::updateComputer(Computer computer)  // Updating SQLite database
     built = computer.getBuilt();
 
 
-    line = "UPDATE Computers"
-           "SET Type = \"" + type + "\", year = " + to_string(year) + ", built = " + to_string(built) + ", Valid = 1"
+    line = "UPDATE Computers "
+           "SET Type = \"" + type + "\", year = " + to_string(year) + ", built = " + to_string(built) + ", Valid = 1 "
            "WHERE Name LIKE \"" + name + "\"";
+    cout << line << endl;
 
     QString input = QString::fromStdString(line);
 
