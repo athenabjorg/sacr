@@ -1661,23 +1661,24 @@ void ConsoleUI::addRelation()
     {
         //clearScreen();
         smallLogoPrint();
-
+        userMenuPrint(1);
         while(true)
         {
-             userMenuPrint(1);
+
              cout << endl << "Enter the scientist's name: ";
              cin.ignore(-1);
              getline(cin, name);
 
              if(name == "")
              {
+                 userMenuPrint(1);
                  textColorRed();
-                 cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+                 cout << endl << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
                  textColorWhite();
              }
              else if(_service.doesScientistExist(name) == false)
              {
-                 clearScreen();
+                 userMenuPrint(1);
                  cout << "This scientist does not exist in the database, try again!" << endl;
              }
              else
@@ -1685,23 +1686,24 @@ void ConsoleUI::addRelation()
                  break;
              }
          }
-
+        userMenuPrint(2);
         while(true)
         {
-             userMenuPrint(2);
-             cout << "Enter the computer's name: ";
+
+             cout << endl << "Enter the computer's name: ";
              cin.ignore(-1);
              getline(cin, computer);
 
              if(computer == "")
              {
+                 userMenuPrint(2);
                  textColorRed();
-                 cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl; // FIXME::
+                 cout << endl << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl;
                  textColorWhite();
              }
              else if(_service.doesComputerExist(computer) == false)
              {
-                 clearScreen();
+                 userMenuPrint(2);
                  cout << "This computer does not exist in the database, try again!" << endl;
              }
              else
@@ -1709,8 +1711,6 @@ void ConsoleUI::addRelation()
                  break;
              }
          }
-
-
 
          // Check if input is correct
          clearScreen();
@@ -1724,7 +1724,7 @@ void ConsoleUI::addRelation()
              if(_service.doesRelationExist(name, computer) == false)
              {
                  _service.addRelation(name, computer);
-                 cout << endl << name << " relation to " << computer << " successfully added to the list" << endl;
+                 cout << "Relation between " << name << " and " << computer << " successfully added to the list" << endl;
              }
              else
              {
