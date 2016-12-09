@@ -280,12 +280,10 @@ void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite databas
     int year;
     bool built;
 
-
     name = newComputer.getName();
     type = newComputer.getType();
     year = newComputer.getYear();
     built = newComputer.getBuilt();
-
 
     line = "INSERT INTO Computers(name,type,year,built) "
             "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
@@ -296,8 +294,6 @@ void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite databas
     QSqlQuery query;
     query.exec(input);
     db.close();
-
-
 }
 void DataAccess::updateComputer(Computer computer)  // Updating SQLite database
 {
