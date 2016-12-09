@@ -1,5 +1,6 @@
 #include "consoleui.h"
 #include <windows.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -89,8 +90,12 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
         if(command == "quit")
         {
+            HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
             clearScreen();
             smallLogoPrint();
+            SetConsoleTextAttribute( hstdout, 0xC );
+            cout << setw(85) << "SACR version 2.0 will be released on midnight, December 15th 2016" << endl << endl;
+            SetConsoleTextAttribute( hstdout, 0xF );
             break;
         }
         clearScreen();
