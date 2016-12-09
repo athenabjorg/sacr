@@ -225,43 +225,6 @@ void ConsoleUI::userMenuPrint(int loadType)  //remove þetta, nota bara vecor pr
             break;
         default: userMenuPrint(scientist);
     }
-
-
-
-/*
-    vector<Scientist> scientist = _service.getScientists();
-
-    clearScreen();
-    smallLogoPrint();
-    cout << left << setw(30) << "Scientist name:"
-         << setw(10) << right << "gender:"
-         << setw(10) << "born:"
-         << setw(10) << "died:"
-         << setw(10) << "age:" << endl;
-    cout << "======================================================================" << endl;
-    for (size_t i = 0; i < scientist.size(); ++i)
-    {
-        cout << left << setw(30) << scientist[i].getName()
-             << setw(10) << right << scientist[i].getGender()
-             << setw(10) << scientist[i].getBirth();
-
-             if(scientist[i].getDeath() == 0)
-             {
-                 cout << setw(10) << "-";
-             }
-             else
-             {
-                 cout << setw(10) << scientist[i].getDeath();
-             }
-             cout << setw(10) << scientist[i].getAge() << endl;
-    }
-    cout << "======================================================================" << endl;
-    cout << "Total: " << scientist.size() << " scientists" << endl;
-
-
-   askReturnToMenu();
-
-*/
 }
 void ConsoleUI::userMenuPrint(const vector<Scientist> &scientist)   // Print list provided
 {
@@ -387,7 +350,33 @@ void ConsoleUI::addScientist()
 
             if(name == "")
             {
-                cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl;
+                cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+            }
+            else if(_service.findScientist(0, name).size() > 0)
+            {
+                int userInput;
+                cout << "This scientists is allready in the database" << endl;
+                cout << "(1) To enter name again" << endl;
+                cout << "(2) To replace scientist" << endl;
+                cout << "Select: ";
+                cin >> userInput;
+
+                numericLimiter();
+
+
+                if(userInput == 1)
+                {
+                    continue;
+                }
+                else if(userInput == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Wrong input!";
+                }
+
             }
             else
             {
@@ -491,25 +480,8 @@ void ConsoleUI::addScientist()
             }
             else
             {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing name" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeScientist(name);
-                    _service.addScientist(name, gender, birthYear, deathYear);
-                }
-                else if (userInput == 2)
-                {
-                    numericLimiter();
-                    addScientist();
-                }
-
+                //_service.updateScientist(name, gender, birthYear, deathYear);
+                cout << endl << name << " successfully replaced in the list" << endl;
             }
             askReturnToMenu();
             break;

@@ -28,6 +28,8 @@ public:
         // Adds a scientist to the list and updates the file.
         // Returns true if adding succeded, false otherwise.
 
+    bool updateScientist(string name, char gender, int birth, int death);
+
     bool removeScientist(string name);
         // Removes a scientist with that name from the vector. Case insensitive.
         // Returns true if removing succeded, false otherwise.
