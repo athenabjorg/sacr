@@ -480,7 +480,7 @@ void ConsoleUI::addScientist()
             }
             else
             {
-                //_service.updateScientist(name, gender, birthYear, deathYear);
+                _service.updateScientist(name, gender, birthYear, deathYear);
                 cout << endl << name << " successfully replaced in the list" << endl;
             }
             askReturnToMenu();
@@ -1077,6 +1077,32 @@ void ConsoleUI::addComputer()
             {
                 cout << "Computers have names too!" << endl;
             }
+            else if(_service.findComputer(0, name).size() > 0)
+            {
+                int userInput;
+                cout << "This computer is allready in the database" << endl;
+                cout << "(1) To enter name again" << endl;
+                cout << "(2) To replace computer" << endl;
+                cout << "Select: ";
+                cin >> userInput;
+
+                numericLimiter();
+
+
+                if(userInput == 1)
+                {
+                    continue;
+                }
+                else if(userInput == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Wrong input!";
+                }
+
+            }
             else
             {
                 break;
@@ -1192,20 +1218,8 @@ void ConsoleUI::addComputer()
             }
             else
             {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing data" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeComputer(name);
-                    _service.addComputer(name, yearBuilt, type, built);
-                }
-
+                cout << endl << name << " successfully replaced in the list" << endl;
+                _service.updateComputer(name, yearBuilt, type, built);
             }
             askReturnToMenu();
             break;
