@@ -41,6 +41,7 @@ public:
     // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
     void saveComputer(Computer newComputer);
+    void updateComputer(Computer computer);
 
     vector<Computer> loadComputers();
     vector<Computer> loadComputers(int loadType, string parameter);

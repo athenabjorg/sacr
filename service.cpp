@@ -196,6 +196,22 @@ bool service::addComputer(string name, int year, string type, bool built)
     return false;
 
 }
+bool service::updateComputer(string name, int year, string type, bool built)
+{   // Adds a scientist to the list and updates the file.
+    // Returns true if adding succeded, false otherwise.
+
+    if(_data.doesComputerExist(name) == true)
+    {
+        Computer computer(name, year, type, built);
+
+        _computers.push_back(computer);
+        _data.updateComputer(computer);
+        return true;
+    }
+
+    return false;
+
+}
 
 bool service::removeComputer(string name)
 {

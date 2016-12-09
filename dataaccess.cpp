@@ -319,6 +319,32 @@ void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite databas
 
 
 }
+void DataAccess::updateComputer(Computer computer)  // Updating SQLite database
+{
+    string line, name, type;
+    int year;
+    bool built;
+
+
+    name = computer.getName();
+    type = computer.getType();
+    year = computer.getYear();
+    built = computer.getBuilt();
+
+
+    line = "UPDATE Computers"
+           "SET Type = \"" + type + "\", year = " + to_string(year) + ", built = " + to_string(built) + ", Valid = 1"
+           "WHERE Name LIKE \"" + name + "\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+
+
+}
 
 vector<Computer> DataAccess::loadComputers()                  // From text file to vector
 {

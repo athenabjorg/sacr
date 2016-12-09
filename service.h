@@ -53,6 +53,8 @@ public:
 
     bool addComputer(string name, int year, string type, bool built);
 
+    bool updateComputer(string name, int year, string type, bool built);
+
     bool removeComputer(string name);
 
     void removeAllComputers();
