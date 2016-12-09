@@ -78,7 +78,7 @@ private:
 
 // ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
 private:
-    int  userCheckInput() const;
+    int  userCheckInput();
         // Asks for a yes, no, or cancel input and returns a corresponding numerical value (y = 0, n = 1, cancel = 2)
     void forceLowerCase(string &command);
         // Makes a string all lower case, to make commands eaier to read.
@@ -95,6 +95,8 @@ private:
     void numericLimiter();
 
     void numericLimiter(string comment);
+
+    void invalidInputPrompt();
 
     #ifdef _WIN32
     // Includes the following functions if running on Windows.
