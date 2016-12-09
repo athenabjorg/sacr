@@ -1720,8 +1720,26 @@ void ConsoleUI::addRelation()
                 cout << "This relation is already in the database." << endl;
                 cout << endl << "1 - Start over" << endl;
                 cout << "2 - Cancel" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
+                while(true)
+                {
+                    cout << endl << "Select: ";
+                    cin >> userInput;
+
+                    if(cin.fail())
+                    {
+                        numericLimiter("Invalid input!");
+                    }
+                    else if(userInput == 2 || userInput == 1)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        cout << "Invalid input!" << endl;
+                    }
+
+                }
+
 
                 if(userInput == 2)
                 {
