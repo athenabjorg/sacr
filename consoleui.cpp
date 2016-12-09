@@ -94,7 +94,7 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
             clearScreen();
             smallLogoPrint();
             SetConsoleTextAttribute( hstdout, 0xC );
-            cout << setw(90) << "SACR version 2.0 will be released on midnight, December 15th 2016" << endl << endl;
+            cout << setw(85) << "SACR version 2.0 will be released on midnight, December 15th 2016" << endl << endl;
             SetConsoleTextAttribute( hstdout, 0xF );
             break;
         }
