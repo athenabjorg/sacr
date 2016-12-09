@@ -39,6 +39,22 @@ bool service::addScientist(string name, char gender, int birth, int death)
     return false;
 
 }
+bool service::updateScientist(string name, char gender, int birth, int death)
+{   // Updates a scientist to the list and updates the file.
+    // Returns true if adding succeded, false otherwise.
+
+    if(_data.doesScientistExist(name) == true)
+    {
+        Scientist scientist(name, gender, birth, death);
+
+        _scientists.push_back(scientist);
+        _data.updateScientist(scientist);
+        return true;
+    }
+
+    return false;
+
+}
 
 bool service::removeScientist(string name)
 {   // Removes a scientist with that name from the vector. Case insensitive.

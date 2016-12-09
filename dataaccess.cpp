@@ -35,8 +35,29 @@ void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite data
     QSqlQuery query;
     query.exec(input);
     db.close();
+}
+void DataAccess::updateScientist(Scientist scientist)  // Updating SQLite database
+{
+    string line, name, gender;
+    int birthYear, deathYear;
 
 
+    name = scientist.getName();
+    gender = scientist.getGender();
+    birthYear = scientist.getBirth();
+    deathYear = scientist.getDeath();
+
+
+    line = "UPDATE Scientists"
+           "SET Gender = \"" + gender + "\", born = " + to_string(birthYear) + ", Died = " + to_string(deathYear) + ", Valid = 1"
+           "WHERE Name LIKE \"" + name + "\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
 }
 
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
@@ -555,6 +576,7 @@ int DataAccess::yearComputerBuilt(string computer)
 
     return 0;
 }
+
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 

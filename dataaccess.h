@@ -23,6 +23,7 @@ public:
 
     void saveScientist(Scientist newScientist);
         // Saves a scientist to the database.
+    void updateScientist(Scientist scientist);
 
     vector<Scientist> loadScientists();
     vector<Scientist> loadScientists(int loadType, string parameter);
