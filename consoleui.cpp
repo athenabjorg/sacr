@@ -1713,7 +1713,7 @@ void ConsoleUI::addRelation()
              }
              else if(_service.doesComputerExist(computer) == false)
              {
-                 clearScreen();
+                 userMenuPrint(2);
                  cout << "This computer does not exist in the database, try again!" << endl;
              }
              else
