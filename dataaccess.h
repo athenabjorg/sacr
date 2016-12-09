@@ -58,9 +58,8 @@ public:
     vector<Computer> loadComputers(int loadType, string parameter);
     vector<Computer> loadComputers(int loadType, string parameter1, string parameter2);
         // Loads computers from a database, into a vector, depenting on loadType.
-        // 0 = load by exact name, 1 = load by name, 2 = load by gender, 3 = load by birth year
-        // 4 = load by birth year range, 5 = load by death year, 6 = death year range.
-        // 7 and 8 are loaded in the service class.
+        // 0 = load by exact name, 1 = load by name, 2 = load by year built
+        // 3 = load by year built range, 4 = load by type, 5 = load by if built.
 
     void removeComputer(string inputName);
         // Removes computers by name.
