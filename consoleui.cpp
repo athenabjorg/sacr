@@ -1659,24 +1659,26 @@ void ConsoleUI::addRelation()
 
     while(true)
     {
-        clearScreen();
+        //clearScreen();
         smallLogoPrint();
 
         while(true)
         {
              userMenuPrint(1);
-             cout << "Enter the scientist's name: ";
+             cout << endl << "Enter the scientist's name: ";
              cin.ignore(-1);
              getline(cin, name);
 
              if(name == "")
              {
+                 textColorRed();
                  cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+                 textColorWhite();
              }
              else if(_service.doesScientistExist(name) == false)
              {
                  clearScreen();
-                 cout << "This scientists does not exist in the database, try again!" << endl;
+                 cout << "This scientist does not exist in the database, try again!" << endl;
              }
              else
              {
@@ -1686,14 +1688,16 @@ void ConsoleUI::addRelation()
 
         while(true)
         {
-            userMenuPrint(2);
+             userMenuPrint(2);
              cout << "Enter the computer's name: ";
              cin.ignore(-1);
              getline(cin, computer);
 
              if(computer == "")
              {
+                 textColorRed();
                  cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl; // FIXME::
+                 textColorWhite();
              }
              else if(_service.doesComputerExist(computer) == false)
              {
@@ -1760,10 +1764,6 @@ void ConsoleUI::addRelation()
              break;
          }
      }
-
-
-
-
 }
 void ConsoleUI::removeRelation()
 {
