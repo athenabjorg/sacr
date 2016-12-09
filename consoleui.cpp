@@ -1,6 +1,4 @@
 #include "consoleui.h"
-#include <windows.h>
-#include <iomanip>
 
 using namespace std;
 
@@ -90,12 +88,11 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
 
         if(command == "quit")
         {
-            HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
             clearScreen();
             smallLogoPrint();
-            SetConsoleTextAttribute( hstdout, 0xC );
+            textColorLogo();
             cout << setw(85) << "SACR version 2.0 will be released on midnight, December 15th 2016" << endl << endl;
-            SetConsoleTextAttribute( hstdout, 0xF );
+            textColorMain();
             break;
         }
         clearScreen();
@@ -2074,30 +2071,26 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
     int currentYear = (timeinfo->tm_year + 1900);
     return currentYear;
 }
-void ConsoleUI::smallLogoPrint()
+void ConsoleUI::smallLogoPrint()                                    // Prints a small logo to screen
 {
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-    SetConsoleTextAttribute( hstdout, 0xC );
-
+    textColorLogo();
     int w = 65;
     cout << setw(w-1) << "  _____   ___    ______ ____" << endl;
     cout << setw(w) << " / ___/  /   |  / ____// __ \\" << endl;
     cout << setw(w) << " \\__  \\ / /| | / /    / /_/ /"  << endl;
     cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    textColorSubLogo();
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
 
-    SetConsoleTextAttribute( hstdout, 0x0F );
+    textColorMain();
 }
-void ConsoleUI::largeLogoPrint()
+void ConsoleUI::largeLogoPrint()                                    // Prints a large logo to screen
 {
     if(true)
     {
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-    SetConsoleTextAttribute( hstdout, 0xC );
-
+    textColorLogo();
     cout << "            _____                    _____                    _____                    _____          " << endl;
     cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
     cout << "          /::\\    \\                /::\\    \\                /::\\    \\                /::\\    \\         " << endl;
@@ -2116,31 +2109,32 @@ void ConsoleUI::largeLogoPrint()
     cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
     cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
     cout << "        \\::::::/    /";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    textColorSubLogo();
     cout <<"  Scientist";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    textColorLogo();
     cout << "    /:::/    /            \\:::\\    \\                |::|   |           " << endl;
     cout << "         \\::::/    /  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    textColorSubLogo();
     cout << "And";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    textColorLogo();
     cout << "          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
     cout << "          \\::/    /  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    textColorSubLogo();
     cout << "Computer";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    textColorLogo();
     cout << "      \\::/    /                \\::/    /                \\:|   |           " << endl;
     cout << "           \\/____/  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    textColorSubLogo();
     cout << "Relations";
-    SetConsoleTextAttribute( hstdout, 0xC );
+    textColorLogo();
     cout << "       \\/____/  ";
-    SetConsoleTextAttribute( hstdout, 0x8 );
+    textColorSubLogo();
     cout << "Version 1.0";
-    SetConsoleTextAttribute( hstdout, 0xC );
+
+    textColorLogo();
     cout << "     \\/____/                  \\|___|           " << endl;
 
-    SetConsoleTextAttribute( hstdout, 0x0F );
+    textColorMain();
     }
 }
 void ConsoleUI::numericLimiter()
@@ -2154,3 +2148,36 @@ void ConsoleUI::numericLimiter(string comment)
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
+
+#ifdef _WIN32
+void ConsoleUI::textColorMain()
+{
+    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    SetConsoleTextAttribute( hstdout, 0x0F );
+}
+void ConsoleUI::textColorLogo()
+{
+    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    SetConsoleTextAttribute( hstdout, 0x0C );
+}
+
+void ConsoleUI::textColorSubLogo()
+{
+    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    SetConsoleTextAttribute( hstdout, 0x08 );
+}
+#else
+void ConsoleUI::textColorMain()
+{
+    // Nothing happening! absolutely nothing to see here!
+}
+void ConsoleUI::textColorLogo()
+{
+    // Nothing happening! absolutely nothing to see here!
+}
+
+void ConsoleUI::textColorSubLogo()
+{
+    // Nothing happening! absolutely nothing to see here!
+}
+#endif
