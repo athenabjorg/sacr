@@ -35,8 +35,29 @@ void DataAccess::saveScientist(Scientist newScientist)  // Saving to SQLite data
     QSqlQuery query;
     query.exec(input);
     db.close();
+}
+void DataAccess::updateScientist(Scientist scientist)  // Updating SQLite database
+{
+    string line, name, gender;
+    int birthYear, deathYear;
 
 
+    name = scientist.getName();
+    gender = scientist.getGender();
+    birthYear = scientist.getBirth();
+    deathYear = scientist.getDeath();
+
+
+    line = "UPDATE Scientists"
+           "SET Gender = \"" + gender + "\", born = " + to_string(birthYear) + ", Died = " + to_string(deathYear) + ", Valid = 1"
+           "WHERE Name LIKE \"" + name + "\"";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
 }
 
 vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
@@ -288,6 +309,33 @@ void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite databas
 
     line = "INSERT INTO Computers(name,type,year,built) "
             "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
+
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+    db.close();
+
+
+}
+void DataAccess::updateComputer(Computer computer)  // Updating SQLite database
+{
+    string line, name, type;
+    int year;
+    bool built;
+
+
+    name = computer.getName();
+    type = computer.getType();
+    year = computer.getYear();
+    built = computer.getBuilt();
+
+
+    line = "UPDATE Computers "
+           "SET Type = \"" + type + "\", year = " + to_string(year) + ", built = " + to_string(built) + ", Valid = 1 "
+           "WHERE Name LIKE \"" + name + "\"";
+    cout << line << endl;
 
     QString input = QString::fromStdString(line);
 
@@ -555,6 +603,7 @@ int DataAccess::yearComputerBuilt(string computer)
 
     return 0;
 }
+
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
