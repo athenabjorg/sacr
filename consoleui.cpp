@@ -338,8 +338,13 @@ void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list
 
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
-void ConsoleUI::addScientist()
+void ConsoleUI::addScientist()      // Add scientist to database
 {
+    /*
+     * This function gets all variables from user and makes error checks, if everything
+     * checks out fine this function will call on server layer functions to then add those
+     * variables to the database.
+     */
     string name, genderInput;
     char gender;
     int birthYear = 0, deathYear = 0, checkInput;
@@ -510,10 +515,13 @@ void ConsoleUI::addScientist()
         }
     }
 }
-void ConsoleUI::removeScientist()
+void ConsoleUI::removeScientist()   // Remove scientist from database
 {
     /*
-     * A function to remove a scientist.
+     * This functions gets variables from user and checks if the user wants
+     * to remove 1 scientist or all and uses functions from service layer
+     * to get access to dataccess layer to alter the database depending on
+     * user input.
      */
 
     string command;
@@ -594,11 +602,13 @@ void ConsoleUI::removeScientist()
 
     }
 }
-void ConsoleUI::searchScientist()
+void ConsoleUI::searchScientist()   // Search the database for scientist
 {
     /*
      * A search list is printed out and user can choose from a few search commands
-     * like name, gender, age, birth, death. Error checks included
+     * like name, gender, age, birth, death. Error checks included, this function
+     * calls functions from service layer to access dataaccess layer to search
+     * the database.
      */
 
     string command;
@@ -1009,7 +1019,7 @@ void ConsoleUI::searchScientist()
     }
     cout << endl;
 }
-void ConsoleUI::sortScientist()
+void ConsoleUI::sortScientist()     // Get sorted list of scientist from database
 {
     /*
      * A sorting function, can call function from service.cpp scientistSort().
@@ -1659,13 +1669,15 @@ void ConsoleUI::addRelation()
 
     while(true)
     {
-        //clearScreen();
         smallLogoPrint();
+
         userMenuPrint(1);
         while(true)
         {
 
+
              cout << endl << "Enter the scientist's name: ";
+
              cin.ignore(-1);
              getline(cin, name);
 
@@ -1680,6 +1692,7 @@ void ConsoleUI::addRelation()
              {
                  userMenuPrint(1);
                  cout << "This scientist does not exist in the database, try again!" << endl;
+
              }
              else
              {
@@ -2051,7 +2064,6 @@ void ConsoleUI::searchRelation()
     cout << endl;
     }
 }
-
 void ConsoleUI::sortRelation()
 {
     /*
@@ -2130,7 +2142,7 @@ void ConsoleUI::askReturnToMenu() const                             // Asks if u
        getline(cin, userInput);
    }
 }
-int  ConsoleUI::userCheckInput()                               // Checks input from userMenuAdd
+int  ConsoleUI::userCheckInput()                                    // Checks input from userMenuAdd
 {
     /*
      * Check if all data is correct and return a int depending on what user selected.
