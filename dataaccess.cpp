@@ -62,7 +62,7 @@ void DataAccess::updateScientist(Scientist scientist)
     db.close();
 }
 
-vector<Scientist> DataAccess::loadScientists()                  // From text file to vector
+vector<Scientist> DataAccess::loadScientists()
 {   // Loads scientists from a database, into a vector.
 
     vector<Scientist> scientists;
@@ -87,7 +87,7 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     db.close();
     return scientists;
 }
-vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)                  // From text file to vector
+vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)
 {   // Adds scientists from a database into a vector, depending on input.
     // 0 = load by exact name, 1 = load by name, 2 = load by gender, 3 = load by birth year
     // 5 = load by death year
@@ -188,7 +188,7 @@ void DataAccess::removeScientist(string inputName)
 
     removeRelation(1, inputName);
 }
-void DataAccess::removeAllScientists() // Not practical
+void DataAccess::removeAllScientists()
 {   // Removes all scientists from the database. Careful!
 
     string line;
@@ -274,8 +274,9 @@ bool DataAccess::doesScientistExist(string name)
 
 // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
-void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite database
-{
+void DataAccess::saveComputer(Computer newComputer)
+{   // Saves a computer to the database.
+
     string line, name, type;
     int year;
     bool built;
@@ -295,8 +296,9 @@ void DataAccess::saveComputer(Computer newComputer)  // Saving to SQLite databas
     query.exec(input);
     db.close();
 }
-void DataAccess::updateComputer(Computer computer)  // Updating SQLite database
-{
+void DataAccess::updateComputer(Computer computer)
+{   // Updates the information for an existing computer.
+
     string line, name, type;
     int year;
     bool built;
@@ -323,11 +325,8 @@ void DataAccess::updateComputer(Computer computer)  // Updating SQLite database
 
 }
 
-vector<Computer> DataAccess::loadComputers()                  // From text file to vector
-{
-    /*
-     * Adds list of computers from a database into a vector.
-     */
+vector<Computer> DataAccess::loadComputers()
+{   // Adds list of computers from a database into a vector.
 
     vector<Computer> computers;
     string line, name, type;
@@ -357,13 +356,10 @@ vector<Computer> DataAccess::loadComputers()                  // From text file 
     db.close();
     return computers;
 }
-vector<Computer> DataAccess::loadComputers(int loadType, string parameter)                  // From text file to vector
-{
-    /*
-     * Adds list of computers from a database into a vector.
-     * 0 = load by whole name, 1 = load by name, 2 = load by year built, 4 = load by type, 5 = load by if built.
-     * 3 is used in the loadScientist function with 3 parameters.
-     */
+vector<Computer> DataAccess::loadComputers(int loadType, string parameter)
+{   // Loads computers from a database, into a vector, depenting on loadType.
+    // 0 = load by exact name, 1 = load by name, 2 = load by year built, 4 = load by type, 5 = load by if built.
+    // 3 is used in the loadScientist function with 3 parameters.
 
     vector<Computer> computers;
     string line, name, type;
@@ -373,11 +369,11 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
 
     switch(loadType)
     {
-        case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by whole name
+        case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by exact name
                 break;
         case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
                 break;
-        case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\" AND valid = 1"; // load by year built/designed
+        case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\" AND valid = 1"; // load by year built
                 break;
         case 4: line = "SELECT * FROM Computers Where Type LIKE  \"" + parameter + "\" AND valid = 1"; // load by type
                 break;
@@ -407,12 +403,9 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
     return computers;
 }
 vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, string parameter2)
-{
-    /*
-     * Adds list of computers from a database into a vector.
-     * 3 = load by build year range.
-     * 0, 1, 2 and 5 are used in the loadScientist function with 2 parameters.
-     */
+{   // Loads computers from a database, into a vector, depenting on loadType.
+    // 3 = load by build year range.
+    // 0, 1, 2 and 5 are used in the loadScientist function with 2 parameters.
 
     vector<Computer> computers;
     string line, name, type;
@@ -448,7 +441,8 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
 }
 
 void DataAccess::removeComputer(string inputName)
-{
+{   // Removes computers by name.
+
     string line;
 
     line = "UPDATE Computers SET Valid = 0 WHERE Name LIKE \"%" + inputName + "%\"";
@@ -463,7 +457,8 @@ void DataAccess::removeComputer(string inputName)
     removeRelation(2, inputName);
 }
 void DataAccess::removeAllComputers()
-{
+{   // Removes all computers from the database. Careful!
+
     string line;
 
     line = "DELETE FROM Computers";
@@ -480,7 +475,8 @@ void DataAccess::removeAllComputers()
 
 vector<Computer> DataAccess::sortComputers(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = type(A-Z), 4 = type(Z-A), 5 = year made(0-9),
-    // 6 = year made(9-0)
+    // 6 = year made(9-0), 7 = if built(n-y), 8 = if built (y-n).
+    // 9 and 10 (sort by years since built) are sorted in the service class.
 
     vector<Computer> computers;
     string line, name, type;
@@ -528,7 +524,8 @@ vector<Computer> DataAccess::sortComputers(int sortType)
 }
 
 bool DataAccess::doesComputerExist(string name)
-{
+{   // Checks if a computer by that name exists already
+
     vector<Computer> computers;
 
     computers = loadComputers(0, name);
@@ -542,7 +539,8 @@ bool DataAccess::doesComputerExist(string name)
 }
 
 int DataAccess::yearComputerBuilt(string computer)
-{
+{   // Returns what year a computer was built.
+
     string line;
     int year;
 
@@ -565,8 +563,9 @@ int DataAccess::yearComputerBuilt(string computer)
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
-void DataAccess::saveRelation(const Relation newRelation)  // Saving to SQLite database
-{
+void DataAccess::saveRelation(const Relation newRelation)
+{   // Saves a relation to the database.
+
     string line, scientist, computer, scientistID, computerID;
 
     scientist = newRelation.getScientist();
@@ -598,11 +597,8 @@ void DataAccess::saveRelation(const Relation newRelation)  // Saving to SQLite d
 
 }
 
-vector<Relation> DataAccess::loadRelations()                  // From text file to vector
-{
-    /*
-     * Adds list of computers from a database into a vector.
-     */
+vector<Relation> DataAccess::loadRelations()
+{   // Loads relations from a database, into a vector, depenting on loadType.
 
     vector<Relation> relations;
     string line, scientist, computer, scientistID, computerID;
@@ -632,15 +628,19 @@ vector<Relation> DataAccess::loadRelations()                  // From text file 
     return relations;
 
 }
-vector<Relation> DataAccess::loadRelations(int loadType, string parameter)                  // From text file to vector
-{
+vector<Relation> DataAccess::loadRelations(int loadType, string parameter)
+{   // Loads relations from a database, into a vector, depenting on loadType.
+    // 0 = load by exact scientist name, 1 = load by scientist name,
+    // 2 = load by exact computer name, 3 = load by computer name, 4 = load by year computer built
+    // 5 is loaded in the loadRelations function with three parameters.
+
     vector<Relation> relations;
     string line, computer, scientist;
     int year;
 
     switch(loadType)
     {
-        case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND r.valid = 1"; // load by whole scientist name
+        case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND r.valid = 1"; // load by exact scientist name
                 break;
         case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by scientist name
                 break;
@@ -675,12 +675,9 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)      
     return relations;
 }
 vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, string parameter2)
-{
-    /*
-     * Adds list of computers from a database into a vector.
-     * 3 = load by build year range.
-     * 0, 1, 2 and 5 are used in the loadScientist function with 2 parameters.
-     */
+{   // Loads relations from a database, into a vector, depenting on loadType.
+    // 5 = load by year built range.
+    // 0, 1, 2, 3 and 4 are loaded in the loadRelations function with two parameters.
 
     vector<Relation> relations;
     string line, computer, scientist;
@@ -713,7 +710,8 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
 }
 
 void DataAccess::removeRelation(int removeType, string inputName)
-{
+{   // Removes relation by either; removeType 1 = scientist name, 2 = computer name.
+
     string line, scientistID, computerID;
 
     db.open();
@@ -747,7 +745,8 @@ void DataAccess::removeRelation(int removeType, string inputName)
     db.close();
 }
 void DataAccess::removeAllRelations()
-{
+{   // Removes all relations from the database. Careful!
+
     string line;
 
     line = "DELETE FROM Relations";
@@ -762,7 +761,9 @@ void DataAccess::removeAllRelations()
 }
 
 vector<Relation> DataAccess::sortRelations(int sortType)
-{
+{   // Sort by sortType: 1 = scientist name(A-Z), 2 = scientist name(Z-A), 3 = computer name(A-Z)
+    // 4 = computer name(Z-A), 5 = year made(0-9), 6 = year made(9-0).
+
     vector<Relation> relations;
     string line, scientist, computer;
     int year;
@@ -803,7 +804,8 @@ vector<Relation> DataAccess::sortRelations(int sortType)
 }
 
 bool DataAccess::doesRelationExist(string scientist, string computer)
-{
+{   // Checks if a relation between that scientist and computer exists already
+
     string line;
     bool valid;
 
@@ -833,7 +835,8 @@ bool DataAccess::doesRelationExist(string scientist, string computer)
 }
 
 string DataAccess::sqlRelationTable()
-{   // Column 0 = scientist, 1 = computer, 2 = year, 3 = valid.
+{   // Returns a SQL query string that is used as a base for the relation function queries;
+    // Column 0 = scientist, 1 = computer, 2 = year, 3 = valid.
 
     string line;
 
