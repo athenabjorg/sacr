@@ -324,23 +324,23 @@ void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list
 
     clearScreen();
     smallLogoPrint();
-    cout << left << setw(25) << "Scientist:"
-         << setw(10) << right << "Computer:"
-         << setw(20) << "Year built" << endl;
+    cout << left << setw(30) << "Scientist:"
+         << setw(25) << right << "Computer:"
+         << setw(15) << "Year built" << endl;
     cout << "=======================================================================" << endl;
 
     for (size_t i = 0; i < relation.size(); ++i)
     {
-        cout << left << setw(25) << relation[i].getScientist()
-             << setw(10) << right << relation[i].getComputer();
+        cout << left << setw(30) << relation[i].getScientist()
+             << setw(25) << right << relation[i].getComputer();
 
             if(relation[i].getYear() == 0)
             {
-                 cout << setw(20) << "-" << endl;
+                 cout << setw(15) << "-" << endl;
             }
             else
             {
-                 cout << setw(20) << relation[i].getYear() << endl;
+                 cout << setw(15) << relation[i].getYear() << endl;
             }
     }
     cout << "=======================================================================" << endl;
@@ -1357,10 +1357,26 @@ void ConsoleUI::searchComputer()
     cout << "Year    -   Search by year built" << endl;
     cout << "Type    -   Search by type" << endl;
     cout << "Built   -   Search by if built or not" << endl;
-    cout << "Select: ";
 
-    getline(cin, command);
-    forceLowerCase(command);
+
+    while(true)
+    {
+        cout << endl << "Select: ";
+        getline(cin, command);
+
+        forceLowerCase(command);
+
+        if(command == "name" || command == "year" || command == "type" || command == "built") // check if input is int and if it ranges from 1 to 10
+        {
+            break;
+        }
+        else
+        {
+            cout << "Invalid input!" << endl;
+        }
+        cin.clear();
+     }
+
 
 
     if(command == "name") // Find computer by name
@@ -1389,37 +1405,92 @@ void ConsoleUI::searchComputer()
         cout << "Search by year:" << endl;
         cout << endl << "(1) - Search for a computer by year it was made" << endl;
         cout << "(2) - Search for a computer by range of year it was made " << endl;
-        cout << endl << "Select: ";
 
-        cin >> inputCheck;
+        while(true)
+        {
+            cout << "Select: ";
+            cin >> inputCheck;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(inputCheck == 1 || inputCheck == 2)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl;
+            }
+        }
 
         switch(inputCheck)
         {
             case 1: cout << "Search by year built" << endl;
-                    cout << endl << "Year: ";
-                    cin >> userInputYear;
+
+                    while(true)
+                    {
+                        cout << endl << "Year: ";
+                        cin >> userInputYear;
+                        if(cin.fail())
+                        {
+                            cout << endl << "Invalid input!" << endl;
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
                     computer = _service.findComputer(2, to_string(userInputYear));
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
 
             case 2: cout << "Search by range of year built" << endl;
+
+                while(true)
+                {
                     cout << endl << "Starting year: ";
                     cin >> userInputYearFirst;
+
+                    if(cin.fail())
+                    {
+                        cout << endl << "Invalid input!" << endl;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                while(true)
+                {
                     cout << endl << "Ending year: ";
                     cin >> userInputYearLast;
+
+                    if(cin.fail())
+                    {
+                        cout << endl << "Invalid input!" << endl;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                     computer = _service.findComputer(3, to_string(userInputYearFirst), to_string(userInputYearLast));
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            default: cout << "Wrong Input" << endl;
         }
-
-
-
-        computer = _service.findComputer(2, to_string(userInputYear));
-        userMenuPrint(computer);
-        askReturnToMenu();
     }
     else if(command == "type") // Find computer by type
     {
@@ -1433,9 +1504,27 @@ void ConsoleUI::searchComputer()
         cout << "(2) - Electronic" << endl;
         cout << "(3) - Mechanical" << endl;
         cout << "(4) - Transistor" << endl;
-        cout << endl << "Select: ";
 
-        cin >> inputCheck;
+        while(true)
+        {
+            cout << "Select: ";
+            cin >> inputCheck;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(inputCheck == 1 || inputCheck == 2 || inputCheck == 3 || inputCheck == 4)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl << endl;
+            }
+        }
 
         switch(inputCheck)
         {
@@ -1455,7 +1544,6 @@ void ConsoleUI::searchComputer()
                     userMenuPrint(computer);
                     askReturnToMenu();
                     break;
-            default: cout << "Wrong Input" << endl;
         }
     }
     else if(command == "built") // Find computer if built or not
@@ -1468,9 +1556,28 @@ void ConsoleUI::searchComputer()
         cout << "Search by:" << endl;
         cout << endl << "(1) - Was built" << endl;
         cout << "(2) - Was not built" << endl << endl;
-        cout << "Select: ";
 
-        cin >> inputCheck;
+        while(true)
+        {
+            cout << "Select: ";
+            cin >> inputCheck;
+
+            if(cin.fail())
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else if(inputCheck == 1 || inputCheck == 2)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl << endl;
+            }
+        }
+
 
         switch(inputCheck)
         {
@@ -1482,7 +1589,6 @@ void ConsoleUI::searchComputer()
                     userMenuPrint(computers);
                     askReturnToMenu();
                     break;
-            default: cout << "Wrong Input" << endl;
         }
     }
     cout << endl;
