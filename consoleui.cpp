@@ -118,7 +118,7 @@ void ConsoleUI::userMenuSwitch(int loadType)
                 break;
     }
     smallLogoPrint();
-    cout << line << endl
+    cout << line << endl << endl
          << "1 - Scientist" << endl
          << "2 - Computer" << endl
          << "3 - Relation" << endl << endl
