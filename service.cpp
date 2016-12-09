@@ -4,14 +4,13 @@
 using namespace std;
 
 
-//operator overloading functions for scientistSort.
-
 bool sortByAgeAsc (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
 bool sortByAgeDesc(const Scientist &a, const Scientist &b) { return a.getAge()    >  b.getAge();    }
+    //operator overloading functions for scientistSort.
 
-//operator overloading functions for computerSort.
 bool sortByYearsSinceBuiltAsc (const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() <  b.getYearsSinceBuilt(); }
 bool sortByYearsSinceBuiltDesc(const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() >  b.getYearsSinceBuilt(); }
+    //operator overloading functions for computerSort.
 
 service::service()
 {
@@ -23,13 +22,13 @@ service::service()
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
 vector<Scientist> service::getScientists()
-{   // Returns the list of scientists from file.
+{   // Returns the list of scientists from a database.
 
     return _scientists;
 }
 
 bool service::addScientist(string name, char gender, int birth, int death)
-{   // Adds a scientist to the list and updates the file.
+{   // Adds a scientist to the list and updates the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesScientistExist(name) == false)
@@ -45,7 +44,7 @@ bool service::addScientist(string name, char gender, int birth, int death)
 
 }
 bool service::updateScientist(string name, char gender, int birth, int death)
-{   // Updates a scientist to the list and updates the file.
+{   // Updates a scientist in the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesScientistExist(name) == true)
@@ -62,7 +61,7 @@ bool service::updateScientist(string name, char gender, int birth, int death)
 }
 
 bool service::removeScientist(string name)
-{   // Removes a scientist with that name from the vector. Case insensitive.
+{   // Removes a scientist with that name from the database. Case insensitive.
     // Returns true if removing succeded, false otherwise.
 
     vector<Scientist> scientistsToRemove = findScientist(1, name);
@@ -92,8 +91,8 @@ void service::removeAllScientists()
 }
 
 vector<Scientist> service::scientistSort(int sortType)
-{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
-     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(0-9), 9 = age(0-9), 10 = age(9-0)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender(f-m), 4 = gender(m-f), 5 = birth year(0-9),
+    // 6 = birth year(9-0) 7 = death year(0-9), 8 = death year(9-0), 9 = age(0-9), 10 = age(9-0).
 
     vector<Scientist> scientists = _scientists;
 
@@ -112,8 +111,11 @@ vector<Scientist> service::scientistSort(int sortType)
     return scientists;
 }
 
-vector<Scientist> service::findScientist(int findType, string parameter)       // Search vector by type
+vector<Scientist> service::findScientist(int findType, string parameter)
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
+    // findType 0 = load by exact name, 1 = load by name, 2 = load by gender, 3 = load by birth year
+    // 4 = load by birth year range, 5 = load by death year, 7 = load by age.
+    // 6 and 8 are loaded in the findScientist class with three parameters
 
     vector<Scientist> scientists;
 
@@ -139,6 +141,8 @@ vector<Scientist> service::findScientist(int findType, string parameter)       /
 }
 vector<Scientist> service::findScientist(int findType, string parameter1, string parameter2)       // Search vector by type
 {   // Returns all scientists whos name includes the string entered. Case insensitive.
+    // findType 6 = death year range, 8 = load by age range.
+    // 0, 1, 2, 3, 4, 5 and 7 are loaded in the findScientist class with two parameters
 
     vector<Scientist> scientists;
 
@@ -170,14 +174,16 @@ vector<Scientist> service::findScientist(int findType, string parameter1, string
 }
 
 bool service::doesScientistExist(string name)
-{
+{   // Checks if a scientist by that name exists already
+
     return _data.doesScientistExist(name);
 }
 
 // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
 vector<Computer> service::getComputers()
-{
+{   // Uploads the list of copmuters from database.
+
     vector<Computer> computers;
 
     computers = _data.loadComputers();
@@ -186,7 +192,7 @@ vector<Computer> service::getComputers()
 }
 
 bool service::addComputer(string name, int year, string type, bool built)
-{   // Adds a scientist to the list and updates the file.
+{   // Adds a copmuter to the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesComputerExist(name) == false)
@@ -202,7 +208,7 @@ bool service::addComputer(string name, int year, string type, bool built)
 
 }
 bool service::updateComputer(string name, int year, string type, bool built)
-{   // Adds a scientist to the list and updates the file.
+{   // Updates a copmuter in the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesComputerExist(name) == true)
@@ -219,18 +225,21 @@ bool service::updateComputer(string name, int year, string type, bool built)
 }
 
 bool service::removeComputer(string name)
-{
+{   // Removes a copmuter with that name from the database. Case insensitive.
+    // Returns true if removing succeded, false otherwise.
+
     _data.removeComputer(name);
     return true;
 }
 void service::removeAllComputers()
-{
+{   // Removes ALL computers from the list. Be careful with this.
+
     _data.removeAllComputers();
 }
 
 vector<Computer> service::computerSort(int sortType)
-{    // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = gender (f-m), 4 = gender (m-f),
-     // 5 = birth year(0-9), 6 = birth year(9-0) 7 = death year(0-9), 8 = age(0-9), 9 = age(9-0)
+{   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = type(A-Z), 4 = type(Z-A), 5 = year made(0-9),
+    // 6 = year made(9-0), 7 = if built(n-y), 8 = if built (y-n), 9 = years since built(0-9), 10 = years since built(0-9)
 
     vector<Computer> computers;
 
@@ -254,7 +263,11 @@ vector<Computer> service::computerSort(int sortType)
 }
 
 vector<Computer> service::findComputer(int findType, string parameter)       // Search vector by type
-{
+{   // Loads computers from a database, into a vector, depenting on loadType.
+    // 0 = load by exact name, 1 = load by name, 2 = load by year built
+    // 4 = load by type, 5 = load by if built.
+    // 3 loaded in the findComputer funciton with three parameters
+
     vector<Computer> computers;
 
     computers = _data.loadComputers(findType, parameter);
@@ -262,7 +275,10 @@ vector<Computer> service::findComputer(int findType, string parameter)       // 
     return computers;
 }
 vector<Computer> service::findComputer(int findType, string parameter1, string parameter2)       // Search vector by type
-{
+{   // Loads computers from a database, into a vector, depenting on loadType.
+    // 3 = load by year built range.
+    // 0, 1, 2, 4 and 5 are loaded in the findCOmputer function with two parameters.
+
     vector<Computer> computers;
 
     computers = _data.loadComputers(findType, parameter1, parameter2);
@@ -271,7 +287,8 @@ vector<Computer> service::findComputer(int findType, string parameter1, string p
 }
 
 bool service::doesComputerExist(string name)
-{
+{   // Checks if a copmuter by that name exists already
+
     return _data.doesComputerExist(name);
 }
 
@@ -289,7 +306,7 @@ vector<Relation> service::getRelations()
 }
 
 bool service::addRelation(string scientist, string computer)
-{   // Adds a scientist to the list and updates the file.
+{   // Adds a scientist to the list and updates the database.
     // Returns true if adding succeded, false otherwise.
 
     int year = _data.yearComputerBuilt(computer);
