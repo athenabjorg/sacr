@@ -7,6 +7,7 @@ Computer::Computer()
     _type = " ";
     _year = 0;
     _built = 0;
+    _yearsSinceBuilt = 0;
 }
 Computer::Computer(string name, int year, string type, bool built)
 {
@@ -14,6 +15,7 @@ Computer::Computer(string name, int year, string type, bool built)
     _type = type;
     _year = year;
     _built = built;
+    _yearsSinceBuilt = whatYearIsIt() - _year;
 }
 string Computer::getName() const
 {
@@ -45,6 +47,6 @@ int Computer::whatYearIsIt() const // Óþarfi ef við ætlum ekki að hafa year
 }
 int Computer::getYearsSinceBuilt() const
 {
-        return (whatYearIsIt() - _year);
+        return _yearsSinceBuilt;
 }
 
