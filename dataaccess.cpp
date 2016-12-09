@@ -640,17 +640,19 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)      
 
     switch(loadType)
     {
-        case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND valid = 1"; // load by whole scientist name
+        case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND r.valid = 1"; // load by whole scientist name
                 break;
-        case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\" AND valid = 1"; // load by scientist name
+        case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by scientist name
                 break;
-        case 2: line = sqlRelationTable() + "Where computer LIKE \"" + parameter + "\" AND valid = 1"; // load by whole computer name
+        case 2: line = sqlRelationTable() + "Where computer LIKE \"" + parameter + "\" AND r.valid = 1"; // load by whole computer name
                 break;
-        case 3: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\" AND valid = 1"; // load by computer name
+        case 3: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by computer name
                 break;
-        case 4: line = sqlRelationTable() + "Where year LIKE \"" + parameter + "\" AND valid = 1"; // load by year computer built
+        case 4: line = sqlRelationTable() + "Where year LIKE \"" + parameter + "\" AND r.valid = 1"; // load by year computer built
                 break;
     }
+
+    cout << line << endl;
 
     QString input = QString::fromStdString(line);
     db.open();
@@ -686,7 +688,7 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
 
     switch(loadType)
     {
-        case 5: line = sqlRelationTable() + "WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by year range when computer built
+        case 5: line = sqlRelationTable() + "WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND r.valid = 1"; // load by year range when computer built
                 break;
     }
 
@@ -767,17 +769,17 @@ vector<Relation> DataAccess::sortRelations(int sortType)
 
     switch(sortType)
     {
-        case 1: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Scientist ASC"; // sort by scientist name(A-Z)
+        case 1: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Scientist ASC"; // sort by scientist name(A-Z)
                 break;
-        case 2: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Scientist DESC"; // sort by scientist name(Z-A)
+        case 2: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Scientist DESC"; // sort by scientist name(Z-A)
                 break;
-        case 3: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Computer ASC"; // sort by computer name(A-Z)
+        case 3: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Computer ASC"; // sort by computer name(A-Z)
                 break;
-        case 4: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Computer DESC"; // sort by computer name(Z-A)
+        case 4: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Computer DESC"; // sort by computer name(Z-A)
                 break;
-        case 5: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Year ASC"; // sort by year made(0-9)
+        case 5: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Year ASC"; // sort by year made(0-9)
                 break;
-        case 6: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Year DESC"; // sort by year made(9-0)
+        case 6: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Year DESC"; // sort by year made(9-0)
                 break;
     }
 
@@ -835,7 +837,7 @@ string DataAccess::sqlRelationTable()
 
     string line;
 
-    line = "SELECT s.Name AS 'Scientist', c.Name AS 'Computer', c.Year, r.Valid "
+    line = "SELECT s.Name AS 'Scientist', c.Name AS 'Computer', c.Year, r.Valid AS 'Valid' "
            "FROM Relations r "
            "JOIN Scientists s ON s.ID = r.ScientistID "
            "JOIN Computers c ON c.ID = r.ComputerID ";
