@@ -1651,7 +1651,6 @@ void ConsoleUI::addRelation()
         {
         clearScreen();
         smallLogoPrint();
-
         while(true)
         {
             userMenuPrint(1);
