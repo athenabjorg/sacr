@@ -88,10 +88,10 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
         {
             clearScreen();
             smallLogoPrint();
-            textColorLogo();
+            textColorRed();
             cout << setw(85) << "SACR version 2.0 will be released on midnight, December 16th 2016" << endl << endl;
             cout << setw(46) << "24/7 HOTLINE: +354 7707010" << endl << endl;
-            textColorMain();
+            textColorWhite();
             break;
         }
         clearScreen();
@@ -119,10 +119,10 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
     smallLogoPrint();
     cout << line << endl << endl
-         << "1 - Scientist" << endl
-         << "2 - Computer" << endl
-         << "3 - Relation" << endl << endl
-         << "Select: ";
+         << "(1) - Scientist" << endl
+         << "(2) - Computer" << endl
+         << "(3) - Relation" << endl
+         << endl << "Select: ";
     cin >> selection;
 
     if (selection == 1) // Scientist selected
@@ -429,9 +429,9 @@ void ConsoleUI::addScientist()
                 else
                 {
                    invalidInputPrompt();
-                   textColorLogo();
+                   textColorRed();
                    cout << "...or you are Marty McFly" << endl;
-                   textColorMain();
+                   textColorWhite();
                 }
             }
 
@@ -461,9 +461,9 @@ void ConsoleUI::addScientist()
                 else if(deathYear < birthYear)
                 {
                     invalidInputPrompt();
-                    textColorLogo();
+                    textColorRed();
                     cout << " - You can't die before you are born!" << endl;
-                    textColorMain();
+                    textColorWhite();
                     cin.clear();
                 }
             }
@@ -522,8 +522,8 @@ void ConsoleUI::removeScientist()
     smallLogoPrint();
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove scientists by name " << endl;
-    cout << "(2)     -   Remove *ALL* scientists" << endl << endl;
-    cout << "Select: ";
+    cout << "(2)     -   Remove *ALL* scientists" << endl;
+    cout << endl << "Select: ";
 
     getline(cin, command);
     cout << endl;
@@ -578,9 +578,9 @@ void ConsoleUI::removeScientist()
 
         clearScreen();
         smallLogoPrint();
-
+        textColorRed();
         cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
-
+        textColorWhite();
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
@@ -611,7 +611,7 @@ void ConsoleUI::searchScientist()
     cout << "Gender  -   Search by gender" << endl;
     cout << "Birth   -   Search by year of birth" << endl;
     cout << "Death   -   Search by year of death" << endl;
-    cout << "Age     -   Search by age" << endl << endl;
+    cout << "Age     -   Search by age" << endl;
 
     bool inputCheck;
         do
@@ -824,11 +824,10 @@ void ConsoleUI::searchScientist()
         if(inputCheck == 1)
         {
             int userInputBirth;
-
+            clearScreen();
             cout << "Search by year of birth: ";
             while(true)
             {
-                cout << "Select: ";
                 cin >> userInputBirth;
 
                 if(cin.fail())
@@ -852,6 +851,7 @@ void ConsoleUI::searchScientist()
 
             while(true)
             {
+                clearScreen();
                 cout << "Search from year of birth: ";
                 cin >> userInputBirthFirst;
                 cout << endl;
@@ -868,7 +868,7 @@ void ConsoleUI::searchScientist()
 
             while(true)
             {
-                cout << "to year of birth: ";
+                cout << "To year of birth: ";
                 cin >> userInputBirthLast;
                 cout << endl;
 
@@ -1263,8 +1263,8 @@ void ConsoleUI::removeComputer()
     smallLogoPrint();
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove computer by name " << endl;
-    cout << "(2)     -   Remove *ALL* computers" << endl << endl;
-    cout << "Select: ";
+    cout << "(2)     -   Remove *ALL* computers" << endl;
+    cout << endl << "Select: ";
 
     getline(cin, command);
     cout << endl;
@@ -1319,9 +1319,9 @@ void ConsoleUI::removeComputer()
 
         clearScreen();
         smallLogoPrint();
-
+        textColorRed();
         cout << "Type in \"remove\" to remove *ALL* computers, any other input to cancel" << endl;
-
+        textColorWhite();
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
@@ -1646,127 +1646,116 @@ void ConsoleUI::sortComputer()
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
 void ConsoleUI::addRelation()
 {
-    string scientist, computer;
+    string name, computer;
     int checkInput;
 
-        while(true)
-        {
-        clearScreen();
-        userMenuPrint(1);
-        cout << endl << "Enter the scientist's name: ";
-
-        while(true)
-        {
-            cin.ignore(-1);
-            getline(cin, scientist);
-
-            if(scientist == "")
-            {
-                userMenuPrint(1);
-                textColorLogo();
-                cout << endl << "No name no fame!" << endl;
-                textColorMain();
-                cout << endl << "Enter the scientist's name: ";
-            }
-            else if(_service.doesScientistExist(scientist) == false)
-            {
-                userMenuPrint(1);
-                cout << "There are no scientists by that name." << endl;
-                cout << "Enter the scientist's name: ";
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        userMenuPrint(2);
-        cout << endl << "Enter the computer's name: ";
-
-        while(true)
-        {
-            cin.ignore(-1);
-            getline(cin, computer);
-
-            if(computer == "")
-            {
-                userMenuPrint(2);
-                cout << "Computers have names too!" << endl;
-                cout << "Enter the computer's name: ";
-            }
-            else if(_service.doesComputerExist(computer) == false)
-            {
-                userMenuPrint(2);
-                cout << "There are no computers by that name." << endl;
-                cout << "Enter the computer's name: ";
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        // Check if input is correct
+    while(true)
+    {
         clearScreen();
         smallLogoPrint();
-        cout << "Scientist: " << scientist << endl << "Computer: " << computer << endl;
 
-        checkInput = userCheckInput(); // A function that checks if the input is valid
-
-        if (checkInput == 0)
+        while(true)
         {
-            if(_service.addRelation(scientist, computer))
-            {
-                cout << endl << "Relation between " << scientist << " and " << computer << " successfully added to the list" << endl;
-                askReturnToMenu();
-                break;
+             userMenuPrint(1);
+             cout << "Enter the scientist's name: ";
+             cin.ignore(-1);
+             getline(cin, name);
 
-            }
-            else
-            {
-                int userInput;
+             if(name == "")
+             {
+                 cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+             }
+             else if(_service.doesScientistExist(name) == false)
+             {
+                 clearScreen();
+                 cout << "This scientists does not exist in the database, try again!" << endl;
+             }
+             else
+             {
+                 break;
+             }
+         }
 
-                cout << endl << "This relation is already in the database." << endl;
-                cout << endl << "1 - Start over" << endl;
-                cout << "2 - Cancel" << endl;
-                while(true)
-                {
-                    cout << endl << "Select: ";
-                    cin >> userInput;
-
-                    if(cin.fail())
-                    {
-                        numericLimiter("Invalid input!");
-                    }
-                    else if(userInput == 2 || userInput == 1)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        invalidInputPrompt();
-                    }
-
-                }
-
-
-                if(userInput == 2)
-                {
-                    break;
-                }
-
-            }
-
-        }
-        else if (checkInput == 1)
+        while(true)
         {
+            userMenuPrint(2);
+             cout << "Enter the computer's name: ";
+             cin.ignore(-1);
+             getline(cin, computer);
 
-        }
-        else
-        {
-            break;
-        }
-    }
+             if(computer == "")
+             {
+                 cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl; // FIXME::
+             }
+             else if(_service.doesComputerExist(computer) == false)
+             {
+                 clearScreen();
+                 cout << "This computer does not exist in the database, try again!" << endl;
+             }
+             else
+             {
+                 break;
+             }
+         }
+
+
+
+         // Check if input is correct
+         clearScreen();
+         smallLogoPrint();
+         cout << "Name: " << name << endl << "Computer: " << computer << endl;
+
+         checkInput = userCheckInput(); // A function that checks if the input is valid
+
+         if (checkInput == 0)
+         {
+             if(_service.doesRelationExist(name, computer) == false)
+             {
+                 _service.addRelation(name, computer);
+                 cout << endl << name << " relation to " << computer << " successfully added to the list" << endl;
+             }
+             else
+             {
+                 int userInput;
+                 cout << "This relation is allready in the database" << endl;
+                 cout << "(1) To make another relation" << endl;
+                 cout << "(2) To go back to menu" << endl;
+                 cout << "Select: ";
+                 cin >> userInput;
+
+                 numericLimiter();
+
+
+                 if(userInput == 1)
+                 {
+                     continue;
+                 }
+                 else if(userInput == 2)
+                 {
+                     break;
+                 }
+                 else
+                 {
+                     cout << "Invalid input!";
+                 }
+
+             }
+             askReturnToMenu();
+             break;
+         }
+         else if (checkInput == 1)
+         {
+
+         }
+         else
+         {
+             break;
+         }
+     }
+
+
+
+
 }
 void ConsoleUI::removeRelation()
 {
@@ -1782,7 +1771,7 @@ void ConsoleUI::removeRelation()
     cout << "(1)     -   Remove Relation by Scientist Name " << endl;
     cout << "(2)     -   Remove Relation by Computer Name" << endl;
     cout << "(3)     -   Remove *ALL* relations" << endl << endl;
-    cout << "Select: ";
+    cout << endl << "Select: ";
 
     getline(cin, command);
     cout << endl;
@@ -1881,9 +1870,9 @@ void ConsoleUI::removeRelation()
 
         clearScreen();
         smallLogoPrint();
-
+        textColorRed();
         cout << "Type in \"remove\" to remove *ALL* relations, any other input to cancel" << endl;
-
+        textColorWhite();
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
@@ -1917,7 +1906,7 @@ void ConsoleUI::searchRelation()
 
     while(true)
     {
-        cout << "Select: ";
+        cout << endl << "Select: ";
         getline(cin, command);
 
         if(command[0] == '1' || command[0] == '2' || command[0] == '3')
@@ -2202,7 +2191,7 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
 }
 void ConsoleUI::smallLogoPrint()                                    // Prints a small logo to screen
 {
-    textColorLogo();
+    textColorRed();
 
     int w = 65;
     cout << setw(w-1) << "  _____   ___    ______ ____" << endl;
@@ -2211,17 +2200,17 @@ void ConsoleUI::smallLogoPrint()                                    // Prints a 
     cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
 
-    textColorSubLogo();
+    textColorGray();
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
 
-    textColorMain();
+    textColorWhite();
 }
 void ConsoleUI::largeLogoPrint()                                    // Prints a large logo to screen
 {
     if(true)
     {
-    textColorLogo();
+    textColorRed();
 
     cout << "            _____                    _____                    _____                    _____          " << endl;
     cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
@@ -2241,32 +2230,32 @@ void ConsoleUI::largeLogoPrint()                                    // Prints a 
     cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
     cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
     cout << "        \\::::::/    /";
-    textColorSubLogo();
+    textColorGray();
     cout <<"  Scientist";
-    textColorLogo();
+    textColorRed();
     cout << "    /:::/    /            \\:::\\    \\                |::|   |           " << endl;
     cout << "         \\::::/    /  ";
-    textColorSubLogo();
+    textColorGray();
     cout << "And";
-    textColorLogo();
+    textColorRed();
     cout << "          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
     cout << "          \\::/    /  ";
-    textColorSubLogo();
+    textColorGray();
     cout << "Computer";
-    textColorLogo();
+    textColorRed();
     cout << "      \\::/    /                \\::/    /                \\:|   |           " << endl;
     cout << "           \\/____/  ";
-    textColorSubLogo();
+    textColorGray();
     cout << "Relations";
-    textColorLogo();
+    textColorRed();
     cout << "       \\/____/  ";
-    textColorSubLogo();
+    textColorGray();
     cout << "Version 1.0";
 
-    textColorLogo();
+    textColorRed();
     cout << "     \\/____/                  \\|___|           " << endl;
 
-    textColorMain();
+    textColorWhite();
 
     }
 }
@@ -2283,38 +2272,38 @@ void ConsoleUI::numericLimiter(string comment)
 }
 void ConsoleUI::invalidInputPrompt()
 {
-    textColorLogo();
+    textColorRed();
     cout << endl << "Invalid input!" << endl;
-    textColorMain();
+    textColorWhite();
 }
 
 #ifdef _WIN32
-void ConsoleUI::textColorMain()
+void ConsoleUI::textColorWhite()
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x0F );
 }
-void ConsoleUI::textColorLogo()
+void ConsoleUI::textColorRed()
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x0C );
 }
-void ConsoleUI::textColorSubLogo()
+void ConsoleUI::textColorGray()
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x08 );
 }
 #else
-void ConsoleUI::textColorMain()
+void ConsoleUI::textColorWhite()
 {
     // Nothing happening! Absolutely nothing to see here!
 }
-void ConsoleUI::textColorLogo()
+void ConsoleUI::textColorRed()
 {
     // Nothing happening! Absolutely nothing to see here!
 }
 
-void ConsoleUI::textColorSubLogo()
+void ConsoleUI::textColorGray()
 {
     // Nothing happening! Absolutely nothing to see here!
 }
