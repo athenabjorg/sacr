@@ -5,6 +5,7 @@ using namespace std;
 
 
 //operator overloading functions for scientistSort.
+
 bool sortByAgeAsc (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
 bool sortByAgeDesc(const Scientist &a, const Scientist &b) { return a.getAge()    >  b.getAge();    }
 

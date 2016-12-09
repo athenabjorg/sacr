@@ -69,11 +69,10 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
     vector<Scientist> scientists;
     string name, gender;
     int birthYear, deathYear;
-    bool valid;
 
     db.open();
     QSqlQuery query;
-    query.exec("SELECT * FROM Scientists");
+    query.exec("SELECT * FROM Scientists WHERE valid = 1");
 
     while (query.next())
     {
@@ -81,13 +80,9 @@ vector<Scientist> DataAccess::loadScientists()                  // From text fil
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Scientist scientist(name, gender[0], birthYear, deathYear);
-            scientists.push_back(scientist);
-        }
+        Scientist scientist(name, gender[0], birthYear, deathYear);
+        scientists.push_back(scientist);
     }
 
     db.close();
@@ -105,20 +100,19 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
     vector<Scientist> scientists;
     string line, name, gender;
     int birthYear, deathYear;
-    bool valid;
 
 
     switch(loadType) // TODO case 2 (gender) virkar ekki
     {
-        case 0: line = "SELECT * FROM Scientists  Where Name LIKE \"" + parameter + "\""; // load by whole name
+        case 0: line = "SELECT * FROM Scientists  Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by whole name
                 break;
-        case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\""; // load by name
+        case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
                 break;
-        case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\""; // load by gender
+        case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\" AND valid = 1"; // load by gender
                 break;
-        case 3: line = "SELECT * FROM Scientists  Where Born LIKE " + parameter; // load by birth year
+        case 3: line = "SELECT * FROM Scientists  Where Born LIKE " + parameter + " AND valid = 1"; // load by birth year
                 break;
-        case 5: line = "SELECT * FROM Scientists  Where Died LIKE " + parameter; // load by death year
+        case 5: line = "SELECT * FROM Scientists  Where Died LIKE " + parameter + " AND valid = 1"; // load by death year
                 break;
     }
 
@@ -133,13 +127,10 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)    
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Scientist scientist(name, gender[0], birthYear, deathYear);
-            scientists.push_back(scientist);
-        }
+        Scientist scientist(name, gender[0], birthYear, deathYear);
+        scientists.push_back(scientist);
+
     }
 
     db.close();
@@ -156,14 +147,12 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
     vector<Scientist> scientists;
     string line, name, gender;
     int birthYear, deathYear;
-    bool valid;
-
 
     switch(loadType)
     {
-        case 4: line = "SELECT * FROM scientists WHERE Born BETWEEN " + parameter1 + " AND " + parameter2; // load by birth year range
+        case 4: line = "SELECT * FROM scientists WHERE Born BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by birth year range
                 break;
-        case 6: line = "SELECT * FROM scientists WHERE Died BETWEEN " + parameter1 + " AND " + parameter2; // load by death year range
+        case 6: line = "SELECT * FROM scientists WHERE Died BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by death year range
                 break;
         case 8: // load by age range
                 break;
@@ -180,13 +169,10 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Scientist scientist(name, gender[0], birthYear, deathYear);
-            scientists.push_back(scientist);
-        }
+        Scientist scientist(name, gender[0], birthYear, deathYear);
+        scientists.push_back(scientist);
+
     }
 
     db.close();
@@ -231,25 +217,24 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
     vector<Scientist> scientists;
     string line, name, gender;
     int birthYear, deathYear;
-    bool valid;
 
     switch(sortType)
     {
-        case 1: line = "SELECT * FROM Scientists ORDER BY Name ASC"; // sort by name(A-Z)
+        case 1: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Name ASC"; // sort by name(A-Z)
                 break;
-        case 2: line = "SELECT * FROM Scientists ORDER BY Name DESC"; // sort by name(Z-A)
+        case 2: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Name DESC"; // sort by name(Z-A)
                 break;
-        case 3: line = "SELECT * FROM Scientists ORDER BY Gender ASC"; // sort by gender(f-m)
+        case 3: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Gender ASC"; // sort by gender(f-m)
                 break;
-        case 4: line = "SELECT * FROM Scientists ORDER BY Gender DESC"; // sort by gender(m-f)
+        case 4: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Gender DESC"; // sort by gender(m-f)
                 break;
-        case 5: line = "SELECT * FROM Scientists ORDER BY Born ASC"; // sort by birth year(0-9)
+        case 5: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Born ASC"; // sort by birth year(0-9)
                 break;
-        case 6: line = "SELECT * FROM Scientists ORDER BY Born DESC"; // sort by birth year(9-0)
+        case 6: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Born DESC"; // sort by birth year(9-0)
                 break;
-        case 7: line = "SELECT * FROM Scientists ORDER BY DIED ASC"; // sort by death year(0-9)
+        case 7: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY DIED ASC"; // sort by death year(0-9)
                 break;
-        case 8: line = "SELECT * FROM Scientists ORDER BY DIED DESC"; // sort by death year(9-0)
+        case 8: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY DIED DESC"; // sort by death year(9-0)
                 break;
     }
 
@@ -264,13 +249,11 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
         string gender = query.value(2).toString().toStdString();
         birthYear = query.value(3).toInt();
         deathYear = query.value(4).toInt();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Scientist scientist(name, gender[0], birthYear, deathYear);
-            scientists.push_back(scientist);
-        }
+
+        Scientist scientist(name, gender[0], birthYear, deathYear);
+        scientists.push_back(scientist);
+
     }
 
     db.close();
@@ -356,9 +339,9 @@ vector<Computer> DataAccess::loadComputers()                  // From text file 
     vector<Computer> computers;
     string line, name, type;
     int year;
-    bool built, valid;
+    bool built;
 
-    line = "SELECT * FROM computers";
+    line = "SELECT * FROM computers WHERE valid = 1 ";
 
     QString input = QString::fromStdString(line);
     db.open();
@@ -371,13 +354,11 @@ vector<Computer> DataAccess::loadComputers()                  // From text file 
         year = query.value(2).toInt();
         type = query.value(3).toString().toStdString();
         built = query.value(4).toBool();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Computer computer(name, year, type, built);
-            computers.push_back(computer);
-        }
+
+        Computer computer(name, year, type, built);
+        computers.push_back(computer);
+
     }
 
     db.close();
@@ -394,20 +375,20 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
     vector<Computer> computers;
     string line, name, type;
     int year;
-    bool built, valid;
+    bool built;
 
 
     switch(loadType)
     {
-        case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\""; // load by whole name
+        case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by whole name
                 break;
-        case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\""; // load by name
+        case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
                 break;
-        case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\""; // load by year built/designed
+        case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\" AND valid = 1"; // load by year built/designed
                 break;
-        case 4: line = "SELECT * FROM Computers Where Type LIKE  \"" + parameter + "\""; // load by type
+        case 4: line = "SELECT * FROM Computers Where Type LIKE  \"" + parameter + "\" AND valid = 1"; // load by type
                 break;
-        case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter; // load by if built
+        case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter + " AND valid = 1"; // load by if built
                 break;
     }
 
@@ -422,13 +403,11 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)      
         year = query.value(2).toInt();
         type = query.value(3).toString().toStdString();
         built = query.value(4).toBool();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Computer computer(name, year, type, built);
-            computers.push_back(computer);
-        }
+
+        Computer computer(name, year, type, built);
+        computers.push_back(computer);
+
     }
 
     db.close();
@@ -445,12 +424,12 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
     vector<Computer> computers;
     string line, name, type;
     int year;
-    bool built, valid;
+    bool built;
 
 
     switch(loadType)
     {
-        case 3: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2; // load by build/design year range
+        case 3: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by build/design year range
                 break;
     }
 
@@ -465,13 +444,10 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
         year = query.value(2).toInt();
         type = query.value(3).toString().toStdString();
         built = query.value(4).toBool();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Computer computer(name, year, type, built);
-            computers.push_back(computer);
-        }
+
+        Computer computer(name, year, type, built);
+        computers.push_back(computer);
     }
 
     db.close();
@@ -516,25 +492,25 @@ vector<Computer> DataAccess::sortComputers(int sortType)
     vector<Computer> computers;
     string line, name, type;
     int year;
-    bool valid, built;
+    bool built;
 
     switch(sortType)
     {
-        case 1: line = "SELECT * FROM Computers ORDER BY Name ASC"; // sort by name(A-Z)
+        case 1: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Name ASC"; // sort by name(A-Z)
                 break;
-        case 2: line = "SELECT * FROM Computers ORDER BY Name DESC"; // sort by name(Z-A)
+        case 2: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Name DESC"; // sort by name(Z-A)
                 break;
-        case 3: line = "SELECT * FROM Computers ORDER BY Year ASC"; // sort by Year(0-9)
+        case 3: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Year ASC"; // sort by Year(0-9)
                 break;
-        case 4: line = "SELECT * FROM Computers ORDER BY Year DESC"; // sort by Year(9-0)
+        case 4: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Year DESC"; // sort by Year(9-0)
                 break;
-        case 5: line = "SELECT * FROM Computers ORDER BY Type ASC"; // sort by type(A-Z)
+        case 5: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Type ASC"; // sort by type(A-Z)
                 break;
-        case 6: line = "SELECT * FROM Computers ORDER BY Type DESC"; // sort by type(Z-A)
+        case 6: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Type DESC"; // sort by type(Z-A)
                 break;
-        case 7: line = "SELECT * FROM Computers ORDER BY Built ASC"; // sort by if built(N-Y)
+        case 7: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Built ASC"; // sort by if built(N-Y)
                 break;
-        case 8: line = "SELECT * FROM Computers ORDER BY Built DESC"; // sort by if built(Y-N)
+        case 8: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Built DESC"; // sort by if built(Y-N)
                 break;
     }
 
@@ -549,13 +525,9 @@ vector<Computer> DataAccess::sortComputers(int sortType)
         string type = query.value(3).toString().toStdString();
         year = query.value(2).toInt();
         built = query.value(4).toBool();
-        valid = query.value(5).toBool();
 
-        if(valid)
-        {
-            Computer computer(name, year, type, built);
-            computers.push_back(computer);
-        }
+        Computer computer(name, year, type, built);
+        computers.push_back(computer);
     }
 
     db.close();
@@ -580,9 +552,8 @@ int DataAccess::yearComputerBuilt(string computer)
 {
     string line;
     int year;
-    bool valid;
 
-    line = "SELECT year, valid FROM computers WHERE name LIKE \"" + computer + "\"";
+    line = "SELECT year FROM computers WHERE name LIKE \"" + computer + "\"AND valid = 1 ";
 
     QString input = QString::fromStdString(line);
     db.open();
@@ -592,16 +563,10 @@ int DataAccess::yearComputerBuilt(string computer)
     query.next();
 
     year = query.value(0).toInt();
-    valid = query.value(1).toBool();
 
     db.close();
 
-    if(valid)
-    {
-        return year;
-    }
-
-    return 0;
+    return year;
 }
 
 
@@ -649,7 +614,6 @@ vector<Relation> DataAccess::loadRelations()                  // From text file 
     vector<Relation> relations;
     string line, scientist, computer, scientistID, computerID;
     int year;
-    bool valid;
 
     line = sqlRelationTable();
 
@@ -661,38 +625,14 @@ vector<Relation> DataAccess::loadRelations()                  // From text file 
 
     while (query.next())
     {
-        /*
-        scientistID = query.value(0).toString().toStdString();
-        computerID = query.value(1).toString().toStdString();
-        valid = query.value(2).toBool();
-
-        line = "SELECT name FROM Scientists WHERE id LIKE \"" + scientistID + "\"";
-        input = QString::fromStdString(line);
-        parameterQuery.exec(input);
-        scientist = query.value(0).toString().toStdString();
-
-        line = "SELECT name FROM Computers WHERE id LIKE \"" + computerID + "\"";
-        input = QString::fromStdString(line);
-        parameterQuery.exec(input);
-        computer = query.value(0).toString().toStdString();
-
-        line = "SELECT year FROM Copmuters WHERE id LIKE \"" + computerID + "\"";
-        input = QString::fromStdString(line);
-        parameterQuery.exec(input);
-        year = query.value(0).toInt();
-
-        */
 
         scientist = query.value(0).toString().toStdString();
         computer = query.value(1).toString().toStdString();
         year = query.value(2).toInt();
-        valid = query.value(3).toBool();
 
-        if(valid)
-        {
-            Relation relation(scientist, computer, year);
-            relations.push_back(relation);
-        }
+        Relation relation(scientist, computer, year);
+        relations.push_back(relation);
+
     }
     db.close();
 
@@ -704,20 +644,18 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)      
     vector<Relation> relations;
     string line, computer, scientist;
     int year;
-    bool valid;
-
 
     switch(loadType)
     {
-        case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\""; // load by whole scientist name
+        case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND valid = 1"; // load by whole scientist name
                 break;
-        case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\""; // load by scientist name
+        case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\" AND valid = 1"; // load by scientist name
                 break;
-        case 2: line = sqlRelationTable() + "Where computer LIKE \"" + parameter + "\""; // load by whole computer name
+        case 2: line = sqlRelationTable() + "Where computer LIKE \"" + parameter + "\" AND valid = 1"; // load by whole computer name
                 break;
-        case 3: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\""; // load by computer name
+        case 3: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\" AND valid = 1"; // load by computer name
                 break;
-        case 4: line = sqlRelationTable() + "Where year LIKE \"" + parameter + "\""; // load by year computer built
+        case 4: line = sqlRelationTable() + "Where year LIKE \"" + parameter + "\" AND valid = 1"; // load by year computer built
                 break;
     }
 
@@ -731,13 +669,10 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)      
         scientist = query.value(0).toString().toStdString();
         computer = query.value(1).toString().toStdString();
         year = query.value(2).toInt();
-        valid = query.value(3).toBool();
 
-        if(valid)
-        {
-            Relation relation(scientist, computer, year);
-            relations.push_back(relation);
-        }
+        Relation relation(scientist, computer, year);
+        relations.push_back(relation);
+
     }
 
     db.close();
@@ -755,12 +690,10 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
     vector<Relation> relations;
     string line, computer, scientist;
     int year;
-    bool valid;
-
 
     switch(loadType)
     {
-        case 5: line = sqlRelationTable() + "WHERE year BETWEEN " + parameter1 + " AND " + parameter2; // load by year range when computer built
+        case 5: line = sqlRelationTable() + "WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by year range when computer built
                 break;
     }
 
@@ -774,13 +707,9 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
         scientist = query.value(0).toString().toStdString();
         computer = query.value(1).toString().toStdString();
         year = query.value(2).toInt();
-        valid = query.value(3).toBool();
 
-        if(valid)
-        {
-            Relation relation(scientist, computer, year);
-            relations.push_back(relation);
-        }
+        Relation relation(scientist, computer, year);
+        relations.push_back(relation);
     }
 
     db.close();
@@ -842,22 +771,20 @@ vector<Relation> DataAccess::sortRelations(int sortType)
     vector<Relation> relations;
     string line, scientist, computer;
     int year;
-    bool valid;
-
 
     switch(sortType)
     {
-        case 1: line = sqlRelationTable() + "ORDER BY Scientist ASC"; // sort by scientist name(A-Z)
+        case 1: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Scientist ASC"; // sort by scientist name(A-Z)
                 break;
-        case 2: line = sqlRelationTable() + "ORDER BY Scientist DESC"; // sort by scientist name(Z-A)
+        case 2: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Scientist DESC"; // sort by scientist name(Z-A)
                 break;
-        case 3: line = sqlRelationTable() + "ORDER BY Computer ASC"; // sort by computer name(A-Z)
+        case 3: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Computer ASC"; // sort by computer name(A-Z)
                 break;
-        case 4: line = sqlRelationTable() + "ORDER BY Computer DESC"; // sort by computer name(Z-A)
+        case 4: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Computer DESC"; // sort by computer name(Z-A)
                 break;
-        case 5: line = sqlRelationTable() + "ORDER BY Year ASC"; // sort by year made(0-9)
+        case 5: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Year ASC"; // sort by year made(0-9)
                 break;
-        case 6: line = sqlRelationTable() + "ORDER BY Year DESC"; // sort by year made(9-0)
+        case 6: line = sqlRelationTable() + "WHERE valid = 1 ORDER BY Year DESC"; // sort by year made(9-0)
                 break;
     }
 
@@ -871,13 +798,9 @@ vector<Relation> DataAccess::sortRelations(int sortType)
         scientist = query.value(0).toString().toStdString();
         computer = query.value(1).toString().toStdString();
         year = query.value(2).toInt();
-        valid = query.value(3).toBool();
 
-        if(valid)
-        {
-            Relation relation(scientist, computer, year);
-            relations.push_back(relation);
-        }
+        Relation relation(scientist, computer, year);
+        relations.push_back(relation);
     }
 
     db.close();
