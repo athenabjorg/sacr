@@ -480,7 +480,7 @@ void ConsoleUI::addScientist()
             }
             else
             {
-                //_service.updateScientist(name, gender, birthYear, deathYear);
+                _service.updateScientist(name, gender, birthYear, deathYear);
                 cout << endl << name << " successfully replaced in the list" << endl;
             }
             askReturnToMenu();
@@ -1077,6 +1077,32 @@ void ConsoleUI::addComputer()
             {
                 cout << "Computers have names too!" << endl;
             }
+            else if(_service.findComputer(0, name).size() > 0)
+            {
+                int userInput;
+                cout << "This computer is allready in the database" << endl;
+                cout << "(1) To enter name again" << endl;
+                cout << "(2) To replace computer" << endl;
+                cout << "Select: ";
+                cin >> userInput;
+
+                numericLimiter();
+
+
+                if(userInput == 1)
+                {
+                    continue;
+                }
+                else if(userInput == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Wrong input!";
+                }
+
+            }
             else
             {
                 break;
@@ -1192,20 +1218,8 @@ void ConsoleUI::addComputer()
             }
             else
             {
-                int userInput;
-
-                cout << "This name is already in the database." << endl;
-                cout << endl << "1 - Replace existing data" << endl;
-                cout << "2 - Start over" << endl;
-                cout << endl << "Select: ";
-                cin >> userInput;
-
-                if(userInput == 1)
-                {
-                    _service.removeComputer(name);
-                    _service.addComputer(name, yearBuilt, type, built);
-                }
-
+                cout << endl << name << " successfully replaced in the list" << endl;
+                _service.updateComputer(name, yearBuilt, type, built);
             }
             askReturnToMenu();
             break;
@@ -1858,14 +1872,25 @@ void ConsoleUI::searchRelation()
     smallLogoPrint();
     cout << "Select a search option: " << endl;
     cout << "===================================" << endl;
-    cout << "(1)    -   Search by Scientist Name" << endl;
+    cout << "(1)     -   Search by Scientist Name" << endl;
     cout << "(2)     -   Search by Computer Name" << endl;
-    cout << "(3)         -   Search by Year Built" << endl;
+    cout << "(3)     -   Search by Year Built" << endl;
 
-    cout << endl << "Select: ";
-    getline(cin, command);
 
-    forceLowerCase(command);
+    while(true)
+    {
+        cout << "Select: ";
+        getline(cin, command);
+
+        if(command[0] == '1' || command[0] == '2' || command[0] == '3')
+        {
+            break;
+        }
+        else
+        {
+            cout << "Invalid input!" << endl;
+        }
+    }
 
     if(command[0] == '1') // Find relation by Scientist
     {
@@ -1906,25 +1931,82 @@ void ConsoleUI::searchRelation()
         cout << "Search by year:" << endl;
         cout << endl << "(1) - Search for a relation by year it was made" << endl;
         cout << "(2) - Search for a relation by range of year it was made " << endl;
-        cout << endl << "Select: ";
 
-        cin >> inputCheck;
+        while(true)
+        {
+            cout << endl << "Select: ";
+            cin >> inputCheck;
+
+            if(cin.fail())
+            {
+                numericLimiter("Invalid input");
+            }
+            else if(inputCheck == 1 || inputCheck == 2)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invalid input!" << endl << endl;
+                cin.clear();
+            }
+        }
+
 
         switch(inputCheck)
         {
             case 1: cout << "Search by year built" << endl;
-                    cout << endl << "Year: ";
-                    cin >> userInputYear;
+
+
+                    while(true)
+                    {
+                        cout << endl << "Year: ";
+                        cin >> userInputYear;
+
+                        if(cin.fail())
+                        {
+                            numericLimiter("Invalid input");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     relation = _service.findRelation(4, to_string(userInputYear));
                     userMenuPrint(relation);
                     askReturnToMenu();
                     break;
 
             case 2: cout << "Search by range of year built" << endl;
-                    cout << endl << "Starting year: ";
-                    cin >> userInputYearFirst;
-                    cout << endl << "Ending year: ";
-                    cin >> userInputYearLast;
+
+                    while(true)
+                    {
+                        cout << endl << "Starting year: ";
+                        cin >> userInputYearFirst;
+
+                        if(cin.fail())
+                        {
+                            numericLimiter("Invalid input");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    while(true)
+                    {
+                        cout << endl << "Ending year: ";
+                        cin >> userInputYearLast;
+
+                        if(cin.fail())
+                        {
+                            numericLimiter("Invalid input");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     relation = _service.findRelation(5, to_string(userInputYearFirst), to_string(userInputYearLast));
                     userMenuPrint(relation);
                     askReturnToMenu();
@@ -1934,6 +2016,7 @@ void ConsoleUI::searchRelation()
     cout << endl;
     }
 }
+
 void ConsoleUI::sortRelation()
 {
     /*
