@@ -100,14 +100,14 @@ private:
 
     #ifdef _WIN32
     // Includes the following functions if running on Windows.
-    void textColorMain();
-    void textColorLogo();
-    void textColorSubLogo();
+    void textColorWhite();
+    void textColorRed();
+    void textColorGray();
     #else
     // Includes the following functions if NOT running on Windows.
-    void textColorMain();
-    void textColorLogo();
-    void textColorSubLogo();
+    void textColorWhite();
+    void textColorRed();
+    void textColorGray();
     #endif
 
 };
