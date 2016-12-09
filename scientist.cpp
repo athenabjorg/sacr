@@ -19,7 +19,7 @@ Scientist::Scientist(string name, char gender, int birth, int death) //vantar bo
     _death = death;
    // _valid = valid;
 
-    if(_death == 0 || _death == NULL )
+    if(_death == 0)
     {
         _age = whatYearIsIt() - _birth;
     }

@@ -1791,13 +1791,14 @@ void ConsoleUI::removeRelation()
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove Relation by Scientist Name " << endl;
     cout << "(2)     -   Remove Relation by Computer Name" << endl;
-    cout << "(3)     -   Remove *ALL* relations" << endl << endl;
+    cout << "(3)     -   Remove Relation by Scientist and computer name" << endl;
+    cout << "(4)     -   Remove *ALL* relations" << endl << endl;
     cout << endl << "Select: ";
 
     getline(cin, command);
     cout << endl;
 
-    if(command[0] == '1') // Remove computer/s by input.
+    if(command[0] == '1')
     {
         vector<Relation> relation = _service.getRelations();
         userMenuPrint(relation);
@@ -1805,9 +1806,7 @@ void ConsoleUI::removeRelation()
         string userInputName, confirm;
         vector<Relation> relationsToRemove;
 
-
         cout << endl << "Remove relations with Scientist names containing: ";
-
 
         getline(cin, userInputName);
         relationsToRemove = _service.findRelation(1, userInputName);
@@ -1824,7 +1823,7 @@ void ConsoleUI::removeRelation()
 
             if (confirm[0] == 'y' || confirm[0] == 'Y')
             {
-                _service.removeRelation(1, userInputName); // TODO::Needs a functin in service layer
+                _service.removeRelation(1, userInputName);
                 cout << endl << "Relations with Scientist names containing '" << userInputName << "' have been removed from the list." << endl;
                 askReturnToMenu();
             }
@@ -1885,7 +1884,52 @@ void ConsoleUI::removeRelation()
             askReturnToMenu();
         }
     }
-    else if(command[0] == '3') // Remove all relations
+    if(command[0] == '3') // Remove Relation/s by input.
+    {
+        vector<Relation> relation = _service.getRelations();
+        userMenuPrint(relation);
+
+        string userInputScientist, userInputComputer, confirm;
+        vector<Relation> relationsToRemove;
+
+        cout << endl << "Remove relations where scientist name is: ";
+        getline(cin, userInputScientist);
+
+        cout << endl << "Remove relations where computer name is: ";
+        getline(cin, userInputComputer);
+
+        relationsToRemove = _service.findRelation(6, userInputScientist, userInputComputer);
+
+        if(relationsToRemove.size() > 0)
+        {
+            userMenuPrint(relationsToRemove);
+            cout << endl << "Are you sure you want to remove this relation between scientist and computer from the list?" << endl;
+            cout << "Y     -   Yes, remove it " << endl;
+            cout << "N     -   No, do not remove it" << endl << endl;
+            cout << endl << "Select: ";
+
+            getline(cin, confirm);
+
+            if (confirm[0] == 'y' || confirm[0] == 'Y')
+            {
+                _service.removeRelation(userInputScientist, userInputComputer);
+                cout << endl << "Relation between '" << userInputScientist << "' and '" << userInputComputer << "' has been removed from the list." << endl;
+                askReturnToMenu();
+            }
+            else
+            {
+                cout << endl << "No relations were removed" << endl;
+                askReturnToMenu();
+            }
+
+        }
+        else
+        {
+            cout << endl << "There is no relation between '" << userInputScientist << "' and '" << userInputComputer << "'" << endl;
+            askReturnToMenu();
+        }
+    }
+    else if(command[0] == '4') // Remove all relations
     {
         string userInputName;
 
@@ -2114,7 +2158,7 @@ void ConsoleUI::sortRelation()
         inputNotValid = true;
 
 
-    }while(userInput < 1 || userInput > 8);
+    }while(userInput < 1 || userInput > 6);
 
 
     cin.clear();
