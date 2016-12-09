@@ -1424,7 +1424,7 @@ void ConsoleUI::searchComputer()
 
                 while(true)
                 {
-                    cout << endl << "Starting year: ";
+                    cout << endl << "From year: ";
                     cin >> userInputYearFirst;
 
                     if(cin.fail())
@@ -1438,7 +1438,7 @@ void ConsoleUI::searchComputer()
                 }
                 while(true)
                 {
-                    cout << endl << "Ending year: ";
+                    cout << endl << "To year: ";
                     cin >> userInputYearLast;
 
                     if(cin.fail())
