@@ -534,15 +534,17 @@ int DataAccess::yearComputerBuilt(string computer)
     int year;
     bool valid;
 
-    line = "SELECT year FROM computers WHERE name LIKE \"" + computer + "\"";
+    line = "SELECT year, valid FROM computers WHERE name LIKE \"" + computer + "\"";
 
     QString input = QString::fromStdString(line);
     db.open();
+
     QSqlQuery query;
     query.exec(input);
+    query.next();
 
-    year = query.value(2).toInt();
-    valid = query.value(5).toBool();
+    year = query.value(0).toInt();
+    valid = query.value(1).toBool();
 
     db.close();
 
@@ -567,15 +569,20 @@ void DataAccess::saveRelation(const Relation newRelation)  // Saving to SQLite d
     QSqlQuery query;
     QString input;
 
-    input = QString::fromStdString("SELECT ID FROM Scientists WHERE name LIKE \"" + scientist + "\"");
+    line = "SELECT ID FROM Scientists WHERE name LIKE \"" + scientist + "\"";
+    input = QString::fromStdString(line);
     query.exec(input);
+    query.next();
     scientistID = query.value(0).toString().toStdString();
 
-    input = QString::fromStdString("SELECT ID FROM Computers WHERE name LIKE \"" + computer + "\"");
+
+    line = "SELECT ID FROM Computers WHERE name LIKE \"" + computer + "\"";
+    input = QString::fromStdString(line);
     query.exec(input);
+    query.next();
     computerID = query.value(0).toString().toStdString();
 
-    line = "INSERT INTO Relations (ScientistID, computerID) VALUE (\"" + scientistID + "\", \"" + computerID + "\")";
+    line = "INSERT INTO Relations (ScientistID, computerID) VALUES (" + scientistID + ", " + computerID + ")";
 
     input = QString::fromStdString(line);
 
@@ -734,21 +741,36 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
 
 void DataAccess::removeRelation(int removeType, string inputName)
 {
-    string line;
-
-    switch(removeType)
-    {
-        case 1: line = "UPDATE Relations SET Valid = 0 WHERE Scientist LIKE \"%" + inputName + "%\"";
-                break;
-        case 2: line = "UPDATE Relations SET Valid = 0 WHERE Computer LIKE \"%" + inputName + "%\"";
-                break;
-    }
-
-    QString input = QString::fromStdString(line);
+    string line, scientistID, computerID;
 
     db.open();
     QSqlQuery query;
+    QString input;
+
+    switch(removeType)
+    {
+        case 1: line = "SELECT ID FROM Scientists WHERE name LIKE \"" + inputName + "\"";
+                input = QString::fromStdString(line);
+                query.exec(input);
+                query.next();
+                scientistID = query.value(0).toString().toStdString();
+
+                line = "UPDATE Relations SET Valid = 0 WHERE ScientistID LIKE \"%" + scientistID + "%\"";
+                break;
+
+        case 2: line = "SELECT ID FROM Computers WHERE name LIKE \"" + inputName + "\"";
+                input = QString::fromStdString(line);
+                query.exec(input);
+                query.next();
+                computerID = query.value(0).toString().toStdString();
+
+                line = "UPDATE Relations SET Valid = 0 WHERE ComputerID LIKE \"%" + computerID + "%\"";
+                break;
+    }
+
+    input = QString::fromStdString(line);
     query.exec(input);
+
     db.close();
 }
 void DataAccess::removeAllRelations()
@@ -818,12 +840,12 @@ bool DataAccess::doesRelationExist(string scientist, string computer)
     string line;
     bool valid;
 
+    db.open();
+    QSqlQuery query;
+
     line = sqlRelationTable() + "WHERE scientist LIKE \"" + scientist + "\" AND computer LIKE \"" + computer + "\"";
 
     QString input = QString::fromStdString(line);
-
-    db.open();
-    QSqlQuery query;
 
     query.exec(input);
 
