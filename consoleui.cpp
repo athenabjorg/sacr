@@ -1675,7 +1675,8 @@ void ConsoleUI::addRelation()
         while(true)
         {
 
-             cout << "Enter the scientist's name: ";
+
+             cout << endl << "Enter the scientist's name: ";
 
              cin.ignore(-1);
              getline(cin, name);
@@ -1684,31 +1685,33 @@ void ConsoleUI::addRelation()
              {
                  userMenuPrint(1);
                  textColorRed();
-                 cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+                 cout << endl << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
                  textColorWhite();
              }
              else if(_service.doesScientistExist(name) == false)
              {
                  userMenuPrint(1);
-                 cout << "This scientists does not exist in the database, try again!" << endl;
+                 cout << "This scientist does not exist in the database, try again!" << endl;
+
              }
              else
              {
                  break;
              }
          }
-
         userMenuPrint(2);
         while(true)
         {
-             cout << "Enter the computer's name: ";
+             cout << endl << "Enter the computer's name: ";
+
              cin.ignore(-1);
              getline(cin, computer);
 
              if(computer == "")
              {
+                 userMenuPrint(2);
                  textColorRed();
-                 cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl; // FIXME::
+                 cout << endl << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl;
                  textColorWhite();
              }
              else if(_service.doesComputerExist(computer) == false)
@@ -1722,8 +1725,6 @@ void ConsoleUI::addRelation()
              }
          }
 
-
-
          // Check if input is correct
          clearScreen();
          smallLogoPrint();
@@ -1736,7 +1737,7 @@ void ConsoleUI::addRelation()
              if(_service.doesRelationExist(name, computer) == false)
              {
                  _service.addRelation(name, computer);
-                 cout << endl << name << " relation to " << computer << " successfully added to the list" << endl;
+                 cout << "Relation between " << name << " and " << computer << " successfully added to the list" << endl;
              }
              else
              {
