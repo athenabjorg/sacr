@@ -338,8 +338,13 @@ void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list
 
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
-void ConsoleUI::addScientist()
+void ConsoleUI::addScientist()      // Add scientist to database
 {
+    /*
+     * This function gets all variables from user and makes error checks, if everything
+     * checks out fine this function will call on server layer functions to then add those
+     * variables to the database.
+     */
     string name, genderInput;
     char gender;
     int birthYear = 0, deathYear = 0, checkInput;
@@ -510,10 +515,13 @@ void ConsoleUI::addScientist()
         }
     }
 }
-void ConsoleUI::removeScientist()
+void ConsoleUI::removeScientist()   // Remove scientist from database
 {
     /*
-     * A function to remove a scientist.
+     * This functions gets variables from user and checks if the user wants
+     * to remove 1 scientist or all and uses functions from service layer
+     * to get access to dataccess layer to alter the database depending on
+     * user input.
      */
 
     string command;
@@ -594,11 +602,13 @@ void ConsoleUI::removeScientist()
 
     }
 }
-void ConsoleUI::searchScientist()
+void ConsoleUI::searchScientist()   // Search the database for scientist
 {
     /*
      * A search list is printed out and user can choose from a few search commands
-     * like name, gender, age, birth, death. Error checks included
+     * like name, gender, age, birth, death. Error checks included, this function
+     * calls functions from service layer to access dataaccess layer to search
+     * the database.
      */
 
     string command;
@@ -721,11 +731,11 @@ void ConsoleUI::searchScientist()
         if(inputCheck == 1)
         {
             int userInputAge;
-            cout << endl << "Search by age: " << endl;
+            clearScreen();
+            cout << endl << "Search by age: ";
 
             while(true)
             {
-                cout << "Select: ";
                 cin >> userInputAge;
 
                 if(cin.fail())
@@ -748,6 +758,7 @@ void ConsoleUI::searchScientist()
             int userInputAgeLast;
             while(true)
             {
+                clearScreen();
                 cout << "From age: ";
                 cin >> userInputAgeFirst;
 
@@ -762,6 +773,7 @@ void ConsoleUI::searchScientist()
             }
             while(true)
             {
+                clearScreen();
                 cout << "To age: ";
                 cin >> userInputAgeLast;
 
@@ -934,6 +946,7 @@ void ConsoleUI::searchScientist()
 
             while(true)
             {
+                clearScreen();
                 cout << "Year scientist died (0 for still alive): ";
                 cin >> userInputDeath;
 
@@ -958,6 +971,7 @@ void ConsoleUI::searchScientist()
 
             while(true)
             {
+                clearScreen();
                 cout << "From year: ";
                 cin >> userInputDeathFirst;
 
@@ -972,6 +986,7 @@ void ConsoleUI::searchScientist()
            }
            while(true)
            {
+               clearScreen();
                cout << "To year(0 for still alive): ";
                cin >> userInputDeathLast;
 
@@ -1004,7 +1019,7 @@ void ConsoleUI::searchScientist()
     }
     cout << endl;
 }
-void ConsoleUI::sortScientist()
+void ConsoleUI::sortScientist()     // Get sorted list of scientist from database
 {
     /*
      * A sorting function, can call function from service.cpp scientistSort().
@@ -1579,35 +1594,38 @@ void ConsoleUI::searchComputer()
 void ConsoleUI::sortComputer()
 {
     /*
-     * A sorting function, can call function from service.cpp computerSort().
-     * The function will sort depending on int parameter "Sort by sortType:
-     *  1 = name(A-Z), 2 = name(Z-A), 3 = year(0-9), 4 = year(9-0) 5 = type(A-Z),
-     *  6 = type(Z-A), 7 = was built(N-Y),  8 = year made(Y-N)".
-     */
+         * A sorting function, can call function from service.cpp computerSort().
+         * The function will sort depending on int parameter "Sort by sortType:
+         *  1 = name(A-Z), 2 = name(Z-A), 3 = year(0-9), 4 = year(9-0) 5 = type(A-Z),
+         *  6 = type(Z-A), 7 = was built(N-Y),  8 = year made(Y-N), 9 = years since built(0-9)
+         *  10 = years sine built(9-0)".
+         */
 
+        vector<Computer> sortedComputers;
+        int userInput;
+        bool inputNotValid = false;
 
-    vector<Computer> sortedComputers;
-    int userInput;
-    bool inputNotValid = false;
-
-    clearScreen();
-    smallLogoPrint();
-
-    do
-    {
         clearScreen();
         smallLogoPrint();
 
-        cout << "Select a sort option: " << endl;
-        cout << "===================================" << endl;
-        cout << "(1)     -   Sort by name (A-Z)" << endl;
-        cout << "(2)     -   Sort by name (Z-A)" << endl;
-        cout << "(3)     -   Sort by year (0-9)" << endl;
-        cout << "(4)     -   Sort by year (9-0)" << endl;
-        cout << "(5)     -   Sort by type (A-Z)" << endl;
-        cout << "(6)     -   Sort by type (Z-A)" << endl;
-        cout << "(7)     -   Sort by if built (N-Y)" << endl;
-        cout << "(8)     -   Sort by if built (Y-N)" << endl;
+        do
+        {
+            clearScreen();
+            smallLogoPrint();
+
+            cout << "Select a sort option: " << endl;
+            cout << "===================================" << endl;
+            cout << "(1)     -   Sort by name (A-Z)" << endl;
+            cout << "(2)     -   Sort by name (Z-A)" << endl;
+            cout << "(3)     -   Sort by year (0-9)" << endl;
+            cout << "(4)     -   Sort by year (9-0)" << endl;
+            cout << "(5)     -   Sort by type (A-Z)" << endl;
+            cout << "(6)     -   Sort by type (Z-A)" << endl;
+            cout << "(7)     -   Sort by if built (N-Y)" << endl;
+            cout << "(8)     -   Sort by if built (Y-N)" << endl;
+            cout << "(9)     -   Sort by years since built (0-9))" << endl;
+            cout << "(10)    -   Sort by years since built (9-0))" << endl;
+
 
         if(inputNotValid)
         {
@@ -1651,45 +1669,54 @@ void ConsoleUI::addRelation()
 
     while(true)
     {
-        clearScreen();
         smallLogoPrint();
 
+        userMenuPrint(1);
         while(true)
         {
-             userMenuPrint(1);
-             cout << "Enter the scientist's name: ";
+
+
+             cout << endl << "Enter the scientist's name: ";
+
              cin.ignore(-1);
              getline(cin, name);
 
              if(name == "")
              {
-                 cout << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+                 userMenuPrint(1);
+                 textColorRed();
+                 cout << endl << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
+                 textColorWhite();
              }
              else if(_service.doesScientistExist(name) == false)
              {
-                 clearScreen();
-                 cout << "This scientists does not exist in the database, try again!" << endl;
+                 userMenuPrint(1);
+                 cout << "This scientist does not exist in the database, try again!" << endl;
+
              }
              else
              {
                  break;
              }
          }
-
+        userMenuPrint(2);
         while(true)
         {
-            userMenuPrint(2);
-             cout << "Enter the computer's name: ";
+             cout << endl << "Enter the computer's name: ";
+
              cin.ignore(-1);
              getline(cin, computer);
 
              if(computer == "")
              {
-                 cout << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl; // FIXME::
+                 userMenuPrint(2);
+                 textColorRed();
+                 cout << endl << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl;
+                 textColorWhite();
              }
              else if(_service.doesComputerExist(computer) == false)
              {
-                 clearScreen();
+                 userMenuPrint(2);
                  cout << "This computer does not exist in the database, try again!" << endl;
              }
              else
@@ -1697,8 +1724,6 @@ void ConsoleUI::addRelation()
                  break;
              }
          }
-
-
 
          // Check if input is correct
          clearScreen();
@@ -1712,7 +1737,7 @@ void ConsoleUI::addRelation()
              if(_service.doesRelationExist(name, computer) == false)
              {
                  _service.addRelation(name, computer);
-                 cout << endl << name << " relation to " << computer << " successfully added to the list" << endl;
+                 cout << "Relation between " << name << " and " << computer << " successfully added to the list" << endl;
              }
              else
              {
@@ -1752,10 +1777,6 @@ void ConsoleUI::addRelation()
              break;
          }
      }
-
-
-
-
 }
 void ConsoleUI::removeRelation()
 {
@@ -2087,7 +2108,6 @@ void ConsoleUI::searchRelation()
     cout << endl;
     }
 }
-
 void ConsoleUI::sortRelation()
 {
     /*
@@ -2166,7 +2186,7 @@ void ConsoleUI::askReturnToMenu() const                             // Asks if u
        getline(cin, userInput);
    }
 }
-int  ConsoleUI::userCheckInput()                               // Checks input from userMenuAdd
+int  ConsoleUI::userCheckInput()                                    // Checks input from userMenuAdd
 {
     /*
      * Check if all data is correct and return a int depending on what user selected.
