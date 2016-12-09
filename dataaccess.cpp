@@ -673,7 +673,7 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)
 }
 vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, string parameter2)
 {   // Loads relations from a database, into a vector, depenting on loadType.
-    // 5 = load by year built range.
+    // 5 = load by year built range, 6 = load by exact scientist and computer.
     // 0, 1, 2, 3 and 4 are loaded in the loadRelations function with two parameters.
 
     vector<Relation> relations;
@@ -684,6 +684,8 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
     {
         case 5: line = sqlRelationTable() + "WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND r.valid = 1"; // load by year range when computer built
                 break;
+        case 6: line = sqlRelationTable() + "WHERE Scientist LIKE \"" + parameter1 + "\" AND Computer LIKE \"" + parameter2 + "\" AND r.valid = 1"; // load by year range when computer built
+            break;
     }
 
     QString input = QString::fromStdString(line);
@@ -741,6 +743,33 @@ void DataAccess::removeRelation(int removeType, string inputName)
                 }
                 break;
     }
+
+    db.close();
+}
+void DataAccess::removeRelation(string scientist, string computer)
+{   // Removes a specific relation.
+
+    string line, scientistID, computerID;
+
+    db.open();
+    QSqlQuery query;
+    QString input;
+
+    line = "SELECT ID FROM Scientists WHERE name LIKE \"%" + scientist + "%\"";
+    input = QString::fromStdString(line);
+    query.exec(input);
+    query.next();
+    scientistID = query.value(0).toString().toStdString();
+
+    line = "SELECT ID FROM Computers WHERE name LIKE \"%" + computer + "%\"";
+    input = QString::fromStdString(line);
+    query.exec(input);
+    query.next();
+    computerID = query.value(0).toString().toStdString();
+
+    line = "UPDATE Relations SET Valid = 0 WHERE ScientistID = \"" + scientistID + "\" AND ComputerID = \"" + computerID + "\"";
+    input = QString::fromStdString(line);
+    query.exec(input);
 
     db.close();
 }

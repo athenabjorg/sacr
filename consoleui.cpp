@@ -12,7 +12,7 @@ ConsoleUI::ConsoleUI()                                              // Construct
 }
 
 // ---------------------------------- USER MENU FUNCTIONS ---------------------------------- //
-void ConsoleUI::userMenuRun()                                       // DIsplays the main menu
+void ConsoleUI::userMenuRun()                                       // Displays the main menu
 {
     /*
      * This is the main function body, that is run at the start of the program every time
@@ -106,8 +106,13 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
         clearScreen();
     }
 }
-void ConsoleUI::userMenuSwitch(int loadType)
+void ConsoleUI::userMenuSwitch(int loadType)                        // Switch between functions
 {
+    /*
+     * Depending on your selection here, and parametere "loadType" this function will
+     * call on different functions for each case. This function is used in userMenuRun();
+     */
+
     int selection = 0;
     string line;
 
@@ -210,11 +215,12 @@ void ConsoleUI::userMenuSwitch(int loadType)
     }
 
 }
-void ConsoleUI::userMenuPrint(int loadType)  //remove þetta, nota bara vecor prentin?                                   // Prints whole list
+void ConsoleUI::userMenuPrint(int loadType)                         // Prints list depending on parameter
 {
     /*
-     * Prints out a partial list of scientist, depending on how
-     * it was sent forward by the previous function.
+     * Prints out a list depending on parameter used for function
+     * (1) - list of Scientists, (2) - list of computers and
+     * (3) - list of relations.
     */
 
     vector<Scientist> scientist = _service.getScientists();
@@ -312,7 +318,7 @@ void ConsoleUI::userMenuPrint(const vector<Computer> &computer)     // Print lis
     cout << "=============================================================================================" << endl;
     cout << "Total: " << computer.size() << " computers" << endl;
 }
-void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list provided
+void ConsoleUI::userMenuPrint(const vector<Relation> &relation)     // Print list provided
 {
     /*
      * Prints out a partial list of scientist-computer relations, depending on how
@@ -347,7 +353,7 @@ void ConsoleUI::userMenuPrint(const vector<Relation> &relation)    // Print list
 
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
-void ConsoleUI::addScientist()      // Add scientist to database
+void ConsoleUI::addScientist()                                      // Add scientist to database
 {
     /*
      * This function gets all variables from user and makes error checks, if everything
@@ -524,7 +530,7 @@ void ConsoleUI::addScientist()      // Add scientist to database
         }
     }
 }
-void ConsoleUI::removeScientist()   // Remove scientist from database
+void ConsoleUI::removeScientist()                                   // Remove scientist from database
 {
     /*
      * This functions gets variables from user and checks if the user wants
@@ -611,7 +617,7 @@ void ConsoleUI::removeScientist()   // Remove scientist from database
 
     }
 }
-void ConsoleUI::searchScientist()   // Search the database for scientist
+void ConsoleUI::searchScientist()                                   // Search the database for scientist
 {
     /*
      * A search list is printed out and user can choose from a few search commands
@@ -1028,7 +1034,7 @@ void ConsoleUI::searchScientist()   // Search the database for scientist
     }
     cout << endl;
 }
-void ConsoleUI::sortScientist()     // Get sorted list of scientist from database
+void ConsoleUI::sortScientist()                                     // Get sorted list of scientist from database
 {
     /*
      * A sorting function, can call function from service.cpp scientistSort().
@@ -1095,8 +1101,13 @@ void ConsoleUI::sortScientist()     // Get sorted list of scientist from databas
 
 
 // ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
-void ConsoleUI::addComputer()
+void ConsoleUI::addComputer()                                       // Add computer to database
 {
+    /*
+     * This function gets all variables from user and makes error checks, if everything
+     * checks out fine this function will call on server layer functions to then add those
+     * variables to the database.
+     */
     string name, type;
     int yearBuilt = 0, checkInput;
     bool built = false;
@@ -1275,12 +1286,14 @@ void ConsoleUI::addComputer()
         }
     }
 }
-void ConsoleUI::removeComputer()
+void ConsoleUI::removeComputer()                                    // Remove computer from database
 {
     /*
-     * A function to remove a computer.
+     * This functions gets variables from user and checks if the user wants
+     * to remove 1 computer or all and uses functions from service layer
+     * to get access to dataccess layer to alter the database depending on
+     * user input.
      */
-
     string command;
 
     clearScreen();
@@ -1359,13 +1372,14 @@ void ConsoleUI::removeComputer()
 
     }
 }
-void ConsoleUI::searchComputer()
+void ConsoleUI::searchComputer()                                    // Search the database for computer
 {
     /*
      * A search list is printed out and user can choose from a few search commands
-     * like name, year built, type, and if built. Error checks included
+     * like name, year built, type, and if built. Error checks included, this function
+     * calls functions from service layer to access dataaccess layer to search
+     * the database.
      */
-
     string command;
 
     clearScreen();
@@ -1600,7 +1614,7 @@ void ConsoleUI::searchComputer()
     }
     cout << endl;
 }
-void ConsoleUI::sortComputer()
+void ConsoleUI::sortComputer()                                      // Get sorted list of computers from database
 {
     /*
          * A sorting function, can call function from service.cpp computerSort().
@@ -1671,8 +1685,13 @@ void ConsoleUI::sortComputer()
 
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
-void ConsoleUI::addRelation()
+void ConsoleUI::addRelation()                                       // Add relation to database
 {
+    /*
+     * This function gets all variables from user and makes error checks, if everything
+     * checks out fine this function will call on server layer functions to then add those
+     * variables to the database.
+     */
     string name, computer;
     int checkInput;
 
@@ -1787,12 +1806,14 @@ void ConsoleUI::addRelation()
          }
      }
 }
-void ConsoleUI::removeRelation()
+void ConsoleUI::removeRelation()                                    // Remove relation from database
 {
     /*
-     * A function to remove a computer.
+     * This functions gets variables from user and checks if the user wants
+     * to remove 1 scientist or all and uses functions from service layer
+     * to get access to dataccess layer to alter the database depending on
+     * user input.
      */
-
     string command;
 
     clearScreen();
@@ -1800,13 +1821,14 @@ void ConsoleUI::removeRelation()
     cout << "Select one of the following options: " << endl;
     cout << "(1)     -   Remove Relation by Scientist Name " << endl;
     cout << "(2)     -   Remove Relation by Computer Name" << endl;
-    cout << "(3)     -   Remove *ALL* relations" << endl << endl;
+    cout << "(3)     -   Remove Relation by Scientist and computer name" << endl;
+    cout << "(4)     -   Remove *ALL* relations" << endl << endl;
     cout << endl << "Select: ";
 
     getline(cin, command);
     cout << endl;
 
-    if(command[0] == '1') // Remove computer/s by input.
+    if(command[0] == '1')
     {
         vector<Relation> relation = _service.getRelations();
         userMenuPrint(relation);
@@ -1814,9 +1836,7 @@ void ConsoleUI::removeRelation()
         string userInputName, confirm;
         vector<Relation> relationsToRemove;
 
-
         cout << endl << "Remove relations with Scientist names containing: ";
-
 
         getline(cin, userInputName);
         relationsToRemove = _service.findRelation(1, userInputName);
@@ -1833,7 +1853,7 @@ void ConsoleUI::removeRelation()
 
             if (confirm[0] == 'y' || confirm[0] == 'Y')
             {
-                _service.removeRelation(1, userInputName); // TODO::Needs a functin in service layer
+                _service.removeRelation(1, userInputName);
                 cout << endl << "Relations with Scientist names containing '" << userInputName << "' have been removed from the list." << endl;
                 askReturnToMenu();
             }
@@ -1894,7 +1914,52 @@ void ConsoleUI::removeRelation()
             askReturnToMenu();
         }
     }
-    else if(command[0] == '3') // Remove all relations
+    if(command[0] == '3') // Remove Relation/s by input.
+    {
+        vector<Relation> relation = _service.getRelations();
+        userMenuPrint(relation);
+
+        string userInputScientist, userInputComputer, confirm;
+        vector<Relation> relationsToRemove;
+
+        cout << endl << "Remove relations where scientist name is: ";
+        getline(cin, userInputScientist);
+
+        cout << endl << "Remove relations where computer name is: ";
+        getline(cin, userInputComputer);
+
+        relationsToRemove = _service.findRelation(6, userInputScientist, userInputComputer);
+
+        if(relationsToRemove.size() > 0)
+        {
+            userMenuPrint(relationsToRemove);
+            cout << endl << "Are you sure you want to remove this relation between scientist and computer from the list?" << endl;
+            cout << "Y     -   Yes, remove it " << endl;
+            cout << "N     -   No, do not remove it" << endl << endl;
+            cout << endl << "Select: ";
+
+            getline(cin, confirm);
+
+            if (confirm[0] == 'y' || confirm[0] == 'Y')
+            {
+                _service.removeRelation(userInputScientist, userInputComputer);
+                cout << endl << "Relation between '" << userInputScientist << "' and '" << userInputComputer << "' has been removed from the list." << endl;
+                askReturnToMenu();
+            }
+            else
+            {
+                cout << endl << "No relations were removed" << endl;
+                askReturnToMenu();
+            }
+
+        }
+        else
+        {
+            cout << endl << "There is no relation between '" << userInputScientist << "' and '" << userInputComputer << "'" << endl;
+            askReturnToMenu();
+        }
+    }
+    else if(command[0] == '4') // Remove all relations
     {
         string userInputName;
 
@@ -1917,11 +1982,13 @@ void ConsoleUI::removeRelation()
 
     }
 }
-void ConsoleUI::searchRelation()
+void ConsoleUI::searchRelation()                                    // Search the database for relations
 {
     /*
      * A search list is printed out and user can choose from a few search commands
-     * like name, year built, type, and if built. Error checks included
+     * like name and computer. Error checks included, this function
+     * calls functions from service layer to access dataaccess layer to search
+     * the database.
      */
     string command;
 
@@ -2074,7 +2141,7 @@ void ConsoleUI::searchRelation()
     cout << endl;
     }
 }
-void ConsoleUI::sortRelation()
+void ConsoleUI::sortRelation()                                      // Get sorted list of relations
 {
     /*
      * A sorting function, can call function from service.cpp computerSort().
@@ -2124,7 +2191,7 @@ void ConsoleUI::sortRelation()
         inputNotValid = true;
 
 
-    }while(userInput < 1 || userInput > 8);
+    }while(userInput < 1 || userInput > 6);
 
 
     cin.clear();
@@ -2289,51 +2356,66 @@ void ConsoleUI::largeLogoPrint()                                    // Prints a 
 
     }
 }
-void ConsoleUI::numericLimiter()
+void ConsoleUI::numericLimiter()                                    // Limits input to just numbers
 {
+    /*
+     * Limits input of numbers to just 1, used for selections like (1), (2) etc..
+     * this way you can only input 1 number, this will help with not getting errors.
+     */
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-void ConsoleUI::numericLimiter(string comment)
+void ConsoleUI::numericLimiter(string comment)                      // Limits input to just numbers, parameter for print out msg
 {
+    /*
+     * Limits input of numbers to just 1, used for selections like (1), (2) etc..
+     * this way you can only input 1 number, this will help with not getting errors.
+     * The parameter is used to print out a msg before the limiter.
+     */
     cout << comment << endl;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-void ConsoleUI::invalidInputPrompt()
+void ConsoleUI::invalidInputPrompt()                                // Promt for error msg, "Invalid Input!"
 {
+    /*
+     * Promt for error msg, "Invalid Input!", used in many places in the code
+     * so best to keep as function even though it is small.
+     */
     textColorRed();
     cout << endl << "Invalid input!" << endl;
     textColorWhite();
 }
 
-#ifdef _WIN32
-void ConsoleUI::textColorWhite()
+
+// ---------------------------------- OS         FUNCTIONS ---------------------------------- //
+#ifdef _WIN32                                                       // Windows user will run this
+void ConsoleUI::textColorWhite()                                    // Function for white text
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x0F );
 }
-void ConsoleUI::textColorRed()
+void ConsoleUI::textColorRed()                                      // Function for red text
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x0C );
 }
-void ConsoleUI::textColorGray()
+void ConsoleUI::textColorGray()                                     // Function for gray text
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
     SetConsoleTextAttribute( hstdout, 0x08 );
 }
-#else
-void ConsoleUI::textColorWhite()
+#else                                                               // If not a windows user, run this
+void ConsoleUI::textColorWhite()                                    // Function for white text
 {
     // Nothing happening! Absolutely nothing to see here!
 }
-void ConsoleUI::textColorRed()
+void ConsoleUI::textColorRed()                                      // Function for red text
 {
     // Nothing happening! Absolutely nothing to see here!
 }
 
-void ConsoleUI::textColorGray()
+void ConsoleUI::textColorGray()                                     // Function for gray text
 {
     // Nothing happening! Absolutely nothing to see here!
 }

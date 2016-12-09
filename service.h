@@ -97,7 +97,9 @@ public:
     bool removeRelation(int removeType, string name);
         // Removes a relation with that name from the database. Case insensitive.
         // Returns true if removing succeded, false otherwise.
-
+    bool removeRelation(string scientist, string computer);
+        // Removes a relation with that scientist and computer name from the database. Case insensitive.
+        // Returns true if removing succeded, false otherwise.
     void removeAllRelations();
         // Removes ALL relations from the list. Be careful with this.
 
@@ -110,7 +112,7 @@ public:
         // Loads relations from a database, into a vector, depenting on loadType.
         // 0 = load by exact scientist name, 1 = load by scientist name,
         // 2 = load by exact computer name, 3 = load by computer name, 4 = load by year computer built
-        // 5 = load by year built range.
+        // 5 = load by year built range, 6 = load by exact scientist and computer.
 
     bool doesRelationExist(string scientist, string computer);
         // Checks if a relation by that name exists already

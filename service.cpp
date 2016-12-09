@@ -336,7 +336,14 @@ bool service::removeRelation(int removeType, string name)
 
     return true;
 }
+bool service::removeRelation(string scientist, string computer)
+{   // Removes a relation with that scientist and computer name from the database. Case insensitive.
+    // Returns true if removing succeded, false otherwise.
 
+    _data.removeRelation(scientist, computer);
+
+    return true;
+}
 void service::removeAllRelations()
 {   // Removes ALL relations from the list. Be careful with this.
 
@@ -369,7 +376,7 @@ vector<Relation> service::findRelation(int findType, string parameter)       // 
 }
 vector<Relation> service::findRelation(int findType, string parameter1, string parameter2)       // Search vector by type
 {   // Loads relations from a database, into a vector, depenting on loadType.
-    // 5 = load by year built range.
+    // 5 = load by year built range, 6 = load by exact scientist and computer.
     // 0, 1, 2, 3 and 4 are loaded in the loadRelations function with two parameters.
 
     vector<Relation> relations;
