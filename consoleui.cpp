@@ -1007,11 +1007,14 @@ void ConsoleUI::sortScientist()
 
 
     vector<Scientist> sortedScientists;
-    bool inputCheck = true;
     int userInput;
+    bool inputNotValid = false;
 
-    clearScreen();
-    smallLogoPrint();
+
+    do
+    {
+        clearScreen();
+        smallLogoPrint();
 
         cout << "Select a sort option: " << endl;
         cout << "===================================" << endl;
@@ -1026,32 +1029,36 @@ void ConsoleUI::sortScientist()
         cout << "(9)     -   Sort by age (0-9)" << endl;
         cout << "(10)    -   Sort by age (9-0)" << endl;
 
-    do
-    {
+        if(inputNotValid)
+        {
+            cout << endl << "Invalid input!" << endl;
+
+        }
+
         cout << endl << "Select: ";
         cin >> userInput;
 
-        if(userInput < 0 || userInput > 10) // check if input is int and if it ranges from 1 to 10
+
+        if(cin.fail())
         {
-            inputCheck = true;
-            cout << "Invalid input" << endl;
+            numericLimiter("Invalid input!");
         }
-        else
-        {
-            inputCheck = false;
-        }
-        cin.clear();
 
-        clearScreen();
-        smallLogoPrint();
 
-    }while(inputCheck);
+        inputNotValid = true;
 
-     sortedScientists = _service.scientistSort(userInput);
 
-     userMenuPrint(sortedScientists);
+    }while(userInput < 1 || userInput > 10);
 
-     askReturnToMenu();
+    cin.clear();
+
+    clearScreen();
+
+    sortedScientists = _service.scientistSort(userInput);
+
+    userMenuPrint(sortedScientists);
+
+    askReturnToMenu();
 }
 
 
@@ -1588,7 +1595,6 @@ void ConsoleUI::sortComputer()
         cout << endl << "Select: ";
         cin >> userInput;
 
-
         if(cin.fail())
         {
             numericLimiter("Invalid input!");
@@ -1607,7 +1613,7 @@ void ConsoleUI::sortComputer()
 
     sortedComputers = _service.computerSort(userInput);
 
-    userMenuPrint(sortedComputers); // Laga þegar print er orðið klárt
+    userMenuPrint(sortedComputers);
 
     askReturnToMenu();
 
