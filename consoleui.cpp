@@ -80,7 +80,7 @@ void ConsoleUI::userMenuRun()                                       // DIsplays 
             {
                 invalidInput = true;
 
-                cout << "Invalid input" << endl;
+                invalidInputPrompt();
             }
         }
 
@@ -381,7 +381,7 @@ void ConsoleUI::addScientist()
                 }
                 else
                 {
-                    cout << "Invalid input!";
+                    invalidInputPrompt();
                 }
 
             }
@@ -408,7 +408,7 @@ void ConsoleUI::addScientist()
             }
             else
             {
-                cout << "Invalid input" << endl;
+                invalidInputPrompt();
             }
         }
 
@@ -428,7 +428,10 @@ void ConsoleUI::addScientist()
                 }
                 else
                 {
-                    cout << "Invalid input...or you are Marty McFly" << endl;
+                   invalidInputPrompt();
+                   textColorLogo();
+                   cout << "...or you are Marty McFly" << endl;
+                   textColorMain();
                 }
             }
 
@@ -457,7 +460,10 @@ void ConsoleUI::addScientist()
                 }
                 else if(deathYear < birthYear)
                 {
-                    cout << "Invalid input - You can't die before you are born!" << endl;
+                    invalidInputPrompt();
+                    textColorLogo();
+                    cout << " - You can't die before you are born!" << endl;
+                    textColorMain();
                     cin.clear();
                 }
             }
@@ -622,7 +628,7 @@ void ConsoleUI::searchScientist()
             else
             {
                 inputCheck = true;
-                cout << "Invalid input!" << endl;
+                invalidInputPrompt();
             }
             cin.clear();
 
@@ -664,7 +670,7 @@ void ConsoleUI::searchScientist()
             }
             else
             {
-                cout << "Invalid input!" << endl;
+                invalidInputPrompt();
             }
             cin.clear();
         }
@@ -678,7 +684,7 @@ void ConsoleUI::searchScientist()
         }
         else
         {
-            cout << "Invalid Input" << endl;
+            invalidInputPrompt();
         }
 
 
@@ -708,7 +714,7 @@ void ConsoleUI::searchScientist()
             }
             else
             {
-                cout << "Invalid input!" << endl;
+                invalidInputPrompt();
             }
         }
 
@@ -784,7 +790,7 @@ void ConsoleUI::searchScientist()
         {
             clearScreen();
             smallLogoPrint();
-            cout << "Invalid Input" << endl;
+            invalidInputPrompt();
         }
     }
     else if(command == "birth")
@@ -811,7 +817,7 @@ void ConsoleUI::searchScientist()
             }
             else
             {
-                cout << "Invalid input!" << endl << endl;
+                invalidInputPrompt();
             }
         }
 
@@ -889,7 +895,7 @@ void ConsoleUI::searchScientist()
         }
         else
         {
-            cout << endl << "Invalid Input" << endl;
+            invalidInputPrompt();
         }
     }
     else if(command == "death")
@@ -917,7 +923,8 @@ void ConsoleUI::searchScientist()
             }
             else
             {
-                cout << "Invalid input!" << endl << endl;
+                invalidInputPrompt();
+                cout << endl << endl;
             }
         }
 
@@ -992,7 +999,7 @@ void ConsoleUI::searchScientist()
         {
             clearScreen();
             smallLogoPrint();
-            cout << "Invalid Input" << endl;
+            invalidInputPrompt();
         }
     }
     cout << endl;
@@ -1032,7 +1039,7 @@ void ConsoleUI::sortScientist()
 
         if(inputNotValid)
         {
-            cout << endl << "Invalid input!" << endl;
+            invalidInputPrompt();
 
         }
 
@@ -1107,7 +1114,7 @@ void ConsoleUI::addComputer()
                 }
                 else
                 {
-                    cout << "Invalid input!";
+                    invalidInputPrompt();
                 }
 
             }
@@ -1157,7 +1164,7 @@ void ConsoleUI::addComputer()
                 }
                 else
                 {
-                    cout << "Invalid input" << endl;
+                    invalidInputPrompt();
                 }
             }
         }
@@ -1180,7 +1187,7 @@ void ConsoleUI::addComputer()
             }
 
             else
-                cout << "Invalid Input" << endl;
+                invalidInputPrompt();
         }
 
         while(built == true) // Check when when it was built (if it was)
@@ -1360,7 +1367,7 @@ void ConsoleUI::searchComputer()
         }
         else
         {
-            cout << "Invalid input!" << endl;
+            invalidInputPrompt();
         }
         cin.clear();
      }
@@ -1409,7 +1416,7 @@ void ConsoleUI::searchComputer()
             }
             else
             {
-                cout << "Invalid input!" << endl;
+                invalidInputPrompt();
             }
         }
 
@@ -1500,7 +1507,7 @@ void ConsoleUI::searchComputer()
             }
             else
             {
-                cout << "Invalid input!" << endl << endl;
+                invalidInputPrompt();
             }
         }
 
@@ -1550,7 +1557,7 @@ void ConsoleUI::searchComputer()
             }
             else
             {
-                cout << "Invalid input!" << endl << endl;
+                invalidInputPrompt();
             }
         }
 
@@ -1604,7 +1611,7 @@ void ConsoleUI::sortComputer()
 
         if(inputNotValid)
         {
-            cout << endl << "Invalid input!" << endl;
+            invalidInputPrompt();
 
         }
 
@@ -1719,7 +1726,7 @@ void ConsoleUI::addRelation()
             {
                 int userInput;
 
-                cout << "This relation is already in the database." << endl;
+                cout << endl << "This relation is already in the database." << endl;
                 cout << endl << "1 - Start over" << endl;
                 cout << "2 - Cancel" << endl;
                 while(true)
@@ -1737,7 +1744,7 @@ void ConsoleUI::addRelation()
                     }
                     else
                     {
-                        cout << "Invalid input!" << endl;
+                        invalidInputPrompt();
                     }
 
                 }
@@ -1919,7 +1926,7 @@ void ConsoleUI::searchRelation()
         }
         else
         {
-            cout << "Invalid input!" << endl;
+            invalidInputPrompt();
         }
     }
 
@@ -1978,7 +1985,7 @@ void ConsoleUI::searchRelation()
             }
             else
             {
-                cout << "Invalid input!" << endl << endl;
+                invalidInputPrompt();
                 cin.clear();
             }
         }
@@ -2042,7 +2049,7 @@ void ConsoleUI::searchRelation()
                     userMenuPrint(relation);
                     askReturnToMenu();
                     break;
-            default: cout << "Invalid Input" << endl;
+            default: invalidInputPrompt();
         }
     cout << endl;
     }
@@ -2082,7 +2089,7 @@ void ConsoleUI::sortRelation()
 
         if(inputNotValid)
         {
-            cout << endl << "Invalid input!" << endl;
+            invalidInputPrompt();
 
         }
 
@@ -2126,7 +2133,7 @@ void ConsoleUI::askReturnToMenu() const                             // Asks if u
        getline(cin, userInput);
    }
 }
-int  ConsoleUI::userCheckInput() const                              // Checks input from userMenuAdd
+int  ConsoleUI::userCheckInput()                               // Checks input from userMenuAdd
 {
     /*
      * Check if all data is correct and return a int depending on what user selected.
@@ -2160,7 +2167,7 @@ int  ConsoleUI::userCheckInput() const                              // Checks in
         }
         else
         {
-            cout << "Invalid input!";
+            invalidInputPrompt();
         }
 
     }
@@ -2273,6 +2280,12 @@ void ConsoleUI::numericLimiter(string comment)
     cout << comment << endl;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+void ConsoleUI::invalidInputPrompt()
+{
+    textColorLogo();
+    cout << endl << "Invalid input!" << endl;
+    textColorMain();
 }
 
 #ifdef _WIN32
