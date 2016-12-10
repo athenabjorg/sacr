@@ -6,16 +6,16 @@ using namespace std;
 
 bool sortByAgeAsc (const Scientist &a, const Scientist &b) { return a.getAge()    <  b.getAge();    }
 bool sortByAgeDesc(const Scientist &a, const Scientist &b) { return a.getAge()    >  b.getAge();    }
-    //operator overloading functions for scientistSort.
+//operator overloading functions for scientistSort.
 
 bool sortByYearsSinceBuiltAsc (const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() <  b.getYearsSinceBuilt(); }
 bool sortByYearsSinceBuiltDesc(const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() >  b.getYearsSinceBuilt(); }
-    //operator overloading functions for computerSort.
+//operator overloading functions for computerSort.
 
 service::service()
 {
-     _scientists = _data.loadScientists();
-     _computers = _data.loadComputers();
+    _scientists = _data.loadScientists();
+    _computers = _data.loadComputers();
 }
 
 string service::getFunFact()
@@ -258,7 +258,7 @@ vector<Computer> service::computerSort(int sortType)
     }
     else
     {
-       computers = _data.sortComputers(sortType);
+        computers = _data.sortComputers(sortType);
     }
 
     return computers;

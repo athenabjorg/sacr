@@ -29,7 +29,7 @@ private:
     int    _age;
 
     int    whatYearIsIt() const;
-        // Returns the current year.
+    // Returns the current year.
 };
 
 #endif // SCIENTIST_H

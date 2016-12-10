@@ -47,6 +47,6 @@ int Computer::whatYearIsIt() const // Óþarfi ef við ætlum ekki að hafa year
 }
 int Computer::getYearsSinceBuilt() const
 {
-        return _yearsSinceBuilt;
+    return _yearsSinceBuilt;
 }
 

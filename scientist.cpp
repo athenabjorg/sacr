@@ -8,7 +8,7 @@ Scientist::Scientist()
     _birth = 0;
     _death = 0;
     _age = 0;
-   // _valid = false;
+    // _valid = false;
 }
 Scientist::Scientist(string name, char gender, int birth, int death) //vantar bool valid aftast
 {   // Adds in the scientist parameters
@@ -17,7 +17,7 @@ Scientist::Scientist(string name, char gender, int birth, int death) //vantar bo
     _gender = gender;
     _birth = birth;
     _death = death;
-   // _valid = valid;
+    // _valid = valid;
 
     if(_death == 0)
     {

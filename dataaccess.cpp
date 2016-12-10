@@ -28,7 +28,7 @@ void DataAccess::saveScientist(Scientist newScientist)
 
 
     line = "INSERT INTO Scientists(name,gender,born,died) "
-            "VALUES(\"" + name + "\",\"" + gender + "\"," + to_string(birthYear) + "," + to_string(deathYear) + ")";
+           "VALUES(\"" + name + "\",\"" + gender + "\"," + to_string(birthYear) + "," + to_string(deathYear) + ")";
 
     QString input = QString::fromStdString(line);
 
@@ -52,7 +52,7 @@ void DataAccess::updateScientist(Scientist scientist)
 
     line = "UPDATE Scientists"
            "SET Gender = \"" + gender + "\", born = " + to_string(birthYear) + ", Died = " + to_string(deathYear) + ", Valid = 1"
-           "WHERE Name LIKE \"" + name + "\"";
+                                                                                                                    "WHERE Name LIKE \"" + name + "\"";
 
     QString input = QString::fromStdString(line);
 
@@ -101,16 +101,16 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)
 
     switch(loadType) // TODO case 2 (gender) virkar ekki
     {
-        case 0: line = "SELECT * FROM Scientists  Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by exact name
-                break;
-        case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
-                break;
-        case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\" AND valid = 1"; // load by gender
-                break;
-        case 3: line = "SELECT * FROM Scientists  Where Born LIKE " + parameter + " AND valid = 1"; // load by birth year
-                break;
-        case 5: line = "SELECT * FROM Scientists  Where Died LIKE " + parameter + " AND valid = 1"; // load by death year
-                break;
+    case 0: line = "SELECT * FROM Scientists  Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by exact name
+        break;
+    case 1: line = "SELECT * FROM Scientists  Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
+        break;
+    case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\" AND valid = 1"; // load by gender
+        break;
+    case 3: line = "SELECT * FROM Scientists  Where Born LIKE " + parameter + " AND valid = 1"; // load by birth year
+        break;
+    case 5: line = "SELECT * FROM Scientists  Where Died LIKE " + parameter + " AND valid = 1"; // load by death year
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -145,10 +145,10 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
 
     switch(loadType)
     {
-        case 4: line = "SELECT * FROM scientists WHERE Born BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by birth year range
-                break;
-        case 6: line = "SELECT * FROM scientists WHERE Died BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by death year range
-                break;
+    case 4: line = "SELECT * FROM scientists WHERE Born BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by birth year range
+        break;
+    case 6: line = "SELECT * FROM scientists WHERE Died BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by death year range
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -216,22 +216,22 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
 
     switch(sortType)
     {
-        case 1: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Name ASC"; // sort by name(A-Z)
-                break;
-        case 2: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Name DESC"; // sort by name(Z-A)
-                break;
-        case 3: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Gender ASC"; // sort by gender(f-m)
-                break;
-        case 4: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Gender DESC"; // sort by gender(m-f)
-                break;
-        case 5: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Born ASC"; // sort by birth year(0-9)
-                break;
-        case 6: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Born DESC"; // sort by birth year(9-0)
-                break;
-        case 7: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY DIED ASC"; // sort by death year(0-9)
-                break;
-        case 8: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY DIED DESC"; // sort by death year(9-0)
-                break;
+    case 1: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Name ASC"; // sort by name(A-Z)
+        break;
+    case 2: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Name DESC"; // sort by name(Z-A)
+        break;
+    case 3: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Gender ASC"; // sort by gender(f-m)
+        break;
+    case 4: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Gender DESC"; // sort by gender(m-f)
+        break;
+    case 5: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Born ASC"; // sort by birth year(0-9)
+        break;
+    case 6: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY Born DESC"; // sort by birth year(9-0)
+        break;
+    case 7: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY DIED ASC"; // sort by death year(0-9)
+        break;
+    case 8: line = "SELECT * FROM Scientists WHERE valid = 1 ORDER BY DIED DESC"; // sort by death year(9-0)
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -287,7 +287,7 @@ void DataAccess::saveComputer(Computer newComputer)
     built = newComputer.getBuilt();
 
     line = "INSERT INTO Computers(name,type,year,built) "
-            "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
+           "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
 
     QString input = QString::fromStdString(line);
 
@@ -312,7 +312,7 @@ void DataAccess::updateComputer(Computer computer)
 
     line = "UPDATE Computers "
            "SET Type = \"" + type + "\", year = " + to_string(year) + ", built = " + to_string(built) + ", Valid = 1 "
-           "WHERE Name LIKE \"" + name + "\"";
+                                                                                                        "WHERE Name LIKE \"" + name + "\"";
 
     QString input = QString::fromStdString(line);
 
@@ -368,16 +368,16 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)
 
     switch(loadType)
     {
-        case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by exact name
-                break;
-        case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
-                break;
-        case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\" AND valid = 1"; // load by year built
-                break;
-        case 4: line = "SELECT * FROM Computers Where Type LIKE  \"" + parameter + "\" AND valid = 1"; // load by type
-                break;
-        case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter + " AND valid = 1"; // load by if built
-                break;
+    case 0: line = "SELECT * FROM Computers Where Name LIKE \"" + parameter + "\" AND valid = 1"; // load by exact name
+        break;
+    case 1: line = "SELECT * FROM Computers Where Name LIKE \"%" + parameter + "%\" AND valid = 1"; // load by name
+        break;
+    case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\" AND valid = 1"; // load by year built
+        break;
+    case 4: line = "SELECT * FROM Computers Where Type LIKE  \"" + parameter + "\" AND valid = 1"; // load by type
+        break;
+    case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter + " AND valid = 1"; // load by if built
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -414,8 +414,8 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
 
     switch(loadType)
     {
-        case 3: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by build/design year range
-                break;
+    case 3: line = "SELECT * FROM computers WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND valid = 1"; // load by build/design year range
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -484,22 +484,22 @@ vector<Computer> DataAccess::sortComputers(int sortType)
 
     switch(sortType)
     {
-        case 1: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Name ASC"; // sort by name(A-Z)
-                break;
-        case 2: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Name DESC"; // sort by name(Z-A)
-                break;
-        case 3: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Year ASC"; // sort by Year(0-9)
-                break;
-        case 4: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Year DESC"; // sort by Year(9-0)
-                break;
-        case 5: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Type ASC"; // sort by type(A-Z)
-                break;
-        case 6: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Type DESC"; // sort by type(Z-A)
-                break;
-        case 7: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Built ASC"; // sort by if built(N-Y)
-                break;
-        case 8: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Built DESC"; // sort by if built(Y-N)
-                break;
+    case 1: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Name ASC"; // sort by name(A-Z)
+        break;
+    case 2: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Name DESC"; // sort by name(Z-A)
+        break;
+    case 3: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Year ASC"; // sort by Year(0-9)
+        break;
+    case 4: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Year DESC"; // sort by Year(9-0)
+        break;
+    case 5: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Type ASC"; // sort by type(A-Z)
+        break;
+    case 6: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Type DESC"; // sort by type(Z-A)
+        break;
+    case 7: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Built ASC"; // sort by if built(N-Y)
+        break;
+    case 8: line = "SELECT * FROM Computers WHERE valid = 1 ORDER BY Built DESC"; // sort by if built(Y-N)
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -639,16 +639,16 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)
 
     switch(loadType)
     {
-        case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND r.valid = 1"; // load by exact scientist name
-                break;
-        case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by scientist name
-                break;
-        case 2: line = sqlRelationTable() + "Where computer LIKE \"" + parameter + "\" AND r.valid = 1"; // load by whole computer name
-                break;
-        case 3: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by computer name
-                break;
-        case 4: line = sqlRelationTable() + "Where year LIKE \"" + parameter + "\" AND r.valid = 1"; // load by year computer built
-                break;
+    case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND r.valid = 1"; // load by exact scientist name
+        break;
+    case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by scientist name
+        break;
+    case 2: line = sqlRelationTable() + "Where computer LIKE \"" + parameter + "\" AND r.valid = 1"; // load by whole computer name
+        break;
+    case 3: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by computer name
+        break;
+    case 4: line = sqlRelationTable() + "Where year LIKE \"" + parameter + "\" AND r.valid = 1"; // load by year computer built
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -682,10 +682,10 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, stri
 
     switch(loadType)
     {
-        case 5: line = sqlRelationTable() + "WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND r.valid = 1"; // load by year range when computer built
-                break;
-        case 6: line = sqlRelationTable() + "WHERE Scientist LIKE \"" + parameter1 + "\" AND Computer LIKE \"" + parameter2 + "\" AND r.valid = 1"; // load by year range when computer built
-            break;
+    case 5: line = sqlRelationTable() + "WHERE year BETWEEN " + parameter1 + " AND " + parameter2 + " AND r.valid = 1"; // load by year range when computer built
+        break;
+    case 6: line = sqlRelationTable() + "WHERE Scientist LIKE \"" + parameter1 + "\" AND Computer LIKE \"" + parameter2 + "\" AND r.valid = 1"; // load by year range when computer built
+        break;
     }
 
     QString input = QString::fromStdString(line);
@@ -719,29 +719,29 @@ void DataAccess::removeRelation(int removeType, string inputName)
 
     switch(removeType)
     {
-        case 1: line = "SELECT ID FROM Scientists WHERE name LIKE \"%" + inputName + "%\"";
-                input = QString::fromStdString(line);
-                queryID.exec(input);
-                while(queryID.next())
-                {
-                    scientistID = queryID.value(0).toString().toStdString();
-                    line = "UPDATE Relations SET Valid = 0 WHERE ScientistID = \"" + scientistID + "\"";
-                    input = QString::fromStdString(line);
-                    queryRemove.exec(input);
-                }
-                break;
+    case 1: line = "SELECT ID FROM Scientists WHERE name LIKE \"%" + inputName + "%\"";
+        input = QString::fromStdString(line);
+        queryID.exec(input);
+        while(queryID.next())
+        {
+            scientistID = queryID.value(0).toString().toStdString();
+            line = "UPDATE Relations SET Valid = 0 WHERE ScientistID = \"" + scientistID + "\"";
+            input = QString::fromStdString(line);
+            queryRemove.exec(input);
+        }
+        break;
 
-        case 2: line = "SELECT ID FROM Computers WHERE name LIKE \"%" + inputName + "%\"";
-                input = QString::fromStdString(line);
-                queryID.exec(input);
-                while(queryID.next())
-                {
-                    computerID = queryID.value(0).toString().toStdString();
-                    line = "UPDATE Relations SET Valid = 0 WHERE ComputerID = \"" + computerID + "\"";
-                    input = QString::fromStdString(line);
-                    queryRemove.exec(input);
-                }
-                break;
+    case 2: line = "SELECT ID FROM Computers WHERE name LIKE \"%" + inputName + "%\"";
+        input = QString::fromStdString(line);
+        queryID.exec(input);
+        while(queryID.next())
+        {
+            computerID = queryID.value(0).toString().toStdString();
+            line = "UPDATE Relations SET Valid = 0 WHERE ComputerID = \"" + computerID + "\"";
+            input = QString::fromStdString(line);
+            queryRemove.exec(input);
+        }
+        break;
     }
 
     db.close();
@@ -799,18 +799,18 @@ vector<Relation> DataAccess::sortRelations(int sortType)
 
     switch(sortType)
     {
-        case 1: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Scientist ASC"; // sort by scientist name(A-Z)
-                break;
-        case 2: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Scientist DESC"; // sort by scientist name(Z-A)
-                break;
-        case 3: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Computer ASC"; // sort by computer name(A-Z)
-                break;
-        case 4: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Computer DESC"; // sort by computer name(Z-A)
-                break;
-        case 5: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Year ASC"; // sort by year made(0-9)
-                break;
-        case 6: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Year DESC"; // sort by year made(9-0)
-                break;
+    case 1: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Scientist ASC"; // sort by scientist name(A-Z)
+        break;
+    case 2: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Scientist DESC"; // sort by scientist name(Z-A)
+        break;
+    case 3: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Computer ASC"; // sort by computer name(A-Z)
+        break;
+    case 4: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Computer DESC"; // sort by computer name(Z-A)
+        break;
+    case 5: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Year ASC"; // sort by year made(0-9)
+        break;
+    case 6: line = sqlRelationTable() + "WHERE r.valid = 1 ORDER BY Year DESC"; // sort by year made(9-0)
+        break;
     }
 
     QString input = QString::fromStdString(line);
