@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <QtSql>
-#include <iostream> // TEMP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 #include "scientist.h"
 #include "computer.h"
