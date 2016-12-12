@@ -1,15 +1,11 @@
-#include "consoleui.h"
+#include "mainwindow.h"
+#include <QApplication>
 
-// This program was made by, Aþena Björg Ásgeirsdóttir, Davíð Gunnarsson,
-// Guðmundur Hermann Þórlaugarson, Jón Hjörtur Brjánsson, Óskar Magnússon
-// and Tryggvi Björn Guðbjörnsson. For Reykjavík University 3 week programming
-// course.
-
-int main()
+int main(int argc, char *argv[])
 {
-    ConsoleUI ui;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
-    ui.userMenuRun(); // The main function in consoleui.cpp
-
-    return 0;
+    return a.exec();
 }

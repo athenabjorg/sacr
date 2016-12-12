@@ -2276,9 +2276,7 @@ void ConsoleUI::clearScreen()                                 // Clears console 
 {
     const int spaceLength = 50;
     cout << string( spaceLength, '\n' );
-    textColorGray();
-    cout << "Fun fact:" << endl << _service.getFunFact() << endl << endl << endl << endl;
-    textColorWhite();
+
 }
 int  ConsoleUI::whatYearIsIt() const                                // Returns the current year.
 {

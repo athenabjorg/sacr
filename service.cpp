@@ -18,10 +18,7 @@ service::service()
     _computers = _data.loadComputers();
 }
 
-string service::getFunFact()
-{
-    return _funfacts.getFunFact();
-}
+
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
 vector<Scientist> service::getScientists()

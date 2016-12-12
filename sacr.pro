@@ -1,10 +1,10 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-12-12T14:54:38
+# Project created by QtCreator 2016-12-12T20:53:09
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,3 +32,6 @@ HEADERS  += mainwindow.h \
     service.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    sacr.pro.user
