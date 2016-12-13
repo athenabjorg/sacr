@@ -88,7 +88,7 @@ void ConsoleUI::userMenuRun()                                       // Displays 
         {
             clearScreen();
             smallLogoPrint();
-            textColorRed();
+
             if((whatYearIsIt() - 2015) == 0)
             {
                 cout << setw(85) << "SACR version 2.0 will be released in December 2016" << endl << endl;
@@ -100,7 +100,7 @@ void ConsoleUI::userMenuRun()                                       // Displays 
             }
 
             cout << setw(61) << "24/7 HOTLINE: +354 7707010" << endl << endl;
-            textColorWhite();
+
             break;
         }
         clearScreen();
@@ -377,9 +377,9 @@ void ConsoleUI::addScientist()                                      // Add scien
 
             if(name == "")
             {
-                textColorRed();
+
                 cout << endl << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl << endl;
-                textColorWhite();
+
             }
             else if(_service.findScientist(0, name).size() > 0)
             {
@@ -451,9 +451,9 @@ void ConsoleUI::addScientist()                                      // Add scien
             else
             {
                 invalidInputPrompt();
-                textColorRed();
+
                 cout << "...or you are Marty McFly" << endl;
-                textColorWhite();
+
             }
         }
 
@@ -483,9 +483,9 @@ void ConsoleUI::addScientist()                                      // Add scien
             else if(deathYear < birthYear)
             {
                 invalidInputPrompt();
-                textColorRed();
+
                 cout << " - You can't die before you are born!" << endl;
-                textColorWhite();
+
                 cin.clear();
             }
         }
@@ -603,9 +603,9 @@ void ConsoleUI::removeScientist()                                   // Remove sc
 
         clearScreen();
         smallLogoPrint();
-        textColorRed();
+
         cout << "Type in \"remove\" to remove *ALL* scientists, any other input to cancel" << endl;
-        textColorWhite();
+
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
@@ -1358,9 +1358,9 @@ void ConsoleUI::removeComputer()                                    // Remove co
 
         clearScreen();
         smallLogoPrint();
-        textColorRed();
+
         cout << "Type in \"remove\" to remove *ALL* computers, any other input to cancel" << endl;
-        textColorWhite();
+
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
@@ -1714,9 +1714,9 @@ void ConsoleUI::addRelation()                                       // Add relat
             if(name == "")
             {
                 userMenuPrint(1);
-                textColorRed();
+
                 cout << endl << "\"Every rose has it's thorne, just like every scientist has a name\" -Poison"<< endl;
-                textColorWhite();
+
             }
             else if(_service.doesScientistExist(name) == false)
             {
@@ -1740,9 +1740,9 @@ void ConsoleUI::addRelation()                                       // Add relat
             if(computer == "")
             {
                 userMenuPrint(2);
-                textColorRed();
+
                 cout << endl << "\"Every rose has it's thorne, just like every computer has a name\" -Poison"<< endl;
-                textColorWhite();
+
             }
             else if(_service.doesComputerExist(computer) == false)
             {
@@ -1967,9 +1967,9 @@ void ConsoleUI::removeRelation()                                    // Remove re
 
         clearScreen();
         smallLogoPrint();
-        textColorRed();
+
         cout << "Type in \"remove\" to remove *ALL* relations, any other input to cancel" << endl;
-        textColorWhite();
+
         getline(cin, userInputName);
         forceLowerCase(userInputName);
 
@@ -2291,7 +2291,7 @@ int  ConsoleUI::whatYearIsIt() const                                // Returns t
 }
 void ConsoleUI::smallLogoPrint()                                    // Prints a small logo to screen
 {
-    textColorRed();
+
 
     int w = 65;
     cout << setw(w-1) << "  _____   ___    ______ ____" << endl;
@@ -2300,17 +2300,17 @@ void ConsoleUI::smallLogoPrint()                                    // Prints a 
     cout << setw(w) << " ___/ // ___ |/ /___ / _, _/ " << endl;
     cout << setw(w) << "/____//_/  |_|\\____//_/ |_|  " << endl;
 
-    textColorGray();
+
     cout << setw(w+4) << "Scientist and computer realtions." << endl;
     cout << setw(w-18) << "Version 1.0" << endl << endl << endl << endl;
 
-    textColorWhite();
+
 }
 void ConsoleUI::largeLogoPrint()                                    // Prints a large logo to screen
 {
     if(true)
     {
-        textColorRed();
+
 
         cout << "            _____                    _____                    _____                    _____          " << endl;
         cout << "           /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\          " << endl;
@@ -2330,32 +2330,32 @@ void ConsoleUI::largeLogoPrint()                                    // Prints a 
         cout << "      \\:::\\  /:::/    /               /:::/    /        \\:::\\    \\                  |::| \\::/____/     " << endl;
         cout << "       \\:::\\/:::/    /               /:::/    /          \\:::\\    \\                 |::|  ~|           " << endl;
         cout << "        \\::::::/    /";
-        textColorGray();
+
         cout <<"  Scientist";
-        textColorRed();
+
         cout << "    /:::/    /            \\:::\\    \\                |::|   |           " << endl;
         cout << "         \\::::/    /  ";
-        textColorGray();
+
         cout << "And";
-        textColorRed();
+
         cout << "          /:::/    /              \\:::\\____\\               \\::|   |           " << endl;
         cout << "          \\::/    /  ";
-        textColorGray();
+
         cout << "Computer";
-        textColorRed();
+
         cout << "      \\::/    /                \\::/    /                \\:|   |           " << endl;
         cout << "           \\/____/  ";
-        textColorGray();
+
         cout << "Relations";
-        textColorRed();
+
         cout << "       \\/____/  ";
-        textColorGray();
+
         cout << "Version 1.0";
 
-        textColorRed();
+
         cout << "     \\/____/                  \\|___|           " << endl;
 
-        textColorWhite();
+
 
     }
 }
@@ -2385,41 +2385,7 @@ void ConsoleUI::invalidInputPrompt()                                // Promt for
      * Promt for error msg, "Invalid Input!", used in many places in the code
      * so best to keep as function even though it is small.
      */
-    textColorRed();
+
     cout << endl << "Invalid input!" << endl;
-    textColorWhite();
-}
 
-
-// ---------------------------------- OS         FUNCTIONS ---------------------------------- //
-#ifdef _WIN32                                                       // Windows user will run this
-void ConsoleUI::textColorWhite()                                    // Function for white text
-{
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-    SetConsoleTextAttribute( hstdout, 0x0F );
 }
-void ConsoleUI::textColorRed()                                      // Function for red text
-{
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-    SetConsoleTextAttribute( hstdout, 0x0C );
-}
-void ConsoleUI::textColorGray()                                     // Function for gray text
-{
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-    SetConsoleTextAttribute( hstdout, 0x08 );
-}
-#else                                                               // If not a windows user, run these functions which dont change the color.
-void ConsoleUI::textColorWhite()
-{
-    // Nothing happening! Absolutely nothing to see here!
-}
-void ConsoleUI::textColorRed()
-{
-    // Nothing happening! Absolutely nothing to see here!
-}
-
-void ConsoleUI::textColorGray()
-{
-    // Nothing happening! Absolutely nothing to see here!
-}
-#endif

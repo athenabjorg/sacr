@@ -7,10 +7,7 @@
 #include "service.h"
 #include "scientist.h"
 #include "computer.h"
-#ifdef _WIN32
-// Includes windows.h if running on windows, otherwise not.
-#include <windows.h>
-#endif
+
 
 
 class ConsoleUI
@@ -98,17 +95,6 @@ private:
 
     void invalidInputPrompt();
 
-#ifdef _WIN32
-    // Includes the following functions if running on Windows.
-    void textColorWhite();
-    void textColorRed();
-    void textColorGray();
-#else
-    // Includes the following functions if NOT running on Windows.
-    void textColorWhite();
-    void textColorRed();
-    void textColorGray();
-#endif
 
 };
 
