@@ -4,16 +4,16 @@
 #include <vector>
 
 #include <QDialog>
-#include <QMainWindow>
-#include <QLabel>
-#include <QMessageBox>
-#include <QTableView>
-#include <QTableWidget>
-#include <QItemDelegate>
-#include <QStandardItemModel>
-#include <QTableWidgetItem>
-#include <QTableWidgetSelectionRange>
-#include <QAbstractItemView>
+//#include <QMainWindow>
+//#include <QLabel>
+//#include <QMessageBox>
+//#include <QTableView>
+//#include <QTableWidget>
+//#include <QItemDelegate>
+//#include <QStandardItemModel>
+//#include <QTableWidgetItem>
+//#include <QTableWidgetSelectionRange>
+//#include <QAbstractItemView>
 #include <QObject>
 
 using namespace std;
@@ -61,17 +61,17 @@ void MainWindow::printList(enum printSelect userInput)
 }
 void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
-//    ui -> scientistTable -> clearContents();
-//    ui -> scientistTable -> scientists.size();
+    ui -> scientistTable -> clearContents();
+    //ui -> scientistTable -> scientists.size();
 
-//    for(unsigned int row = 0; row < scientists.size(); row++)
-//    {
-//        Scientist currentScientists = scientists.at(row);
+    for(unsigned int row = 0; row < scientists.size(); row++)
+    {
+        Scientist currentScientists = scientists.at(row);
 
-//        QString name =  QString::fromStdString(currentScientists.getName());<
+        QString name =  QString::fromStdString(currentScientists.getName());
 
-//        ui -> scientistList -> setItem(row, 0, new QTableWidgetItem(name));
-//    }
+        ui -> scientistTable -> setItem(row, 0, new QTableWidgetItem(name));
+    }
 
 
 }

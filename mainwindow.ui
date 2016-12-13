@@ -203,7 +203,33 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="scientistTable"/>
+         <widget class="QTableWidget" name="scientistTable">
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Gender</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Born</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Died</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Age</string>
+           </property>
+          </column>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -525,9 +551,6 @@
          <widget class="QTableWidget" name="tableWidget_2"/>
         </item>
        </layout>
-       <zorder>layoutWidget_2</zorder>
-       <zorder>layoutWidget_2</zorder>
-       <zorder>tableWidget_2</zorder>
       </widget>
      </widget>
     </item>
