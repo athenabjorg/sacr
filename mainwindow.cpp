@@ -61,17 +61,17 @@ void MainWindow::printList(enum printSelect userInput)
 }
 void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
-    ui -> scientistTable -> clearContents();
-    ui -> scientistTable -> scientists.size();
+//    ui -> scientistTable -> clearContents();
+//    ui -> scientistTable -> scientists.size();
 
-    for(unsigned int row = 0; row < scientists.size(); row++)
-    {
-        Scientist currentScientists = scientists.at(row);
+//    for(unsigned int row = 0; row < scientists.size(); row++)
+//    {
+//        Scientist currentScientists = scientists.at(row);
 
-        QString name =  QString::fromStdString(currentScientists.getName());<
+//        QString name =  QString::fromStdString(currentScientists.getName());<
 
-        ui -> scientistList -> setItem(row, 0, new QTableWidgetItem(name));
-    }
+//        ui -> scientistList -> setItem(row, 0, new QTableWidgetItem(name));
+//    }
 
 
 }
