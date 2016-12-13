@@ -53,9 +53,14 @@ private slots:
 
     void on_scientistSearchInput_textEdited(const QString &arg1);
 
+
+    void on_scientistSearchBy_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     service _service;
+
+    int _scientistComboboxIndex = 0;
 };
 
 #endif // MAINWINDOW_H

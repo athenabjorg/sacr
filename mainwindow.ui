@@ -96,6 +96,9 @@
                <widget class="QLineEdit" name="scientistSearchInput"/>
               </item>
               <item>
+               <widget class="QLineEdit" name="lineEdit"/>
+              </item>
+              <item>
                <widget class="QComboBox" name="scientistSearchBy">
                 <property name="font">
                  <font>

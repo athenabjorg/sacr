@@ -122,16 +122,18 @@ void MainWindow::printRelation(const vector<Relation> &relations)
 }
 
 
-
-
-
-
-
 void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 {
     string input = ui->scientistSearchInput->text().toStdString();
 
-    vector<Scientist> scientists = _service.findScientist(1, input);
+    vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, input);
 
     printScientist(scientists);
+}
+
+
+
+void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
+{
+    _scientistComboboxIndex = index;
 }
