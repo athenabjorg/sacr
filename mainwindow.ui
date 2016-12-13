@@ -203,7 +203,10 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableView" name="scientisList"/>
+         <widget class="QTableWidget" name="scientistTable"/>
+        </item>
+        <item>
+         <widget class="QTableView" name="scientistList"/>
         </item>
        </layout>
       </widget>

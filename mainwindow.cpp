@@ -3,11 +3,26 @@
 #include "service.h"
 #include <vector>
 
+#include <QDialog>
+#include <QMainWindow>
+#include <QLabel>
+#include <QMessageBox>
+#include <QTableView>
+#include <QTableWidget>
+#include <QItemDelegate>
+#include <QStandardItemModel>
+#include <QTableWidgetItem>
+#include <QTableWidgetSelectionRange>
+#include <QAbstractItemView>
+#include <QObject>
+
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui -> setupUi(this);
     printList(printSelect::relation);
 
 }
@@ -46,31 +61,43 @@ void MainWindow::printList(enum printSelect userInput)
 }
 void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
-    ui -> scientistList -> clear();
-    for(unsigned int i = 0; i < scientists.size(); i++)
+    ui -> scientistTable -> clearContents();
+    ui -> scientistTable -> scientists.size();
+
+    for(unsigned int row = 0; row < scientists.size(); row++)
     {
-        ui -> scientistList -> addItem(QString::fromStdString(scientists[i].getName()));
+        Scientist currentScientists = scientists.at(row);
+
+        QString name =  QString::fromStdString(currentScientists.getName());<
+
+        ui -> scientistList -> setItem(row, 0, new QTableWidgetItem(name));
     }
-    ui -> scientistList->update();
+
+
 }
 void MainWindow::printComputer(const vector<Computer> &computers)
 {
-    ui -> scientistList -> clear();
-    for(unsigned int i = 0; i < computers.size(); i++)
-    {
-        ui -> scientistList -> addItem(QString::fromStdString(computers[i].getName()));
-    }
-    ui -> scientistList->update();
+//    ui -> scientistList -> clearContents();;
+//    for(unsigned int i = 0; i < computers.size(); i++)
+//    {
+//        ui -> scientistList -> addItem(QString::fromStdString(computers[i].getName()));
+//    }
+//    ui -> scientistList->update();
 }
 void MainWindow::printRelation(const vector<Relation> &relations)
 {
-    ui -> scientistList -> clear();
-    for(unsigned int i = 0; i < relations.size(); i++)
-    {
-        ui -> scientistList -> addItem(QString::fromStdString(relations[i].getScientist()));
-        ui -> scientistList -> addItem(QString::fromStdString(relations[i].getComputer()));
-    }
-    ui -> scientistList->update();
+//    ui -> scientistList -> clearContents();
+//    for(unsigned int i = 0; i < relations.size(); i++)
+//    {
+//        ui -> scientistList -> addItem(QString::fromStdString(relations[i].getScientist()));
+//        ui -> scientistList -> addItem(QString::fromStdString(relations[i].getComputer()));
+//    }
+//    ui -> scientistList->update();
 }
 
 
+
+void MainWindow::on_scientistList_activated(const QModelIndex &index)
+{
+
+}

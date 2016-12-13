@@ -6,12 +6,20 @@
 #include <string>
 #include "service.h"
 #include <vector>
+#include <QDialog>
+#include <QMainWindow>
+#include <QLabel>
+#include <QMessageBox>
+#include <QTableView>
+#include <QTableWidget>
+#include <QItemDelegate>
+#include <QStandardItemModel>
+#include <QTableWidgetItem>
+#include <QTableWidgetSelectionRange>
+#include <QAbstractItemView>
+#include <QObject>
 
 using namespace std;
-
-namespace Ui {
-class MainWindow;
-}
 
 enum printSelect
 {
@@ -19,6 +27,10 @@ enum printSelect
     computer,
     relation,
 };
+
+namespace Ui {
+class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {
@@ -38,6 +50,8 @@ private slots:
     void printComputer(const vector<Computer> &computers);
     void printRelation(const vector<Relation> &relations);
 
+
+    void on_scientistList_activated(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
