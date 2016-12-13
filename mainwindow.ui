@@ -57,6 +57,16 @@
        <attribute name="title">
         <string>Relations</string>
        </attribute>
+       <widget class="QListWidget" name="listWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>130</y>
+          <width>721</width>
+          <height>341</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
