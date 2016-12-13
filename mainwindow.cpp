@@ -12,10 +12,3 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-void MainWindow::on_inputWindow_textEdited(const QString &arg1)
-{
-    string input = ui->inputWindow->text().toStdString();
-
-    ui->outputWindow->setText(QString::fromStdString(input));
-}
