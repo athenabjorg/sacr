@@ -33,9 +33,11 @@ string Scientist::getName() const
 {
     return _name;
 }
-char Scientist::getGender() const
+string Scientist::getGender() const
 {
-    return _gender;
+    string gender = " ";
+    gender[0] = _gender;
+    return gender;
 }
 int Scientist::getBirth() const
 {

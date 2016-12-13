@@ -51,7 +51,6 @@ private slots:
     void printRelation(const vector<Relation> &relations);
 
 
-    void on_scientistList_activated(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

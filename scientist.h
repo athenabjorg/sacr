@@ -13,7 +13,7 @@ public:
     Scientist(string name, char gender, int birth, int death); //vantar bool valid aftast?
 
     string getName()      const;
-    char   getGender()    const;
+    string getGender()    const;
     int    getBirth()     const;
     int    getDeath()     const;
     int    getAge()       const;

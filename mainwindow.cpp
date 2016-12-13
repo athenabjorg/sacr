@@ -4,16 +4,15 @@
 #include <vector>
 
 #include <QDialog>
-//#include <QMainWindow>
-//#include <QLabel>
-//#include <QMessageBox>
-//#include <QTableView>
-//#include <QTableWidget>
-//#include <QItemDelegate>
-//#include <QStandardItemModel>
-//#include <QTableWidgetItem>
-//#include <QTableWidgetSelectionRange>
-//#include <QAbstractItemView>
+#include <QLabel>
+#include <QMessageBox>
+#include <QTableView>
+#include <QTableWidget>
+#include <QItemDelegate>
+#include <QStandardItemModel>
+#include <QTableWidgetItem>
+#include <QTableWidgetSelectionRange>
+#include <QAbstractItemView>
 #include <QObject>
 
 using namespace std;
@@ -23,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui -> setupUi(this);
+    printList(printSelect::scientist);
+    printList(printSelect::computer);
     printList(printSelect::relation);
 
 }
@@ -62,42 +63,61 @@ void MainWindow::printList(enum printSelect userInput)
 void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
     ui -> scientistTable -> clearContents();
-    //ui -> scientistTable -> scientists.size();
+    ui -> scientistTable -> setRowCount(scientists.size());
 
     for(unsigned int row = 0; row < scientists.size(); row++)
     {
         Scientist currentScientists = scientists.at(row);
 
-        QString name =  QString::fromStdString(currentScientists.getName());
+        QString name     =  QString::fromStdString(currentScientists.getName());
+        QString gender   =  QString::fromStdString(currentScientists.getGender());
+        QString yearBorn =  QString::number(currentScientists.getBirth());
+        QString yearDied =  QString::number(currentScientists.getDeath());
+        QString age      =  QString::number(currentScientists.getAge());
 
         ui -> scientistTable -> setItem(row, 0, new QTableWidgetItem(name));
+        ui -> scientistTable -> setItem(row, 1, new QTableWidgetItem(gender));
+        ui -> scientistTable -> setItem(row, 2, new QTableWidgetItem(yearBorn));
+        ui -> scientistTable -> setItem(row, 3, new QTableWidgetItem(yearDied));
+        ui -> scientistTable -> setItem(row, 4, new QTableWidgetItem(age));
     }
-
-
 }
 void MainWindow::printComputer(const vector<Computer> &computers)
 {
-//    ui -> scientistList -> clearContents();;
-//    for(unsigned int i = 0; i < computers.size(); i++)
-//    {
-//        ui -> scientistList -> addItem(QString::fromStdString(computers[i].getName()));
-//    }
-//    ui -> scientistList->update();
+    ui -> computerTable -> clearContents();
+    ui -> computerTable -> setRowCount(computers.size());
+
+    for(unsigned int row = 0; row < computers.size(); row++)
+    {
+        Computer currentComputers = computers.at(row);
+
+        QString name  =  QString::fromStdString(currentComputers.getName());
+        QString year  =  QString::number(currentComputers.getYear());
+        QString type  =  QString::fromStdString(currentComputers.getType());
+        QString built =  QString::number(currentComputers.getBuilt());
+
+        ui -> computerTable -> setItem(row, 0, new QTableWidgetItem(name));
+        ui -> computerTable -> setItem(row, 1, new QTableWidgetItem(year));
+        ui -> computerTable -> setItem(row, 2, new QTableWidgetItem(type));
+        ui -> computerTable -> setItem(row, 3, new QTableWidgetItem(built));
+    }
 }
 void MainWindow::printRelation(const vector<Relation> &relations)
 {
-//    ui -> scientistList -> clearContents();
-//    for(unsigned int i = 0; i < relations.size(); i++)
-//    {
-//        ui -> scientistList -> addItem(QString::fromStdString(relations[i].getScientist()));
-//        ui -> scientistList -> addItem(QString::fromStdString(relations[i].getComputer()));
-//    }
-//    ui -> scientistList->update();
+    ui -> relationTable -> clearContents();
+    ui -> relationTable -> setRowCount(relations.size());
+
+    for(unsigned int row = 0; row < relations.size(); row++)
+    {
+        Relation currentRelations = relations.at(row);
+
+        QString scientistID =  QString::fromStdString(currentRelations.getScientist());
+        QString computerID  =  QString::fromStdString(currentRelations.getComputer());
+
+
+        ui -> relationTable -> setItem(row, 0, new QTableWidgetItem(scientistID));
+        ui -> relationTable -> setItem(row, 1, new QTableWidgetItem(computerID));
+
+    }
 }
 
-
-
-void MainWindow::on_scientistList_activated(const QModelIndex &index)
-{
-
-}
