@@ -41,7 +41,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -93,14 +93,10 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLineEdit" name="searchInput">
-                <property name="placeholderText">
-                 <string>Search</string>
-                </property>
-               </widget>
+               <widget class="QLineEdit" name="scientistSearchInput"/>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox">
+               <widget class="QComboBox" name="scientistSearchBy">
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
@@ -190,7 +186,7 @@
                </widget>
               </item>
               <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="addButton">
+               <widget class="QPushButton" name="scientistAddButton">
                 <property name="text">
                  <string>Remove</string>
                 </property>

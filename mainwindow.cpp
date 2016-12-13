@@ -121,3 +121,17 @@ void MainWindow::printRelation(const vector<Relation> &relations)
     }
 }
 
+
+
+
+
+
+
+void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
+{
+    string input = ui->scientistSearchInput->text().toStdString();
+
+    vector<Scientist> scientists = _service.findScientist(1, input);
+
+    printScientist(scientists);
+}

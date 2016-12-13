@@ -51,6 +51,7 @@ private slots:
     void printRelation(const vector<Relation> &relations);
 
 
+    void on_scientistSearchInput_textEdited(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
