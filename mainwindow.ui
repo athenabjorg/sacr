@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_15">
     <item>
      <widget class="QTabWidget" name="tabs">
       <property name="enabled">
@@ -100,10 +100,53 @@
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="toolButton">
-                <property name="text">
-                 <string>...</string>
+               <widget class="QComboBox" name="comboBox">
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <italic>false</italic>
+                 </font>
                 </property>
+                <item>
+                 <property name="text">
+                  <string>by Name</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>by Gender</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>by Birth Year</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>by Birth Year Range</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>by Death Year (0 for still alive)</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>by Death Year Range</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>by Age</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>by Age Range</string>
+                 </property>
+                </item>
                </widget>
               </item>
              </layout>
@@ -160,11 +203,14 @@
          </layout>
         </item>
         <item>
-         <widget class="QListWidget" name="scientistList"/>
+         <widget class="QTableView" name="scientisList"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="computersTab">
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
        <attribute name="title">
         <string>Computers</string>
        </attribute>
