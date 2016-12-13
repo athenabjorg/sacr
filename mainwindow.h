@@ -24,6 +24,8 @@ private slots:
 
     void on_inputWindow_textEdited(const QString &arg1);
 
+    void on_scientistList_activated(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 };
