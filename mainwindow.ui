@@ -90,75 +90,83 @@
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>120</width>
+                  <width>200</width>
                   <height>20</height>
                  </size>
                 </property>
                </spacer>
               </item>
               <item>
-               <widget class="QLineEdit" name="scientistSearchInput">
-                <property name="placeholderText">
-                 <string>Search</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="scientistSearchRange">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="scientistSearchBy">
-                <property name="font">
-                 <font>
-                  <pointsize>9</pointsize>
-                  <italic>false</italic>
-                 </font>
-                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
-                 <property name="text">
-                  <string>by Name</string>
-                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_2">
+                  <item>
+                   <widget class="QLineEdit" name="scientistSearchInput">
+                    <property name="placeholderText">
+                     <string>Search</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="scientistSearchRange">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <property name="text">
-                  <string>by Gender</string>
-                 </property>
+                 <widget class="QComboBox" name="scientistSearchBy">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <italic>false</italic>
+                   </font>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>by Name</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Gender</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Birth Year</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Birth Year Range</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Death Year (0 for still alive)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Death Year Range</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Age</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Age Range</string>
+                   </property>
+                  </item>
+                 </widget>
                 </item>
-                <item>
-                 <property name="text">
-                  <string>by Birth Year</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Birth Year Range</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Death Year (0 for still alive)</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Death Year Range</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Age</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Age Range</string>
-                 </property>
-                </item>
-               </widget>
+               </layout>
               </item>
              </layout>
             </item>
@@ -296,60 +304,68 @@
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>120</width>
+                  <width>200</width>
                   <height>20</height>
                  </size>
                 </property>
                </spacer>
               </item>
               <item>
-               <widget class="QLineEdit" name="computerSearchInput">
-                <property name="placeholderText">
-                 <string>Search</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="computerSearchRange">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="computerSearchBy">
-                <property name="font">
-                 <font>
-                  <pointsize>9</pointsize>
-                  <italic>false</italic>
-                 </font>
-                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
-                 <property name="text">
-                  <string>by Name</string>
-                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <item>
+                   <widget class="QLineEdit" name="computerSearchInput">
+                    <property name="placeholderText">
+                     <string>Search</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="computerSearchRange">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <property name="text">
-                  <string>by Year Made</string>
-                 </property>
+                 <widget class="QComboBox" name="computerSearchBy">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <italic>false</italic>
+                   </font>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>by Name</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Year Made</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Year Made Range</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Type</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by If Was Built</string>
+                   </property>
+                  </item>
+                 </widget>
                 </item>
-                <item>
-                 <property name="text">
-                  <string>by Year Made Range</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Type</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by If Was Built</string>
-                 </property>
-                </item>
-               </widget>
+               </layout>
               </item>
              </layout>
             </item>
@@ -479,55 +495,63 @@
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>120</width>
+                  <width>200</width>
                   <height>20</height>
                  </size>
                 </property>
                </spacer>
               </item>
               <item>
-               <widget class="QLineEdit" name="relationSearchInput">
-                <property name="placeholderText">
-                 <string>Search</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="relationSearchRange">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="relationSearchBy">
-                <property name="font">
-                 <font>
-                  <pointsize>9</pointsize>
-                  <italic>false</italic>
-                 </font>
-                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
-                 <property name="text">
-                  <string>by Scientist Name</string>
-                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <item>
+                   <widget class="QLineEdit" name="relationSearchInput">
+                    <property name="placeholderText">
+                     <string>Search</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="relationSearchRange">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <property name="text">
-                  <string>by Computer Name</string>
-                 </property>
+                 <widget class="QComboBox" name="relationSearchBy">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <italic>false</italic>
+                   </font>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>by Scientist Name</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Computer Name</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Year Built</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>by Year Built Range</string>
+                   </property>
+                  </item>
+                 </widget>
                 </item>
-                <item>
-                 <property name="text">
-                  <string>by Year Built</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Year Built Range</string>
-                 </property>
-                </item>
-               </widget>
+               </layout>
               </item>
              </layout>
             </item>
