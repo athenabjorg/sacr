@@ -61,7 +61,7 @@ void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
     ui -> scientistTable -> clearContents();
     ui -> scientistTable -> setRowCount(scientists.size());
-    ui -> scientistTable -> setSortingEnabled(1);
+    //ui -> scientistTable -> setSortingEnabled(1);
 
     for(unsigned int row = 0; row < scientists.size(); row++)
     {
@@ -159,6 +159,7 @@ void MainWindow::on_scientistAddButton_clicked()
     addScientistWindow.set_service(&_service);//---
     addScientistWindow.exec();
     printList(printSelect::scientist);
+
 }
 
 void MainWindow::on_computerAddButton_clicked()

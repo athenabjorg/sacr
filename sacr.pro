@@ -19,7 +19,6 @@ SOURCES += main.cpp\
     dataaccess.cpp \
     relation.cpp \
     scientist.cpp \
-    scientistservice.cpp \
     service.cpp \
     addscientistwindow.cpp \
     addcomputerwindow.cpp \
