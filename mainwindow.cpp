@@ -232,7 +232,7 @@ void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
     ScientistWindow scientistWindow;
     QString out = ui->scientistTable->item(row, 0)->text();
 
-    ui->lineEdit->setText(out);
+    //ui->lineEdit->setText(out);
 
     scientistWindow.exec();
 }
@@ -245,4 +245,18 @@ void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
 
     computerWindow.passInfo(name.toStdString());
     computerWindow.exec();
+}
+
+void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1)
+{
+    if( ui->scientistSearchBy->currentText().toStdString() == "by Age Range" ||
+        ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
+        ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
+    {
+        ui->scientistSearchRange->setEnabled(true);
+    }
+    else
+    {
+        ui->scientistSearchRange->setEnabled(false);
+    }
 }
