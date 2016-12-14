@@ -142,6 +142,10 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 {
     _scientistComboboxIndex = index;
+
+    QString searchBy = ui->scientistSearchInput->text();
+
+    on_scientistSearchInput_textEdited(searchBy);
 }
 
 void MainWindow::on_scientistAddButton_clicked()
@@ -163,4 +167,54 @@ void MainWindow::on_relationAddButton_clicked()
     AddRelationWindow addRelationWindow;
 
     addRelationWindow.exec();
+}
+
+void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)
+{
+    if(arg1.isEmpty())
+    {
+        printList(printSelect::computer);
+    }
+    else
+    {
+        string input = ui->computerSearchInput->text().toStdString();
+
+        vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, arg1.toStdString());
+
+        printComputer(computers);
+    }
+}
+
+void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
+{
+    _computerComboboxIndex = index;
+
+    QString searchBy = ui->computerSearchInput->text();
+
+    on_computerSearchInput_textEdited(searchBy);
+}
+
+void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
+{
+    if(arg1.isEmpty())
+    {
+        printList(printSelect::relation);
+    }
+    else
+    {
+        string input = ui->relationSearchInput->text().toStdString();
+
+        vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString());
+
+        printRelation(relations);
+    }
+}
+
+void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
+{
+    _relationComboboxIndex = index;
+
+    QString searchBy = ui->relationSearchInput->text();
+
+    on_relationSearchInput_textEdited(searchBy);
 }

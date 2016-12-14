@@ -292,6 +292,9 @@
                </widget>
               </item>
               <item>
+               <widget class="QLineEdit" name="lineEdit_2"/>
+              </item>
+              <item>
                <widget class="QComboBox" name="computerSearchBy">
                 <property name="font">
                  <font>
@@ -306,37 +309,22 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>by Gender</string>
+                  <string>by Year Made</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>by Birth Year</string>
+                  <string>by Year Made Range</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>by Birth Year Range</string>
+                  <string>by Type</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>by Death Year (0 for still alive)</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Death Year Range</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Age</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Age Range</string>
+                  <string>by If Was Built</string>
                  </property>
                 </item>
                </widget>
@@ -477,6 +465,9 @@
                </widget>
               </item>
               <item>
+               <widget class="QLineEdit" name="lineEdit_3"/>
+              </item>
+              <item>
                <widget class="QComboBox" name="relationSearchBy">
                 <property name="font">
                  <font>
@@ -486,42 +477,22 @@
                 </property>
                 <item>
                  <property name="text">
-                  <string>by Name</string>
+                  <string>by Scientist Name</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>by Gender</string>
+                  <string>by Computer Name</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>by Birth Year</string>
+                  <string>by Year Built</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>by Birth Year Range</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Death Year (0 for still alive)</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Death Year Range</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Age</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>by Age Range</string>
+                  <string>by Year Built Range</string>
                  </property>
                 </item>
                </widget>
@@ -611,7 +582,7 @@
      <x>0</x>
      <y>0</y>
      <width>772</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
