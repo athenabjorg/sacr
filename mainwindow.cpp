@@ -159,6 +159,7 @@ void MainWindow::on_scientistAddButton_clicked()
     addScientistWindow.set_service(&_service);//---
     addScientistWindow.exec();
     printList(printSelect::scientist);
+
 }
 
 void MainWindow::on_computerAddButton_clicked()
