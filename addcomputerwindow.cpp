@@ -7,9 +7,9 @@ AddComputerWindow::AddComputerWindow(QWidget *parent) :
     ui(new Ui::AddComputerWindow)
 {
     ui->setupUi(this);
-    _service = nullptr; //---
+    _service = nullptr;
 }
-void AddComputerWindow::set_service(service *s)//---
+void AddComputerWindow::set_service(service *s)
 {
     _service = s;
 }
@@ -24,9 +24,17 @@ void AddComputerWindow::on_addButton_clicked()
         QString name = ui -> nameInput -> text();
         QString yearBuilt = ui -> yearBuiltInput -> text();
         QString type = ui -> typeInput -> currentText();
-        QString built = ui -> wasBuiltInput-> text();
+        bool built = true;
 
+        if(yearBuilt.isEmpty())
+        {
+            built = false;
+        }
+        else
+        {
+            built = true;
+        }
 
-        _service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), !(built.toInt())); //FIXME::
+        _service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built);
         close();
 }

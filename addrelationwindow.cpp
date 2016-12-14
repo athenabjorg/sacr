@@ -7,10 +7,10 @@ AddRelationWindow::AddRelationWindow(QWidget *parent) :
     ui(new Ui::AddRelationWindow)
 {
     ui->setupUi(this);
-    _service = nullptr; //---
+    _service = nullptr;
 }
 
-void AddRelationWindow::set_service(service *s)//---
+void AddRelationWindow::set_service(service *s)
 {
     _service = s;
 }
@@ -22,25 +22,9 @@ AddRelationWindow::~AddRelationWindow()
 
 void AddRelationWindow::on_addButton_clicked()
 {
-//    QString name = ui -> nameInput -> text();
-//    QString birthYear = ui -> yearBornInput -> text();
-//    QString deathYear = ui -> yearDiedInput_2 -> text();
-//    char gender;
+    QString scientist = ui -> scientistNameInput -> text();
+    QString computer = ui -> computerNameInput_2 -> text();
 
-
-//    if(ui -> genderMaleButton -> isChecked())
-//    {
-//        gender = 'm';
-//    }
-//    else if(ui -> genderFemaleButton -> isChecked())
-//    {
-//        gender = 'f';
-//    }
-//    else if(ui -> genderOtherButton -> isChecked())
-//    {
-//        gender = 'o';
-//    }
-
-//    _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());//---
-//    close();
+    _service -> addRelation(scientist.toStdString(), computer.toStdString());
+    close();
 }

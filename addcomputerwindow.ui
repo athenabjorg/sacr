@@ -27,16 +27,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="nameLabel">
-     <property name="text">
-      <string>Name:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="nameInput"/>
-   </item>
-   <item>
     <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -53,11 +43,14 @@
     </spacer>
    </item>
    <item>
-    <widget class="QRadioButton" name="wasBuiltInput">
+    <widget class="QLabel" name="nameLabel">
      <property name="text">
-      <string>Was it built?</string>
+      <string>Name:</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="nameInput"/>
    </item>
    <item>
     <widget class="QLabel" name="yearBuiltLabel">

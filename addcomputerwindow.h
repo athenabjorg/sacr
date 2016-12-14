@@ -13,7 +13,7 @@ class AddComputerWindow : public QDialog
 
 public:
     explicit AddComputerWindow(QWidget *parent = 0);
-    void set_service(service *s);//---
+    void set_service(service *s);
     ~AddComputerWindow();
 
 private slots:
@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::AddComputerWindow *ui;
-    service *_service;//---
+    service *_service;
 };
 
 #endif // ADDCOMPUTERWINDOW_H

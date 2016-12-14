@@ -7,10 +7,10 @@ AddScientistWindow::AddScientistWindow(QWidget *parent) :
     ui(new Ui::AddScientistWindow)
 {
     ui->setupUi(this);
-    _service = nullptr; //---
+    _service = nullptr;
 }
 
-void AddScientistWindow::set_service(service *s)//---
+void AddScientistWindow::set_service(service *s)
 {
     _service = s;
 }
@@ -41,6 +41,6 @@ void AddScientistWindow::on_addButton_clicked()
         gender = 'o';
     }
 
-    _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());//---
+    _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());
     close();
 }

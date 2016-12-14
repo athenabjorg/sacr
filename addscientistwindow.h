@@ -13,7 +13,7 @@ class AddScientistWindow : public QDialog
 
 public:
     explicit AddScientistWindow(QWidget *parent = 0);
-    void set_service(service *s);//---
+    void set_service(service *s);
     ~AddScientistWindow();
 
 private slots:
@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::AddScientistWindow *ui;
-    service *_service;//---
+    service *_service;
 };
 
 #endif // ADDSCIENTISTWINDOW_H

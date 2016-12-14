@@ -13,7 +13,7 @@ class AddRelationWindow : public QDialog
 
 public:
     explicit AddRelationWindow(QWidget *parent = 0);
-    void set_service(service *s);//---
+    void set_service(service *s);
     ~AddRelationWindow();
 
 private slots:
@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::AddRelationWindow *ui;
-    service *_service;//---
+    service *_service;
 };
 
 #endif // ADDRELATIONWINDOW_H
