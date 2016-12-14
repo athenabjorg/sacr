@@ -5,6 +5,7 @@
 #include "addscientistwindow.h"
 #include "addcomputerwindow.h"
 #include "addrelationwindow.h"
+#include "scientistwindow.h"
 
 
 #include <QMainWindow>
@@ -74,6 +75,8 @@ private slots:
     void on_relationSearchInput_textEdited(const QString &arg1);
 
     void on_relationSearchBy_currentIndexChanged(int index);
+
+    void on_scientistTable_cellDoubleClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;

@@ -218,3 +218,12 @@ void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 
     on_relationSearchInput_textEdited(searchBy);
 }
+
+void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
+{
+    ScientistWindow scientistWindow;
+
+    //table->item(curentIndex.row(), 0)->text();
+
+    scientistWindow.exec();
+}
