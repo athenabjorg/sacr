@@ -7,19 +7,9 @@ DataAccess::DataAccess()
 {
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("DataBase.sqlite");  // witch database to select ( aka what file )
+    db.setDatabaseName("DataBase.sqlite");  // which database to select ( aka what file )
 
 }
-//DataAccess::openDataAccess()
-//{
-//    db.open();
-//}
-//DataAccess::closeDataAccess()
-//{
-//    db.close();
-//}
-
-
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
@@ -280,6 +270,33 @@ bool DataAccess::doesScientistExist(string name)
     return false;
 }
 
+Scientist DataAccess::loadScientistInfo(string inputName)
+{
+    string line, id, name, born, died, picurl, about, abouturl;
+
+    db.open();
+    QSqlQuery query;
+
+    line = "SELECT id, name, born, died, picurl, about, abouturl FROM scientists WHERE name like \"" + inputName + "\" and valid = 1;";
+    QString qline = QString::fromStdString(line);
+    query.exec(qline);
+
+    query.next();
+
+    id = query.value(0).toString().toStdString();
+    name = query.value(1).toString().toStdString();
+    born = query.value(2).toString().toStdString();
+    died = query.value(3).toString().toStdString();
+    picurl = query.value(4).toString().toStdString();
+    about = query.value(5).toString().toStdString();
+    abouturl = query.value(6).toString().toStdString();
+
+    Scientist scientist(id, name, born, died, picurl, about, abouturl);
+
+    db.close();
+
+    return scientist;
+}
 
 // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 

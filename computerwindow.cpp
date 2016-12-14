@@ -13,7 +13,7 @@ ComputerWindow::~ComputerWindow()
     delete ui;
 }
 
-void ComputerWindow::passInfo(string name)
+void ComputerWindow::passInfo(vector<string> name)
 {
-    ui->lineEdit->setText(QString::fromStdString(name));
+    //ui->lineEdit->setText(QString::fromStdString(name));
 }

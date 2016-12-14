@@ -47,6 +47,8 @@ public:
     bool doesScientistExist(string name);
     // Checks if a scientist by that name exists already
 
+    Scientist loadScientistInfo(string inputName);
+
     // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
     void saveComputer(Computer newComputer);

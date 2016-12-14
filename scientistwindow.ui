@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>767</width>
-    <height>602</height>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="inputName">
        <property name="font">
         <font>
          <pointsize>20</pointsize>
@@ -71,7 +71,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="born">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -86,7 +86,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="inputborn">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -114,7 +114,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="died">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -129,7 +129,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="inputDied">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -193,7 +193,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QTextBrowser" name="textBrowser">
+      <widget class="QTextBrowser" name="pictureplaceholder">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -208,14 +208,14 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="about">
          <property name="text">
           <string>About:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTextBrowser" name="textBrowser_2">
+        <widget class="QTextBrowser" name="inputAbout">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
            <horstretch>0</horstretch>
@@ -225,14 +225,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="relations">
          <property name="text">
           <string>Relations:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="listWidget">
+        <widget class="QListWidget" name="inputRelations">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
            <horstretch>0</horstretch>

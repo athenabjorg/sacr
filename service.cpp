@@ -179,6 +179,14 @@ bool service::doesScientistExist(string name)
     return _data.doesScientistExist(name);
 }
 
+Scientist service::getScientistInfo(string name)
+{
+    Scientist scientist;
+    scientist = _data.loadScientistInfo(name);
+
+    return scientist;
+}
+
 // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
 vector<Computer> service::getComputers()

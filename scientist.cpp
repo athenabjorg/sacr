@@ -29,6 +29,17 @@ Scientist::Scientist(string name, char gender, int birth, int death) //vantar bo
     }
 }
 
+Scientist::Scientist(string id, string name, string birth, string death, string picurl, string about, string abouturl)
+{   // stores info for scientist info window
+    _id = id;
+    _name = name;
+    _born = birth;
+    _died = death;
+    _picurl = picurl;
+    _about = about;
+    _abouturl = abouturl;
+}
+
 string Scientist::getName() const
 {
     return _name;
@@ -73,4 +84,30 @@ int Scientist::whatYearIsIt() const
 bool operator == (const Scientist& a, const Scientist& b)
 {
     return a._name == b._name;
+}
+
+
+string Scientist::getInfoID() const
+{
+    return _id;
+}
+string Scientist::getInfoBorn() const
+{
+    return _born;
+}
+string Scientist::getInfoDied() const
+{
+    return _died;
+}
+string Scientist::getInfoPicurl() const
+{
+    return _picurl;
+}
+string Scientist::getInfoAbout() const
+{
+    return _about;
+}
+string Scientist::getInfoAbouturl() const
+{
+    return _abouturl;
 }

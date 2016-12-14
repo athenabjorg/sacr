@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <string>
+#include "scientist.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ public:
     explicit ComputerWindow(QWidget *parent = 0);
     ~ComputerWindow();
 
-    void passInfo(string name);
+    void passInfo(vector<string> name);
 
 private:
     Ui::ComputerWindow *ui;

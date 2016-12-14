@@ -53,6 +53,8 @@ public:
     bool doesScientistExist(string name);
     // Checks if a scientist by that name exists already
 
+    Scientist getScientistInfo(string name);
+
     // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
     vector<Computer> getComputers();
