@@ -107,9 +107,9 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)
         break;
     case 2: line = "SELECT * FROM Scientists  Where Gender LIKE \"%" + parameter + "%\" AND valid = 1"; // load by gender
         break;
-    case 3: line = "SELECT * FROM Scientists  Where Born LIKE " + parameter + " AND valid = 1"; // load by birth year
+    case 3: line = "SELECT * FROM Scientists  Where Born LIKE \"%" + parameter + "%\" AND valid = 1"; // load by birth year
         break;
-    case 5: line = "SELECT * FROM Scientists  Where Died LIKE " + parameter + " AND valid = 1"; // load by death year
+    case 5: line = "SELECT * FROM Scientists  Where Died LIKE \"%" + parameter + "%\" AND valid = 1"; // load by death year
         break;
     }
 
@@ -374,7 +374,7 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)
         break;
     case 2: line = "SELECT * FROM Computers Where Year LIKE \"%" + parameter + "%\" AND valid = 1"; // load by year built
         break;
-    case 4: line = "SELECT * FROM Computers Where Type LIKE  \"" + parameter + "\" AND valid = 1"; // load by type
+    case 4: line = "SELECT * FROM Computers Where Type LIKE  \"%" + parameter + "%\" AND valid = 1"; // load by type
         break;
     case 5: line = "SELECT * FROM Computers Where Built LIKE " + parameter + " AND valid = 1"; // load by if built
         break;
@@ -629,9 +629,8 @@ vector<Relation> DataAccess::loadRelations()
 }
 vector<Relation> DataAccess::loadRelations(int loadType, string parameter)
 {   // Loads relations from a database, into a vector, depenting on loadType.
-    // 0 = load by exact scientist name, 1 = load by scientist name,
-    // 2 = load by exact computer name, 3 = load by computer name, 4 = load by year computer built
-    // 5 is loaded in the loadRelations function with three parameters.
+    // 1 = load by scientist name, 2 = load by computer name, 3 = load by year computer built
+    // 4 is loaded in the loadRelations function with three parameters.
 
     vector<Relation> relations;
     string line, computer, scientist;
@@ -639,15 +638,11 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)
 
     switch(loadType)
     {
-    case 0: line = sqlRelationTable() + "Where scientist LIKE \"" + parameter + "\" AND r.valid = 1"; // load by exact scientist name
-        break;
     case 1: line = sqlRelationTable() + "Where scientist LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by scientist name
         break;
-    case 2: line = sqlRelationTable() + "Where computer LIKE \"" + parameter + "\" AND r.valid = 1"; // load by whole computer name
+    case 2: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by computer name
         break;
-    case 3: line = sqlRelationTable() + "Where computer LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by computer name
-        break;
-    case 4: line = sqlRelationTable() + "Where year LIKE \"" + parameter + "\" AND r.valid = 1"; // load by year computer built
+    case 3: line = sqlRelationTable() + "Where year LIKE \"%" + parameter + "%\" AND r.valid = 1"; // load by year computer built
         break;
     }
 
@@ -673,8 +668,8 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)
 }
 vector<Relation> DataAccess::loadRelations(int loadType, string parameter1, string parameter2)
 {   // Loads relations from a database, into a vector, depenting on loadType.
-    // 5 = load by year built range, 6 = load by exact scientist and computer.
-    // 0, 1, 2, 3 and 4 are loaded in the loadRelations function with two parameters.
+    // 4 = load by year built range, 6 = load by exact scientist and computer.
+    // 1, 2 and 3 are loaded in the loadRelations function with two parameters.
 
     vector<Relation> relations;
     string line, computer, scientist;

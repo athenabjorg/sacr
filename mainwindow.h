@@ -50,7 +50,6 @@ private slots:
 
 
 
-    void on_removeScientistButton_clicked();
     void printList(enum printSelect userInput);
     void printScientist(const vector<Scientist> &scientists);
     void printComputer(const vector<Computer> &computers);
@@ -68,11 +67,21 @@ private slots:
 
     void on_relationAddButton_clicked();
 
+    void on_computerSearchInput_textEdited(const QString &arg1);
+
+    void on_computerSearchBy_currentIndexChanged(int index);
+
+    void on_relationSearchInput_textEdited(const QString &arg1);
+
+    void on_relationSearchBy_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     service _service;
 
     int _scientistComboboxIndex = 0;
+    int _computerComboboxIndex = 0;
+    int _relationComboboxIndex = 0;
 };
 
 #endif // MAINWINDOW_H
