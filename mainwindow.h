@@ -81,6 +81,8 @@ private slots:
 
     void on_computerTable_cellDoubleClicked(int row, int column);
 
+    void on_scientistSearchBy_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     service _service;
