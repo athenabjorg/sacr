@@ -86,7 +86,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="inputborn">
+      <widget class="QLabel" name="inputBorn">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -221,6 +221,20 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::StrongFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
          </property>
         </widget>
        </item>

@@ -27,6 +27,12 @@ private:
     Scientist _scientist;
 
     string _name;
+    string _id;
+    string _born;
+    string _died;
+    string _picurl;
+    string _about;
+    string _abouturl;
 };
 
 #endif // SCIENTISTWINDOW_H
