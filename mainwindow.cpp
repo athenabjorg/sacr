@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     printList(printSelect::computer);
     printList(printSelect::relation);
 
+    ui -> scientistTable -> setSortingEnabled(1);
 }
 
 MainWindow::~MainWindow()
@@ -123,6 +124,8 @@ void MainWindow::printRelation(const vector<Relation> &relations)
 
 void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 {
+    ui -> scientistTable -> setSortingEnabled(0);
+
     if(arg1.isEmpty())
     {
         printList(printSelect::scientist);
@@ -135,6 +138,8 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 
         printScientist(scientists);
     }
+
+    ui -> scientistTable -> setSortingEnabled(1);
 }
 
 
