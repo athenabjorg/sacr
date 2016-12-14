@@ -41,7 +41,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -203,6 +203,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="scientistTable">
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
           <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
            <bool>true</bool>
           </attribute>
@@ -384,6 +387,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="computerTable">
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
           <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
            <bool>true</bool>
           </attribute>
@@ -552,6 +558,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="relationTable">
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
           <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
            <bool>true</bool>
           </attribute>
@@ -582,7 +591,7 @@
      <x>0</x>
      <y>0</y>
      <width>772</width>
-     <height>26</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
