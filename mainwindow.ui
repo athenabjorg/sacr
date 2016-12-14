@@ -41,7 +41,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -181,15 +181,15 @@
                 </property>
                </spacer>
               </item>
-              <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="removeScientistButton">
+              <item>
+               <widget class="QPushButton" name="scientistAddButton">
                 <property name="text">
                  <string>Add</string>
                 </property>
                </widget>
               </item>
               <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="scientistAddButton">
+               <widget class="QPushButton" name="scientistRemoveButton">
                 <property name="text">
                  <string>Remove</string>
                 </property>
@@ -282,14 +282,14 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLineEdit" name="searchInput_11">
+               <widget class="QLineEdit" name="computerSearchInput">
                 <property name="placeholderText">
                  <string>Search</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_11">
+               <widget class="QComboBox" name="computerSearchBy">
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
@@ -372,14 +372,14 @@
                </spacer>
               </item>
               <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="removeScientistButton_11">
+               <widget class="QPushButton" name="computerAddButton">
                 <property name="text">
                  <string>Add</string>
                 </property>
                </widget>
               </item>
               <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="addButton_11">
+               <widget class="QPushButton" name="computerRemoveButton">
                 <property name="text">
                  <string>Remove</string>
                 </property>
@@ -464,14 +464,14 @@
                </spacer>
               </item>
               <item>
-               <widget class="QLineEdit" name="searchInput_13">
+               <widget class="QLineEdit" name="relationSearchInput">
                 <property name="placeholderText">
                  <string>Search</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_13">
+               <widget class="QComboBox" name="relationSearchBy">
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
@@ -554,14 +554,14 @@
                </spacer>
               </item>
               <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="removeScientistButton_13">
+               <widget class="QPushButton" name="relationAddButton">
                 <property name="text">
                  <string>Add</string>
                 </property>
                </widget>
               </item>
               <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="addButton_13">
+               <widget class="QPushButton" name="relationRemoveButton">
                 <property name="text">
                  <string>Remove</string>
                 </property>

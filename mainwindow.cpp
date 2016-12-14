@@ -34,10 +34,6 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_removeScientistButton_clicked()
-{
-
-}
 void MainWindow::printList(enum printSelect userInput)
 {
     vector<Scientist> scientists = _service.getScientists();
@@ -134,8 +130,6 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 
         vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString());
 
-        ui->lineEdit->setText(arg1);
-
         printScientist(scientists);
     }
 }
@@ -145,4 +139,25 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 {
     _scientistComboboxIndex = index;
+}
+
+void MainWindow::on_scientistAddButton_clicked()
+{
+    AddScientistWindow addScientistWindow;
+
+    addScientistWindow.exec();
+}
+
+void MainWindow::on_computerAddButton_clicked()
+{
+    AddComputerWindow addComputerWindow;
+
+    addComputerWindow.exec();
+}
+
+void MainWindow::on_relationAddButton_clicked()
+{
+    AddRelationWindow addRelationWindow;
+
+    addRelationWindow.exec();
 }
