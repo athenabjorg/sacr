@@ -26,7 +26,12 @@ void AddScientistWindow::on_addButton_clicked()
     QString birthYear = ui -> yearBornInput -> text();
     QString deathYear = ui -> yearDiedInput_2 -> text();
     char gender;
+    ui -> errorLabelName -> setText(" ");
 
+    if(name.isEmpty())
+    {
+        ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is empty");
+    }
 
     if(ui -> genderMaleButton -> isChecked())
     {
@@ -41,6 +46,7 @@ void AddScientistWindow::on_addButton_clicked()
         gender = 'o';
     }
 
+
     _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());
-    close();
+    //close();
 }
