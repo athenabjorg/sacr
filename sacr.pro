@@ -23,8 +23,8 @@ SOURCES += main.cpp\
     addscientistwindow.cpp \
     addcomputerwindow.cpp \
     addrelationwindow.cpp \
-    scientistwindow.cpp \
-    computerwindow.cpp
+    computerwindow.cpp \
+    scientistwindow.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
