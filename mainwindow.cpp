@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui -> setupUi(this);
+
     printList(printSelect::scientist);
     printList(printSelect::computer);
     printList(printSelect::relation);
@@ -61,7 +62,6 @@ void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
     ui -> scientistTable -> clearContents();
     ui -> scientistTable -> setRowCount(scientists.size());
-    ui -> scientistTable -> setSortingEnabled(1);
 
     for(unsigned int row = 0; row < scientists.size(); row++)
     {
