@@ -1,6 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
+#include "addscientistwindow.h"
+#include "addcomputerwindow.h"
+#include "addrelationwindow.h"
+
+
 #include <QMainWindow>
 #include <QObject>
 #include <string>
@@ -55,6 +61,12 @@ private slots:
 
 
     void on_scientistSearchBy_currentIndexChanged(int index);
+
+    void on_scientistAddButton_clicked();
+
+    void on_computerAddButton_clicked();
+
+    void on_relationAddButton_clicked();
 
 private:
     Ui::MainWindow *ui;
