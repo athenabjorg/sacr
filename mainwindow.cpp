@@ -151,22 +151,25 @@ void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 void MainWindow::on_scientistAddButton_clicked()
 {
     AddScientistWindow addScientistWindow;
-
+    addScientistWindow.set_service(&_service);//---
     addScientistWindow.exec();
+    printList(printSelect::scientist);
 }
 
 void MainWindow::on_computerAddButton_clicked()
 {
     AddComputerWindow addComputerWindow;
-
+    addComputerWindow.set_service(&_service);//---
     addComputerWindow.exec();
+    printList(printSelect::computer);
 }
 
 void MainWindow::on_relationAddButton_clicked()
 {
     AddRelationWindow addRelationWindow;
-
+    addRelationWindow.set_service(&_service);//---
     addRelationWindow.exec();
+    printList(printSelect::relation);
 }
 
 void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)

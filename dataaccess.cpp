@@ -10,6 +10,15 @@ DataAccess::DataAccess()
     db.setDatabaseName("DataBase.sqlite");  // witch database to select ( aka what file )
 
 }
+//DataAccess::openDataAccess()
+//{
+//    db.open();
+//}
+//DataAccess::closeDataAccess()
+//{
+//    db.close();
+//}
+
 
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
@@ -36,6 +45,7 @@ void DataAccess::saveScientist(Scientist newScientist)
     QSqlQuery query;
     query.exec(input);
     db.close();
+
 }
 void DataAccess::updateScientist(Scientist scientist)
 {   // Updates the information for an existing scientist.
@@ -83,7 +93,6 @@ vector<Scientist> DataAccess::loadScientists()
         Scientist scientist(name, gender[0], birthYear, deathYear);
         scientists.push_back(scientist);
     }
-
     db.close();
     return scientists;
 }
