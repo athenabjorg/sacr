@@ -215,6 +215,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="scientistTable">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
           </property>
@@ -403,6 +406,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="computerTable">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
           </property>
@@ -578,6 +584,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="relationTable">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
           </property>

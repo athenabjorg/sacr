@@ -233,7 +233,7 @@ void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
     ScientistWindow scientistWindow;
     QString name = ui->scientistTable->item(row, 0)->text();
 
-    scientistWindow.passName(name.toStdString());
+    scientistWindow.passInfo(name.toStdString());
 
     scientistWindow.exec();
 }

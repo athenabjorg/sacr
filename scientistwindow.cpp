@@ -8,6 +8,8 @@ ScientistWindow::ScientistWindow(QWidget *parent) :
     ui(new Ui::ScientistWindow)
 {
     ui->setupUi(this);
+
+    ui->inputAbout->setStyleSheet("background-color: rgba( 255, 255, 255, 0% );" );
 }
 
 ScientistWindow::~ScientistWindow()
@@ -15,7 +17,7 @@ ScientistWindow::~ScientistWindow()
     delete ui;
 }
 
-void ScientistWindow::passName(string name)
+void ScientistWindow::passInfo(string name)
 {
     _name = name;
 

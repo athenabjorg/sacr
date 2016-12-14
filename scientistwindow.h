@@ -18,7 +18,7 @@ public:
     explicit ScientistWindow(QWidget *parent = 0);
     ~ScientistWindow();
 
-    void passName(string name);
+    void passInfo(string name);
 
 private:
     Ui::ScientistWindow *ui;
