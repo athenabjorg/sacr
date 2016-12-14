@@ -6,6 +6,7 @@
 #include "addcomputerwindow.h"
 #include "addrelationwindow.h"
 #include "scientistwindow.h"
+#include "computerwindow.h"
 
 
 #include <QMainWindow>
@@ -77,6 +78,8 @@ private slots:
     void on_relationSearchBy_currentIndexChanged(int index);
 
     void on_scientistTable_cellDoubleClicked(int row, int column);
+
+    void on_computerTable_cellDoubleClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;

@@ -225,8 +225,19 @@ void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
 {
     ScientistWindow scientistWindow;
+    QString out = ui->scientistTable->item(row, 0)->text();
 
-    //table->item(curentIndex.row(), 0)->text();
+    ui->lineEdit->setText(out);
 
     scientistWindow.exec();
+}
+
+void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
+{
+    ComputerWindow computerWindow;
+
+    QString name = ui->computerTable->item(row, 0)->text();
+
+    computerWindow.passInfo(name.toStdString());
+    computerWindow.exec();
 }
