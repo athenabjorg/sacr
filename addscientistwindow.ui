@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>249</width>
-    <height>325</height>
+    <width>247</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -146,6 +146,23 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="ScientistsInfoLable">
+     <property name="text">
+      <string>Information</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="ScientistsAddInfo"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="ScientistAddPic">
+     <property name="text">
+      <string>Add picture</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="addButton">
