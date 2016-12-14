@@ -60,6 +60,7 @@ void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
     ui -> scientistTable -> clearContents();
     ui -> scientistTable -> setRowCount(scientists.size());
+    ui -> scientistTable -> setSortingEnabled(1);
 
     for(unsigned int row = 0; row < scientists.size(); row++)
     {
@@ -82,6 +83,7 @@ void MainWindow::printComputer(const vector<Computer> &computers)
 {
     ui -> computerTable -> clearContents();
     ui -> computerTable -> setRowCount(computers.size());
+    ui -> computerTable -> setSortingEnabled(1);
 
     for(unsigned int row = 0; row < computers.size(); row++)
     {
@@ -102,6 +104,7 @@ void MainWindow::printRelation(const vector<Relation> &relations)
 {
     ui -> relationTable -> clearContents();
     ui -> relationTable -> setRowCount(relations.size());
+    ui -> relationTable -> setSortingEnabled(1);
 
     for(unsigned int row = 0; row < relations.size(); row++)
     {
