@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -45,7 +45,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -142,29 +142,32 @@
                  <enum>Qt::Horizontal</enum>
                 </property>
                 <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
+                 <enum>QSizePolicy::Expanding</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>40</width>
+                  <width>200</width>
                   <height>20</height>
                  </size>
                 </property>
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label">
+               <widget class="QLabel" name="inputLogoSci">
                 <property name="enabled">
                  <bool>true</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
                 <property name="layoutDirection">
                  <enum>Qt::LeftToRight</enum>
                 </property>
                 <property name="text">
                  <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>logos/SACR_Logo_line_red.png</pixmap>
                 </property>
                </widget>
               </item>
@@ -199,6 +202,19 @@
                <widget class="QPushButton" name="scientistRemoveButton">
                 <property name="text">
                  <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="errorLabelRemoveScientist">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
                 </property>
                </widget>
               </item>
@@ -275,41 +291,9 @@
         <item>
          <layout class="QHBoxLayout" name="userOptionsLayout_11">
           <item>
-           <spacer name="picturePlaceholder_11">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>120</width>
-              <height>160</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <layout class="QVBoxLayout" name="verticalLayout_24">
             <item>
              <layout class="QHBoxLayout" name="searchLayout_11">
-              <item>
-               <spacer name="horizontalSpacer_11">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
@@ -367,6 +351,29 @@
                 </item>
                </layout>
               </item>
+              <item>
+               <spacer name="horizontalSpacer_11">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Expanding</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>200</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="inputLogoCom">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
             <item>
@@ -387,19 +394,6 @@
             </item>
             <item>
              <layout class="QHBoxLayout" name="addRemoveLayout_11">
-              <item>
-               <spacer name="addScientistRemoveSpacer_11">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
               <item alignment="Qt::AlignRight">
                <widget class="QPushButton" name="computerAddButton">
                 <property name="text">
@@ -413,6 +407,32 @@
                  <string>Remove</string>
                 </property>
                </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="errorLabelRemoveComputer">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="addScientistRemoveSpacer_11">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </item>
@@ -466,41 +486,9 @@
         <item>
          <layout class="QHBoxLayout" name="userOptionsLayout_13">
           <item>
-           <spacer name="picturePlaceholder_13">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>120</width>
-              <height>160</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <layout class="QVBoxLayout" name="verticalLayout_25">
             <item>
              <layout class="QHBoxLayout" name="searchLayout_13">
-              <item>
-               <spacer name="horizontalSpacer_13">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
@@ -553,6 +541,29 @@
                 </item>
                </layout>
               </item>
+              <item>
+               <spacer name="horizontalSpacer_13">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Expanding</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>200</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="inputLogoRel">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
             <item>
@@ -573,6 +584,39 @@
             </item>
             <item>
              <layout class="QHBoxLayout" name="addRemoveLayout_13">
+              <item alignment="Qt::AlignRight">
+               <widget class="QPushButton" name="relationAddButton">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="relationRemoveButton">
+                <property name="text">
+                 <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="errorLabelRemoveRelation">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
               <item>
                <spacer name="addScientistRemoveSpacer_13">
                 <property name="orientation">
@@ -585,20 +629,6 @@
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="relationAddButton">
-                <property name="text">
-                 <string>Add</string>
-                </property>
-               </widget>
-              </item>
-              <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="relationRemoveButton">
-                <property name="text">
-                 <string>Remove</string>
-                </property>
-               </widget>
               </item>
              </layout>
             </item>
@@ -644,7 +674,7 @@
      <x>0</x>
      <y>0</y>
      <width>772</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

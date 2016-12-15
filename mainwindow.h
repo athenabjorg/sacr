@@ -52,6 +52,7 @@ private slots:
 
 
 // ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
+    void printLogo();
     void printList(enum printSelect userInput);
     void printScientist(const vector<Scientist> &scientists);
     void printComputer(const vector<Computer> &computers);
