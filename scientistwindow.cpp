@@ -82,3 +82,9 @@ void ScientistWindow::printRelations()
         }
     }
 }
+
+void ScientistWindow::on_pushButton_3_clicked()
+{
+    QString url  = QString::fromStdString(_abouturl);
+    QDesktopServices::openUrl(QUrl(url));
+}

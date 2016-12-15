@@ -6,6 +6,7 @@
 #include "scientist.h"
 #include "service.h"
 #include "relation.h"
+#include <QDesktopServices>
 
 namespace Ui {
 class ScientistWindow;
@@ -22,6 +23,9 @@ public:
     void set_service(service *s);
 
     void passInfo(string name);
+
+private slots:
+    void on_pushButton_3_clicked();
 
 private:
 
