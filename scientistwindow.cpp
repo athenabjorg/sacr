@@ -54,8 +54,10 @@ void ScientistWindow::passInfo(string name)
     QString qpixurl = QString::fromStdString(pixurl);
     QPixmap pix(qpixurl);
 
-    ui->inputPicture->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
     ui->inputPicture->setPixmap(qpixurl);
+    ui->inputPicture->setPixmap(pix.scaled(400,400,Qt::KeepAspectRatio));
+
+    //ui->inputPicture->setScaledContents(true);
 }
 
 void ScientistWindow::printRelations()
