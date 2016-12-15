@@ -2,9 +2,10 @@
 #define SCIENTISTWINDOW_H
 
 #include <QDialog>
+#include <vector>
 #include "scientist.h"
 #include "service.h"
-
+#include "relation.h"
 
 namespace Ui {
 class ScientistWindow;
@@ -18,12 +19,18 @@ public:
     explicit ScientistWindow(QWidget *parent = 0);
     ~ScientistWindow();
 
+    void set_service(service *s);
+
     void passInfo(string name);
 
 private:
+
+    void printRelations();
+
+
     Ui::ScientistWindow *ui;
 
-    service _service;
+    service *_service;
     Scientist _scientist;
 
     string _name;

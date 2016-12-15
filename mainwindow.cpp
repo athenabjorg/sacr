@@ -233,9 +233,10 @@ void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
     ScientistWindow scientistWindow;
     QString name = ui->scientistTable->item(row, 0)->text();
 
+    scientistWindow.set_service(&_service);
     scientistWindow.passInfo(name.toStdString());
-
     scientistWindow.exec();
+    printList(printSelect::scientist);
 }
 
 void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
