@@ -135,7 +135,21 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="ComputerAddInfo"/>
+    <widget class="QTextEdit" name="ComputerAddInfo">
+     <property name="placeholderText">
+      <string>Feel free to use HTML in this box.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="inputInfoUrlLabel">
+     <property name="text">
+      <string>Add link to more information</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="inputInfoUrl"/>
    </item>
    <item>
     <widget class="QPushButton" name="ComputerAddPic">
