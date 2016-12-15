@@ -245,13 +245,6 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="about">
-         <property name="text">
-          <string>About:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QTextBrowser" name="inputAbout">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -292,13 +285,6 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="relations">
-         <property name="text">
-          <string>Relations:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QTableWidget" name="relationTable">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -316,9 +302,18 @@ p, li { white-space: pre-wrap; }
           <bool>true</bool>
          </property>
          <attribute name="horizontalHeaderVisible">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
           <bool>false</bool>
          </attribute>
          <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderHighlightSections">
           <bool>true</bool>
          </attribute>
          <column>

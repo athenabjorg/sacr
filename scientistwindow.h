@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <QPixmap>
 #include <vector>
-#include <QHeaderView>
 
 #include "scientist.h"
 #include "service.h"
