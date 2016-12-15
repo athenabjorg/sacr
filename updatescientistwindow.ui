@@ -58,7 +58,11 @@
     </layout>
    </item>
    <item>
-    <widget class="QLineEdit" name="nameInput"/>
+    <widget class="QLineEdit" name="nameInput">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -200,9 +204,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="addButton">
+    <widget class="QPushButton" name="updateButton">
      <property name="text">
-      <string>Add</string>
+      <string>Update</string>
      </property>
     </widget>
    </item>

@@ -17,7 +17,7 @@ public:
     ~UpdateScientistWindow();
 
 private slots:
-    void on_addButton_clicked();
+    void on_updateButton_clicked();
 
 private:
     Ui::UpdateScientistWindow *ui;

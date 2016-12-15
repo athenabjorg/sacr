@@ -1,5 +1,6 @@
 #include "scientistwindow.h"
 #include "ui_scientistwindow.h"
+#include "updatescientistwindow.h"
 
 
 
@@ -109,4 +110,13 @@ void ScientistWindow::on_buttonInfo_clicked()
 {
     QString url  = QString::fromStdString(_abouturl);
     QDesktopServices::openUrl(QUrl(url));
+}
+
+void ScientistWindow::on_buttonUpdate_2_clicked()
+{
+    UpdateScientistWindow updateScientistWindow;
+    //updateScientistWindow.set_service(&_service);
+    //updateScientistWindow.passInfo(name.toStdString());
+    updateScientistWindow.exec();
+
 }

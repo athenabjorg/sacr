@@ -20,13 +20,14 @@ UpdateScientistWindow::~UpdateScientistWindow()
     delete ui;
 }
 
-void UpdateScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
+void UpdateScientistWindow::on_updateButton_clicked() // FIXME::BETTER_SOLUTION_?
 {
     QString name = ui -> nameInput -> text();
     QString birthYear = ui -> yearBornInput -> text();
     QString deathYear = ui -> yearDiedInput -> text();
     char gender;
     ui -> errorLabelName -> setText(" ");
+    ui -> nameInput -> setText(name);
 
     // Check for what buttom is selected
     if(ui -> genderMaleButton -> isChecked())
@@ -54,19 +55,6 @@ void UpdateScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 
 
     // Check if fiels are left emty and if name is allready taken and if so print out a red error msg
-    if(name.isEmpty())
-    {
-        ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is empty");
-    }
-    else if(_service->findScientist(1, name.toStdString()).size() > 0)
-    {
-        ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is taken");
-    }
-    else
-    {
-        ui -> errorLabelName -> setText("<span style='color: #ED1C58'> ");
-    }
-
     if(gender == 'e')
     {
         ui -> errorLabelGender -> setText("<span style='color: #ED1C58'>Gender is empty");
