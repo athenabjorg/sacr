@@ -79,6 +79,8 @@ public:
     int yearComputerBuilt(string computer);
     // Returns what year a computer was built.
 
+    Computer loadComputerInfo(string inputName);
+
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
     void saveRelation(const Relation newRelation);

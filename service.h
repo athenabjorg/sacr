@@ -88,6 +88,8 @@ public:
     bool doesComputerExist(string name);
     // Checks if a computer by that name exists already
 
+    Computer getComputerInfo(string name);
+
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
     vector<Relation> getRelations();

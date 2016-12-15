@@ -1,11 +1,13 @@
-#ifndef COMPUTERWINDOW_H
-#define COMPUTERWINDOW_H
+#ifndef ComputerWindow_H
+#define ComputerWindow_H
 
 #include <QDialog>
-#include <string>
-#include "scientist.h"
-
-using namespace std;
+#include <QPixmap>
+#include <vector>
+#include "computer.h"
+#include "service.h"
+#include "relation.h"
+#include <QDesktopServices>
 
 namespace Ui {
 class ComputerWindow;
@@ -19,10 +21,30 @@ public:
     explicit ComputerWindow(QWidget *parent = 0);
     ~ComputerWindow();
 
-    void passInfo(vector<string> name);
+    void set_service(service *s);
+
+    void passInfo(string name);
+
+private slots:
+    void on_buttonInfo_clicked();
 
 private:
+
+    void printRelations();
+
+
     Ui::ComputerWindow *ui;
+
+    service *_service;
+    Computer _computer;
+
+    string _name;
+    string _id;
+    string _year;
+    string _type;
+    string _picurl;
+    string _about;
+    string _abouturl;
 };
 
-#endif // COMPUTERWINDOW_H
+#endif // ComputerWindow_H

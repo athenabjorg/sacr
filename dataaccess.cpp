@@ -585,6 +585,33 @@ int DataAccess::yearComputerBuilt(string computer)
     return year;
 }
 
+Computer DataAccess::loadComputerInfo(string inputName)
+{
+    string line, id, name, year, type, picurl, about, abouturl;
+
+    db.open();
+    QSqlQuery query;
+
+    line = "SELECT id, name, year, type, picurl, about, abouturl FROM computers WHERE name like \"" + inputName + "\" and valid = 1;";
+    QString qline = QString::fromStdString(line);
+    query.exec(qline);
+
+    query.next();
+
+    id = query.value(0).toString().toStdString();
+    name = query.value(1).toString().toStdString();
+    year = query.value(2).toString().toStdString();
+    type = query.value(3).toString().toStdString();
+    picurl = query.value(4).toString().toStdString();
+    about = query.value(5).toString().toStdString();
+    abouturl = query.value(6).toString().toStdString();
+
+    Computer computer(id, name, year, type, picurl, about, abouturl);
+
+    db.close();
+
+    return computer;
+}
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 

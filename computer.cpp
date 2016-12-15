@@ -17,6 +17,18 @@ Computer::Computer(string name, int year, string type, bool built)
     _built = built;
     _yearsSinceBuilt = whatYearIsIt() - _year;
 }
+
+Computer::Computer(string id, string name, string year, string type, string picurl, string about, string abouturl)
+{
+    _id = id;
+    _name = name;
+    _yearMade = year;
+    _type = type;
+    _picurl = picurl;
+    _about = about;
+    _abouturl = abouturl;
+}
+
 string Computer::getName() const
 {
     return _name;
@@ -50,3 +62,28 @@ int Computer::getYearsSinceBuilt() const
     return _yearsSinceBuilt;
 }
 
+
+string Computer::getInfoID() const
+{
+    return _id;
+}
+string Computer::getInfoYear() const
+{
+    return _yearMade;
+}
+string Computer::getInfoType() const
+{
+    return _type;
+}
+string Computer::getInfoPicurl() const
+{
+    return _picurl;
+}
+string Computer::getInfoAbout() const
+{
+    return _about;
+}
+string Computer::getInfoAbouturl() const
+{
+    return _abouturl;
+}

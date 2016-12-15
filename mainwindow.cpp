@@ -242,11 +242,12 @@ void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
 void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
 {
     ComputerWindow computerWindow;
-
     QString name = ui->computerTable->item(row, 0)->text();
 
-    //computerWindow.passName(name.toStdString());
+    computerWindow.set_service(&_service);
+    computerWindow.passInfo(name.toStdString());
     computerWindow.exec();
+    printList(printSelect::computer);
 }
 
 void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1)

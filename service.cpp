@@ -300,6 +300,13 @@ bool service::doesComputerExist(string name)
     return _data.doesComputerExist(name);
 }
 
+Computer service::getComputerInfo(string name)
+{
+    Computer computer;
+    computer = _data.loadComputerInfo(name);
+
+    return computer;
+}
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
