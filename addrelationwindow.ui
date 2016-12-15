@@ -47,12 +47,26 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="errorLabelScientist">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLineEdit" name="scientistNameInput"/>
    </item>
    <item>
     <widget class="QLabel" name="computerNameInput">
      <property name="text">
       <string>Computer Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="errorLabelComputer">
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </item>
@@ -71,6 +85,13 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="errorLabelRelation">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="addButton">
