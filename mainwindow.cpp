@@ -362,3 +362,9 @@ void MainWindow::on_relationRemoveButton_clicked()
     _currentRow = -1;
 }
 
+
+void MainWindow::on_userManualButton_clicked()
+{
+    UserManual userManual;
+    userManual.exec();
+}

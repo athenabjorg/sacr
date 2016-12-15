@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     addcomputerwindow.cpp \
     addrelationwindow.cpp \
     computerwindow.cpp \
-    scientistwindow.cpp
+    scientistwindow.cpp \
+    usermanual.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -35,13 +36,15 @@ HEADERS  += mainwindow.h \
     addcomputerwindow.h \
     addrelationwindow.h \
     scientistwindow.h \
-    computerwindow.h
+    computerwindow.h \
+    usermanual.h
 
 FORMS    += mainwindow.ui \
     addscientistwindow.ui \
     addcomputerwindow.ui \
     addrelationwindow.ui \
     scientistwindow.ui \
-    computerwindow.ui
+    computerwindow.ui \
+    usermanual.ui
 
 DISTFILES +=
