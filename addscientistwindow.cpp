@@ -20,7 +20,7 @@ AddScientistWindow::~AddScientistWindow()
     delete ui;
 }
 
-void AddScientistWindow::on_addButton_clicked()
+void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 {
     QString name = ui -> nameInput -> text();
     QString birthYear = ui -> yearBornInput -> text();
@@ -28,11 +28,7 @@ void AddScientistWindow::on_addButton_clicked()
     char gender;
     ui -> errorLabelName -> setText(" ");
 
-    if(name.isEmpty())
-    {
-        ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is empty");
-    }
-
+    // Check for what buttom is selected
     if(ui -> genderMaleButton -> isChecked())
     {
         gender = 'm';
@@ -45,8 +41,63 @@ void AddScientistWindow::on_addButton_clicked()
     {
         gender = 'o';
     }
+    else
+    {
+        gender = 'e';
+    }
 
 
-    _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());
-    //close();
+    // Check if fiels are left emty and if name is allready taken and if so print out a red error msg
+    if(name.isEmpty())
+    {
+        ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is empty");
+    }
+    else if(_service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt()) == false)
+    {
+        ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is taken");
+    }
+    else
+    {
+        ui -> errorLabelName -> setText("<span style='color: #ED1C58'> ");
+    }
+
+    if(gender == 'e')
+    {
+        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'>Gender is empty");
+    }
+    else
+    {
+        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'> ");
+    }
+
+    if(birthYear.isEmpty())
+    {
+        ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is empty");
+    }
+    else
+    {
+        ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'> ");
+    }
+
+
+
+
+
+
+
+    // If everything chekcs out, add the new scientist and close the addscientistwindow
+    if(name.isEmpty() || gender == 'e' || birthYear.isEmpty())
+    {
+        // TODO::ERROR_MSG_?
+    }
+    else
+    {
+        _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());
+        close();
+    }
+
+
+
+
+
 }
