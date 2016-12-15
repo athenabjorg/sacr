@@ -43,9 +43,19 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="nameLabel">
+    <widget class="QLabel" name="label_2">
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
      <property name="text">
       <string>Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="errorLabelName">
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </item>

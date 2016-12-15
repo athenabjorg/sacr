@@ -19,7 +19,7 @@ AddComputerWindow::~AddComputerWindow()
     delete ui;
 }
 
-void AddComputerWindow::on_addButton_clicked()
+void AddComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 {
         QString name = ui -> nameInput -> text();
         QString yearBuilt = ui -> yearBuiltInput -> text();
@@ -35,6 +35,37 @@ void AddComputerWindow::on_addButton_clicked()
             built = true;
         }
 
-        _service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built);
-        close();
+
+
+        // Check if fiels are left empty and if name is allready taken and if so print out a red error msg
+        if(name.isEmpty())
+        {
+            ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is empty");
+        }
+        else if(_service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built) == false)
+        {
+            ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is taken");
+        }
+        else
+        {
+            ui -> errorLabelName -> setText("<span style='color: #ED1C58'> ");
+        }
+
+
+
+
+        // If everything chekcs out, add the new scientist and close the addscientistwindow
+        if(name.isEmpty())
+        {
+            // TODO::ERROR_MSG_?
+        }
+        else
+        {
+            _service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built);
+            close();
+        }
+
+
+
+
 }
