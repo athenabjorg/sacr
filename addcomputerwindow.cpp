@@ -55,17 +55,14 @@ void AddComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 
 
         // If everything chekcs out, add the new scientist and close the addscientistwindow
-        if(name.isEmpty())
-        {
-            // TODO::ERROR_MSG_?
+        if(!name.isEmpty() &&_service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built))
+            {
+                _service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built);
+                close();
+            }
+            else
+            {
+                //do nothing
+            }
         }
-        else
-        {
-            _service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built);
-            close();
-        }
 
-
-
-
-}
