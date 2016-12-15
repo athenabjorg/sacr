@@ -56,8 +56,6 @@ void ScientistWindow::passInfo(string name)
 
     ui->inputPicture->setPixmap(qpixurl);
     ui->inputPicture->setPixmap(pix.scaled(400,400,Qt::KeepAspectRatio));
-
-    //ui->inputPicture->setScaledContents(true);
 }
 
 void ScientistWindow::printRelations()
@@ -65,7 +63,6 @@ void ScientistWindow::printRelations()
     vector<Relation> relations;
 
     //relations = _service->findRelation(1, _name);
-
 
 
     if(relations.empty())
