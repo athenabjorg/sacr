@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _currentRow = -1;
     _currentColumn = -1;
 
+    printLogo();
     printList(printSelect::scientist);
     printList(printSelect::computer);
     printList(printSelect::relation);
@@ -42,6 +43,19 @@ MainWindow::~MainWindow()
 
 
 // ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
+void MainWindow::printLogo()
+{
+    string pixurl = "../sacr/logos/SACR_Logo_red.png";
+    QString qpixurl = QString::fromStdString(pixurl);
+    QPixmap pix(qpixurl);
+
+    ui->inputLogoSci->setPixmap(qpixurl);
+    ui->inputLogoSci->setPixmap(pix.scaled(203,62,Qt::KeepAspectRatio));
+    ui->inputLogoCom->setPixmap(qpixurl);
+    ui->inputLogoCom->setPixmap(pix.scaled(203,62,Qt::KeepAspectRatio));
+    ui->inputLogoRel->setPixmap(qpixurl);
+    ui->inputLogoRel->setPixmap(pix.scaled(203,62,Qt::KeepAspectRatio));
+}
 void MainWindow::printList(enum printSelect userInput)
 {
     vector<Scientist> scientists = _service.getScientists();
