@@ -79,6 +79,7 @@ void ScientistWindow::printRelations()
 
     if(_relations.empty())
     {
+        ui -> relationTable -> horizontalHeader() -> hide();
         ui -> relationTable -> clearContents();
         ui -> relationTable -> setRowCount(1);
         ui -> relationTable -> setColumnCount(1);
@@ -86,6 +87,7 @@ void ScientistWindow::printRelations()
     }
     else
     {
+        ui -> relationTable -> horizontalHeader();
         ui -> relationTable -> clearContents();
         ui -> relationTable -> setRowCount(_relations.size());
         ui -> relationTable -> setColumnCount(2);
