@@ -49,47 +49,52 @@ void ComputerWindow::passInfo(string name)
 
     printRelations();
 
-    ui->inputRelations->setSortingEnabled(1);
+    ui->relationTable->setSortingEnabled(1);
     ui->inputAbout->setStyleSheet("background-color: rgba( 255, 255, 255, 0% );");
 }
 
 void ComputerWindow::setImage()
 {
-    string pixurl = "../sacr/PicSci/" + _id + ".jpg";
+    string pixurl = "../sacr/PicCom/" + _id + ".jpg";
     QString qpixurl = QString::fromStdString(pixurl);
     QPixmap pix(qpixurl);
 
     ui->inputPicture->setPixmap(qpixurl);
-    ui->inputPicture->setPixmap(pix.scaled(400,400,Qt::KeepAspectRatio));
+    ui->inputPicture->setPixmap(pix.scaled(350,400,Qt::KeepAspectRatio));
 }
 
 void ComputerWindow::printRelations()
 {
-    vector<Relation> relations;
+    ui -> relationTable -> setSortingEnabled(1);
 
-    relations = _service->findRelation(1, _name);
+    ui -> relationTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
-    if(relations.empty())
+    _relations = _service->findRelation(2, _name);
+
+
+    if(_relations.empty())
     {
-        ui->inputRelations->clearContents();
-        ui -> inputRelations -> setItem(0, 0, new QTableWidgetItem("No relations have been added."));
+        ui -> relationTable -> horizontalHeader() -> hide();
+        ui -> relationTable -> clearContents();
+        ui -> relationTable -> setRowCount(1);
+        ui -> relationTable -> setColumnCount(1);
+        ui -> relationTable -> setItem(0, 0, new QTableWidgetItem("No relations have been added."));
     }
     else
     {
-        ui->inputRelations->clearContents();
-        ui->inputRelations->setRowCount(relations.size());
+        ui -> relationTable -> horizontalHeader();
+        ui -> relationTable -> clearContents();
+        ui -> relationTable -> setRowCount(_relations.size());
+        ui -> relationTable -> setColumnCount(1);
 
-        for(unsigned int row = 0; row < relations.size(); row++)
+        for(unsigned int row = 0; row < _relations.size(); row++)
         {
-            Relation currentRelation = relations.at(row);
+            Relation currentRelations = _relations.at(row);
 
-            QString computerName =  QString::fromStdString(currentRelation.getComputer());
-            QString yearBuilt  =  QString::number(currentRelation.getYear());
+            QString scientist =  QString::fromStdString(currentRelations.getScientist());
 
-
-            ui -> inputRelations -> setItem(row, 0, new QTableWidgetItem(computerName));
-            ui -> inputRelations -> setItem(row, 1, new QTableWidgetItem(yearBuilt));
+            ui -> relationTable -> setItem(row, 0, new QTableWidgetItem(scientist));
         }
     }
 }

@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     computer.cpp \
-    consoleui.cpp \
     dataaccess.cpp \
     relation.cpp \
     scientist.cpp \
@@ -29,7 +28,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     computer.h \
-    consoleui.h \
     dataaccess.h \
     relation.h \
     scientist.h \

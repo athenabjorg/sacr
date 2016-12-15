@@ -37,6 +37,7 @@ private:
 
     service *_service;
     Computer _computer;
+    vector<Relation> _relations;
 
     string _name;
     string _id;

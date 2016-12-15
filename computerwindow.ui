@@ -214,7 +214,7 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>400</width>
+         <width>350</width>
          <height>16777215</height>
         </size>
        </property>
@@ -245,13 +245,6 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="about">
-         <property name="text">
-          <string>About:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QTextBrowser" name="inputAbout">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -262,7 +255,7 @@
          <property name="minimumSize">
           <size>
            <width>250</width>
-           <height>200</height>
+           <height>250</height>
           </size>
          </property>
          <property name="font">
@@ -292,20 +285,21 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="relations">
-         <property name="text">
-          <string>Relations:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTableWidget" name="inputRelations">
+        <widget class="QTableWidget" name="relationTable">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Scientist</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>

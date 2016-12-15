@@ -34,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui -> scientistTable -> setSortingEnabled(1);
     ui -> computerTable  -> setSortingEnabled(1);
     ui -> relationTable  -> setSortingEnabled(1);
+    ui -> scientistTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui -> computerTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui -> relationTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 MainWindow::~MainWindow()
@@ -80,8 +83,11 @@ void MainWindow::printList(enum printSelect userInput)
 }
 void MainWindow::printScientist(const vector<Scientist> &scientists)
 {
+
     ui -> scientistTable -> clearContents();
     ui -> scientistTable -> setRowCount(scientists.size());
+    ui -> scientistTable -> horizontalHeader() -> show();
+
 
     for(unsigned int row = 0; row < scientists.size(); row++)
     {
@@ -99,6 +105,7 @@ void MainWindow::printScientist(const vector<Scientist> &scientists)
         ui -> scientistTable -> setItem(row, 3, new QTableWidgetItem(yearDied));
         ui -> scientistTable -> setItem(row, 4, new QTableWidgetItem(age));
     }
+
 }
 void MainWindow::printComputer(const vector<Computer> &computers)
 {
