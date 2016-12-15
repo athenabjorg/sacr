@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>247</width>
-    <height>400</height>
+    <width>252</width>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -169,7 +169,21 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="ScientistsAddInfo"/>
+    <widget class="QTextEdit" name="ScientistsAddInfo">
+     <property name="placeholderText">
+      <string>Feel free to use HTML in this box.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="inputInfoUrlLabel">
+     <property name="text">
+      <string>Add link to more information</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="inputInfoUrl"/>
    </item>
    <item>
     <widget class="QPushButton" name="ScientistAddPic">
