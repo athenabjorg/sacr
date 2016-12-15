@@ -61,41 +61,9 @@
         <item>
          <layout class="QHBoxLayout" name="userOptionsLayout">
           <item>
-           <spacer name="picturePlaceholder">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>120</width>
-              <height>160</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
              <layout class="QHBoxLayout" name="searchLayout">
-              <item>
-               <spacer name="horizontalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
@@ -168,6 +136,38 @@
                 </item>
                </layout>
               </item>
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>logos/SACR_Logo_line_red.png</pixmap>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
             <item>
@@ -189,6 +189,20 @@
             <item>
              <layout class="QHBoxLayout" name="addRemoveLayout">
               <item>
+               <widget class="QPushButton" name="scientistAddButton">
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="scientistRemoveButton">
+                <property name="text">
+                 <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer name="addScientistRemoveSpacer">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -200,20 +214,6 @@
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item>
-               <widget class="QPushButton" name="scientistAddButton">
-                <property name="text">
-                 <string>Add</string>
-                </property>
-               </widget>
-              </item>
-              <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="scientistRemoveButton">
-                <property name="text">
-                 <string>Remove</string>
-                </property>
-               </widget>
               </item>
              </layout>
             </item>
@@ -644,7 +644,7 @@
      <x>0</x>
      <y>0</y>
      <width>772</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
