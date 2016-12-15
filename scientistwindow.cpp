@@ -69,11 +69,13 @@ void ScientistWindow::setImage()
 void ScientistWindow::printRelations()
 {
 
-    ui -> relationTable  -> setSortingEnabled(1);
+    ui -> relationTable -> setSortingEnabled(1);
+
+    ui -> relationTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 
     _relations = _service->findRelation(1, _name);
 
-    //ui -> relationTable -> setResizeMode();
 
     if(_relations.empty())
     {
