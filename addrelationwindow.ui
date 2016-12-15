@@ -40,35 +40,43 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="scientistNameLabel">
-     <property name="text">
-      <string>Scientist Name:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="errorLabelScientist">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="scientistNameLabel">
+       <property name="text">
+        <string>Scientist Name:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="errorLabelScientist">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QLineEdit" name="scientistNameInput"/>
    </item>
    <item>
-    <widget class="QLabel" name="computerNameInput">
-     <property name="text">
-      <string>Computer Name:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="errorLabelComputer">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="computerNameInput">
+       <property name="text">
+        <string>Computer Name:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="errorLabelComputer">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QLineEdit" name="computerNameInput_2"/>
