@@ -2,6 +2,11 @@
 #define ADDRELATIONWINDOW_H
 #include "service.h"
 #include <QDialog>
+#include <vector>
+#include <string>
+#include "scientist.h"
+#include "computer.h"
+
 
 namespace Ui {
 class AddRelationWindow;
@@ -17,11 +22,25 @@ public:
     ~AddRelationWindow();
 
 private slots:
+
     void on_addButton_clicked();
+
+    void on_scientistTable_cellPressed(int row, int column);
+
+    void on_computerTable_cellPressed(int row, int column);
 
 private:
     Ui::AddRelationWindow *ui;
     service *_service;
+
+    vector<Scientist> _scientists;
+    vector<Computer> _computers;
+
+    int _scientistRow;
+    int _computerRow;
+
+    void printScientist();
+    void printComputer();
 };
 
 #endif // ADDRELATIONWINDOW_H
