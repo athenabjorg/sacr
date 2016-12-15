@@ -24,7 +24,7 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 {
     QString name = ui -> nameInput -> text();
     QString birthYear = ui -> yearBornInput -> text();
-    QString deathYear = ui -> yearDiedInput_2 -> text();
+    QString deathYear = ui -> yearDiedInput -> text();
     char gender;
     ui -> errorLabelName -> setText(" ");
 
