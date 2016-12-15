@@ -23,7 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui -> setupUi(this);
 
-    printLogo();
+    _currentRow = -1;
+    _currentColumn = -1;
+
     printList(printSelect::scientist);
     printList(printSelect::computer);
     printList(printSelect::relation);
@@ -37,20 +39,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::printLogo()
-{
-    string pixurl = "../sacr/logos/SACR_Logo_red.png";
-    QString qpixurl = QString::fromStdString(pixurl);
-    QPixmap pix(qpixurl);
 
-    ui->inputLogoSci->setPixmap(qpixurl);
-    ui->inputLogoSci->setPixmap(pix.scaled(203,62,Qt::KeepAspectRatio));
-    ui->inputLogoCom->setPixmap(qpixurl);
-    ui->inputLogoCom->setPixmap(pix.scaled(203,62,Qt::KeepAspectRatio));
-    ui->inputLogoRel->setPixmap(qpixurl);
-    ui->inputLogoRel->setPixmap(pix.scaled(203,62,Qt::KeepAspectRatio));
-}
 
+// ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
 void MainWindow::printList(enum printSelect userInput)
 {
     vector<Scientist> scientists = _service.getScientists();
@@ -135,6 +126,7 @@ void MainWindow::printRelation(const vector<Relation> &relations)
 }
 
 
+// ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 {
     ui -> scientistTable -> setSortingEnabled(0);
@@ -154,9 +146,6 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 
     ui -> scientistTable -> setSortingEnabled(1);
 }
-
-
-
 void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 {
     _scientistComboboxIndex = index;
@@ -165,7 +154,19 @@ void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 
     on_scientistSearchInput_textEdited(searchBy);
 }
-
+void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1) //FIXME::?
+{
+    if( ui->scientistSearchBy->currentText().toStdString() == "by Age Range" ||
+        ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
+        ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
+    {
+        ui->scientistSearchRange->setEnabled(true);
+    }
+    else
+    {
+        ui->scientistSearchRange->setEnabled(false);
+    }
+}
 void MainWindow::on_scientistAddButton_clicked()
 {
     AddScientistWindow addScientistWindow;
@@ -174,23 +175,44 @@ void MainWindow::on_scientistAddButton_clicked()
     printList(printSelect::scientist);
 
 }
-
-void MainWindow::on_computerAddButton_clicked()
+void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
 {
-    AddComputerWindow addComputerWindow;
-    addComputerWindow.set_service(&_service);//---
-    addComputerWindow.exec();
-    printList(printSelect::computer);
+    ScientistWindow scientistWindow;
+    QString name = ui->scientistTable->item(row, 0)->text();
+
+    scientistWindow.set_service(&_service);
+    scientistWindow.passInfo(name.toStdString());
+    scientistWindow.exec();
+    printList(printSelect::scientist);
+}
+void MainWindow::on_scientistTable_cellPressed(int row, int column)
+{
+    _currentRow = row;
+    _currentColumn = column;
+}
+void MainWindow::on_scientistRemoveButton_clicked()
+{
+    ui -> scientistTable -> setSortingEnabled(0);
+
+    if(_currentRow == -1)
+    {
+        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
+    }
+    else if(_currentRow >= 0)
+    {
+        QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
+        _service.removeScientist(name.toStdString());
+        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>");
+        printList(printSelect::scientist);
+    }
+
+    ui -> scientistTable -> setSortingEnabled(1);
+
+    _currentRow = -1;
 }
 
-void MainWindow::on_relationAddButton_clicked()
-{
-    AddRelationWindow addRelationWindow;
-    addRelationWindow.set_service(&_service);//---
-    addRelationWindow.exec();
-    printList(printSelect::relation);
-}
 
+// ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
 void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)
 {
     if(arg1.isEmpty())
@@ -206,7 +228,6 @@ void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)
         printComputer(computers);
     }
 }
-
 void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
 {
     _computerComboboxIndex = index;
@@ -215,7 +236,52 @@ void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
 
     on_computerSearchInput_textEdited(searchBy);
 }
+//TODO::currentIndexChanged
+void MainWindow::on_computerAddButton_clicked()
+{
+    AddComputerWindow addComputerWindow;
+    addComputerWindow.set_service(&_service);//---
+    addComputerWindow.exec();
+    printList(printSelect::computer);
+}
+void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
+{
+    ComputerWindow computerWindow;
+    QString name = ui->computerTable->item(row, 0)->text();
 
+    computerWindow.set_service(&_service);
+    computerWindow.passInfo(name.toStdString());
+    computerWindow.exec();
+    printList(printSelect::computer);
+}
+void MainWindow::on_computerTable_cellPressed(int row, int column)
+{
+    _currentRow = row;
+    _currentColumn = column;
+}
+void MainWindow::on_computerRemoveButton_clicked()
+{
+    ui -> computerTable -> setSortingEnabled(0);
+
+    if(_currentRow == -1)
+    {
+        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>Nothing selected");
+    }
+    else if(_currentRow >= 0)
+    {
+        QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
+        _service.removeComputer(name.toStdString());
+        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
+        printList(printSelect::computer);
+    }
+
+    ui -> computerTable -> setSortingEnabled(1);
+
+    _currentRow = -1;
+}
+
+
+// ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
 void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
 {
     if(arg1.isEmpty())
@@ -231,7 +297,6 @@ void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
         printRelation(relations);
     }
 }
-
 void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 {
     _relationComboboxIndex = index;
@@ -240,38 +305,39 @@ void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 
     on_relationSearchInput_textEdited(searchBy);
 }
-
-void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
+//TODO::currentIndexChanged
+void MainWindow::on_relationAddButton_clicked()
 {
-    ScientistWindow scientistWindow;
-    QString name = ui->scientistTable->item(row, 0)->text();
-
-    scientistWindow.set_service(&_service);
-    scientistWindow.passInfo(name.toStdString());
-    scientistWindow.exec();
-    printList(printSelect::scientist);
+    AddRelationWindow addRelationWindow;
+    addRelationWindow.set_service(&_service);//---
+    addRelationWindow.exec();
+    printList(printSelect::relation);
 }
-
-void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
+//TODO::cellDoubleClicked ?
+void MainWindow::on_relationTable_cellPressed(int row, int column)
 {
-    ComputerWindow computerWindow;
-
-    QString name = ui->computerTable->item(row, 0)->text();
-
-    //computerWindow.passName(name.toStdString());
-    computerWindow.exec();
+    _currentRow = row;
+    _currentColumn = column;
 }
-
-void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1)
+void MainWindow::on_relationRemoveButton_clicked()
 {
-    if( ui->scientistSearchBy->currentText().toStdString() == "by Age Range" ||
-        ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
-        ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
+    ui -> relationTable -> setSortingEnabled(0);
+
+    if(_currentRow == -1)
     {
-        ui->scientistSearchRange->setEnabled(true);
+        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
-    else
+    else if(_currentRow >= 0)
     {
-        ui->scientistSearchRange->setEnabled(false);
+        QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
+        QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
+        _service.removeRelation(scientist.toStdString(), computer.toStdString());
+        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
+        printList(printSelect::relation);
     }
+
+    ui -> relationTable -> setSortingEnabled(1);
+
+    _currentRow = -1;
 }
+
