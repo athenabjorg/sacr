@@ -43,7 +43,7 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     }
     else
     {
-        gender = 'e';
+        gender = ' ';
     }
 
 
