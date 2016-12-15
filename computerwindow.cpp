@@ -9,11 +9,6 @@ ComputerWindow::ComputerWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     _service = nullptr;
-
-    printRelations();
-
-    ui->inputRelations->setSortingEnabled(1);
-    ui->inputAbout->setStyleSheet("background-color: rgba( 255, 255, 255, 0% );");
 }
 
 ComputerWindow::~ComputerWindow()
@@ -50,7 +45,17 @@ void ComputerWindow::passInfo(string name)
     ui->inputType->setText(QString::fromStdString(_type));
     ui->inputAbout->setText(QString::fromStdString(_about));
 
-    string pixurl = "../sacr/PicCom/" + _id + ".jpg";
+    setImage();
+
+    printRelations();
+
+    ui->inputRelations->setSortingEnabled(1);
+    ui->inputAbout->setStyleSheet("background-color: rgba( 255, 255, 255, 0% );");
+}
+
+void ComputerWindow::setImage()
+{
+    string pixurl = "../sacr/PicSci/" + _id + ".jpg";
     QString qpixurl = QString::fromStdString(pixurl);
     QPixmap pix(qpixurl);
 
@@ -62,7 +67,7 @@ void ComputerWindow::printRelations()
 {
     vector<Relation> relations;
 
-    //relations = _service->findRelation(1, _name);
+    relations = _service->findRelation(1, _name);
 
 
     if(relations.empty())

@@ -700,6 +700,7 @@ vector<Relation> DataAccess::loadRelations(int loadType, string parameter)
     }
 
     QString input = QString::fromStdString(line);
+
     db.open();
     QSqlQuery query;
     query.exec(input);

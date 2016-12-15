@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QPixmap>
 #include <vector>
+#include <QHeaderView>
+
 #include "scientist.h"
 #include "service.h"
 #include "relation.h"
@@ -31,12 +33,13 @@ private slots:
 private:
 
     void printRelations();
-
+    void setImage();
 
     Ui::ScientistWindow *ui;
 
     service *_service;
     Scientist _scientist;
+    vector<Relation> _relations;
 
     string _name;
     string _id;

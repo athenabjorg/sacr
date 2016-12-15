@@ -31,7 +31,7 @@ private slots:
 private:
 
     void printRelations();
-
+    void setImage();
 
     Ui::ComputerWindow *ui;
 
