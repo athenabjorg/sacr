@@ -26,7 +26,7 @@ public:
     void passInfo(string name);
 
 private slots:
-    void on_pushButton_3_clicked();
+    void on_buttonInfo_clicked();
 
 private:
 

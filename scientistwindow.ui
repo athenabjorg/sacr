@@ -347,23 +347,23 @@ p, li { white-space: pre-wrap; }
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="buttonUpdate_2">
        <property name="text">
-        <string>PushButton</string>
+        <string>Update</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="buttonAddRelation">
        <property name="text">
-        <string>PushButton</string>
+        <string>Add Relation</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="buttonInfo">
        <property name="text">
-        <string>PushButton</string>
+        <string>More Info</string>
        </property>
       </widget>
      </item>
