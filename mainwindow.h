@@ -7,6 +7,7 @@
 #include "addrelationwindow.h"
 #include "scientistwindow.h"
 #include "computerwindow.h"
+#include "usermanual.h"
 
 
 #include <QMainWindow>
@@ -89,6 +90,8 @@ private slots:
     void on_relationRemoveButton_clicked();
 
 
+
+    void on_userManualButton_clicked();
 
 private:
     Ui::MainWindow *ui;
