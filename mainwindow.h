@@ -83,6 +83,20 @@ private slots:
 
     void on_scientistSearchBy_currentIndexChanged(const QString &arg1);
 
+    void on_scientistRemoveButton_clicked();
+
+    void on_computerRemoveButton_clicked();
+
+    void on_relationRemoveButton_clicked();
+
+    void on_scientistTable_cellPressed(int row, int column);
+
+    void on_computerTable_cellPressed(int row, int column);
+
+    void on_relationTable_cellPressed(int row, int column);
+
+
+
 private:
     Ui::MainWindow *ui;
     service _service;
@@ -90,6 +104,8 @@ private:
     int _scientistComboboxIndex = 0;
     int _computerComboboxIndex = 0;
     int _relationComboboxIndex = 0;
+    int _currentRow = 0;
+    int _currentColumn = 0;
 };
 
 #endif // MAINWINDOW_H

@@ -23,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui -> setupUi(this);
 
+    _currentRow = -1;
+    _currentColumn = -1;
+
     printList(printSelect::scientist);
     printList(printSelect::computer);
     printList(printSelect::relation);
@@ -262,4 +265,85 @@ void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1)
     {
         ui->scientistSearchRange->setEnabled(false);
     }
+}
+void MainWindow::on_scientistRemoveButton_clicked()
+{
+    ui -> scientistTable -> setSortingEnabled(0);
+
+    if(_currentRow == -1)
+    {
+        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
+    }
+    else if(_currentRow >= 0)
+    {
+        QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
+        _service.removeScientist(name.toStdString());
+        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>");
+        printList(printSelect::scientist);
+    }
+
+    ui -> scientistTable -> setSortingEnabled(1);
+
+    _currentRow = -1;
+}
+
+void MainWindow::on_computerRemoveButton_clicked()
+{
+    ui -> computerTable -> setSortingEnabled(0);
+
+    if(_currentRow == -1)
+    {
+        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>Nothing selected");
+    }
+    else if(_currentRow >= 0)
+    {
+        QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
+        _service.removeComputer(name.toStdString());
+        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
+        printList(printSelect::computer);
+    }
+
+    ui -> computerTable -> setSortingEnabled(1);
+
+    _currentRow = -1;
+}
+
+void MainWindow::on_relationRemoveButton_clicked()
+{
+    ui -> relationTable -> setSortingEnabled(0);
+
+    if(_currentRow == -1)
+    {
+        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>Nothing selected");
+    }
+    else if(_currentRow >= 0)
+    {
+        QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
+        QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
+        _service.removeRelation(scientist.toStdString(), computer.toStdString());
+        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
+        printList(printSelect::relation);
+    }
+
+    ui -> relationTable -> setSortingEnabled(1);
+
+    _currentRow = -1;
+}
+
+void MainWindow::on_scientistTable_cellPressed(int row, int column)
+{
+    _currentRow = row;
+    _currentColumn = column;
+}
+
+void MainWindow::on_computerTable_cellPressed(int row, int column)
+{
+    _currentRow = row;
+    _currentColumn = column;
+}
+
+void MainWindow::on_relationTable_cellPressed(int row, int column)
+{
+    _currentRow = row;
+    _currentColumn = column;
 }
