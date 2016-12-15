@@ -368,3 +368,15 @@ void MainWindow::on_userManualButton_clicked()
     UserManual userManual;
     userManual.exec();
 }
+
+void MainWindow::on_userManualButton2_clicked()
+{
+    UserManual userManual;
+    userManual.exec();
+}
+
+void MainWindow::on_userManualButton3_clicked()
+{
+    UserManual userManual;
+    userManual.exec();
+}

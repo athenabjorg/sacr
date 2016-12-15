@@ -93,6 +93,10 @@ private slots:
 
     void on_userManualButton_clicked();
 
+    void on_userManualButton2_clicked();
+
+    void on_userManualButton3_clicked();
+
 private:
     Ui::MainWindow *ui;
     service _service;
