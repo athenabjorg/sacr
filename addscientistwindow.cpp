@@ -47,6 +47,12 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     }
 
 
+
+
+
+
+
+
     // Check if fiels are left emty and if name is allready taken and if so print out a red error msg
     if(name.isEmpty())
     {
