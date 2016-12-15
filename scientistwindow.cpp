@@ -49,6 +49,13 @@ void ScientistWindow::passInfo(string name)
     ui->inputBorn->setText(QString::fromStdString(_born));
     ui->inputDied->setText(QString::fromStdString(_died));
     ui->inputAbout->setText(QString::fromStdString(_about));
+
+    string pixurl = "../sacr/PicSci/" + _id + ".jpg";
+    QString qpixurl = QString::fromStdString(pixurl);
+    QPixmap pix(qpixurl);
+
+    ui->inputPicture->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->inputPicture->setPixmap(qpixurl);
 }
 
 void ScientistWindow::printRelations()

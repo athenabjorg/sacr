@@ -2,6 +2,7 @@
 #define SCIENTISTWINDOW_H
 
 #include <QDialog>
+#include <QPixmap>
 #include <vector>
 #include "scientist.h"
 #include "service.h"
