@@ -247,10 +247,14 @@ void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
         ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
     {
+        ui->scientistSearchInput->setPlaceholderText("From");
+        ui->scientistSearchRange->setPlaceholderText("To");
         ui->scientistSearchRange->setEnabled(true);
     }
     else
     {
+        ui->scientistSearchInput->setPlaceholderText("Search");
+        ui->scientistSearchRange->setPlaceholderText("");
         ui->scientistSearchRange->setEnabled(false);
     }
 }
@@ -293,7 +297,7 @@ void MainWindow::on_scientistRemoveButton_clicked()
     else if(_currentRow >= 0)
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this scientist",
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this scientist?",
         QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
@@ -318,7 +322,7 @@ void MainWindow::on_scientistRemoveAllButton_clicked()
     ui -> scientistTable -> setSortingEnabled(0);
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all scientists",
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all scientists?",
     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
@@ -395,10 +399,14 @@ void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
 
     if( ui->computerSearchBy->currentText().toStdString() == "by Year Built Range")
     {
+        ui->computerSearchInput->setPlaceholderText("From");
+        ui->computerSearchRange->setPlaceholderText("To");
         ui->computerSearchRange->setEnabled(true);
     }
     else
     {
+        ui->computerSearchInput->setPlaceholderText("Search");
+        ui->computerSearchRange->setPlaceholderText("");
         ui->computerSearchRange->setEnabled(false);
     }
 
@@ -443,7 +451,7 @@ void MainWindow::on_computerRemoveButton_clicked()
     else if(_currentRow >= 0)
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this computer",
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this computer?",
         QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
@@ -468,7 +476,7 @@ void MainWindow::on_computerRemoveAllButton_clicked()
     ui -> computerTable -> setSortingEnabled(0);
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers",
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers?",
     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
@@ -535,10 +543,14 @@ void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 
     if( ui->relationSearchBy->currentText().toStdString() == "by Year Built Range")
     {
+        ui->relationSearchInput->setPlaceholderText("From");
+        ui->relationSearchRange->setPlaceholderText("To");
         ui->relationSearchRange->setEnabled(true);
     }
     else
     {
+        ui->relationSearchInput->setPlaceholderText("Search");
+        ui->relationSearchRange->setPlaceholderText("");
         ui->relationSearchRange->setEnabled(false);
     }
 
@@ -571,7 +583,7 @@ void MainWindow::on_relationRemoveButton_clicked()
     else if(_currentRow >= 0)
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this relation",
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this relation?",
         QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
@@ -597,7 +609,7 @@ void MainWindow::on_relationRemoveAllButton_clicked()
     ui -> relationTable -> setSortingEnabled(0);
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all relations",
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all relations?",
     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
