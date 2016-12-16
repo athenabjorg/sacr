@@ -19,6 +19,7 @@ public:
     service();
 
     string getFunFact();
+    int whatYearIsIt() const;
 
     // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
