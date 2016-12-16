@@ -32,12 +32,10 @@ void UpdateComputerWindow::passInfo(string name)
         _year = "";
     }
 
-
     ui -> nameInput -> setText(QString::fromStdString(_name));
     ui -> yearBuiltInput -> setText(QString::fromStdString(_year));
     ui -> ComputerAddInfo -> setText(QString::fromStdString(_about));
     ui -> inputInfoUrl -> setText(QString::fromStdString(_abouturl));
-
 }
 
 UpdateComputerWindow::~UpdateComputerWindow()
@@ -45,7 +43,7 @@ UpdateComputerWindow::~UpdateComputerWindow()
     delete ui;
 }
 
-void UpdateComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
+void UpdateComputerWindow::on_addButton_clicked()
 {
     QString name = ui -> nameInput -> text();
     QString year = ui -> yearBuiltInput -> text();
@@ -58,6 +56,10 @@ void UpdateComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     if(year.isEmpty())
     {
         built = "0";
+    }
+    else
+    {
+        built = "1";
     }
 
     QRegExp re("\\d*");
@@ -84,7 +86,7 @@ void UpdateComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
         Computer computer;
         string computerID, imageURL;
 
-        _service -> addComputer(" ", name.toStdString(), year.toStdString(), type.toStdString(), built.toStdString(), " ", about.toStdString(), abouturl.toStdString());
+        _service -> updateComputer(" ", name.toStdString(), year.toStdString(), type.toStdString(), built.toStdString(), " ", about.toStdString(), abouturl.toStdString());
 
         computer = _service->getComputer(name.toStdString());
         computerID = computer.getID();
