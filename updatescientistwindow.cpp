@@ -68,7 +68,7 @@ void UpdateScientistWindow::on_updateButton_clicked() // FIXME::BETTER_SOLUTION_
     QString deathYear = ui -> yearDiedInput -> text();
     char gender;
     ui -> errorLabelName -> setText(" ");
-    //ui -> nameInput -> setText(QString::fromStdString(_name));
+
 
     // Check for what buttom is selected
     if(ui -> genderMaleButton -> isChecked())
