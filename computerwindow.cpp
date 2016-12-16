@@ -5,23 +5,21 @@
 
 ComputerWindow::ComputerWindow(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ComputerWindow)
+    ui(new Ui::ComputerWindow)                          // Constructor
 {
     ui->setupUi(this);
     _service = nullptr;
 }
-
-ComputerWindow::~ComputerWindow()
+ComputerWindow::~ComputerWindow()                       // Deconstructor
 {
     delete ui;
 }
 
-void ComputerWindow::set_service(service *s)
+void ComputerWindow::set_service(service *s)            // Forwarded service
 {
     _service = s;
 }
-
-void ComputerWindow::passInfo(string name)
+void ComputerWindow::passInfo(string name)              // Forward infromation
 {
     _name = name;
 
@@ -52,8 +50,7 @@ void ComputerWindow::passInfo(string name)
     ui->relationTable->setSortingEnabled(1);
     ui->inputAbout->setStyleSheet("background-color: rgba( 255, 255, 255, 0% );");
 }
-
-void ComputerWindow::setImage()
+void ComputerWindow::setImage()                         // Set image in computer window
 {
     string pixurl = "../sacr/PicCom/" + _id + ".jpg";
     QString qpixurl = QString::fromStdString(pixurl);
@@ -62,8 +59,7 @@ void ComputerWindow::setImage()
     ui->inputPicture->setPixmap(qpixurl);
     ui->inputPicture->setPixmap(pix.scaled(350,400,Qt::KeepAspectRatio));
 }
-
-void ComputerWindow::printRelations()
+void ComputerWindow::printRelations()                   // Print list of relation
 {
     ui -> relationTable -> setSortingEnabled(1);
 
@@ -98,14 +94,12 @@ void ComputerWindow::printRelations()
         }
     }
 }
-
-void ComputerWindow::on_buttonInfo_clicked()
+void ComputerWindow::on_buttonInfo_clicked()            // Opens website for further info
 {
     QString url  = QString::fromStdString(_abouturl);
     QDesktopServices::openUrl(QUrl(url));
 }
-
-void ComputerWindow::on_buttonAddRelation_clicked()
+void ComputerWindow::on_buttonAddRelation_clicked()     // Opens a window to add relation
 {
     AddRelationWindow addRelationWindow;
     addRelationWindow.set_service(_service);
@@ -114,8 +108,7 @@ void ComputerWindow::on_buttonAddRelation_clicked()
 
     printRelations();
 }
-
-void ComputerWindow::on_buttonUpdate_2_clicked()
+void ComputerWindow::on_buttonUpdate_2_clicked()        // Opens a window to update
 {
     UpdateComputerWindow updateComputerWindow;
     updateComputerWindow.set_service(_service);
