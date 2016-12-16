@@ -26,9 +26,12 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     QString birthYear = ui -> yearBornInput -> text();
     QString deathYear = ui -> yearDiedInput -> text();
     char gender;
+    bool valid = true;
     ui -> errorLabelName -> setText(" ");
 
     // Check for what buttom is selected
+    ui -> errorLabelGender -> setText("<span style='color: #ED1C58'> ");
+
     if(ui -> genderMaleButton -> isChecked())
     {
         gender = 'm';
@@ -43,23 +46,20 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     }
     else
     {
-        gender = 'e';
+        valid = false;
+        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'>Gender is empty");
     }
-
-
-
-
-
-
 
 
     // Check if fiels are left emty and if name is allready taken and if so print out a red error msg
     if(name.isEmpty())
     {
+        valid = false;
         ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is empty");
     }
     else if(_service->findScientist(1, name.toStdString()).size() > 0)
     {
+        valid = false;
         ui -> errorLabelName -> setText("<span style='color: #ED1C58'>Name is taken");
     }
     else
@@ -67,34 +67,23 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
         ui -> errorLabelName -> setText("<span style='color: #ED1C58'> ");
     }
 
-    if(gender == 'e')
-    {
-        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'>Gender is empty");
-    }
-    else
-    {
-        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'> ");
-    }
-
-    char yearWrong = 'F';
-
     QRegExp re("\\d*");
 
     //Error check birthYearInput
     if(birthYear.isEmpty())
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is empty");
-        yearWrong = 'T';
+        valid = false;
     }
     else if(!re.exactMatch(birthYear))
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is invalid");
-        yearWrong = 'T';
+        valid = false;
     }
     else if(birthYear.toInt() > _service-> whatYearIsIt())
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is invalid");
-        yearWrong = 'T';
+        valid = false;
     }
     else
     {
@@ -104,18 +93,20 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     if(deathYear.toInt() < birthYear.toInt() && deathYear.toInt() != 0)
     {
         ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is invalid");
-        yearWrong = 'T';    }
+        valid = false;
+    }
     else if(deathYear.toInt() > _service->whatYearIsIt())
     {
-        ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is invalid");
-        yearWrong = 'T';    }
+        ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is in the future");
+        valid = false;
+    }
     else
     {
         ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'> ");
     }
 
     // If everything chekcs out, add the new scientist and close the addscientistwindow
-    if(!name.isEmpty() && gender != 'e' && !birthYear.isEmpty() && !(_service->findScientist(0, name.toStdString()).size() > 0) && (re.exactMatch(birthYear)) && yearWrong == 'F')
+    if(valid)
     {
         Scientist scientist;
         string scientistID, imageURL;
@@ -133,10 +124,7 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 
         close();
     }
-    else
-    {
-        //Do Nothing
-    }
+
 }
 
 void AddScientistWindow::on_ScientistAddPic_clicked()
