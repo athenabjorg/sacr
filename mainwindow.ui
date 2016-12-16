@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>772</width>
-    <height>607</height>
+    <width>1000</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -45,7 +45,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -193,6 +193,14 @@
              <layout class="QHBoxLayout" name="addRemoveLayout">
               <item>
                <widget class="QPushButton" name="scientistAddButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(167, 255, 157);</string>
+                </property>
                 <property name="text">
                  <string>Add</string>
                 </property>
@@ -200,6 +208,14 @@
               </item>
               <item>
                <widget class="QPushButton" name="scientistRemoveButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 138, 138);</string>
+                </property>
                 <property name="text">
                  <string>Remove</string>
                 </property>
@@ -233,6 +249,14 @@
               </item>
               <item>
                <widget class="QPushButton" name="scientistRemoveAllButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color:darkgray</string>
+                </property>
                 <property name="text">
                  <string>Remove All</string>
                 </property>
@@ -464,6 +488,14 @@
              <layout class="QHBoxLayout" name="addRemoveLayout_11">
               <item alignment="Qt::AlignRight">
                <widget class="QPushButton" name="computerAddButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(167, 255, 157);</string>
+                </property>
                 <property name="text">
                  <string>Add</string>
                 </property>
@@ -471,6 +503,14 @@
               </item>
               <item alignment="Qt::AlignRight">
                <widget class="QPushButton" name="computerRemoveButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 138, 138);</string>
+                </property>
                 <property name="text">
                  <string>Remove</string>
                 </property>
@@ -504,6 +544,14 @@
               </item>
               <item>
                <widget class="QPushButton" name="computerRemoveAllButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color:darkgray</string>
+                </property>
                 <property name="text">
                  <string>Remove All</string>
                 </property>
@@ -728,6 +776,14 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(167, 255, 157);</string>
+                </property>
                 <property name="text">
                  <string>Add</string>
                 </property>
@@ -735,6 +791,14 @@
               </item>
               <item>
                <widget class="QPushButton" name="relationRemoveButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 138, 138);</string>
+                </property>
                 <property name="text">
                  <string>Remove</string>
                 </property>
@@ -768,6 +832,14 @@
               </item>
               <item>
                <widget class="QPushButton" name="relationRemoveAllButton">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color:darkgray</string>
+                </property>
                 <property name="text">
                  <string>Remove All</string>
                 </property>
@@ -850,8 +922,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>772</width>
-     <height>26</height>
+     <width>1000</width>
+     <height>17</height>
     </rect>
    </property>
   </widget>
