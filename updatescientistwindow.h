@@ -1,5 +1,5 @@
-#ifndef UpdateScientistWindow_H
-#define UpdateScientistWindow_H
+#ifndef UPDATESCIENTISTWINDOW_H
+#define UPDATESCIENTISTWINDOW_H
 #include "service.h"
 #include <QDialog>
 
@@ -24,4 +24,4 @@ private:
     service *_service;
 };
 
-#endif // UpdateScientistWindow_H
+#endif // UPDATESCIENTISTWINDOW_H

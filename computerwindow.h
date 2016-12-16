@@ -1,5 +1,5 @@
-#ifndef ComputerWindow_H
-#define ComputerWindow_H
+#ifndef COMPUTERWINDOW_H
+#define COMPUTERWINDOW_H
 
 #include <QDialog>
 #include <QPixmap>
@@ -48,4 +48,4 @@ private:
     string _abouturl;
 };
 
-#endif // ComputerWindow_H
+#endif // COMPUTERWINDOW_H
