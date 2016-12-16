@@ -30,7 +30,7 @@ void UpdateScientistWindow::passInfo(string name)
 
     if(_died == "0")
     {
-        _died = "-";
+        _died = "";
     }
 
     if(_gender == "f")

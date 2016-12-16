@@ -32,7 +32,7 @@ int service::whatYearIsIt() const
 vector<Scientist> service::getScientists()
 {   // Returns the list of scientists from a database.
 
-    return _scientists;
+    return _data.loadScientists();
 }
 
 bool service::addScientist(string id, string name, string gender, string born, string died, string picurl, string about, string abouturl)
