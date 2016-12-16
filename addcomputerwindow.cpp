@@ -38,6 +38,10 @@ void AddComputerWindow::on_addButton_clicked()      // To add a new computer
     {
         built = "0";
     }
+    else
+    {
+        built = "1";
+    }
 
     // Check if fiels are left empty and if name is allready taken and if so print out a red error msg
     if(name.isEmpty())
@@ -68,6 +72,11 @@ void AddComputerWindow::on_addButton_clicked()      // To add a new computer
         ui -> errorLabelYear -> setText("<span style='color: #ED1C58'>Year is invalid");
         valid = false;
     }
+    else if(year.isEmpty())
+    {
+         year = "0";
+    }
+
     else
     {
         ui -> errorLabelYear -> setText("<span style='color: #ED1C58'> ");
