@@ -31,6 +31,8 @@ void DataAccess::saveScientist(Scientist newScientist)
 
     QString input = QString::fromStdString(line);
 
+    qDebug() << input;
+
     db.open();
     QSqlQuery query;
     query.exec(input);
