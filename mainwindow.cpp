@@ -255,10 +255,12 @@ void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 }
 void MainWindow::on_scientistAddButton_clicked()
 {
+    ui -> scientistTable -> setSortingEnabled(0);
     AddScientistWindow addScientistWindow;
-    addScientistWindow.set_service(&_service);//---
+    addScientistWindow.set_service(&_service);
     addScientistWindow.exec();
     printList(printSelect::scientist);
+    ui -> scientistTable -> setSortingEnabled(1);
 
 }
 void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
