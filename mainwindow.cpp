@@ -402,7 +402,7 @@ void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
     on_computerSearchInput_textEdited(searchBy);
 }
 //TODO::currentIndexChanged
-void MainWindow::on_computerAddButton_clicked   ()
+void MainWindow::on_computerAddButton_clicked       ()
 {
     ui -> computerTable -> setSortingEnabled(0);
     AddComputerWindow addComputerWindow;

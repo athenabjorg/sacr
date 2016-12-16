@@ -4,22 +4,26 @@
 
 AddComputerWindow::AddComputerWindow(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AddComputerWindow)
+    ui(new Ui::AddComputerWindow)                   // Constructor
 {
     ui->setupUi(this);
     _service = nullptr;
 }
-void AddComputerWindow::set_service(service *s)
-{
-    _service = s;
-}
-
-AddComputerWindow::~AddComputerWindow()
+AddComputerWindow::~AddComputerWindow()             // Deconstructor
 {
     delete ui;
 }
 
-void AddComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
+
+// ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
+void AddComputerWindow::set_service(service *s)     // Forwarded service
+{
+    _service = s;
+}
+
+
+// ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
+void AddComputerWindow::on_addButton_clicked()      // To add a new computer
 {
     QString name = ui -> nameInput -> text();
     QString year = ui -> yearBuiltInput -> text();
@@ -88,9 +92,7 @@ void AddComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
         close();
     }
 }
-
-
-void AddComputerWindow::on_ComputerAddPic_clicked()
+void AddComputerWindow::on_ComputerAddPic_clicked() // Opens a window to select a picture
 {
     _fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "/home", tr("Image Files (*.png *.jpg *.bmp)"));
 }

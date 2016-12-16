@@ -4,7 +4,7 @@
 
 AddRelationWindow::AddRelationWindow(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AddRelationWindow)
+    ui(new Ui::AddRelationWindow)                                           // Constructor
 {
     ui->setupUi(this);
     _service = nullptr;
@@ -21,8 +21,14 @@ AddRelationWindow::AddRelationWindow(QWidget *parent) :
     _computerRow = -1;
 
 }
+AddRelationWindow::~AddRelationWindow()                                     // Deconstructor
+{
+    delete ui;
+}
 
-void AddRelationWindow::set_service(service *s)
+
+// ---------------------------------- OTHER     FUNCTIONS ---------------------------------- //
+void AddRelationWindow::set_service(service *s)                             // Forwarded service
 {
     _service = s;
 
@@ -30,7 +36,9 @@ void AddRelationWindow::set_service(service *s)
     printComputer(_computers);
 }
 
-void AddRelationWindow::setScientist(QString scientist)
+
+// ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
+void AddRelationWindow::setScientist(QString scientist)                     // Only prints selected scientist
 {
     _scientist = scientist;
 
@@ -45,34 +53,12 @@ void AddRelationWindow::setScientist(QString scientist)
 
     _scientistSet = true;
 }
-
-void AddRelationWindow::setComputer(QString computer)
-{
-    _computer = computer;
-
-    ui -> computerTable -> horizontalHeader() -> hide();
-    ui -> computerTable -> clearContents();
-    ui -> computerTable -> setRowCount(1);
-    ui -> computerTable -> setColumnCount(1);
-    ui -> computerTable -> setItem(0, 0, new QTableWidgetItem(_computer));
-    ui -> computerTable -> selectRow(0);
-
-    printScientist(_scientists);
-
-    _computerSet = true;
-}
-
-AddRelationWindow::~AddRelationWindow()
-{
-    delete ui;
-}
-
-void AddRelationWindow::printScientist(vector<Scientist> &scientists)
+void AddRelationWindow::printScientist(vector<Scientist> &scientists)       // Prints a list of scientists
 {
 
     ui -> scientistTable -> setSortingEnabled(1);
 
-    ui -> scientistTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui -> scientistTable -> horizontalHeader() -> setSectionResizeMode(QHeaderView::Stretch);
 
 
     _scientists = _service->getScientists();
@@ -103,8 +89,29 @@ void AddRelationWindow::printScientist(vector<Scientist> &scientists)
         }
     }
 }
+void AddRelationWindow::on_scientistTable_cellPressed(int row, int column)  // Stores currently selected row
+{
+    _scientistRow = row;
+}
 
-void AddRelationWindow::printComputer(vector<Computer> &computers)
+
+// ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
+void AddRelationWindow::setComputer(QString computer)                       // Only prints selected computer
+{
+    _computer = computer;
+
+    ui -> computerTable -> horizontalHeader() -> hide();
+    ui -> computerTable -> clearContents();
+    ui -> computerTable -> setRowCount(1);
+    ui -> computerTable -> setColumnCount(1);
+    ui -> computerTable -> setItem(0, 0, new QTableWidgetItem(_computer));
+    ui -> computerTable -> selectRow(0);
+
+    printScientist(_scientists);
+
+    _computerSet = true;
+}
+void AddRelationWindow::printComputer(vector<Computer> &computers)          // Prints a list of computers
 {
     ui -> computerTable -> setSortingEnabled(1);
 
@@ -139,8 +146,14 @@ void AddRelationWindow::printComputer(vector<Computer> &computers)
         }
     }
 }
+void AddRelationWindow::on_computerTable_cellPressed(int row, int column)   // Stores currently selected row
+{
+    _computerRow = row;
+}
 
-void AddRelationWindow::on_addButton_clicked()
+
+// ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
+void AddRelationWindow::on_addButton_clicked()                              // To add a new relation
 {
     if((_scientistRow >= 0 || _scientistSet) && (_computerRow >= 0 || _computerSet))
     {
@@ -186,14 +199,4 @@ void AddRelationWindow::on_addButton_clicked()
         ui -> errorLabel -> setText("<span style='color: #ED1C58'>Please choose a scientist and a computer");
     }
 
-}
-
-void AddRelationWindow::on_scientistTable_cellPressed(int row, int column)
-{
-    _scientistRow = row;
-}
-
-void AddRelationWindow::on_computerTable_cellPressed(int row, int column)
-{
-    _computerRow = row;
 }
