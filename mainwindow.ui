@@ -45,7 +45,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -390,12 +390,12 @@
                   </item>
                   <item>
                    <property name="text">
-                    <string>by Year Made</string>
+                    <string>by Year Built</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>by Year Made Range</string>
+                    <string>by Year Built Range</string>
                    </property>
                   </item>
                   <item>
