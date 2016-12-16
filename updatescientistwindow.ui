@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>252</width>
-    <height>445</height>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -131,7 +131,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLabel" name="yearDiedInput">
+      <widget class="QLabel" name="yearDiedLabel">
        <property name="text">
         <string>Year Died:</string>
        </property>
@@ -147,7 +147,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QLineEdit" name="yearDiedInput_2">
+    <widget class="QLineEdit" name="yearDiedInput">
      <property name="text">
       <string/>
      </property>

@@ -3,14 +3,14 @@
 Scientist::Scientist()
 {   // Adds in the scientist parameters as empty
 
-    _id = "";
-    _name = "";
-    _gender = "";
-    _born = "";
-    _died = "";
-    _picurl = "";
-    _about = "";
-    _abouturl = "";
+    _id = "0";
+    _name = "0";
+    _gender = "0";
+    _born = "0";
+    _died = "0";
+    _picurl = "0";
+    _about = "0";
+    _abouturl = "0";
 }
 Scientist::Scientist(string id, string name, string gender, string born, string died, string picurl, string about, string abouturl)
 {   // Adds in the scientist parameters

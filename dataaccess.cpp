@@ -54,10 +54,12 @@ void DataAccess::updateScientist(Scientist scientist)
 
 
     line = "UPDATE Scientists"
-           "SET Gender = \"" + gender + "\", born = \"" + born + "\", died = \"" + died + "\", picurl = \"" + picurl + "\", about = \"" + about + "\", abouturl = \"" + abouturl +
-           "WHERE Name LIKE \"" + name + "\"";
+           " SET Gender = \"" + gender + "\", born = \"" + born + "\", died = \"" + died + "\", picurl = \"" + picurl + "\", about = \"" + about + "\", abouturl = \"" + abouturl +
+           "\" WHERE Name LIKE \"" + name + "\"";
 
     QString input = QString::fromStdString(line);
+
+    qDebug() << input;
 
     db.open();
     QSqlQuery query;

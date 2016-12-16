@@ -50,7 +50,7 @@ void UpdateScientistWindow::passInfo(string name)
 
     ui -> nameInput -> setText(QString::fromStdString(_name));
     ui -> yearBornInput -> setText(QString::fromStdString(_born));
-    ui -> yearDiedInput_2 -> setText(QString::fromStdString(_died));
+    ui -> yearDiedInput -> setText(QString::fromStdString(_died));
     ui -> ScientistsAddInfo -> setText(QString::fromStdString(_about));
     ui -> inputInfoUrl -> setText(QString::fromStdString(_abouturl));
 
@@ -66,32 +66,32 @@ void UpdateScientistWindow::on_updateButton_clicked() // FIXME::BETTER_SOLUTION_
     QString name = ui -> nameInput -> text();
     QString born = ui -> yearBornInput -> text();
     QString died = ui -> yearDiedInput -> text();
-    QString picurl;
-    QString about;
-    QString abouturl;
+    QString picurl = " ";
+    QString about = ui -> ScientistsAddInfo -> toPlainText();
+    QString abouturl = ui -> inputInfoUrl -> text();
     QString gender;
     bool valid = true;
     ui -> errorLabelName -> setText(" ");
 
-
-    // Check for what buttom is selected
+    // Check for what button is selected
     ui -> errorLabelGender -> setText("<span style='color: #ED1C58'> ");
+
     if(ui -> genderMaleButton -> isChecked())
     {
-        gender = 'm';
+        gender = "m";
     }
     else if(ui -> genderFemaleButton -> isChecked())
     {
-        gender = 'f';
+        gender = "f";
     }
     else if(ui -> genderOtherButton -> isChecked())
     {
-        gender = 'o';
+        gender = "o";
     }
     else
     {
-        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'>Gender is empty");
         valid = false;
+        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'>Gender is empty");
     }
 
     QRegExp re("\\d*");
@@ -107,16 +107,42 @@ void UpdateScientistWindow::on_updateButton_clicked() // FIXME::BETTER_SOLUTION_
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is invalid");
         valid = false;
     }
+    else if(born.toInt() > _service-> whatYearIsIt())
+    {
+        ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is in the future");
+        valid = false;
+    }
     else
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'> ");
     }
 
-    // If everything checks out, add the new scientist and close the UpdateScientistWindow
+    if(died.toInt() < born.toInt() && died.toInt() != 0)
+    {
+        ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is invalid");
+        valid = false;
+    }
+    else if(died.toInt() > _service->whatYearIsIt())
+    {
+        ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is in the future");
+        valid = false;
+    }
+    else if(died.isEmpty())
+    {
+        died = "0";
+    }
+    else
+    {
+        ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'> ");
+    }
+
+    // If everything chekcs out, add the new scientist and close the addscientistwindow
     if(valid)
     {
-        _service->addScientist(" ", name.toStdString(), gender.toStdString(), born.toStdString(), died.toStdString(), picurl.toStdString(), about.toStdString(), abouturl.toStdString());
+
+        _service->updateScientist(" ", name.toStdString(), gender.toStdString(), born.toStdString(), died.toStdString(), picurl.toStdString(), about.toStdString(), abouturl.toStdString());
+
+
         close();
-        //printList(printSelect::scientist);
     }
 }
