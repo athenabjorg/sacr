@@ -1,7 +1,7 @@
 #include <ctime>
 #include "computer.h"
 
-Computer::Computer()
+Computer::Computer()                    // Constructor
 {
     _id = "0";
     _name = "0";
@@ -12,7 +12,7 @@ Computer::Computer()
     _about = "0";
     _abouturl = "0";
 }
-
+                                        // Constuctor with parameters
 Computer::Computer(string id, string name, string year, string type, string built, string picurl, string about, string abouturl)
 {
     _id = id;
@@ -25,35 +25,35 @@ Computer::Computer(string id, string name, string year, string type, string buil
     _abouturl = abouturl;
 }
 
-string Computer::getID() const
+string Computer::getID() const          // Returns ID from Computer Class
 {
     return _id;
 }
-string Computer::getName() const
+string Computer::getName() const        // Returns Name from Computer Class
 {
     return _name;
 }
-string Computer::getYear() const
+string Computer::getYear() const        // Returns Year built from Computer Class
 {
     return _year;
 }
-string Computer::getType() const
+string Computer::getType() const        // Returns Type of computer from Computer Class
 {
     return _type;
 }
-string Computer::getBuilt() const
+string Computer::getBuilt() const       // Returns if built or not from Computer Class
 {
     return _built;
 }
-string Computer::getPicurl() const
+string Computer::getPicurl() const      // Returns picture URL from Computer Class
 {
     return _picurl;
 }
-string Computer::getAbout() const
+string Computer::getAbout() const       // Returns about infromation from Computer Class
 {
     return _about;
 }
-string Computer::getAbouturl() const
+string Computer::getAbouturl() const    // Returns about URL from Computer Class
 {
     return _abouturl;
 }
