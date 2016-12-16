@@ -296,6 +296,15 @@ void MainWindow::on_scientistRemoveButton_clicked()
 
     _currentRow = -1;
 }
+void MainWindow::on_scientistRemoveAllButton_clicked()
+{
+    ui -> scientistTable -> setSortingEnabled(0);
+
+    _service.removeAllScientists();
+    printList(printSelect::scientist);
+
+    ui -> scientistTable -> setSortingEnabled(1);
+}
 
 
 // ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
@@ -410,7 +419,15 @@ void MainWindow::on_computerRemoveButton_clicked()
 
     _currentRow = -1;
 }
+void MainWindow::on_computerRemoveAllButton_clicked()
+{
+    ui -> computerTable -> setSortingEnabled(0);
 
+    _service.removeAllComputers();
+    printList(printSelect::computer);
+
+    ui -> computerTable -> setSortingEnabled(1);
+}
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
 
@@ -508,7 +525,15 @@ void MainWindow::on_relationRemoveButton_clicked()
 
     _currentRow = -1;
 }
+void MainWindow::on_relationRemoveAllButton_clicked()
+{
+    ui -> relationTable -> setSortingEnabled(0);
 
+    _service.removeAllRelations();
+    printList(printSelect::relation);
+
+    ui -> relationTable -> setSortingEnabled(1);
+}
 
 void MainWindow::on_userManualButton_clicked()
 {
@@ -527,6 +552,11 @@ void MainWindow::on_userManualButton3_clicked()
     UserManual userManual;
     userManual.exec();
 }
+
+
+
+
+
 
 
 

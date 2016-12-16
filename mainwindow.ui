@@ -231,6 +231,13 @@
                 </property>
                </spacer>
               </item>
+              <item>
+               <widget class="QPushButton" name="scientistRemoveAllButton">
+                <property name="text">
+                 <string>Remove All</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -495,6 +502,13 @@
                 </property>
                </spacer>
               </item>
+              <item>
+               <widget class="QPushButton" name="computerRemoveAllButton">
+                <property name="text">
+                 <string>Remove All</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -752,6 +766,13 @@
                 </property>
                </spacer>
               </item>
+              <item>
+               <widget class="QPushButton" name="relationRemoveAllButton">
+                <property name="text">
+                 <string>Remove All</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -830,7 +851,7 @@
      <x>0</x>
      <y>0</y>
      <width>772</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
