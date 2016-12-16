@@ -7,6 +7,7 @@
 #include "computer.h"
 #include "service.h"
 #include "relation.h"
+#include "addrelationwindow.h"
 #include <QDesktopServices>
 
 namespace Ui {
@@ -27,6 +28,8 @@ public:
 
 private slots:
     void on_buttonInfo_clicked();
+
+    void on_buttonAddRelation_clicked();
 
 private:
 

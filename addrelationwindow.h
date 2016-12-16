@@ -42,6 +42,9 @@ private:
     QString _scientist;
     QString _computer;
 
+    bool _scientistSet;
+    bool _computerSet;
+
     int _scientistRow;
     int _computerRow;
 

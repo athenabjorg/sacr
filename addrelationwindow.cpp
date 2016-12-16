@@ -14,6 +14,9 @@ AddRelationWindow::AddRelationWindow(QWidget *parent) :
     _scientist = "";
     _computer = "";
 
+    _scientistSet = false;
+    _computerSet = false;
+
     _scientistRow = -1;
     _computerRow = -1;
 
@@ -39,6 +42,8 @@ void AddRelationWindow::setScientist(QString scientist)
     ui -> scientistTable -> selectRow(0);
 
     printComputer(_computers);
+
+    _scientistSet = true;
 }
 
 void AddRelationWindow::setComputer(QString computer)
@@ -53,6 +58,8 @@ void AddRelationWindow::setComputer(QString computer)
     ui -> computerTable -> selectRow(0);
 
     printScientist(_scientists);
+
+    _computerSet = true;
 }
 
 AddRelationWindow::~AddRelationWindow()
@@ -135,10 +142,26 @@ void AddRelationWindow::printComputer(vector<Computer> &computers)
 
 void AddRelationWindow::on_addButton_clicked()
 {
-    if(_scientistRow >= 0 && _computerRow >= 0)
+    if((_scientistRow >= 0 || _scientistSet) && (_computerRow >= 0 || _computerSet))
     {
-        QString scientist = ui->scientistTable->item(_scientistRow, 0)->text();
-        QString computer = ui->computerTable->item(_computerRow, 0)->text();
+        QString scientist;
+        QString computer;
+
+        if(_scientistSet)
+        {
+            scientist = _scientist;
+            computer = ui->computerTable->item(_computerRow, 0)->text();
+        }
+        else if (_computerSet)
+        {
+            computer = _computer;
+            scientist = ui->scientistTable->item(_scientistRow, 0)->text();
+        }
+        else
+        {
+            scientist = ui->scientistTable->item(_scientistRow, 0)->text();
+            computer = ui->computerTable->item(_computerRow, 0)->text();
+        }
 
         if(_service->addRelation(scientist.toStdString(), computer.toStdString()))
         {
@@ -150,11 +173,11 @@ void AddRelationWindow::on_addButton_clicked()
         }
 
     }
-    else if(_scientistRow < 0 && _computerRow >= 0)
+    else if(_scientistRow < 0 && (_computerRow >= 0 || _computerSet))
     {
         ui -> errorLabel -> setText("<span style='color: #ED1C58'>Please choose a scientist");
     }
-    else if(_scientistRow >= 0 && _computerRow < 0)
+    else if((_scientistRow >= 0 || _scientistSet) && _computerRow < 0)
     {
         ui -> errorLabel -> setText("<span style='color: #ED1C58'>Please choose a computer");
     }
