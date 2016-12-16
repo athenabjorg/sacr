@@ -313,7 +313,7 @@ void MainWindow::on_scientistRemoveAllButton_clicked()
     ui -> scientistTable -> setSortingEnabled(0);
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers",
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all scientists",
     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
