@@ -117,11 +117,29 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     // If everything chekcs out, add the new scientist and close the addscientistwindow
     if(!name.isEmpty() && gender != 'e' && !birthYear.isEmpty() && !(_service->findScientist(1, name.toStdString()).size() > 0) && (re.exactMatch(birthYear)) && yearWrong == 'F')
     {
+        Scientist scientist;
+        string scientistID, imageURL;
+
         _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());
+
+        scientist = _service->getScientistInfo(name.toStdString());
+        scientistID = scientist.getInfoID();
+        imageURL = "../sacr/PicSci/" + scientistID + ".jpg";
+        QString qImageURL = QString::fromStdString(imageURL);
+
+        QImage image = QImage(_fileName);
+
+        image.save(qImageURL);
+
         close();
     }
     else
     {
         //Do Nothing
     }
+}
+
+void AddScientistWindow::on_ScientistAddPic_clicked()
+{
+    _fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "/home", tr("Image Files (*.png *.jpg *.bmp)"));
 }
