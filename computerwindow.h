@@ -1,5 +1,5 @@
-#ifndef ComputerWindow_H
-#define ComputerWindow_H
+#ifndef COMPUTERWINDOW_H
+#define COMPUTERWINDOW_H
 
 #include <QDialog>
 #include <QPixmap>
@@ -7,6 +7,7 @@
 #include "computer.h"
 #include "service.h"
 #include "relation.h"
+#include "addrelationwindow.h"
 #include <QDesktopServices>
 
 namespace Ui {
@@ -28,6 +29,8 @@ public:
 private slots:
     void on_buttonInfo_clicked();
 
+    void on_buttonAddRelation_clicked();
+
 private:
 
     void printRelations();
@@ -48,4 +51,4 @@ private:
     string _abouturl;
 };
 
-#endif // ComputerWindow_H
+#endif // COMPUTERWINDOW_H

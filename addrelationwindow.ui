@@ -49,6 +49,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QTableWidget" name="scientistTable">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
        <property name="sortingEnabled">
         <bool>true</bool>
        </property>
@@ -67,6 +70,9 @@
      </item>
      <item>
       <widget class="QTableWidget" name="computerTable">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
        <property name="sortingEnabled">
         <bool>true</bool>
        </property>

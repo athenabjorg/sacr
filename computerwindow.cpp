@@ -1,5 +1,5 @@
-#include "ComputerWindow.h"
-#include "ui_ComputerWindow.h"
+#include "computerwindow.h"
+#include "ui_computerwindow.h"
 
 
 
@@ -103,4 +103,14 @@ void ComputerWindow::on_buttonInfo_clicked()
 {
     QString url  = QString::fromStdString(_abouturl);
     QDesktopServices::openUrl(QUrl(url));
+}
+
+void ComputerWindow::on_buttonAddRelation_clicked()
+{
+    AddRelationWindow addRelationWindow;
+    addRelationWindow.set_service(_service);
+    addRelationWindow.setComputer(QString::fromStdString(_name));
+    addRelationWindow.exec();
+
+    printRelations();
 }

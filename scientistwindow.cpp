@@ -121,3 +121,13 @@ void ScientistWindow::on_buttonUpdate_2_clicked()
     updateScientistWindow.exec();
 
 }
+
+void ScientistWindow::on_buttonAddRelation_clicked()
+{
+    AddRelationWindow addRelationWindow;
+    addRelationWindow.set_service(_service);
+    addRelationWindow.setScientist(QString::fromStdString(_name));
+    addRelationWindow.exec();
+
+    printRelations();
+}

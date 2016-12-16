@@ -1,5 +1,5 @@
-#ifndef UpdateScientistWindow_H
-#define UpdateScientistWindow_H
+#ifndef UPDATESCIENTISTWINDOW_H
+#define UPDATESCIENTISTWINDOW_H
 #include "service.h"
 #include <QDialog>
 
@@ -35,4 +35,4 @@ private:
     string _gender;
 };
 
-#endif // UpdateScientistWindow_H
+#endif // UPDATESCIENTISTWINDOW_H

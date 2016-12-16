@@ -21,6 +21,9 @@ public:
     void set_service(service *s);
     ~AddRelationWindow();
 
+    void setScientist(QString scientist);
+    void setComputer(QString copmuter);
+
 private slots:
 
     void on_addButton_clicked();
@@ -36,11 +39,17 @@ private:
     vector<Scientist> _scientists;
     vector<Computer> _computers;
 
+    QString _scientist;
+    QString _computer;
+
+    bool _scientistSet;
+    bool _computerSet;
+
     int _scientistRow;
     int _computerRow;
 
-    void printScientist();
-    void printComputer();
+    void printScientist(vector<Scientist> &scientists);
+    void printComputer(vector<Computer> &computers);
 };
 
 #endif // ADDRELATIONWINDOW_H

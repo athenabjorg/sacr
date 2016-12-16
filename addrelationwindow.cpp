@@ -11,6 +11,12 @@ AddRelationWindow::AddRelationWindow(QWidget *parent) :
 
     ui -> errorLabel -> setText("");
 
+    _scientist = "";
+    _computer = "";
+
+    _scientistSet = false;
+    _computerSet = false;
+
     _scientistRow = -1;
     _computerRow = -1;
 
@@ -20,8 +26,40 @@ void AddRelationWindow::set_service(service *s)
 {
     _service = s;
 
-    printScientist();
-    printComputer();
+    printScientist(_scientists);
+    printComputer(_computers);
+}
+
+void AddRelationWindow::setScientist(QString scientist)
+{
+    _scientist = scientist;
+
+    ui -> scientistTable -> horizontalHeader() -> hide();
+    ui -> scientistTable -> clearContents();
+    ui -> scientistTable -> setRowCount(1);
+    ui -> scientistTable -> setColumnCount(1);
+    ui -> scientistTable -> setItem(0, 0, new QTableWidgetItem(_scientist));
+    ui -> scientistTable -> selectRow(0);
+
+    printComputer(_computers);
+
+    _scientistSet = true;
+}
+
+void AddRelationWindow::setComputer(QString computer)
+{
+    _computer = computer;
+
+    ui -> computerTable -> horizontalHeader() -> hide();
+    ui -> computerTable -> clearContents();
+    ui -> computerTable -> setRowCount(1);
+    ui -> computerTable -> setColumnCount(1);
+    ui -> computerTable -> setItem(0, 0, new QTableWidgetItem(_computer));
+    ui -> computerTable -> selectRow(0);
+
+    printScientist(_scientists);
+
+    _computerSet = true;
 }
 
 AddRelationWindow::~AddRelationWindow()
@@ -29,7 +67,7 @@ AddRelationWindow::~AddRelationWindow()
     delete ui;
 }
 
-void AddRelationWindow::printScientist()
+void AddRelationWindow::printScientist(vector<Scientist> &scientists)
 {
 
     ui -> scientistTable -> setSortingEnabled(1);
@@ -50,7 +88,7 @@ void AddRelationWindow::printScientist()
     }
     else
     {
-        ui -> scientistTable -> horizontalHeader();
+        ui -> scientistTable -> horizontalHeader() -> show();
         ui -> scientistTable -> clearContents();
         ui -> scientistTable -> setRowCount(_scientists.size());
         ui -> scientistTable -> setColumnCount(1);
@@ -66,7 +104,7 @@ void AddRelationWindow::printScientist()
     }
 }
 
-void AddRelationWindow::printComputer()
+void AddRelationWindow::printComputer(vector<Computer> &computers)
 {
     ui -> computerTable -> setSortingEnabled(1);
 
@@ -86,7 +124,7 @@ void AddRelationWindow::printComputer()
     }
     else
     {
-        ui -> computerTable -> horizontalHeader();
+        ui -> computerTable -> horizontalHeader() -> show();
         ui -> computerTable -> clearContents();
         ui -> computerTable -> setRowCount(_computers.size());
         ui -> computerTable -> setColumnCount(1);
@@ -104,10 +142,26 @@ void AddRelationWindow::printComputer()
 
 void AddRelationWindow::on_addButton_clicked()
 {
-    if(_scientistRow >= 0 && _computerRow >= 0)
+    if((_scientistRow >= 0 || _scientistSet) && (_computerRow >= 0 || _computerSet))
     {
-        QString scientist = ui->scientistTable->item(_scientistRow, 0)->text();
-        QString computer = ui->computerTable->item(_computerRow, 0)->text();
+        QString scientist;
+        QString computer;
+
+        if(_scientistSet)
+        {
+            scientist = _scientist;
+            computer = ui->computerTable->item(_computerRow, 0)->text();
+        }
+        else if (_computerSet)
+        {
+            computer = _computer;
+            scientist = ui->scientistTable->item(_scientistRow, 0)->text();
+        }
+        else
+        {
+            scientist = ui->scientistTable->item(_scientistRow, 0)->text();
+            computer = ui->computerTable->item(_computerRow, 0)->text();
+        }
 
         if(_service->addRelation(scientist.toStdString(), computer.toStdString()))
         {
@@ -119,11 +173,11 @@ void AddRelationWindow::on_addButton_clicked()
         }
 
     }
-    else if(_scientistRow < 0 && _computerRow >= 0)
+    else if(_scientistRow < 0 && (_computerRow >= 0 || _computerSet))
     {
         ui -> errorLabel -> setText("<span style='color: #ED1C58'>Please choose a scientist");
     }
-    else if(_scientistRow >= 0 && _computerRow < 0)
+    else if((_scientistRow >= 0 || _scientistSet) && _computerRow < 0)
     {
         ui -> errorLabel -> setText("<span style='color: #ED1C58'>Please choose a computer");
     }
@@ -131,9 +185,6 @@ void AddRelationWindow::on_addButton_clicked()
     {
         ui -> errorLabel -> setText("<span style='color: #ED1C58'>Please choose a scientist and a computer");
     }
-
-
-
 
 }
 
