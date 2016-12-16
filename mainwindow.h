@@ -63,7 +63,6 @@ private slots:
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
     void on_scientistSearchInput_textEdited(const QString &arg1);
     void on_scientistSearchBy_currentIndexChanged(int index);
-    void on_scientistSearchBy_currentIndexChanged(const QString &arg1);
     void on_scientistAddButton_clicked();
     void on_scientistTable_cellDoubleClicked(int row, int column);
     void on_scientistTable_cellPressed(int row, int column);
