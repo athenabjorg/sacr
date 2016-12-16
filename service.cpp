@@ -129,14 +129,16 @@ vector<Scientist> service::findScientist(int findType, string parameter)
 
     if(findType == 7)
     {
+
         for(unsigned int i = 0; i < _scientists.size(); i++)
         {
 
-            if(_scientists[i].getAge() == stoi(parameter))
+            if(_scientists[i].getAge() == atoi(parameter.c_str()))
             {
-                scientists.push_back(_scientists[i]);
+             scientists.push_back(_scientists[i]);
             }
         }
+
     }
     else
     {
@@ -156,7 +158,7 @@ vector<Scientist> service::findScientist(int findType, string parameter1, string
 
     if(findType == 8)
     {
-        if(stoi(parameter1) > stoi(parameter2))
+        if(atoi(parameter1.c_str()) > atoi(parameter2.c_str()))
         {
             string temp = parameter1;
             parameter1 = parameter2;
@@ -165,7 +167,7 @@ vector<Scientist> service::findScientist(int findType, string parameter1, string
         for(unsigned int i = 0; i < _scientists.size(); i++)
         {
 
-            if((_scientists[i].getAge() >= stoi(parameter1)) && (_scientists[i].getAge() <= stoi(parameter2)))
+            if((_scientists[i].getAge() >= atoi(parameter1.c_str())) && (_scientists[i].getAge() <= atoi(parameter2.c_str())))
             {
                 scientists.push_back(_scientists[i]);
             }
