@@ -413,6 +413,44 @@ void MainWindow::on_computerRemoveButton_clicked()
 
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
+
+void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
+{
+    ui -> relationTable -> setSortingEnabled(0);
+
+
+    if(arg1.isEmpty())
+    {
+        printList(printSelect::relation);
+    }
+    else if ((_relationComboboxIndex + 1) == 4)
+    {
+        if(ui->relationSearchRange->text().isEmpty())
+        {
+            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 2, arg1.toStdString(), "2016");
+
+            printRelation(relations);
+        }
+        else
+        {
+            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 2, arg1.toStdString(), ui->relationSearchRange->text().toStdString());
+
+            printRelation(relations);
+        }
+    }
+    else
+    {
+        vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString());
+
+        printRelation(relations);
+    }
+
+    ui -> relationTable -> setSortingEnabled(1);
+}
+void MainWindow::on_relationSearchRange_textEdited(const QString &arg1)
+{
+    on_relationSearchInput_textEdited(ui->relationSearchInput->text());
+}
 void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 {
     ui->relationSearchInput->setText("");
@@ -434,47 +472,6 @@ void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
     }
 
     on_relationSearchInput_textEdited(searchBy);
-}
-
-void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
-{
-    ui -> relationTable -> setSortingEnabled(0);
-
-
-    if(arg1.isEmpty())
-    {
-        printList(printSelect::relation);
-    }
-    else if ((_relationComboboxIndex + 1) == 4)
-    {
-        if(arg1.isEmpty())
-        {
-            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, "0" , ui->relationSearchRange->text().toStdString());
-
-            printRelation(relations);
-        }
-
-        else if(ui->relationSearchRange->text().isEmpty())
-        {
-            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString(), "2016");
-
-            printRelation(relations);
-        }
-        else
-        {
-            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString(), ui->relationSearchRange->text().toStdString());
-
-            printRelation(relations);
-        }
-    }
-    else
-    {
-        vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString());
-
-        printRelation(relations);
-    }
-
-    ui -> relationTable -> setSortingEnabled(1);
 }
 //TODO::currentIndexChanged
 void MainWindow::on_relationAddButton_clicked()
@@ -531,9 +528,5 @@ void MainWindow::on_userManualButton3_clicked()
     userManual.exec();
 }
 
-void MainWindow::on_relationSearchRange_textEdited(const QString &arg1)
-{
-
-}
 
 
