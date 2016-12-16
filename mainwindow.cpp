@@ -189,6 +189,7 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 {
     ui -> scientistTable -> setSortingEnabled(0);
 
+    _scientistSearch = arg1;
 
     if(arg1.isEmpty())
     {
@@ -273,6 +274,7 @@ void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
     scientistWindow.set_service(&_service);
     scientistWindow.passInfo(name.toStdString());
     scientistWindow.exec();
+    on_scientistSearchInput_textEdited(_scientistSearch);
 }
 void MainWindow::on_scientistTable_cellPressed(int row, int column)
 {
@@ -337,7 +339,7 @@ void MainWindow::on_scientistRemoveAllButton_clicked()
 void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)
 {
     ui -> computerTable -> setSortingEnabled(0);
-
+    _computerSearch = arg1;
 
     if(arg1.isEmpty())
     {
@@ -423,6 +425,7 @@ void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
     computerWindow.set_service(&_service);
     computerWindow.passInfo(name.toStdString());
     computerWindow.exec();
+    on_computerSearchInput_textEdited(_computerSearch);
 }
 void MainWindow::on_computerTable_cellPressed(int row, int column)
 {

@@ -358,8 +358,6 @@ void DataAccess::updateComputer(Computer computer)
 
     QString input = QString::fromStdString(line);
 
-    qDebug() << input;
-
     db.open();
     QSqlQuery query;
     query.exec(input);
