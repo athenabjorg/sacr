@@ -314,22 +314,24 @@ bool DataAccess::doesScientistExist(string name)
 
 // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
-void DataAccess::saveComputer(Computer newComputer)
+void DataAccess::saveComputer(Computer computer)
 {   // Saves a computer to the database.
 
-    string line, name, type;
-    int year;
-    bool built;
+    string line, name, year, type, built, picurl, about, abouturl;
 
-    name = newComputer.getName();
-    type = newComputer.getType();
-    year = newComputer.getYear();
-    built = newComputer.getBuilt();
+    name = computer.getName();
+    type = computer.getType();
+    year = computer.getYear();
+    built = computer.getBuilt();
+    picurl = computer.getPicurl();
+    about = computer.getAbout();
+    abouturl = computer.getAbouturl();
 
-    line = "INSERT INTO Computers(name,type,year,built) "
-           "VALUES(\"" + name + "\",\"" + type + "\"," + to_string(year) + "," + to_string(built) + ")";
+    line = "INSERT INTO Computers(name,type,year,built,picurl,about,abouturl) "
+           "VALUES(\"" + name + "\",\"" + type + "\",\"" + year + "\",\"" + built + "\",\"" + picurl + "\",\"" + about + "\",\"" + abouturl + "\")";
 
     QString input = QString::fromStdString(line);
+
 
     db.open();
     QSqlQuery query;
@@ -339,20 +341,20 @@ void DataAccess::saveComputer(Computer newComputer)
 void DataAccess::updateComputer(Computer computer)
 {   // Updates the information for an existing computer.
 
-    string line, name, type;
-    int year;
-    bool built;
-
+    string line, name, year, type, built, picurl, about, abouturl;
 
     name = computer.getName();
     type = computer.getType();
     year = computer.getYear();
     built = computer.getBuilt();
+    picurl = computer.getPicurl();
+    about = computer.getAbout();
+    abouturl = computer.getAbouturl();
 
 
     line = "UPDATE Computers "
-           "SET Type = \"" + type + "\", year = " + to_string(year) + ", built = " + to_string(built) + ", Valid = 1 "
-                                                                                                        "WHERE Name LIKE \"" + name + "\"";
+           "SET name = \"" + name + "\", type = \"" + type + "\", year = \"" + year + "\", built = \"" + built + "\", picurl = \"" + picurl + "\", about = \"" + about + "\", abouturl = \"" + abouturl;
+           " WHERE Name LIKE \"" + name + "\"";
 
     QString input = QString::fromStdString(line);
 
@@ -364,13 +366,39 @@ void DataAccess::updateComputer(Computer computer)
 
 }
 
+Computer DataAccess::loadComputer(string inputName)
+{
+    string line, id, name, year, built, type, picurl, about, abouturl;
+
+    db.open();
+    QSqlQuery query;
+
+    line = "SELECT id, name, year, type, picurl, about, abouturl FROM computers WHERE name like \"" + inputName + "\" and valid = 1;";
+    QString qline = QString::fromStdString(line);
+    query.exec(qline);
+
+    query.next();
+
+    id = query.value(0).toString().toStdString();
+    name = query.value(1).toString().toStdString();
+    year = query.value(2).toString().toStdString();
+    type = query.value(3).toString().toStdString();
+    built = query.value(4).toString().toStdString();
+    picurl = query.value(6).toString().toStdString();
+    about = query.value(7).toString().toStdString();
+    abouturl = query.value(8).toString().toStdString();
+
+    Computer computer(id, name, year, type, built, picurl, about, abouturl);
+
+    db.close();
+
+    return computer;
+}
 vector<Computer> DataAccess::loadComputers()
 {   // Adds list of computers from a database into a vector.
 
     vector<Computer> computers;
-    string line, name, type;
-    int year;
-    bool built;
+    string line, id, name, year, type, built, picurl, about, abouturl;
 
     line = "SELECT * FROM computers WHERE valid = 1 ";
 
@@ -381,15 +409,17 @@ vector<Computer> DataAccess::loadComputers()
 
     while (query.next())
     {
+        id = query.value(0).toString().toStdString();
         name = query.value(1).toString().toStdString();
-        year = query.value(2).toInt();
+        year = query.value(2).toString().toStdString();
         type = query.value(3).toString().toStdString();
-        built = query.value(4).toBool();
+        built = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-
-        Computer computer(name, year, type, built);
+        Computer computer(id, name, year, type, built, picurl, about, abouturl);
         computers.push_back(computer);
-
     }
 
     db.close();
@@ -401,9 +431,7 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)
     // 3 is used in the loadScientist function with 3 parameters.
 
     vector<Computer> computers;
-    string line, name, type;
-    int year;
-    bool built;
+    string line, id, name, year, type, built, picurl, about, abouturl;
 
 
     switch(loadType)
@@ -427,15 +455,17 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter)
 
     while (query.next())
     {
+        id = query.value(0).toString().toStdString();
         name = query.value(1).toString().toStdString();
-        year = query.value(2).toInt();
+        year = query.value(2).toString().toStdString();
         type = query.value(3).toString().toStdString();
-        built = query.value(4).toBool();
+        built = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-
-        Computer computer(name, year, type, built);
+        Computer computer(id, name, year, type, built, picurl, about, abouturl);
         computers.push_back(computer);
-
     }
 
     db.close();
@@ -447,9 +477,7 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
     // 0, 1, 2 and 5 are used in the loadScientist function with 2 parameters.
 
     vector<Computer> computers;
-    string line, name, type;
-    int year;
-    bool built;
+    string line, id, name, year, type, built, picurl, about, abouturl;
 
 
     switch(loadType)
@@ -465,13 +493,16 @@ vector<Computer> DataAccess::loadComputers(int loadType, string parameter1, stri
 
     while (query.next())
     {
+        id = query.value(0).toString().toStdString();
         name = query.value(1).toString().toStdString();
-        year = query.value(2).toInt();
+        year = query.value(2).toString().toStdString();
         type = query.value(3).toString().toStdString();
-        built = query.value(4).toBool();
+        built = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-
-        Computer computer(name, year, type, built);
+        Computer computer(id, name, year, type, built, picurl, about, abouturl);
         computers.push_back(computer);
     }
 
@@ -518,9 +549,7 @@ vector<Computer> DataAccess::sortComputers(int sortType)
     // 9 and 10 (sort by years since built) are sorted in the service class.
 
     vector<Computer> computers;
-    string line, name, type;
-    int year;
-    bool built;
+    string line, id, name, year, type, built, picurl, about, abouturl;
 
     switch(sortType)
     {
@@ -549,12 +578,16 @@ vector<Computer> DataAccess::sortComputers(int sortType)
 
     while (query.next())
     {
-        string name = query.value(1).toString().toStdString();
-        string type = query.value(3).toString().toStdString();
-        year = query.value(2).toInt();
-        built = query.value(4).toBool();
+        id = query.value(0).toString().toStdString();
+        name = query.value(1).toString().toStdString();
+        year = query.value(2).toString().toStdString();
+        type = query.value(3).toString().toStdString();
+        built = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-        Computer computer(name, year, type, built);
+        Computer computer(id, name, year, type, built, picurl, about, abouturl);
         computers.push_back(computer);
     }
 
@@ -599,33 +632,6 @@ int DataAccess::yearComputerBuilt(string computer)
     return year;
 }
 
-Computer DataAccess::loadComputerInfo(string inputName)
-{
-    string line, id, name, year, type, picurl, about, abouturl;
-
-    db.open();
-    QSqlQuery query;
-
-    line = "SELECT id, name, year, type, picurl, about, abouturl FROM computers WHERE name like \"" + inputName + "\" and valid = 1;";
-    QString qline = QString::fromStdString(line);
-    query.exec(qline);
-
-    query.next();
-
-    id = query.value(0).toString().toStdString();
-    name = query.value(1).toString().toStdString();
-    year = query.value(2).toString().toStdString();
-    type = query.value(3).toString().toStdString();
-    picurl = query.value(4).toString().toStdString();
-    about = query.value(5).toString().toStdString();
-    abouturl = query.value(6).toString().toStdString();
-
-    Computer computer(id, name, year, type, picurl, about, abouturl);
-
-    db.close();
-
-    return computer;
-}
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 

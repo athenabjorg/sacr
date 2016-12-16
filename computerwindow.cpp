@@ -25,20 +25,20 @@ void ComputerWindow::passInfo(string name)
 {
     _name = name;
 
-    _computer = _service->getComputerInfo(_name);
+    _computer = _service->getComputer(_name);
 
-    _id = _computer.getInfoID();
-    _year = _computer.getInfoYear();
-    _type = _computer.getInfoType();
+    _id = _computer.getID();
+    _year = _computer.getYear();
+    _type = _computer.getType();
 
     if(_year == "0")
     {
         _year = "-";
     }
 
-    _picurl = _computer.getInfoPicurl();
-    _about = _computer.getInfoAbout();
-    _abouturl = _computer.getInfoAbouturl();
+    _picurl = _computer.getPicurl();
+    _about = _computer.getAbout();
+    _abouturl = _computer.getAbouturl();
 
     ui->inputName->setText(QString::fromStdString(_name));
     ui->inputYear->setText(QString::fromStdString(_year));

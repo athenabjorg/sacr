@@ -22,14 +22,16 @@ AddComputerWindow::~AddComputerWindow()
 void AddComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 {
     QString name = ui -> nameInput -> text();
-    QString yearBuilt = ui -> yearBuiltInput -> text();
+    QString year = ui -> yearBuiltInput -> text();
+    QString built;
     QString type = ui -> typeInput -> currentText();
-    bool built = true;
+    QString about = ui -> ComputerAddInfo -> toPlainText();
+    QString abouturl = ui -> inputInfoUrl -> text();
     bool valid = true;
 
-    if(yearBuilt.isEmpty())
+    if(year.isEmpty())
     {
-        built = false;
+        built = "0";
     }
 
     // Check if fiels are left empty and if name is allready taken and if so print out a red error msg
@@ -51,12 +53,12 @@ void AddComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     QRegExp re("\\d*");
 
     //Error check year built
-    if(yearBuilt.toInt() > _service->whatYearIsIt())
+    if(year.toInt() > _service->whatYearIsIt())
     {
         ui -> errorLabelYear -> setText("<span style='color: #ED1C58'>Year is in the future");
         valid = false;
     }
-    else if(!yearBuilt.isEmpty() && !re.exactMatch(yearBuilt))
+    else if(!year.isEmpty() && !re.exactMatch(year))
     {
         ui -> errorLabelYear -> setText("<span style='color: #ED1C58'>Year is invalid");
         valid = false;
@@ -72,10 +74,10 @@ void AddComputerWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
         Computer computer;
         string computerID, imageURL;
 
-        _service -> addComputer(name.toStdString(), yearBuilt.toInt(), type.toStdString(), built);
+        _service -> addComputer(" ", name.toStdString(), year.toStdString(), type.toStdString(), built.toStdString(), " ", about.toStdString(), abouturl.toStdString());
 
-        computer = _service->getComputerInfo(name.toStdString());
-        computerID = computer.getInfoID();
+        computer = _service->getComputer(name.toStdString());
+        computerID = computer.getID();
         imageURL = "../sacr/PicCom/" + computerID + ".jpg";
         QString qImageURL = QString::fromStdString(imageURL);
 

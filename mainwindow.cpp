@@ -136,9 +136,9 @@ void MainWindow::printComputer(const vector<Computer> &computers)
         Computer currentComputers = computers.at(row);
 
         QString name  =  QString::fromStdString(currentComputers.getName());
-        QString year  =  QString::number(currentComputers.getYear());
+        QString year  =  QString::fromStdString(currentComputers.getYear());
         QString type  =  QString::fromStdString(currentComputers.getType());
-        QString built =  QString::number(currentComputers.getBuilt());
+        QString built =  QString::fromStdString(currentComputers.getBuilt());
 
         if(year == "0")
         {

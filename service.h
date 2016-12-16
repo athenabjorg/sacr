@@ -61,11 +61,11 @@ public:
     vector<Computer> getComputers();
     // Uploads the list of copmuters from database.
 
-    bool addComputer(string name, int year, string type, bool built);
+    bool addComputer(string id, string name, string year, string type, string built, string picurl, string about, string abouturl);
     // Adds a copmuter to the database.
     // Returns true if adding succeded, false otherwise.
 
-    bool updateComputer(string name, int year, string type, bool built);
+    bool updateComputer(string id, string name, string year, string type, string built, string picurl, string about, string abouturl);
     // Updates a computer in the database.
     // Returns true if adding succeded, false otherwise.
 
@@ -89,7 +89,7 @@ public:
     bool doesComputerExist(string name);
     // Checks if a computer by that name exists already
 
-    Computer getComputerInfo(string name);
+    Computer getComputer(string name);
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 

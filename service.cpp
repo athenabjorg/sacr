@@ -8,10 +8,6 @@ bool sortByAgeAsc (const Scientist &a, const Scientist &b) { return a.getAge()  
 bool sortByAgeDesc(const Scientist &a, const Scientist &b) { return a.getAge()    >  b.getAge();    }
 //operator overloading functions for scientistSort.
 
-bool sortByYearsSinceBuiltAsc (const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() <  b.getYearsSinceBuilt(); }
-bool sortByYearsSinceBuiltDesc(const Computer &a, const Computer &b) { return a.getYearsSinceBuilt() >  b.getYearsSinceBuilt(); }
-//operator overloading functions for computerSort.
-
 service::service()
 {
     _scientists = _data.loadScientists();
@@ -211,13 +207,13 @@ vector<Computer> service::getComputers()
     return computers;
 }
 
-bool service::addComputer(string name, int year, string type, bool built)
+bool service::addComputer(string id, string name, string year, string type, string built, string picurl, string about, string abouturl)
 {   // Adds a copmuter to the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesComputerExist(name) == false)
     {
-        Computer computer(name, year, type, built);
+        Computer computer(id, name, year, type, built, picurl, about, abouturl);
 
         _computers.push_back(computer);
         _data.saveComputer(computer);
@@ -227,13 +223,13 @@ bool service::addComputer(string name, int year, string type, bool built)
     return false;
 
 }
-bool service::updateComputer(string name, int year, string type, bool built)
+bool service::updateComputer(string id, string name, string year, string type, string built, string picurl, string about, string abouturl)
 {   // Updates a copmuter in the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesComputerExist(name) == true)
     {
-        Computer computer(name, year, type, built);
+        Computer computer(id, name, year, type, built, picurl, about, abouturl);
 
         _computers.push_back(computer);
         _data.updateComputer(computer);
@@ -259,24 +255,11 @@ void service::removeAllComputers()
 
 vector<Computer> service::computerSort(int sortType)
 {   // Sort by sortType: 1 = name(A-Z), 2 = name(Z-A), 3 = type(A-Z), 4 = type(Z-A), 5 = year made(0-9),
-    // 6 = year made(9-0), 7 = if built(n-y), 8 = if built (y-n), 9 = years since built(0-9), 10 = years since built(0-9)
+    // 6 = year made(9-0), 7 = if built(n-y), 8 = if built (y-n).
 
     vector<Computer> computers;
 
-    if(sortType == 9)
-    {
-        computers = _computers;
-        sort(computers.begin(), computers.end(), sortByYearsSinceBuiltAsc);
-    }
-    else if(sortType == 10)
-    {
-        computers = _computers;
-        sort(computers.begin(), computers.end(), sortByYearsSinceBuiltDesc);
-    }
-    else
-    {
-        computers = _data.sortComputers(sortType);
-    }
+    computers = _data.sortComputers(sortType);
 
     return computers;
 
@@ -312,13 +295,14 @@ bool service::doesComputerExist(string name)
     return _data.doesComputerExist(name);
 }
 
-Computer service::getComputerInfo(string name)
+Computer service::getComputer(string name)
 {
     Computer computer;
-    computer = _data.loadComputerInfo(name);
+    computer = _data.loadComputer(name);
 
     return computer;
 }
+
 
 // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 

@@ -48,7 +48,6 @@ public:
     bool doesScientistExist(string name);
     // Checks if a scientist by that name exists already
 
-    Scientist loadScientistInfo(string inputName);
 
     // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
@@ -57,6 +56,7 @@ public:
     void updateComputer(Computer computer);
     // Updates the information for an existing computer.
 
+    Computer loadComputer(string inputName);
     vector<Computer> loadComputers();
     vector<Computer> loadComputers(int loadType, string parameter);
     vector<Computer> loadComputers(int loadType, string parameter1, string parameter2);
@@ -79,8 +79,6 @@ public:
 
     int yearComputerBuilt(string computer);
     // Returns what year a computer was built.
-
-    Computer loadComputerInfo(string inputName);
 
     // ---------------------------------- RELATION FUNCTIONS ---------------------------------- //
 
