@@ -111,4 +111,6 @@ void ComputerWindow::on_buttonAddRelation_clicked()
     addRelationWindow.set_service(_service);
     addRelationWindow.setComputer(QString::fromStdString(_name));
     addRelationWindow.exec();
+
+    printRelations();
 }
