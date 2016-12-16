@@ -312,8 +312,19 @@ void MainWindow::on_scientistRemoveAllButton_clicked()
 {
     ui -> scientistTable -> setSortingEnabled(0);
 
-    _service.removeAllScientists();
-    printList(printSelect::scientist);
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers",
+    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        _service.removeAllScientists();
+        printList(printSelect::scientist);
+    }
+    else
+    {
+        //Do nothing
+    }
+
 
     ui -> scientistTable -> setSortingEnabled(1);
 }
@@ -446,8 +457,18 @@ void MainWindow::on_computerRemoveAllButton_clicked()
 {
     ui -> computerTable -> setSortingEnabled(0);
 
-    _service.removeAllComputers();
-    printList(printSelect::computer);
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers",
+    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        _service.removeAllComputers();
+        printList(printSelect::computer);
+    }
+    else
+    {
+        //Do nothing
+    }
 
     ui -> computerTable -> setSortingEnabled(1);
 }
@@ -563,8 +584,19 @@ void MainWindow::on_relationRemoveAllButton_clicked()
 {
     ui -> relationTable -> setSortingEnabled(0);
 
-    _service.removeAllRelations();
-    printList(printSelect::relation);
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all relations",
+    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        _service.removeAllRelations();
+        printList(printSelect::relation);
+    }
+    else
+    {
+        //Do nothing
+    }
+
 
     ui -> relationTable -> setSortingEnabled(1);
 }
