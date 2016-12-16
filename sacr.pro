@@ -54,3 +54,6 @@ FORMS    += mainwindow.ui \
     updatecomputerwindow.ui
 
 DISTFILES +=
+
+RESOURCES += \
+    resources.qrc
