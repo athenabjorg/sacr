@@ -297,7 +297,7 @@ void MainWindow::on_scientistRemoveButton_clicked()
     else if(_currentRow >= 0)
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this scientist",
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this scientist?",
         QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
@@ -322,7 +322,7 @@ void MainWindow::on_scientistRemoveAllButton_clicked()
     ui -> scientistTable -> setSortingEnabled(0);
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all scientists",
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all scientists?",
     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
@@ -451,7 +451,7 @@ void MainWindow::on_computerRemoveButton_clicked()
     else if(_currentRow >= 0)
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this computer",
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this computer?",
         QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
@@ -476,7 +476,7 @@ void MainWindow::on_computerRemoveAllButton_clicked()
     ui -> computerTable -> setSortingEnabled(0);
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers",
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers?",
     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
@@ -583,7 +583,7 @@ void MainWindow::on_relationRemoveButton_clicked()
     else if(_currentRow >= 0)
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this relation",
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this relation?",
         QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
@@ -609,7 +609,7 @@ void MainWindow::on_relationRemoveAllButton_clicked()
     ui -> relationTable -> setSortingEnabled(0);
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all relations",
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all relations?",
     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
