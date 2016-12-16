@@ -21,7 +21,8 @@ public:
     string getPicurl() const;
     string getAbout() const;
     string getAbouturl() const;
-    int getAge() const;
+    int    getAge() const;
+
 
     friend bool operator == (const Scientist& a, const Scientist& b);
 
