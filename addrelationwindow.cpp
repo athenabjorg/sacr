@@ -33,8 +33,8 @@ void AddRelationWindow::set_service(service *s)                             // F
 {
     _service = s;
 
-    printScientist(_scientists);
-    printComputer(_computers);
+    printScientist();
+    printComputer();
 }
 
 
@@ -50,11 +50,11 @@ void AddRelationWindow::setScientist(QString scientist)                     // O
     ui -> scientistTable -> setItem(0, 0, new QTableWidgetItem(_scientist));
     ui -> scientistTable -> selectRow(0);
 
-    printComputer(_computers);
+    printComputer();
 
     _scientistSet = true;
 }
-void AddRelationWindow::printScientist(vector<Scientist> &scientists)       // Prints a list of scientists
+void AddRelationWindow::printScientist()       // Prints a list of scientists
 {
 
     ui -> scientistTable -> setSortingEnabled(1);
@@ -108,11 +108,11 @@ void AddRelationWindow::setComputer(QString computer)                       // O
     ui -> computerTable -> setItem(0, 0, new QTableWidgetItem(_computer));
     ui -> computerTable -> selectRow(0);
 
-    printScientist(_scientists);
+    printScientist();
 
     _computerSet = true;
 }
-void AddRelationWindow::printComputer(vector<Computer> &computers)          // Prints a list of computers
+void AddRelationWindow::printComputer()          // Prints a list of computers
 {
     ui -> computerTable -> setSortingEnabled(1);
 

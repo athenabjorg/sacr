@@ -39,8 +39,8 @@ private:
     bool _computerSet;
     int _scientistRow;
     int _computerRow;
-    void printScientist(vector<Scientist> &scientists);
-    void printComputer(vector<Computer> &computers);
+    void printScientist();
+    void printComputer();
 };
 
 #endif // ADDRELATIONWINDOW_H
