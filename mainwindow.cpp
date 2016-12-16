@@ -99,6 +99,25 @@ void MainWindow::printScientist(const vector<Scientist> &scientists)
         QString yearDied =  QString::number(currentScientists.getDeath());
         QString age      =  QString::number(currentScientists.getAge());
 
+        if(gender == "m")
+        {
+            gender = "male";
+        }
+        else if(gender == "f")
+        {
+            gender = "female";
+        }
+        else if(gender == "o")
+        {
+            gender = "other";
+        }
+
+        if(yearDied == "0")
+        {
+            yearDied = "-";
+        }
+
+
         ui -> scientistTable -> setItem(row, 0, new QTableWidgetItem(name));
         ui -> scientistTable -> setItem(row, 1, new QTableWidgetItem(gender));
         ui -> scientistTable -> setItem(row, 2, new QTableWidgetItem(yearBorn));
@@ -121,6 +140,19 @@ void MainWindow::printComputer(const vector<Computer> &computers)
         QString type  =  QString::fromStdString(currentComputers.getType());
         QString built =  QString::number(currentComputers.getBuilt());
 
+        if(year == "0")
+        {
+            year = "-";
+        }
+        if(built == "1")
+        {
+            built = "Yes";
+        }
+        else if(built == "0")
+        {
+            built = "No";
+        }
+
         ui -> computerTable -> setItem(row, 0, new QTableWidgetItem(name));
         ui -> computerTable -> setItem(row, 1, new QTableWidgetItem(year));
         ui -> computerTable -> setItem(row, 2, new QTableWidgetItem(type));
@@ -138,12 +170,17 @@ void MainWindow::printRelation(const vector<Relation> &relations)
 
         QString scientistID =  QString::fromStdString(currentRelations.getScientist());
         QString computerID  =  QString::fromStdString(currentRelations.getComputer());
+        QString computerYear  =  QString::number(currentRelations.getYear());
 
+        if(computerYear == "0")
+        {
+            computerYear = "-";
+        }
 
         ui -> relationTable -> setItem(row, 0, new QTableWidgetItem(scientistID));
         ui -> relationTable -> setItem(row, 1, new QTableWidgetItem(computerID));
-
-    }
+        ui -> relationTable -> setItem(row, 2, new QTableWidgetItem(computerYear));
+     }
 }
 
 
@@ -152,14 +189,37 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 {
     ui -> scientistTable -> setSortingEnabled(0);
 
+
     if(arg1.isEmpty())
     {
         printList(printSelect::scientist);
     }
+    else if ((_scientistComboboxIndex + 1) == 8 ||
+             (_scientistComboboxIndex + 1) == 6 ||
+             (_scientistComboboxIndex + 1) == 4)
+    {
+        if(arg1.isEmpty())
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, "0" , ui->scientistSearchRange->text().toStdString());
+
+            printScientist(scientists);
+        }
+
+        else if(ui->scientistSearchRange->text().isEmpty())
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString(), "2016");
+
+            printScientist(scientists);
+        }
+        else
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString(), ui->scientistSearchRange->text().toStdString());
+
+            printScientist(scientists);
+        }
+    }
     else
     {
-        string input = ui->scientistSearchInput->text().toStdString();
-
         vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString());
 
         printScientist(scientists);
@@ -167,16 +227,21 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 
     ui -> scientistTable -> setSortingEnabled(1);
 }
+void MainWindow::on_scientistSearchRange_textEdited(const QString &arg1)
+{
+    on_scientistSearchInput_textEdited(ui->scientistSearchInput->text());
+}
 void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 {
+    ui->scientistSearchInput->setText("");
+    ui->scientistSearchRange->setText("");
+
     _scientistComboboxIndex = index;
 
     QString searchBy = ui->scientistSearchInput->text();
 
     on_scientistSearchInput_textEdited(searchBy);
-}
-void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1) //FIXME::?
-{
+
     if( ui->scientistSearchBy->currentText().toStdString() == "by Age Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
@@ -217,13 +282,13 @@ void MainWindow::on_scientistRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
-        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
+        ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
         QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
         _service.removeScientist(name.toStdString());
-        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>");
+        ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>");
         printList(printSelect::scientist);
     }
 
@@ -286,13 +351,13 @@ void MainWindow::on_computerRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
-        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>Nothing selected");
+        ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
         QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
         _service.removeComputer(name.toStdString());
-        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
+        ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
         printList(printSelect::computer);
     }
 
@@ -346,14 +411,14 @@ void MainWindow::on_relationRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
-        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>Nothing selected");
+        ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
         QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
         QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
         _service.removeRelation(scientist.toStdString(), computer.toStdString());
-        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
+        ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
         printList(printSelect::relation);
     }
 
@@ -380,3 +445,10 @@ void MainWindow::on_userManualButton3_clicked()
     UserManual userManual;
     userManual.exec();
 }
+
+void MainWindow::on_relationSearchRange_textEdited(const QString &arg1)
+{
+
+}
+
+

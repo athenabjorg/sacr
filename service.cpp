@@ -17,6 +17,18 @@ service::service()
     _scientists = _data.loadScientists();
     _computers = _data.loadComputers();
 }
+int service::whatYearIsIt() const
+{   // Returns the current year.
+
+    time_t     currentTime;
+    struct tm* timeinfo;
+
+    time(&currentTime);
+    timeinfo = localtime(&currentTime);
+
+    int currentYear = (timeinfo->tm_year + 1900);
+    return currentYear;
+}
 
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
