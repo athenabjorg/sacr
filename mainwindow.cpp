@@ -592,11 +592,6 @@ void MainWindow::on_relationRemoveAllButton_clicked()
         _service.removeAllRelations();
         printList(printSelect::relation);
     }
-    else
-    {
-        //Do nothing
-    }
-
 
     ui -> relationTable -> setSortingEnabled(1);
 }
