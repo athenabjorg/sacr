@@ -345,7 +345,19 @@ void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)
     ui -> computerTable -> setSortingEnabled(0);
     _computerSearch = arg1;
 
-    if(arg1.isEmpty())
+    if (_computerComboboxIndex == 4 && (arg1 == "yes" || arg1 == "Yes" || arg1 == "YES"))
+    {
+        vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, "1");
+
+        printComputer(computers);
+    }
+    else if (_computerComboboxIndex == 4 && (arg1 == "no" || arg1 == "No" || arg1 == "NO"))
+    {
+        vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, "0");
+
+        printComputer(computers);
+    }
+    else if(arg1.isEmpty())
     {
         printList(printSelect::computer);
     }
