@@ -115,7 +115,7 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     }
 
     // If everything chekcs out, add the new scientist and close the addscientistwindow
-    if(!name.isEmpty() && gender != 'e' && !birthYear.isEmpty() && !(_service->findScientist(1, name.toStdString()).size() > 0) && (re.exactMatch(birthYear)) && yearWrong == 'F')
+    if(!name.isEmpty() && gender != 'e' && !birthYear.isEmpty() && !(_service->findScientist(0, name.toStdString()).size() > 0) && (re.exactMatch(birthYear)) && yearWrong == 'F')
     {
         Scientist scientist;
         string scientistID, imageURL;
