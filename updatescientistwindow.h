@@ -13,8 +13,9 @@ class UpdateScientistWindow : public QDialog
 
 public:
     explicit UpdateScientistWindow(QWidget *parent = 0);
-    void set_service(service *s);
     ~UpdateScientistWindow();
+    void set_service(service *s);
+    void passInfo(string name);
 
 private slots:
     void on_updateButton_clicked();
@@ -22,6 +23,16 @@ private slots:
 private:
     Ui::UpdateScientistWindow *ui;
     service *_service;
+    Scientist _scientist;
+
+    string _name;
+    string _id;
+    string _born;
+    string _died;
+    string _picurl;
+    string _about;
+    string _abouturl;
+    string _gender;
 };
 
 #endif // UpdateScientistWindow_H

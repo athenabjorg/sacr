@@ -22,14 +22,11 @@ class ScientistWindow : public QDialog
 public:
     explicit ScientistWindow(QWidget *parent = 0);
     ~ScientistWindow();
-
     void set_service(service *s);
-
     void passInfo(string name);
 
 private slots:
     void on_buttonInfo_clicked();
-
     void on_buttonUpdate_2_clicked();
 
 private:

@@ -116,7 +116,8 @@ void ScientistWindow::on_buttonUpdate_2_clicked()
 {
     UpdateScientistWindow updateScientistWindow;
     //updateScientistWindow.set_service(&_service);
-    //updateScientistWindow.passInfo(name.toStdString());
+    updateScientistWindow.set_service(_service);
+    updateScientistWindow.passInfo(_name);
     updateScientistWindow.exec();
 
 }

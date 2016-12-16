@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Add Scientist</string>
+      <string>Update Scientist</string>
      </property>
     </widget>
    </item>
@@ -199,7 +199,7 @@
    <item>
     <widget class="QPushButton" name="ScientistAddPic">
      <property name="text">
-      <string>Add picture</string>
+      <string>Update picture</string>
      </property>
     </widget>
    </item>
