@@ -8,6 +8,7 @@ AddComputerWindow::AddComputerWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     _service = nullptr;
+    setFixedSize(width(),height());
 }
 AddComputerWindow::~AddComputerWindow()             // Deconstructor
 {
