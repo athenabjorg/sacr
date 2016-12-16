@@ -233,15 +233,15 @@ void MainWindow::on_scientistSearchRange_textEdited(const QString &arg1)
 }
 void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 {
+    ui->scientistSearchInput->setText("");
+    ui->scientistSearchRange->setText("");
 
     _scientistComboboxIndex = index;
 
     QString searchBy = ui->scientistSearchInput->text();
 
     on_scientistSearchInput_textEdited(searchBy);
-}
-void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1) //FIXME::?
-{
+
     if( ui->scientistSearchBy->currentText().toStdString() == "by Age Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
