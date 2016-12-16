@@ -261,7 +261,6 @@ void MainWindow::on_scientistAddButton_clicked()
     addScientistWindow.exec();
     printList(printSelect::scientist);
     ui -> scientistTable -> setSortingEnabled(1);
-
 }
 void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
 {
@@ -271,7 +270,6 @@ void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
     scientistWindow.set_service(&_service);
     scientistWindow.passInfo(name.toStdString());
     scientistWindow.exec();
-    printList(printSelect::scientist);
 }
 void MainWindow::on_scientistTable_cellPressed(int row, int column)
 {
@@ -417,7 +415,6 @@ void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
     computerWindow.set_service(&_service);
     computerWindow.passInfo(name.toStdString());
     computerWindow.exec();
-    printList(printSelect::computer);
 }
 void MainWindow::on_computerTable_cellPressed(int row, int column)
 {
