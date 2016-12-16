@@ -282,14 +282,26 @@ void MainWindow::on_scientistRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
+
         ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
-        QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
-        _service.removeScientist(name.toStdString());
-        ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>");
-        printList(printSelect::scientist);
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this scientist",
+        QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
+            _service.removeScientist(name.toStdString());
+            ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>");
+            printList(printSelect::scientist);
+        }
+        else
+        {
+            //Do nothing
+        }
+
     }
 
     ui -> scientistTable -> setSortingEnabled(1);
@@ -400,10 +412,21 @@ void MainWindow::on_computerRemoveButton_clicked()
     }
     else if(_currentRow >= 0)
     {
-        QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
-        _service.removeComputer(name.toStdString());
-        ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
-        printList(printSelect::computer);
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this computer",
+        QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
+            _service.removeComputer(name.toStdString());
+            ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
+            printList(printSelect::computer);
+        }
+        else
+        {
+            //Do nothing
+        }
+
     }
 
     ui -> computerTable -> setSortingEnabled(1);
@@ -497,11 +520,22 @@ void MainWindow::on_relationRemoveButton_clicked()
     }
     else if(_currentRow >= 0)
     {
-        QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
-        QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
-        _service.removeRelation(scientist.toStdString(), computer.toStdString());
-        ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
-        printList(printSelect::relation);
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this relation",
+        QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
+            QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
+            _service.removeRelation(scientist.toStdString(), computer.toStdString());
+            ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
+            printList(printSelect::relation);
+        }
+        else
+        {
+            //Do nothing
+        }
+
     }
 
     ui -> relationTable -> setSortingEnabled(1);
