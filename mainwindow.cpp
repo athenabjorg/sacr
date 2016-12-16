@@ -402,12 +402,14 @@ void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
     on_computerSearchInput_textEdited(searchBy);
 }
 //TODO::currentIndexChanged
-void MainWindow::on_computerAddButton_clicked()
+void MainWindow::on_computerAddButton_clicked   ()
 {
+    ui -> computerTable -> setSortingEnabled(0);
     AddComputerWindow addComputerWindow;
-    addComputerWindow.set_service(&_service);//---
+    addComputerWindow.set_service(&_service);
     addComputerWindow.exec();
     printList(printSelect::computer);
+    ui -> computerTable -> setSortingEnabled(1);
 }
 void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
 {
