@@ -97,6 +97,10 @@ private slots:
 
     void on_userManualButton3_clicked();
 
+    void on_relationSearchRange_textEdited(const QString &arg1);
+
+    void on_scientistSearchRange_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     service _service;

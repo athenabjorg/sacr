@@ -189,14 +189,37 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 {
     ui -> scientistTable -> setSortingEnabled(0);
 
+
     if(arg1.isEmpty())
     {
         printList(printSelect::scientist);
     }
+    else if ((_scientistComboboxIndex + 1) == 8 ||
+             (_scientistComboboxIndex + 1) == 6 ||
+             (_scientistComboboxIndex + 1) == 4)
+    {
+        if(arg1.isEmpty())
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, "0" , ui->scientistSearchRange->text().toStdString());
+
+            printScientist(scientists);
+        }
+
+        else if(ui->scientistSearchRange->text().isEmpty())
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString(), "2016");
+
+            printScientist(scientists);
+        }
+        else
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString(), ui->scientistSearchRange->text().toStdString());
+
+            printScientist(scientists);
+        }
+    }
     else
     {
-        string input = ui->scientistSearchInput->text().toStdString();
-
         vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString());
 
         printScientist(scientists);
@@ -204,8 +227,13 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 
     ui -> scientistTable -> setSortingEnabled(1);
 }
+void MainWindow::on_scientistSearchRange_textEdited(const QString &arg1)
+{
+    on_scientistSearchInput_textEdited(ui->scientistSearchInput->text());
+}
 void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 {
+
     _scientistComboboxIndex = index;
 
     QString searchBy = ui->scientistSearchInput->text();
@@ -417,3 +445,10 @@ void MainWindow::on_userManualButton3_clicked()
     UserManual userManual;
     userManual.exec();
 }
+
+void MainWindow::on_relationSearchRange_textEdited(const QString &arg1)
+{
+
+}
+
+
