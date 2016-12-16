@@ -59,8 +59,6 @@ void DataAccess::updateScientist(Scientist scientist)
 
     QString input = QString::fromStdString(line);
 
-    qDebug() << input;
-
     db.open();
     QSqlQuery query;
     query.exec(input);
@@ -375,7 +373,7 @@ Computer DataAccess::loadComputer(string inputName)
     db.open();
     QSqlQuery query;
 
-    line = "SELECT id, name, year, type, picurl, about, abouturl FROM computers WHERE name like \"" + inputName + "\" and valid = 1;";
+    line = "SELECT * FROM computers WHERE name like \"" + inputName + "\" and valid = 1;";
     QString qline = QString::fromStdString(line);
     query.exec(qline);
 
