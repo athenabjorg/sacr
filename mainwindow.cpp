@@ -261,6 +261,9 @@ void MainWindow::on_scientistAddButton_clicked()
     addScientistWindow.exec();
     printList(printSelect::scientist);
     ui -> scientistTable -> setSortingEnabled(1);
+    ui->scientistSearchInput->setText("");
+    ui->scientistSearchRange->setText("");
+
 }
 void MainWindow::on_scientistTable_cellDoubleClicked(int row, int column)
 {
@@ -408,6 +411,9 @@ void MainWindow::on_computerAddButton_clicked   ()
     addComputerWindow.exec();
     printList(printSelect::computer);
     ui -> computerTable -> setSortingEnabled(1);
+    ui->computerSearchInput->setText("");
+    ui->computerSearchRange->setText("");
+
 }
 void MainWindow::on_computerTable_cellDoubleClicked(int row, int column)
 {
@@ -542,6 +548,8 @@ void MainWindow::on_relationAddButton_clicked()
     addRelationWindow.set_service(&_service);//---
     addRelationWindow.exec();
     printList(printSelect::relation);
+    ui->relationSearchInput->setText("");
+    ui->relationSearchRange->setText("");
 }
 //TODO::cellDoubleClicked ?
 void MainWindow::on_relationTable_cellPressed(int row, int column)
