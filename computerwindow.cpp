@@ -1,5 +1,5 @@
-#include "ComputerWindow.h"
-#include "ui_ComputerWindow.h"
+#include "computerwindow.h"
+#include "ui_computerwindow.h"
 
 
 

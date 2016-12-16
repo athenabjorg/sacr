@@ -1,5 +1,5 @@
-#include "UpdateScientistWindow.h"
-#include "ui_UpdateScientistWindow.h"
+#include "updatescientistwindow.h"
+#include "ui_updatescientistwindow.h"
 #include "service.h"
 
 UpdateScientistWindow::UpdateScientistWindow(QWidget *parent) :
