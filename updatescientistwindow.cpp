@@ -136,13 +136,29 @@ void UpdateScientistWindow::on_updateButton_clicked() // FIXME::BETTER_SOLUTION_
         ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'> ");
     }
 
-    // If everything chekcs out, add the new scientist and close the addscientistwindow
+    // If everything checks out, add the new scientist and close the addscientistwindow
     if(valid)
     {
 
+        Scientist scientist;
+        string scientistID, imageURL;
+
         _service->updateScientist(" ", name.toStdString(), gender.toStdString(), born.toStdString(), died.toStdString(), picurl.toStdString(), about.toStdString(), abouturl.toStdString());
 
+        scientist = _service->getScientist(name.toStdString());
+        scientistID = scientist.getID();
+        imageURL = "../sacr/PicSci/" + scientistID + ".jpg";
+        QString qImageURL = QString::fromStdString(imageURL);
+
+        QImage image = QImage(_fileName);
+
+        image.save(qImageURL);
 
         close();
     }
+}
+
+void UpdateScientistWindow::on_ScientistAddPic_clicked()
+{
+    _fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "/home", tr("Image Files (*.png *.jpg *.bmp)"));
 }

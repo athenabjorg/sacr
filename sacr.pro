@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     computerwindow.cpp \
     scientistwindow.cpp \
     usermanual.cpp \
-    updatescientistwindow.cpp
+    updatescientistwindow.cpp \
+    updatecomputerwindow.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     scientistwindow.h \
     computerwindow.h \
     usermanual.h \
-    updatescientistwindow.h
+    updatescientistwindow.h \
+    updatecomputerwindow.h
 
 FORMS    += mainwindow.ui \
     addscientistwindow.ui \
@@ -48,6 +50,7 @@ FORMS    += mainwindow.ui \
     scientistwindow.ui \
     computerwindow.ui \
     usermanual.ui \
-    updatescientistwindow.ui
+    updatescientistwindow.ui \
+    updatecomputerwindow.ui
 
 DISTFILES +=
