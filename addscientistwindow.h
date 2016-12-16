@@ -20,7 +20,6 @@ public:
 
 private slots:
     void on_addButton_clicked();
-
     void on_ScientistAddPic_clicked();
 
 private:
