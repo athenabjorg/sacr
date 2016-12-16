@@ -285,6 +285,13 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Related scientists</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QTableWidget" name="relationTable">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">

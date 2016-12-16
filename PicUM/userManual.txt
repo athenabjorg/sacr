@@ -1,0 +1,3 @@
+What is SACR?
+
+SACR stands for Scientist And Computer Relations. The program comes with information about some of the most important scientists and computer in the history of computer sciense and keeps record of the relations between them. You can add your own information in an easy way and use SACR to help you on your journey through the fascinating history of computer sciense.

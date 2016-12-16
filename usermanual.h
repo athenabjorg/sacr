@@ -2,6 +2,7 @@
 #define USERMANUAL_H
 
 #include <QDialog>
+#include <string>
 
 namespace Ui {
 class UserManual;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::UserManual *ui;
+    void printLogo();
 };
 
 #endif // USERMANUAL_H
