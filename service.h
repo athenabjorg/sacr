@@ -26,11 +26,11 @@ public:
     vector<Scientist> getScientists();
     // Uploads the list of scientists from database.
 
-    bool addScientist(string name, char gender, int birth, int death);
+    bool addScientist(string id, string name, string gender, string born, string died, string picurl, string about, string abouturl);
     // Adds a scientist to the database.
     // Returns true if adding succeded, false otherwise.
 
-    bool updateScientist(string name, char gender, int birth, int death);
+    bool updateScientist(string id, string name, string gender, string born, string died, string picurl, string about, string abouturl);
     // Updates a scientist in the database.
     // Returns true if adding succeded, false otherwise.
 
@@ -54,7 +54,7 @@ public:
     bool doesScientistExist(string name);
     // Checks if a scientist by that name exists already
 
-    Scientist getScientistInfo(string name);
+    Scientist getScientist(string name);
 
     // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 

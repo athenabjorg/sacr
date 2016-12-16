@@ -95,8 +95,8 @@ void MainWindow::printScientist(const vector<Scientist> &scientists)
 
         QString name     =  QString::fromStdString(currentScientists.getName());
         QString gender   =  QString::fromStdString(currentScientists.getGender());
-        QString yearBorn =  QString::number(currentScientists.getBirth());
-        QString yearDied =  QString::number(currentScientists.getDeath());
+        QString yearBorn =  QString::fromStdString(currentScientists.getBorn());
+        QString yearDied =  QString::fromStdString(currentScientists.getDied());
         QString age      =  QString::number(currentScientists.getAge());
 
         if(gender == "m")

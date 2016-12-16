@@ -29,20 +29,20 @@ void ScientistWindow::passInfo(string name)
 {
     _name = name;
 
-    _scientist = _service->getScientistInfo(_name);
+    _scientist = _service->getScientist(_name);
 
-    _id = _scientist.getInfoID();
-    _born = _scientist.getInfoBorn();
-    _died = _scientist.getInfoDied();
+    _id = _scientist.getID();
+    _born = _scientist.getBorn();
+    _died = _scientist.getDied();
 
     if(_died == "0")
     {
         _died = "-";
     }
 
-    _picurl = _scientist.getInfoPicurl();
-    _about = _scientist.getInfoAbout();
-    _abouturl = _scientist.getInfoAbouturl();
+    _picurl = _scientist.getPicurl();
+    _about = _scientist.getAbout();
+    _abouturl = _scientist.getAbouturl();
 
     ui->inputName->setText(QString::fromStdString(_name));
     ui->inputBorn->setText(QString::fromStdString(_born));

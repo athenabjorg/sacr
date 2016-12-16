@@ -13,21 +13,23 @@ DataAccess::DataAccess()
 
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
 
-void DataAccess::saveScientist(Scientist newScientist)
+void DataAccess::saveScientist(Scientist scientist)
 {   // Saves a scientist to the database.
 
-    string line, name, gender;
-    int birthYear, deathYear;
+    string line, name, gender, born, died, picurl, about, abouturl;
 
 
-    name = newScientist.getName();
-    gender = newScientist.getGender();
-    birthYear = newScientist.getBirth();
-    deathYear = newScientist.getDeath();
+    name = scientist.getName();
+    gender = scientist.getGender();
+    born = scientist.getBorn();
+    died = scientist.getDied();
+    picurl = scientist.getPicurl();
+    about = scientist.getAbout();
+    abouturl = scientist.getAbouturl();
 
 
-    line = "INSERT INTO Scientists(name,gender,born,died) "
-           "VALUES(\"" + name + "\",\"" + gender + "\"," + to_string(birthYear) + "," + to_string(deathYear) + ")";
+    line = "INSERT INTO Scientists(name,gender,born,died,picurl,about,abouturl) "
+           "VALUES(\"" + name + "\",\"" + gender + "\",\"" + born + "\",\"" + died + "\",\"" + picurl + "\",\"" + about + "\",\"" + abouturl + "\")";
 
     QString input = QString::fromStdString(line);
 
@@ -42,19 +44,20 @@ void DataAccess::saveScientist(Scientist newScientist)
 void DataAccess::updateScientist(Scientist scientist)
 {   // Updates the information for an existing scientist.
 
-    string line, name, gender;
-    int birthYear, deathYear;
-
+    string line, name, gender, born, died, picurl, about, abouturl;
 
     name = scientist.getName();
     gender = scientist.getGender();
-    birthYear = scientist.getBirth();
-    deathYear = scientist.getDeath();
+    born = scientist.getBorn();
+    died = scientist.getDied();
+    picurl = scientist.getPicurl();
+    about = scientist.getAbout();
+    abouturl = scientist.getAbouturl();
 
 
     line = "UPDATE Scientists"
-           "SET Gender = \"" + gender + "\", born = " + to_string(birthYear) + ", Died = " + to_string(deathYear) + ", Valid = 1"
-                                                                                                                    "WHERE Name LIKE \"" + name + "\"";
+           "SET Gender = \"" + gender + "\", born = \"" + born + "\", died = \"" + died + "\", picurl = \"" + picurl + "\", about = \"" + about + "\", abouturl = \"" + abouturl +
+           "WHERE Name LIKE \"" + name + "\"";
 
     QString input = QString::fromStdString(line);
 
@@ -63,13 +66,39 @@ void DataAccess::updateScientist(Scientist scientist)
     query.exec(input);
     db.close();
 }
+Scientist DataAccess::loadScientist(string name)
+{
+    string line, id, gender, born, died, picurl, about, abouturl;
+
+    line = "SELECT * FROM Scientists WHERE name LIKE \"" + name + "\" AND valid = 1";
+    QString input = QString::fromStdString(line);
+
+    db.open();
+    QSqlQuery query;
+    query.exec(input);
+
+    query.next();
+
+    id = query.value(0).toString().toStdString();
+    name = query.value(1).toString().toStdString();
+    gender = query.value(2).toString().toStdString();
+    born = query.value(3).toString().toStdString();
+    died = query.value(4).toString().toStdString();
+    picurl = query.value(6).toString().toStdString();
+    about = query.value(7).toString().toStdString();
+    abouturl = query.value(8).toString().toStdString();
+
+    Scientist scientist(id, name, gender, born, died, picurl, about, abouturl);
+
+    db.close();
+    return scientist;
+}
 
 vector<Scientist> DataAccess::loadScientists()
 {   // Loads scientists from a database, into a vector.
 
     vector<Scientist> scientists;
-    string name, gender;
-    int birthYear, deathYear;
+    string line, id, name, gender, born, died, picurl, about, abouturl;
 
     db.open();
     QSqlQuery query;
@@ -77,12 +106,16 @@ vector<Scientist> DataAccess::loadScientists()
 
     while (query.next())
     {
-        string name = query.value(1).toString().toStdString();
-        string gender = query.value(2).toString().toStdString();
-        birthYear = query.value(3).toInt();
-        deathYear = query.value(4).toInt();
+        id = query.value(0).toString().toStdString();
+        name = query.value(1).toString().toStdString();
+        gender = query.value(2).toString().toStdString();
+        born = query.value(3).toString().toStdString();
+        died = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-        Scientist scientist(name, gender[0], birthYear, deathYear);
+        Scientist scientist(id, name, gender, born, died, picurl, about, abouturl);
         scientists.push_back(scientist);
     }
     db.close();
@@ -96,8 +129,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)
     // 7 and 8 (load by age) are loaded in the service class.
 
     vector<Scientist> scientists;
-    string line, name, gender;
-    int birthYear, deathYear;
+    string line, id, name, gender, born, died, picurl, about, abouturl;
 
 
     switch(loadType) // TODO case 2 (gender) virkar ekki
@@ -121,12 +153,16 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter)
 
     while (query.next())
     {
-        string name = query.value(1).toString().toStdString();
-        string gender = query.value(2).toString().toStdString();
-        birthYear = query.value(3).toInt();
-        deathYear = query.value(4).toInt();
+        id = query.value(0).toString().toStdString();
+        name = query.value(1).toString().toStdString();
+        gender = query.value(2).toString().toStdString();
+        born = query.value(3).toString().toStdString();
+        died = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-        Scientist scientist(name, gender[0], birthYear, deathYear);
+        Scientist scientist(id, name, gender, born, died, picurl, about, abouturl);
         scientists.push_back(scientist);
 
     }
@@ -141,8 +177,7 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
     // 7 and 8 are sorted in the service class.
 
     vector<Scientist> scientists;
-    string line, name, gender;
-    int birthYear, deathYear;
+    string line, id, name, gender, born, died, picurl, about, abouturl;
 
     switch(loadType)
     {
@@ -159,12 +194,16 @@ vector<Scientist> DataAccess::loadScientists(int loadType, string parameter1, st
 
     while (query.next())
     {
-        string name = query.value(1).toString().toStdString();
-        string gender = query.value(2).toString().toStdString();
-        birthYear = query.value(3).toInt();
-        deathYear = query.value(4).toInt();
+        id = query.value(0).toString().toStdString();
+        name = query.value(1).toString().toStdString();
+        gender = query.value(2).toString().toStdString();
+        born = query.value(3).toString().toStdString();
+        died = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-        Scientist scientist(name, gender[0], birthYear, deathYear);
+        Scientist scientist(id, name, gender, born, died, picurl, about, abouturl);
         scientists.push_back(scientist);
 
     }
@@ -212,8 +251,7 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
     // 9 and 10 (sort by age) are sorted in the service class.
 
     vector<Scientist> scientists;
-    string line, name, gender;
-    int birthYear, deathYear;
+    string line, id, name, gender, born, died, picurl, about, abouturl;
 
     switch(sortType)
     {
@@ -242,13 +280,16 @@ vector<Scientist> DataAccess::sortScientists(int sortType)
 
     while (query.next())
     {
-        string name = query.value(1).toString().toStdString();
-        string gender = query.value(2).toString().toStdString();
-        birthYear = query.value(3).toInt();
-        deathYear = query.value(4).toInt();
+        id = query.value(0).toString().toStdString();
+        name = query.value(1).toString().toStdString();
+        gender = query.value(2).toString().toStdString();
+        born = query.value(3).toString().toStdString();
+        died = query.value(4).toString().toStdString();
+        picurl = query.value(6).toString().toStdString();
+        about = query.value(7).toString().toStdString();
+        abouturl = query.value(8).toString().toStdString();
 
-
-        Scientist scientist(name, gender[0], birthYear, deathYear);
+        Scientist scientist(id, name, gender, born, died, picurl, about, abouturl);
         scientists.push_back(scientist);
 
     }
@@ -272,33 +313,6 @@ bool DataAccess::doesScientistExist(string name)
     return false;
 }
 
-Scientist DataAccess::loadScientistInfo(string inputName)
-{
-    string line, id, name, born, died, picurl, about, abouturl;
-
-    db.open();
-    QSqlQuery query;
-
-    line = "SELECT id, name, born, died, picurl, about, abouturl FROM scientists WHERE name like \"" + inputName + "\" and valid = 1;";
-    QString qline = QString::fromStdString(line);
-    query.exec(qline);
-
-    query.next();
-
-    id = query.value(0).toString().toStdString();
-    name = query.value(1).toString().toStdString();
-    born = query.value(2).toString().toStdString();
-    died = query.value(3).toString().toStdString();
-    picurl = query.value(4).toString().toStdString();
-    about = query.value(5).toString().toStdString();
-    abouturl = query.value(6).toString().toStdString();
-
-    Scientist scientist(id, name, born, died, picurl, about, abouturl);
-
-    db.close();
-
-    return scientist;
-}
 
 // ---------------------------------- COMPUTER FUNCTIONS ---------------------------------- //
 
