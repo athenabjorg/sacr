@@ -189,14 +189,37 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 {
     ui -> scientistTable -> setSortingEnabled(0);
 
+
     if(arg1.isEmpty())
     {
         printList(printSelect::scientist);
     }
+    else if ((_scientistComboboxIndex + 1) == 8 ||
+             (_scientistComboboxIndex + 1) == 6 ||
+             (_scientistComboboxIndex + 1) == 4)
+    {
+        if(arg1.isEmpty())
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, "0" , ui->scientistSearchRange->text().toStdString());
+
+            printScientist(scientists);
+        }
+
+        else if(ui->scientistSearchRange->text().isEmpty())
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString(), "2016");
+
+            printScientist(scientists);
+        }
+        else
+        {
+            vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString(), ui->scientistSearchRange->text().toStdString());
+
+            printScientist(scientists);
+        }
+    }
     else
     {
-        string input = ui->scientistSearchInput->text().toStdString();
-
         vector<Scientist> scientists = _service.findScientist(_scientistComboboxIndex + 1, arg1.toStdString());
 
         printScientist(scientists);
@@ -204,16 +227,21 @@ void MainWindow::on_scientistSearchInput_textEdited(const QString &arg1)
 
     ui -> scientistTable -> setSortingEnabled(1);
 }
+void MainWindow::on_scientistSearchRange_textEdited(const QString &arg1)
+{
+    on_scientistSearchInput_textEdited(ui->scientistSearchInput->text());
+}
 void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
 {
+    ui->scientistSearchInput->setText("");
+    ui->scientistSearchRange->setText("");
+
     _scientistComboboxIndex = index;
 
     QString searchBy = ui->scientistSearchInput->text();
 
     on_scientistSearchInput_textEdited(searchBy);
-}
-void MainWindow::on_scientistSearchBy_currentIndexChanged(const QString &arg1) //FIXME::?
-{
+
     if( ui->scientistSearchBy->currentText().toStdString() == "by Age Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
@@ -273,24 +301,69 @@ void MainWindow::on_scientistRemoveButton_clicked()
 // ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
 void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)
 {
+    ui -> computerTable -> setSortingEnabled(0);
+
+
     if(arg1.isEmpty())
     {
         printList(printSelect::computer);
     }
+    else if ((_computerComboboxIndex + 1) == 3)
+    {
+        if(arg1.isEmpty())
+        {
+            vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, "0" , ui->computerSearchRange->text().toStdString());
+
+            printComputer(computers);
+        }
+
+        else if(ui->computerSearchRange->text().isEmpty())
+        {
+            vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, arg1.toStdString(), "2016");
+
+            printComputer(computers);
+        }
+        else
+        {
+            vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, arg1.toStdString(), ui->computerSearchRange->text().toStdString());
+
+            printComputer(computers);
+        }
+    }
     else
     {
-        string input = ui->computerSearchInput->text().toStdString();
-
         vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, arg1.toStdString());
 
         printComputer(computers);
     }
+
+    ui -> computerTable -> setSortingEnabled(1);
 }
+
+void MainWindow::on_computerSearchRange_textEdited(const QString &arg1)
+{
+    on_computerSearchInput_textEdited(ui->computerSearchInput->text());
+}
+
 void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
 {
+    ui->computerSearchInput->setText("");
+    ui->computerSearchRange->setText("");
+
     _computerComboboxIndex = index;
 
     QString searchBy = ui->computerSearchInput->text();
+
+    on_computerSearchInput_textEdited(searchBy);
+
+    if( ui->computerSearchBy->currentText().toStdString() == "by Year Built Range")
+    {
+        ui->computerSearchRange->setEnabled(true);
+    }
+    else
+    {
+        ui->computerSearchRange->setEnabled(false);
+    }
 
     on_computerSearchInput_textEdited(searchBy);
 }
@@ -340,28 +413,68 @@ void MainWindow::on_computerRemoveButton_clicked()
 
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
-void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
-{
-    if(arg1.isEmpty())
-    {
-        printList(printSelect::relation);
-    }
-    else
-    {
-        string input = ui->relationSearchInput->text().toStdString();
-
-        vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString());
-
-        printRelation(relations);
-    }
-}
 void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 {
+    ui->relationSearchInput->setText("");
+    ui->relationSearchRange->setText("");
+
     _relationComboboxIndex = index;
 
     QString searchBy = ui->relationSearchInput->text();
 
     on_relationSearchInput_textEdited(searchBy);
+
+    if( ui->relationSearchBy->currentText().toStdString() == "by Year Built Range")
+    {
+        ui->relationSearchRange->setEnabled(true);
+    }
+    else
+    {
+        ui->relationSearchRange->setEnabled(false);
+    }
+
+    on_relationSearchInput_textEdited(searchBy);
+}
+
+void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
+{
+    ui -> relationTable -> setSortingEnabled(0);
+
+
+    if(arg1.isEmpty())
+    {
+        printList(printSelect::relation);
+    }
+    else if ((_relationComboboxIndex + 1) == 4)
+    {
+        if(arg1.isEmpty())
+        {
+            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, "0" , ui->relationSearchRange->text().toStdString());
+
+            printRelation(relations);
+        }
+
+        else if(ui->relationSearchRange->text().isEmpty())
+        {
+            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString(), "2016");
+
+            printRelation(relations);
+        }
+        else
+        {
+            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString(), ui->relationSearchRange->text().toStdString());
+
+            printRelation(relations);
+        }
+    }
+    else
+    {
+        vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString());
+
+        printRelation(relations);
+    }
+
+    ui -> relationTable -> setSortingEnabled(1);
 }
 //TODO::currentIndexChanged
 void MainWindow::on_relationAddButton_clicked()
@@ -417,3 +530,10 @@ void MainWindow::on_userManualButton3_clicked()
     UserManual userManual;
     userManual.exec();
 }
+
+void MainWindow::on_relationSearchRange_textEdited(const QString &arg1)
+{
+
+}
+
+
