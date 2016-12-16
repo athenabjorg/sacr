@@ -8,6 +8,7 @@ AddRelationWindow::AddRelationWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     _service = nullptr;
+    //setFixedSize(width(),height());
 
     ui -> errorLabel -> setText("");
 
