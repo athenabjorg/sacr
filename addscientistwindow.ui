@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>252</width>
-    <height>525</height>
+    <width>290</width>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -153,25 +153,9 @@
     </widget>
    </item>
    <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>10</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
     <widget class="QLabel" name="ScientistsInfoLable">
      <property name="text">
-      <string>Information</string>
+      <string>Information:</string>
      </property>
     </widget>
    </item>
@@ -185,25 +169,47 @@
    <item>
     <widget class="QLabel" name="inputInfoUrlLabel">
      <property name="text">
-      <string>Add link to more information</string>
+      <string>Link to more information:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="inputInfoUrl"/>
+    <widget class="QLineEdit" name="inputInfoUrl">
+     <property name="placeholderText">
+      <string>URL</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="ScientistAddPic">
      <property name="text">
-      <string>Add picture</string>
+      <string>Choose picture</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="inputImage"/>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Minimum</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>5</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <widget class="QPushButton" name="addButton">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Add</string>
      </property>
