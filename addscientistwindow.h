@@ -2,6 +2,8 @@
 #define ADDSCIENTISTWINDOW_H
 #include "service.h"
 #include <QDialog>
+#include <QFileDialog>
+#include <QImage>
 
 namespace Ui {
 class AddScientistWindow;
@@ -19,9 +21,12 @@ public:
 private slots:
     void on_addButton_clicked();
 
+    void on_ScientistAddPic_clicked();
+
 private:
     Ui::AddScientistWindow *ui;
     service *_service;
+    QString _fileName;
 };
 
 #endif // ADDSCIENTISTWINDOW_H

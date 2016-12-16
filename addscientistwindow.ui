@@ -200,6 +200,9 @@
     </widget>
    </item>
    <item>
+    <widget class="QLineEdit" name="inputImage"/>
+   </item>
+   <item>
     <widget class="QPushButton" name="addButton">
      <property name="text">
       <string>Add</string>
