@@ -99,6 +99,25 @@ void MainWindow::printScientist(const vector<Scientist> &scientists)
         QString yearDied =  QString::number(currentScientists.getDeath());
         QString age      =  QString::number(currentScientists.getAge());
 
+        if(gender == "m")
+        {
+            gender = "male";
+        }
+        else if(gender == "f")
+        {
+            gender = "female";
+        }
+        else if(gender == "o")
+        {
+            gender = "other";
+        }
+
+        if(yearDied == "0")
+        {
+            yearDied = "-";
+        }
+
+
         ui -> scientistTable -> setItem(row, 0, new QTableWidgetItem(name));
         ui -> scientistTable -> setItem(row, 1, new QTableWidgetItem(gender));
         ui -> scientistTable -> setItem(row, 2, new QTableWidgetItem(yearBorn));
@@ -121,6 +140,19 @@ void MainWindow::printComputer(const vector<Computer> &computers)
         QString type  =  QString::fromStdString(currentComputers.getType());
         QString built =  QString::number(currentComputers.getBuilt());
 
+        if(year == "0")
+        {
+            year = "-";
+        }
+        if(built == "1")
+        {
+            built = "Yes";
+        }
+        else if(built == "0")
+        {
+            built = "No";
+        }
+
         ui -> computerTable -> setItem(row, 0, new QTableWidgetItem(name));
         ui -> computerTable -> setItem(row, 1, new QTableWidgetItem(year));
         ui -> computerTable -> setItem(row, 2, new QTableWidgetItem(type));
@@ -138,12 +170,17 @@ void MainWindow::printRelation(const vector<Relation> &relations)
 
         QString scientistID =  QString::fromStdString(currentRelations.getScientist());
         QString computerID  =  QString::fromStdString(currentRelations.getComputer());
+        QString computerYear  =  QString::number(currentRelations.getYear());
 
+        if(computerYear == "0")
+        {
+            computerYear = "-";
+        }
 
         ui -> relationTable -> setItem(row, 0, new QTableWidgetItem(scientistID));
         ui -> relationTable -> setItem(row, 1, new QTableWidgetItem(computerID));
-
-    }
+        ui -> relationTable -> setItem(row, 2, new QTableWidgetItem(computerYear));
+     }
 }
 
 
@@ -217,13 +254,13 @@ void MainWindow::on_scientistRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
-        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
+        ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
         QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
         _service.removeScientist(name.toStdString());
-        //ui -> errorLableRemoveScientist -> setText("<span style='color: #ED1C58'>");
+        ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>");
         printList(printSelect::scientist);
     }
 
@@ -286,13 +323,13 @@ void MainWindow::on_computerRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
-        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>Nothing selected");
+        ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
         QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
         _service.removeComputer(name.toStdString());
-        //ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
+        ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
         printList(printSelect::computer);
     }
 
@@ -346,14 +383,14 @@ void MainWindow::on_relationRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
-        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>Nothing selected");
+        ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
         QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
         QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
         _service.removeRelation(scientist.toStdString(), computer.toStdString());
-        //ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
+        ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
         printList(printSelect::relation);
     }
 

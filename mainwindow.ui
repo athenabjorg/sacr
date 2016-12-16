@@ -45,7 +45,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -782,6 +782,11 @@
             <string>Computer</string>
            </property>
           </column>
+          <column>
+           <property name="text">
+            <string>Year Built</string>
+           </property>
+          </column>
          </widget>
         </item>
         <item>
@@ -825,7 +830,7 @@
      <x>0</x>
      <y>0</y>
      <width>772</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
