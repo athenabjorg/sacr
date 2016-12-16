@@ -247,10 +247,14 @@ void MainWindow::on_scientistSearchBy_currentIndexChanged(int index)
         ui->scientistSearchBy->currentText().toStdString() == "by Birth Year Range" ||
         ui->scientistSearchBy->currentText().toStdString() == "by Death Year Range")
     {
+        ui->scientistSearchInput->setPlaceholderText("From");
+        ui->scientistSearchRange->setPlaceholderText("To");
         ui->scientistSearchRange->setEnabled(true);
     }
     else
     {
+        ui->scientistSearchInput->setPlaceholderText("Search");
+        ui->scientistSearchRange->setPlaceholderText("");
         ui->scientistSearchRange->setEnabled(false);
     }
 }
@@ -395,10 +399,14 @@ void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
 
     if( ui->computerSearchBy->currentText().toStdString() == "by Year Built Range")
     {
+        ui->computerSearchInput->setPlaceholderText("From");
+        ui->computerSearchRange->setPlaceholderText("To");
         ui->computerSearchRange->setEnabled(true);
     }
     else
     {
+        ui->computerSearchInput->setPlaceholderText("Search");
+        ui->computerSearchRange->setPlaceholderText("");
         ui->computerSearchRange->setEnabled(false);
     }
 
@@ -535,10 +543,14 @@ void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 
     if( ui->relationSearchBy->currentText().toStdString() == "by Year Built Range")
     {
+        ui->relationSearchInput->setPlaceholderText("From");
+        ui->relationSearchRange->setPlaceholderText("To");
         ui->relationSearchRange->setEnabled(true);
     }
     else
     {
+        ui->relationSearchInput->setPlaceholderText("Search");
+        ui->relationSearchRange->setPlaceholderText("");
         ui->relationSearchRange->setEnabled(false);
     }
 

@@ -80,6 +80,9 @@
                     <property name="enabled">
                      <bool>false</bool>
                     </property>
+                    <property name="placeholderText">
+                     <string/>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -923,7 +926,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
