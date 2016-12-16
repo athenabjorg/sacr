@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>322</width>
-    <height>479</height>
+    <width>300</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Update Computer</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
@@ -26,7 +26,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Add Computer</string>
+      <string>Update Computer</string>
      </property>
     </widget>
    </item>

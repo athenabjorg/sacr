@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Scientist</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
@@ -313,7 +313,7 @@ p, li { white-space: pre-wrap; }
           <bool>true</bool>
          </property>
          <attribute name="horizontalHeaderVisible">
-          <bool>false</bool>
+          <bool>true</bool>
          </attribute>
          <attribute name="horizontalHeaderCascadingSectionResizes">
           <bool>false</bool>
