@@ -32,7 +32,7 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     bool valid = true;
     ui -> errorLabelName -> setText(" ");
 
-    // Check for what buttom is selected
+    // Check for what button is selected
     ui -> errorLabelGender -> setText("<span style='color: #ED1C58'> ");
 
     if(ui -> genderMaleButton -> isChecked())
@@ -102,6 +102,10 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     {
         ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is in the future");
         valid = false;
+    }
+    else if(died.isEmpty())
+    {
+        died = "0";
     }
     else
     {
