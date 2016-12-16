@@ -8,6 +8,7 @@ AddScientistWindow::AddScientistWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     _service = nullptr;
+    setFixedSize(width(),height());
 }
 
 void AddScientistWindow::set_service(service *s)
@@ -94,6 +95,11 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     }
 
     if(died.toInt() < born.toInt() && died.toInt() != 0)
+    {
+        ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is invalid");
+        valid = false;
+    }
+    else if(!died.isEmpty() && !re.exactMatch(died))
     {
         ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is invalid");
         valid = false;
