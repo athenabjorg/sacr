@@ -282,43 +282,120 @@ void MainWindow::on_scientistRemoveButton_clicked()
 
     if(_currentRow == -1)
     {
+
         ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>Nothing selected");
     }
     else if(_currentRow >= 0)
     {
-        QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
-        _service.removeScientist(name.toStdString());
-        ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>");
-        printList(printSelect::scientist);
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this scientist",
+        QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            QString name = ui -> scientistTable -> item(_currentRow, 0) -> text();
+            _service.removeScientist(name.toStdString());
+            ui -> errorLabelRemoveScientist -> setText("<span style='color: #ED1C58'>");
+            printList(printSelect::scientist);
+        }
+        else
+        {
+            //Do nothing
+        }
+
     }
 
     ui -> scientistTable -> setSortingEnabled(1);
 
     _currentRow = -1;
 }
+void MainWindow::on_scientistRemoveAllButton_clicked()
+{
+    ui -> scientistTable -> setSortingEnabled(0);
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers",
+    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        _service.removeAllScientists();
+        printList(printSelect::scientist);
+    }
+    else
+    {
+        //Do nothing
+    }
+
+
+    ui -> scientistTable -> setSortingEnabled(1);
+}
 
 
 // ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
 void MainWindow::on_computerSearchInput_textEdited(const QString &arg1)
 {
+    ui -> computerTable -> setSortingEnabled(0);
+
+
     if(arg1.isEmpty())
     {
         printList(printSelect::computer);
     }
+    else if ((_computerComboboxIndex + 1) == 3)
+    {
+        if(arg1.isEmpty())
+        {
+            vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, "0" , ui->computerSearchRange->text().toStdString());
+
+            printComputer(computers);
+        }
+
+        else if(ui->computerSearchRange->text().isEmpty())
+        {
+            vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, arg1.toStdString(), "2016");
+
+            printComputer(computers);
+        }
+        else
+        {
+            vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, arg1.toStdString(), ui->computerSearchRange->text().toStdString());
+
+            printComputer(computers);
+        }
+    }
     else
     {
-        string input = ui->computerSearchInput->text().toStdString();
-
         vector<Computer> computers = _service.findComputer(_computerComboboxIndex + 1, arg1.toStdString());
 
         printComputer(computers);
     }
+
+    ui -> computerTable -> setSortingEnabled(1);
 }
+
+void MainWindow::on_computerSearchRange_textEdited(const QString &arg1)
+{
+    on_computerSearchInput_textEdited(ui->computerSearchInput->text());
+}
+
 void MainWindow::on_computerSearchBy_currentIndexChanged(int index)
 {
+    ui->computerSearchInput->setText("");
+    ui->computerSearchRange->setText("");
+
     _computerComboboxIndex = index;
 
     QString searchBy = ui->computerSearchInput->text();
+
+    on_computerSearchInput_textEdited(searchBy);
+
+    if( ui->computerSearchBy->currentText().toStdString() == "by Year Built Range")
+    {
+        ui->computerSearchRange->setEnabled(true);
+    }
+    else
+    {
+        ui->computerSearchRange->setEnabled(false);
+    }
 
     on_computerSearchInput_textEdited(searchBy);
 }
@@ -355,39 +432,105 @@ void MainWindow::on_computerRemoveButton_clicked()
     }
     else if(_currentRow >= 0)
     {
-        QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
-        _service.removeComputer(name.toStdString());
-        ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
-        printList(printSelect::computer);
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this computer",
+        QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            QString name = ui -> computerTable -> item(_currentRow, 0) -> text();
+            _service.removeComputer(name.toStdString());
+            ui -> errorLabelRemoveComputer -> setText("<span style='color: #ED1C58'>");
+            printList(printSelect::computer);
+        }
+        else
+        {
+            //Do nothing
+        }
+
     }
 
     ui -> computerTable -> setSortingEnabled(1);
 
     _currentRow = -1;
 }
+void MainWindow::on_computerRemoveAllButton_clicked()
+{
+    ui -> computerTable -> setSortingEnabled(0);
 
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all computers",
+    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        _service.removeAllComputers();
+        printList(printSelect::computer);
+    }
+    else
+    {
+        //Do nothing
+    }
+
+    ui -> computerTable -> setSortingEnabled(1);
+}
 
 // ---------------------------------- RELATION  FUNCTIONS ---------------------------------- //
+
 void MainWindow::on_relationSearchInput_textEdited(const QString &arg1)
 {
+    ui -> relationTable -> setSortingEnabled(0);
+
+
     if(arg1.isEmpty())
     {
         printList(printSelect::relation);
     }
+    else if ((_relationComboboxIndex + 1) == 4)
+    {
+        if(ui->relationSearchRange->text().isEmpty())
+        {
+            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 2, arg1.toStdString(), "2016");
+
+            printRelation(relations);
+        }
+        else
+        {
+            vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 2, arg1.toStdString(), ui->relationSearchRange->text().toStdString());
+
+            printRelation(relations);
+        }
+    }
     else
     {
-        string input = ui->relationSearchInput->text().toStdString();
-
         vector<Relation> relations = _service.findRelation(_relationComboboxIndex + 1, arg1.toStdString());
 
         printRelation(relations);
     }
+
+    ui -> relationTable -> setSortingEnabled(1);
+}
+void MainWindow::on_relationSearchRange_textEdited(const QString &arg1)
+{
+    on_relationSearchInput_textEdited(ui->relationSearchInput->text());
 }
 void MainWindow::on_relationSearchBy_currentIndexChanged(int index)
 {
+    ui->relationSearchInput->setText("");
+    ui->relationSearchRange->setText("");
+
     _relationComboboxIndex = index;
 
     QString searchBy = ui->relationSearchInput->text();
+
+    on_relationSearchInput_textEdited(searchBy);
+
+    if( ui->relationSearchBy->currentText().toStdString() == "by Year Built Range")
+    {
+        ui->relationSearchRange->setEnabled(true);
+    }
+    else
+    {
+        ui->relationSearchRange->setEnabled(false);
+    }
 
     on_relationSearchInput_textEdited(searchBy);
 }
@@ -415,18 +558,48 @@ void MainWindow::on_relationRemoveButton_clicked()
     }
     else if(_currentRow >= 0)
     {
-        QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
-        QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
-        _service.removeRelation(scientist.toStdString(), computer.toStdString());
-        ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
-        printList(printSelect::relation);
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Remove", "Are you sure you want to remove this relation",
+        QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            QString scientist = ui -> relationTable -> item(_currentRow, 0) -> text();
+            QString computer = ui -> relationTable -> item(_currentRow, 1) -> text();
+            _service.removeRelation(scientist.toStdString(), computer.toStdString());
+            ui -> errorLabelRemoveRelation -> setText("<span style='color: #ED1C58'>");
+            printList(printSelect::relation);
+        }
+        else
+        {
+            //Do nothing
+        }
+
     }
 
     ui -> relationTable -> setSortingEnabled(1);
 
     _currentRow = -1;
 }
+void MainWindow::on_relationRemoveAllButton_clicked()
+{
+    ui -> relationTable -> setSortingEnabled(0);
 
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Remove all", "Are you sure you want to remove all relations",
+    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        _service.removeAllRelations();
+        printList(printSelect::relation);
+    }
+    else
+    {
+        //Do nothing
+    }
+
+
+    ui -> relationTable -> setSortingEnabled(1);
+}
 
 void MainWindow::on_userManualButton_clicked()
 {
@@ -446,9 +619,10 @@ void MainWindow::on_userManualButton3_clicked()
     userManual.exec();
 }
 
-void MainWindow::on_relationSearchRange_textEdited(const QString &arg1)
-{
 
-}
+
+
+
+
 
 

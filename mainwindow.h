@@ -63,12 +63,11 @@ private slots:
 // ---------------------------------- SCIENTIST FUNCTIONS ---------------------------------- //
     void on_scientistSearchInput_textEdited(const QString &arg1);
     void on_scientistSearchBy_currentIndexChanged(int index);
-    void on_scientistSearchBy_currentIndexChanged(const QString &arg1);
     void on_scientistAddButton_clicked();
     void on_scientistTable_cellDoubleClicked(int row, int column);
     void on_scientistTable_cellPressed(int row, int column);
     void on_scientistRemoveButton_clicked();
-
+    void on_scientistRemoveAllButton_clicked();
 
 // ---------------------------------- COMPUTER  FUNCTIONS ---------------------------------- //
     void on_computerSearchInput_textEdited(const QString &arg1);
@@ -100,6 +99,14 @@ private slots:
     void on_relationSearchRange_textEdited(const QString &arg1);
 
     void on_scientistSearchRange_textEdited(const QString &arg1);
+
+    void on_computerSearchRange_textEdited(const QString &arg1);
+
+
+
+    void on_computerRemoveAllButton_clicked();
+
+    void on_relationRemoveAllButton_clicked();
 
 private:
     Ui::MainWindow *ui;

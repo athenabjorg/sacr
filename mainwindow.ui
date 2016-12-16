@@ -45,7 +45,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -231,6 +231,13 @@
                 </property>
                </spacer>
               </item>
+              <item>
+               <widget class="QPushButton" name="scientistRemoveAllButton">
+                <property name="text">
+                 <string>Remove All</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -390,12 +397,12 @@
                   </item>
                   <item>
                    <property name="text">
-                    <string>by Year Made</string>
+                    <string>by Year Built</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>by Year Made Range</string>
+                    <string>by Year Built Range</string>
                    </property>
                   </item>
                   <item>
@@ -494,6 +501,13 @@
                  </size>
                 </property>
                </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="computerRemoveAllButton">
+                <property name="text">
+                 <string>Remove All</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -752,6 +766,13 @@
                 </property>
                </spacer>
               </item>
+              <item>
+               <widget class="QPushButton" name="relationRemoveAllButton">
+                <property name="text">
+                 <string>Remove All</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -830,7 +851,7 @@
      <x>0</x>
      <y>0</y>
      <width>772</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
