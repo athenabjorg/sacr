@@ -23,9 +23,12 @@ AddScientistWindow::~AddScientistWindow()
 void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 {
     QString name = ui -> nameInput -> text();
-    QString birthYear = ui -> yearBornInput -> text();
-    QString deathYear = ui -> yearDiedInput -> text();
-    char gender;
+    QString born = ui -> yearBornInput -> text();
+    QString died = ui -> yearDiedInput -> text();
+    QString picurl = " ";
+    QString about = ui -> ScientistsAddInfo -> toPlainText();
+    QString abouturl = ui -> inputInfoUrl -> text();
+    QString gender;
     bool valid = true;
     ui -> errorLabelName -> setText(" ");
 
@@ -34,15 +37,15 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
 
     if(ui -> genderMaleButton -> isChecked())
     {
-        gender = 'm';
+        gender = "m";
     }
     else if(ui -> genderFemaleButton -> isChecked())
     {
-        gender = 'f';
+        gender = "f";
     }
     else if(ui -> genderOtherButton -> isChecked())
     {
-        gender = 'o';
+        gender = "o";
     }
     else
     {
@@ -70,19 +73,19 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
     QRegExp re("\\d*");
 
     //Error check birthYearInput
-    if(birthYear.isEmpty())
+    if(born.isEmpty())
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is empty");
         valid = false;
     }
-    else if(!re.exactMatch(birthYear))
+    else if(!re.exactMatch(born))
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is invalid");
         valid = false;
     }
-    else if(birthYear.toInt() > _service-> whatYearIsIt())
+    else if(born.toInt() > _service-> whatYearIsIt())
     {
-        ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is invalid");
+        ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is in the future");
         valid = false;
     }
     else
@@ -90,12 +93,12 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'> ");
     }
 
-    if(deathYear.toInt() < birthYear.toInt() && deathYear.toInt() != 0)
+    if(died.toInt() < born.toInt() && died.toInt() != 0)
     {
         ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is invalid");
         valid = false;
     }
-    else if(deathYear.toInt() > _service->whatYearIsIt())
+    else if(died.toInt() > _service->whatYearIsIt())
     {
         ui -> errorLabelDeath -> setText("<span style='color: #ED1C58'>Death year is in the future");
         valid = false;
@@ -111,10 +114,10 @@ void AddScientistWindow::on_addButton_clicked() // FIXME::BETTER_SOLUTION_?
         Scientist scientist;
         string scientistID, imageURL;
 
-        _service->addScientist(name.toStdString(), gender, birthYear.toInt(), deathYear.toInt());
+        _service->addScientist(" ", name.toStdString(), gender.toStdString(), born.toStdString(), died.toStdString(), picurl.toStdString(), about.toStdString(), abouturl.toStdString());
 
-        scientist = _service->getScientistInfo(name.toStdString());
-        scientistID = scientist.getInfoID();
+        scientist = _service->getScientist(name.toStdString());
+        scientistID = scientist.getID();
         imageURL = "../sacr/PicSci/" + scientistID + ".jpg";
         QString qImageURL = QString::fromStdString(imageURL);
 

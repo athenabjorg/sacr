@@ -39,13 +39,13 @@ vector<Scientist> service::getScientists()
     return _scientists;
 }
 
-bool service::addScientist(string name, char gender, int birth, int death)
+bool service::addScientist(string id, string name, string gender, string born, string died, string picurl, string about, string abouturl)
 {   // Adds a scientist to the list and updates the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesScientistExist(name) == false)
     {
-        Scientist scientist(name, gender, birth, death);
+        Scientist scientist(id, name, gender, born, died, picurl, about, abouturl);
 
         _scientists.push_back(scientist);
         _data.saveScientist(scientist);
@@ -55,13 +55,13 @@ bool service::addScientist(string name, char gender, int birth, int death)
     return false;
 
 }
-bool service::updateScientist(string name, char gender, int birth, int death)
+bool service::updateScientist(string id, string name, string gender, string born, string died, string picurl, string about, string abouturl)
 {   // Updates a scientist in the database.
     // Returns true if adding succeded, false otherwise.
 
     if(_data.doesScientistExist(name) == true)
     {
-        Scientist scientist(name, gender, birth, death);
+        Scientist scientist(id, name, gender, born, died, picurl, about, abouturl);
 
         _scientists.push_back(scientist);
         _data.updateScientist(scientist);
@@ -191,10 +191,10 @@ bool service::doesScientistExist(string name)
     return _data.doesScientistExist(name);
 }
 
-Scientist service::getScientistInfo(string name)
+Scientist service::getScientist(string name)
 {
     Scientist scientist;
-    scientist = _data.loadScientistInfo(name);
+    scientist = _data.loadScientist(name);
 
     return scientist;
 }

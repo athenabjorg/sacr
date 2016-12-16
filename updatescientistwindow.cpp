@@ -19,13 +19,13 @@ void UpdateScientistWindow::set_service(service *s)
 void UpdateScientistWindow::passInfo(string name)
 {
     _name = name;
-    _scientist = _service->getScientistInfo(_name);
-    _id = _scientist.getInfoID();
-    _born = _scientist.getInfoBorn();
-    _died = _scientist.getInfoDied();
+    _scientist = _service->getScientist(_name);
+    _id = _scientist.getID();
+    _born = _scientist.getBorn();
+    _died = _scientist.getDied();
     _gender = _scientist.getGender();
-    _about = _scientist.getInfoAbout();
-    _abouturl = _scientist.getInfoAbouturl();
+    _about = _scientist.getAbout();
+    _abouturl = _scientist.getAbouturl();
 
 
     if(_died == "0")
@@ -33,11 +33,11 @@ void UpdateScientistWindow::passInfo(string name)
         _died = "-";
     }
 
-    if(_gender[0] == 'f')
+    if(_gender == "f")
     {
         ui -> genderFemaleButton -> setChecked(true);
     }
-    else if(_gender[0] == 'm')
+    else if(_gender == "m")
     {
         ui -> genderMaleButton -> setChecked(true);
     }
@@ -64,13 +64,18 @@ UpdateScientistWindow::~UpdateScientistWindow()
 void UpdateScientistWindow::on_updateButton_clicked() // FIXME::BETTER_SOLUTION_?
 {
     QString name = ui -> nameInput -> text();
-    QString birthYear = ui -> yearBornInput -> text();
-    QString deathYear = ui -> yearDiedInput -> text();
-    char gender;
+    QString born = ui -> yearBornInput -> text();
+    QString died = ui -> yearDiedInput -> text();
+    QString picurl;
+    QString about;
+    QString abouturl;
+    QString gender;
+    bool valid = true;
     ui -> errorLabelName -> setText(" ");
 
 
     // Check for what buttom is selected
+    ui -> errorLabelGender -> setText("<span style='color: #ED1C58'> ");
     if(ui -> genderMaleButton -> isChecked())
     {
         gender = 'm';
@@ -85,45 +90,33 @@ void UpdateScientistWindow::on_updateButton_clicked() // FIXME::BETTER_SOLUTION_
     }
     else
     {
-        gender = 'e';
-    }
-
-
-    // Check if fiels are left emty and if name is allready taken and if so print out a red error msg
-    if(gender == 'e')
-    {
         ui -> errorLabelGender -> setText("<span style='color: #ED1C58'>Gender is empty");
-    }
-    else
-    {
-        ui -> errorLabelGender -> setText("<span style='color: #ED1C58'> ");
+        valid = false;
     }
 
     QRegExp re("\\d*");
 
     //Error check birthYearInput
-    if(birthYear.isEmpty())
+    if(born.isEmpty())
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is empty");
+        valid = false;
     }
-    else if(!re.exactMatch(birthYear))
+    else if(!re.exactMatch(born))
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'>Birth year is invalid");
+        valid = false;
     }
     else
     {
         ui -> errorLabelBorn -> setText("<span style='color: #ED1C58'> ");
     }
 
-    // If everything chekcs out, add the new scientist and close the UpdateScientistWindow
-    if(gender != 'e' && !birthYear.isEmpty())
+    // If everything checks out, add the new scientist and close the UpdateScientistWindow
+    if(valid)
     {
-        _service->updateScientist(_name, gender, birthYear.toInt(), deathYear.toInt());
+        _service->addScientist(" ", name.toStdString(), gender.toStdString(), born.toStdString(), died.toStdString(), picurl.toStdString(), about.toStdString(), abouturl.toStdString());
         close();
         //printList(printSelect::scientist);
-    }
-    else
-    {
-        //Do Nothing
     }
 }

@@ -10,37 +10,31 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string name, char gender, int birth, int death); //vantar bool valid aftast?
-    Scientist(string id, string name, string birth, string death, string picurl, string about, string abouturl);
+    Scientist(string id, string name, string gender, string born, string died, string picurl, string about, string abouturl);
+
+    string getID() const;
     string getName()      const;
     string getGender()    const;
-    int    getBirth()     const;
-    int    getDeath()     const;
-    int    getAge()       const;
+    string getBorn() const;
+    string getDied() const;
+    string getPicurl() const;
+    string getAbout() const;
+    string getAbouturl() const;
+    int getAge() const;
 
     friend bool operator == (const Scientist& a, const Scientist& b);
 
-    string getInfoID() const;
-    string getInfoBorn() const;
-    string getInfoDied() const;
-    string getInfoPicurl() const;
-    string getInfoAbout() const;
-    string getInfoAbouturl() const;
-
 private:
 
-    string _name;
-    char   _gender;
-    int    _birth;
-    int    _death;
-    int    _age;
-
     string _id;
+    string _name;
+    string _gender;
     string _born;
     string _died;
     string _picurl;
     string _about;
     string _abouturl;
+    int _age;
 
     int    whatYearIsIt() const;
     // Returns the current year.

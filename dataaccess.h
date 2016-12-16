@@ -26,6 +26,7 @@ public:
     void updateScientist(Scientist scientist);
     // Updates the information for an existing scientist.
 
+    Scientist loadScientist(string name);
     vector<Scientist> loadScientists();
     vector<Scientist> loadScientists(int loadType, string parameter);
     vector<Scientist> loadScientists(int loadType, string parameter1, string parameter2);
