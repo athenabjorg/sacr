@@ -353,8 +353,8 @@ void DataAccess::updateComputer(Computer computer)
 
 
     line = "UPDATE Computers "
-           "SET name = \"" + name + "\", type = \"" + type + "\", year = \"" + year + "\", built = \"" + built + "\", picurl = \"" + picurl + "\", about = \"" + about + "\", abouturl = \"" + abouturl;
-           " WHERE Name LIKE \"" + name + "\"";
+           "SET name = \"" + name + "\", type = \"" + type + "\", year = \"" + year + "\", built = \"" + built + "\", picurl = \"" + picurl + "\", about = \"" + about + "\", abouturl = \"" + abouturl +
+           "\" WHERE Name LIKE \"" + name + "\"";
 
     QString input = QString::fromStdString(line);
 

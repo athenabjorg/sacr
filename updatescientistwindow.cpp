@@ -9,6 +9,7 @@ UpdateScientistWindow::UpdateScientistWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     _service = nullptr;
+    setFixedSize(width(),height());
 }
 
 void UpdateScientistWindow::set_service(service *s)

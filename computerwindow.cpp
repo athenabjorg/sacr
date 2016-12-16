@@ -114,3 +114,12 @@ void ComputerWindow::on_buttonAddRelation_clicked()
 
     printRelations();
 }
+
+void ComputerWindow::on_buttonUpdate_2_clicked()
+{
+    UpdateComputerWindow updateComputerWindow;
+    updateComputerWindow.set_service(_service);
+    updateComputerWindow.passInfo(_name);
+    updateComputerWindow.exec();
+    passInfo(_name);
+}

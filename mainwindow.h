@@ -111,6 +111,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     service _service;
+    QString _computerSearch;
+    QString _scientistSearch;
 
     int _scientistComboboxIndex = 0;
     int _computerComboboxIndex = 0;
