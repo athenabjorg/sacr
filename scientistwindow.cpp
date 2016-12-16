@@ -100,6 +100,11 @@ void ScientistWindow::printRelations()
             QString computer =  QString::fromStdString(currentRelations.getComputer());
             QString year  =  QString::number(currentRelations.getYear());
 
+            if(year.toInt() == 0)
+            {
+                year = "-";
+            }
+
             ui -> relationTable -> setItem(row, 0, new QTableWidgetItem(computer));
             ui -> relationTable -> setItem(row, 1, new QTableWidgetItem(year));
         }

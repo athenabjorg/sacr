@@ -8,6 +8,7 @@ UpdateComputerWindow::UpdateComputerWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     _service = nullptr;
+    setFixedSize(width(),height());
 }
 void UpdateComputerWindow::set_service(service *s)
 {
