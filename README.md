@@ -1,8 +1,6 @@
-# vln1-2016-test1
+# SACR
 
-## Subheading
+## Scientist and Computer Relations
 
-This is a description [and this is a link](http://www.ru.is)
+Verkefni fyrir 3 vikna áfangann 'Verklegt Námskeið 1'
 
-* This is the first bullet
-* And a second one
